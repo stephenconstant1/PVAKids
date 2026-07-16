@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PVM Kids \u2014 Financial Freedom Interactive Journey</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&display=swap');
+  :root{
+    --navy:#122452; --navy-d:#0b1836; --gold:#C9A227; --gold-l:#E4C767;
+    --red:#C0272D; --blue:#1B5FAE; --green:#1F7A4D; --purple:#5B3A9E; --teal:#0F7A78;
+    --ink:#1A2233; --muted:#5B6478; --bg:#F4F6FA; --line:#DCE2EE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:'Inter', Arial, sans-serif; background:var(--bg); color:var(--ink);
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  .display{ font-family:'Archivo Black', Arial, sans-serif; }
+
+  /* ===== TOP BAR ===== */
+  .topbar{
+    background:linear-gradient(135deg, var(--navy-d), var(--navy));
+    color:#fff; padding:12px 20px; display:flex; align-items:center; gap:14px;
+    border-bottom:4px solid var(--gold); flex-shrink:0;
+  }
+  .topbar .logo{
+    width:38px; height:42px; background:var(--gold); flex-shrink:0;
+    clip-path: polygon(50% 0%, 100% 22%, 100% 68%, 50% 100%, 0% 68%, 0% 22%);
+    display:flex; align-items:center; justify-content:center; color:var(--navy-d); font-size:9px; font-weight:900;
+  }
+  .topbar .brand{ font-size:18px; font-weight:900; letter-spacing:0.5px; }
+  .topbar .brand span{ color:var(--gold); }
+  .topbar .spacer{ flex:1; }
+  .topbar .backbtn{
+    background:rgba(255,255,255,0.14); border:none; color:#fff; padding:8px 14px; border-radius:20px;
+    font-weight:700; font-size:13px; cursor:pointer; display:flex; align-items:center; gap:6px;
+  }
+  .topbar .backbtn:hover{ background:rgba(255,255,255,0.24); }
+  .topbar .progresspill{
+    background:rgba(255,255,255,0.14); border-radius:20px; padding:7px 14px; font-size:12.5px; font-weight:800;
+    color:var(--gold-l); letter-spacing:0.5px;
+  }
+
+  /* ===== APP CONTAINER ===== */
+  #app{ flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  .screen{ flex:1; overflow-y:auto; padding:28px 20px 40px 20px; }
+  .wrap{ max-width:920px; margin:0 auto; }
+
+  /* ===== HOME SCREEN ===== */
+  .hero{ text-align:center; margin-bottom:30px; }
+  .hero .kicker{ color:var(--gold); font-weight:800; letter-spacing:3px; font-size:13px; margin-bottom:8px;}
+  .hero h1{ font-size:34px; color:var(--navy-d); line-height:1.15; }
+  .hero p{ color:var(--muted); font-size:15px; margin-top:10px; max-width:520px; margin-left:auto; margin-right:auto; }
+
+  .levelgrid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:20px; }
+  @media (max-width:680px){ .levelgrid{ grid-template-columns:1fr; } }
+  .levelcard{
+    background:#fff; border-radius:16px; padding:26px; border:1px solid var(--line); cursor:pointer;
+    box-shadow:0 2px 10px rgba(18,36,82,0.06); transition:transform .15s ease, box-shadow .15s ease;
+    display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden;
+  }
+  .levelcard:hover{ transform:translateY(-4px); box-shadow:0 10px 24px rgba(18,36,82,0.14); }
+  .levelcard .badge{ align-self:flex-start; font-size:11.5px; font-weight:900; letter-spacing:1.5px; padding:5px 12px; border-radius:20px; color:#fff; }
+  .levelcard h2{ font-size:23px; color:var(--navy-d); }
+  .levelcard p{ color:var(--muted); font-size:13.5px; line-height:1.5; }
+  .levelcard .stages{ display:flex; gap:8px; flex-wrap:wrap; margin-top:2px; }
+  .stagechip{ font-size:10.5px; font-weight:800; letter-spacing:0.5px; padding:4px 9px; border-radius:12px; color:#fff; }
+  .progressbar{ height:9px; background:var(--bg); border-radius:6px; overflow:hidden; margin-top:6px; border:1px solid var(--line); }
+  .progressbar > div{ height:100%; border-radius:6px; transition:width .4s ease; }
+  .progresslabel{ font-size:12px; color:var(--muted); font-weight:700; margin-top:4px; }
+  .enterrow{ display:flex; align-items:center; justify-content:space-between; margin-top:4px; }
+  .enterbtn{ font-weight:800; font-size:13.5px; color:#fff; padding:9px 16px; border-radius:20px; border:none; cursor:pointer; }
+
+  /* ===== MAP SCREEN ===== */
+  .mapheader{ text-align:center; margin-bottom:22px; }
+  .mapheader h2{ font-size:26px; color:var(--navy-d); }
+  .mapheader p{ color:var(--muted); font-size:14px; margin-top:6px; }
+  .nodegrid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; }
+  @media (max-width:680px){ .nodegrid{ grid-template-columns:repeat(2, 1fr); } }
+  .node{
+    background:#fff; border:2px solid var(--line); border-radius:14px; padding:16px 10px; text-align:center;
+    cursor:pointer; transition:transform .12s ease, border-color .12s ease; position:relative;
+  }
+  .node:hover{ transform:translateY(-3px); }
+  .node .wnum{ font-size:11px; font-weight:800; color:var(--muted); letter-spacing:1px; }
+  .node .wicon{ width:44px; height:44px; border-radius:50%; margin:8px auto; display:flex; align-items:center; justify-content:center; color:#fff; font-size:19px; }
+  .node .wtitle{ font-size:12px; font-weight:700; color:var(--ink); line-height:1.3; min-height:32px; }
+  .node .check{ position:absolute; top:8px; right:8px; width:20px; height:20px; border-radius:50%; background:var(--green); color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; font-weight:900; }
+
+  /* ===== WEEK SCREEN ===== */
+  .weekhead{ background:#fff; border-radius:14px; padding:20px 22px; border:1px solid var(--line); margin-bottom:18px; }
+  .stagepillrow{ display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .pill{ font-size:11px; font-weight:900; letter-spacing:1.2px; padding:5px 12px; border-radius:20px; color:#fff; }
+  .weekhead h2{ font-size:24px; color:var(--red); line-height:1.2; }
+  .weekhead h2 .l2{ color:var(--navy-d); display:block; }
+  .weekhead .sub{ color:var(--muted); font-size:14px; margin-top:8px; }
+  .factchip{ background:var(--bg); border-left:4px solid var(--navy-d); padding:9px 12px; font-size:12px; font-weight:700; color:var(--ink); border-radius:0 6px 6px 0; margin-top:12px; }
+
+  .progressdots{ display:flex; gap:6px; justify-content:center; margin:14px 0 18px 0; flex-wrap:wrap; }
+  .dot{ width:9px; height:9px; border-radius:50%; background:var(--line); cursor:pointer; }
+  .dot.active{ background:var(--navy); width:22px; border-radius:5px; }
+  .dot.done{ background:var(--gold); }
+
+  .sectioncard{ background:#fff; border-radius:14px; border:1px solid var(--line); overflow:hidden; margin-bottom:20px; }
+  .sectionhead{ padding:13px 20px; font-weight:900; font-size:14.5px; letter-spacing:1px; color:#fff; display:flex; align-items:center; gap:8px; }
+  .sectionbody{ padding:22px; }
+
+  ul.bullets{ list-style:none; }
+  ul.bullets li{ position:relative; padding-left:18px; margin-bottom:11px; font-size:14.5px; line-height:1.5; }
+  ul.bullets li::before{ content:"\2022"; position:absolute; left:0; color:var(--red); font-weight:900; }
+
+  .datarow{ display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px dashed var(--line); gap:10px; }
+  .datarow:last-child{ border-bottom:none; }
+  .datarow .lbl{ font-weight:800; font-size:13px; color:var(--navy-d); width:32%; }
+  .datarow .val{ text-align:right; width:34%; }
+  .datarow .val b{ font-size:19px; color:var(--red); display:block; }
+  .datarow .val span{ font-size:11px; color:var(--muted); }
+  .datarow .note{ font-size:12px; color:var(--muted); width:34%; text-align:right; }
+
+  .nmgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  @media (max-width:600px){ .nmgrid{ grid-template-columns:1fr; } }
+  .nmbox{ background:var(--bg); border-top:4px solid; border-radius:6px; padding:14px 10px; text-align:center; }
+  .nmbox .l{ font-size:10.5px; font-weight:800; color:var(--muted); letter-spacing:0.5px; }
+  .nmbox .v{ font-size:22px; font-weight:900; margin:5px 0; }
+  .nmbox .n{ font-size:11.5px; color:var(--muted); }
+
+  .fact{ background:var(--bg); border-left:4px solid var(--navy-d); padding:16px 18px; border-radius:0 8px 8px 0; font-size:14.5px; line-height:1.55; }
+
+  .checklist{ list-style:none; }
+  .checkitem{ display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:10px; cursor:pointer; margin-bottom:6px; transition:background .12s; }
+  .checkitem:hover{ background:var(--bg); }
+  .checkbox{ width:24px; height:24px; border-radius:6px; border:2px solid var(--gold); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:900; color:#fff; font-size:14px; }
+  .checkitem.checked .checkbox{ background:var(--gold); }
+  .checkitem span.txt{ font-size:14.5px; }
+  .checkitem.checked span.txt{ color:var(--muted); text-decoration:line-through; }
+  .checkprogress{ margin-top:14px; font-size:13px; font-weight:700; color:var(--muted); }
+
+  .reallife{ font-size:14.5px; line-height:1.6; }
+
+  .cyclewrap{ display:flex; flex-direction:column; align-items:center; }
+
+  .strategistlist{ list-style:none; }
+  .strategistlist li{ background:var(--bg); border-radius:10px; padding:14px 16px; margin-bottom:10px; font-weight:600; font-size:14px; color:var(--navy-d); }
+
+  .quizq{ font-size:15px; font-weight:700; margin-bottom:16px; line-height:1.5; }
+  .choices{ display:flex; flex-direction:column; gap:10px; }
+  .choicebtn{
+    text-align:left; padding:14px 16px; border-radius:10px; border:2px solid var(--line); background:#fff;
+    cursor:pointer; font-size:14px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:12px;
+    transition:border-color .12s, background .12s;
+  }
+  .choicebtn:hover{ border-color:var(--blue); }
+  .choicebtn .lettercirc{ width:26px; height:26px; border-radius:50%; background:var(--bg); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:12px; flex-shrink:0; color:var(--navy-d); }
+  .choicebtn.correct{ border-color:var(--green); background:#EAF6EF; }
+  .choicebtn.correct .lettercirc{ background:var(--green); color:#fff; }
+  .choicebtn.incorrect{ border-color:var(--red); background:#FBEAEB; }
+  .choicebtn.incorrect .lettercirc{ background:var(--red); color:#fff; }
+  .choicebtn.disabled{ cursor:default; }
+  .feedback{ margin-top:16px; padding:14px 16px; border-radius:10px; font-size:14px; font-weight:700; line-height:1.5; }
+  .feedback.good{ background:#EAF6EF; color:var(--green); }
+  .feedback.bad{ background:#FBEAEB; color:var(--red); }
+  textarea.explain{ width:100%; margin-top:14px; border:2px solid var(--line); border-radius:10px; padding:12px 14px; font-family:inherit; font-size:13.5px; resize:vertical; min-height:70px; }
+  textarea.explain:focus{ outline:none; border-color:var(--blue); }
+
+  .takeawaybox{ text-align:center; padding:10px 0; }
+  .trophybig{ width:70px; height:70px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:32px; margin:0 auto 16px auto; }
+  .takeawaybox .msg{ font-size:20px; font-weight:900; color:var(--navy-d); line-height:1.35; max-width:540px; margin:0 auto; }
+  .completebtn{ margin-top:22px; background:var(--green); color:#fff; border:none; padding:14px 30px; border-radius:24px; font-weight:800; font-size:15px; cursor:pointer; }
+  .completebtn:hover{ opacity:0.9; }
+
+  .navrow{ display:flex; justify-content:space-between; align-items:center; margin-top:6px; gap:12px; }
+  .navbtn{ background:var(--navy); color:#fff; border:none; padding:12px 22px; border-radius:24px; font-weight:800; font-size:14px; cursor:pointer; }
+  .navbtn.secondary{ background:#fff; color:var(--navy); border:2px solid var(--line); }
+  .navbtn:disabled{ opacity:0.35; cursor:not-allowed; }
+
+  /* ===== MONEY RUN GAME ===== */
+  .gamewrap{ user-select:none; }
+  .gameintro{ font-size:13.5px; color:var(--muted); margin-bottom:16px; line-height:1.5; }
+  .track{
+    position:relative; height:120px; background:linear-gradient(180deg,#EAF1FB,#F4F6FA);
+    border-radius:12px; margin-bottom:22px; overflow:hidden; border:1px solid var(--line);
+  }
+  .trackline{ position:absolute; left:20px; right:20px; bottom:28px; height:4px; background:var(--line); border-radius:2px; }
+  .trackflag{ position:absolute; right:14px; bottom:20px; font-size:26px; }
+  .obstacle{
+    position:absolute; bottom:30px; font-size:22px; transform:translateX(-50%);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .obstacle.passed{ opacity:0.25; transform:translateX(-50%) scale(0.8); }
+  .runner{
+    position:absolute; bottom:24px; left:20px; font-size:34px; transition:left .55s cubic-bezier(.34,1.4,.64,1);
+    transform:translateX(-50%);
+  }
+  .runner.jump{ animation:jumpArc .55s ease; }
+  @keyframes jumpArc{
+    0%{ transform:translateX(-50%) translateY(0); }
+    40%{ transform:translateX(-50%) translateY(-38px) rotate(-8deg); }
+    100%{ transform:translateX(-50%) translateY(0); }
+  }
+  .runner.stumble{ animation:stumbleShake .4s ease; }
+  @keyframes stumbleShake{
+    0%,100%{ transform:translateX(-50%) rotate(0); }
+    25%{ transform:translateX(-50%) rotate(-14deg); }
+    75%{ transform:translateX(-50%) rotate(10deg); }
+  }
+  .zones{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  @media (max-width:600px){ .zones{ grid-template-columns:1fr; } }
+  .dropzone{
+    border:3px dashed var(--line); border-radius:12px; padding:16px 14px; text-align:center; min-height:78px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    transition:border-color .15s, background .15s;
+  }
+  .dropzone .zlabel{ font-weight:900; font-size:13.5px; letter-spacing:0.5px; }
+  .dropzone .zsub{ font-size:11px; color:var(--muted); }
+  .dropzone.zone-smart{ border-color:#9FD3B4; }
+  .dropzone.zone-smart .zlabel{ color:var(--green); }
+  .dropzone.zone-risky{ border-color:#E8A9AC; }
+  .dropzone.zone-risky .zlabel{ color:var(--red); }
+  .dropzone.hover-smart{ background:#EAF6EF; border-color:var(--green); }
+  .dropzone.hover-risky{ background:#FBEAEB; border-color:var(--red); }
+  .tilepool{ display:flex; flex-wrap:wrap; gap:10px; min-height:52px; }
+  .tile{
+    background:#fff; border:2px solid var(--line); border-radius:10px; padding:12px 14px; font-size:13.5px;
+    font-weight:600; cursor:grab; touch-action:none; box-shadow:0 2px 4px rgba(18,36,82,0.05);
+    transition:box-shadow .12s, border-color .12s;
+  }
+  .tile:hover{ border-color:var(--blue); }
+  .tile.dragging{ position:fixed; z-index:500; box-shadow:0 8px 20px rgba(18,36,82,0.25); cursor:grabbing; pointer-events:none; }
+  .gamestatus{ text-align:center; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:6px; }
+  .gamedone{ text-align:center; padding:20px 0; }
+  .gamedone .big{ font-size:19px; font-weight:900; color:var(--navy-d); margin:10px 0 16px 0; }
+  .playagainbtn{ background:var(--blue); color:#fff; border:none; padding:11px 22px; border-radius:22px; font-weight:800; font-size:13.5px; cursor:pointer; }
+
+  /* confetti */
+  .confetti-piece{
+    position:fixed; top:-10px; width:9px; height:14px; z-index:999; opacity:0.9; border-radius:2px;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(540deg); opacity:0.4; }
+  }
+
+  ::-webkit-scrollbar{ width:9px; }
+  ::-webkit-scrollbar-thumb{ background:var(--line); border-radius:6px; }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<div id="app"></div>
+
+<script>
+const WEEKS_DATA = {"intro": [{"week": 1, "date": "JULY 13, 2026", "stage": "EARN", "fact_callout": "THE AVERAGE U.S. TEEN EARNS MONEY FROM 3+ DIFFERENT SOURCES BEFORE AGE 16.", "headline": "WHERE DOES MONEY", "headline2": "ACTUALLY COME FROM?", "subhead": "The first rule of financial freedom: you can't keep, grow, or share money you never earned.", "big_picture": ["Money is not created for free — it's exchanged for value", "People earn money by working, solving problems, or providing something others need", "Every dollar you hold represents someone's time, skill, or effort (including yours)"], "data_title": "WAYS KIDS EARN: THIS MONTH", "data_rows": [["CHORES", "$5-10", "per week", "Steady & reliable"], ["ODD JOBS", "$10-25", "per gig", "Yard work, pet-sitting, tutoring"], ["SELLING", "$5-50", "per item", "Crafts, lemonade stand, old toys"]], "numbers_meaning": [["1 CHORE", "~$5", "One task, one payment"], ["1 WEEK", "~$20", "Chores + one odd job"], ["1 MONTH", "~$80", "Consistent effort adds up"]], "affects_title": "HOW EARNING SHAPES YOUR FUTURE", "affects": ["The habit of earning builds independence early", "Kids who earn young learn the true cost of things", "Every income source is a skill you can grow later", "Earning is step one of every financial plan, for kids and adults"], "did_you_know": "Many well-known entrepreneurs — from tech founders to shop owners — started with small jobs like mowing lawns or running errands before building bigger ventures.", "smart_people": ["Look for more than one way to earn", "Track every dollar they make", "Treat small jobs seriously and reliably", "Reinvest some earnings into new opportunities", "Ask: “what problem am I solving for someone?”"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A 10-year-old wants a $60 video game. Instead of asking for it, she offers to walk the neighbor's dog for $10/week. In 6 weeks, she earns it herself — and still has $0 debt.", "strategist_qs": ["What skill or task could you offer to a neighbor or family member?", "How many small jobs would it take to reach a goal of $50?", "What's the difference between earning money and just receiving it?"], "ff_question": "A friend offers to pay you $8 to organize their bookshelf, or you could ask your parents for the money instead. What's the smartest strategy?", "ff_choices": ["Take the $8 job", "Ask parents instead", "Do both if there's time"], "takeaway": "Every financial freedom journey starts the same way: earn it first.", "correct_index": 0, "level": "intro", "game_tiles": [{"text": "Offer to do a real job for pay", "type": "smart"}, {"text": "Track every dollar you earn", "type": "smart"}, {"text": "Look for more than one way to earn", "type": "smart"}, {"text": "Wait around and hope for money", "type": "risky"}, {"text": "Spend it before you even earn it", "type": "risky"}, {"text": "Ask without offering to help back", "type": "risky"}]}, {"week": 2, "date": "JULY 20, 2026", "stage": "EARN", "fact_callout": "PEOPLE WITH 2+ INCOME SOURCES RECOVER FROM MONEY SETBACKS FASTER THAN THOSE WITH JUST ONE.", "headline": "ONE INCOME IS GOOD.", "headline2": "MULTIPLE IS SMARTER.", "subhead": "Relying on a single source of money is risky. Smart earners build more than one stream.", "big_picture": ["An income stream is any regular way money comes in", "If one stream slows down, others can keep you steady", "Kids can practice this early with chores + a small side hustle"], "data_title": "ONE STREAM VS. THREE STREAMS", "data_rows": [["1 STREAM", "$20/wk", "chores only", "Stops if chores stop"], ["2 STREAMS", "$35/wk", "chores + pet-sitting", "One dip, one backup"], ["3 STREAMS", "$55/wk", "chores + pet-sit + crafts", "Steadiest income"]], "numbers_meaning": [["1 STREAM", "$80/mo", "All eggs, one basket"], ["2 STREAMS", "$140/mo", "Some built-in safety"], ["3 STREAMS", "$220/mo", "Room to save AND spend"]], "affects_title": "HOW THIS AFFECTS REAL FAMILIES", "affects": ["Adults with one job feel a bigger shock if that job is lost", "Families with side businesses or side income adjust faster to price changes", "Multiple streams reduce stress when one source slows down", "This is why many adults have a job AND a side project"], "did_you_know": "Many successful business owners kept a steady job while building a side project on evenings and weekends — only switching once the side income was reliable.", "smart_people": ["Don't depend on just one source of money", "Start small side projects before they're “needed”", "Reinvest early earnings into better tools or supplies", "Track which income stream is most reliable", "Treat a hobby as a possible income stream"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A kid who only mows lawns adds a second stream: selling drawings online with a parent's help. When lawn season slows in winter, the art sales keep money coming in.", "strategist_qs": ["What's one hobby you have that someone might pay for?", "If your main way of earning stopped tomorrow, what's your backup?", "How could you turn a skill into a second income stream?"], "ff_question": "You earn $20/week from chores. A neighbor offers a second job for $10/week. What's the smartest move?", "ff_choices": ["Take it — build a 2nd stream", "Say no, one is enough", "Only if chores get boring"], "takeaway": "Don't put all your eggs — or all your earning — in one basket.", "correct_index": 0, "level": "intro", "game_tiles": [{"text": "Build a second way to earn", "type": "smart"}, {"text": "Turn a hobby into extra income", "type": "smart"}, {"text": "Keep chores going even with a new gig", "type": "smart"}, {"text": "Rely on just one source of money", "type": "risky"}, {"text": "Quit your only income with no backup", "type": "risky"}, {"text": "Ignore a skill that could earn extra", "type": "risky"}]}, {"week": 3, "date": "JULY 27, 2026", "stage": "KEEP", "fact_callout": "EXPERTS OFTEN RECOMMEND SPLITTING MONEY INTO ROUGHLY 50% NEEDS, 30% WANTS, 20% SAVINGS.", "headline": "NEEDS, WANTS,", "headline2": "AND THE BUDGET GAP", "subhead": "Earning money is only half the game. Where it goes next decides everything.", "big_picture": ["A need is something required to live and function (food, school supplies)", "A want is something nice to have but not required (games, candy, extras)", "A budget is simply a plan for where each dollar goes before you spend it"], "data_title": "$20 ALLOWANCE: 3 DIFFERENT PLANS", "data_rows": [["NO PLAN", "$20", "spent same day", "Nothing left, no goal"], ["HALF PLAN", "$10 saved", "$10 spent", "Some progress"], ["50/30/20", "$10 / $6 / $4", "needs/wants/save", "Balanced & sustainable"]], "numbers_meaning": [["NO BUDGET", "$0 left", "By the end of the week"], ["PARTIAL BUDGET", "$40", "Saved after 4 weeks"], ["FULL BUDGET", "$80", "Saved after 4 weeks"]], "affects_title": "HOW BUDGETS AFFECT FAMILIES", "affects": ["Families without a plan often run out of money before the next payday", "A simple budget shows exactly where money is going", "Budgeting doesn't mean no fun — it means planned fun", "The same 50/30/20 idea works for allowance and adult paychecks"], "did_you_know": "The word “budget” comes from an old French word for a small pouch or purse — literally, a plan for what goes in and out of your pocket.", "smart_people": ["Decide where money goes before they spend it, not after", "Separate needs from wants honestly", "Give every dollar a “job”", "Review their spending plan weekly", "Adjust the plan instead of abandoning it when it's tough"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family gets $20 weekly allowance for their child. Instead of spending it all on the first day, they split it: $10 needs (school snacks), $6 wants (an app), $4 saved automatically.", "strategist_qs": ["What's one “want” you spent money on recently?", "If you had $20, how would you split it into needs/wants/savings?", "What happens to a family's plans if they never track spending?"], "ff_question": "You get $15. A toy costs $12 and a school supply you need costs $6. What's the smartest strategy?", "ff_choices": ["Buy the toy first", "Buy the need, save the rest", "Split evenly between both"], "takeaway": "A plan for your money beats hoping it lasts.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Cover your needs before your wants", "type": "smart"}, {"text": "Give every dollar a job", "type": "smart"}, {"text": "Save a little from every payment", "type": "smart"}, {"text": "Spend it all the day you get it", "type": "risky"}, {"text": "Buy the want before the need", "type": "risky"}, {"text": "Guess where your money went", "type": "risky"}]}, {"week": 4, "date": "AUGUST 3, 2026", "stage": "KEEP", "fact_callout": "MOST FINANCIAL PLANNERS SUGGEST STARTING AN EMERGENCY FUND WITH JUST ONE MONTH OF SMALL EXPENSES.", "headline": "SAVING ISN'T WAITING.", "headline2": "IT'S PROTECTING YOUR FUTURE.", "subhead": "A savings goal turns “someday” into a plan with a number and a date.", "big_picture": ["Saving means setting money aside on purpose, before you spend", "A savings goal has 3 parts: an amount, a reason, and a deadline", "An emergency fund is money saved just for surprises, not fun spending"], "data_title": "SAVING $3 VS $6 VS $10 PER WEEK", "data_rows": [["$3/WEEK", "$156", "after 1 year", "Small but steady"], ["$6/WEEK", "$312", "after 1 year", "Doubles the goal"], ["$10/WEEK", "$520", "after 1 year", "Reaches big goals faster"]], "numbers_meaning": [["1 MONTH", "$12-40", "First small milestone"], ["6 MONTHS", "$78-260", "Emergency fund forming"], ["1 YEAR", "$156-520", "Ready for a real goal"]], "affects_title": "HOW SAVINGS AFFECT REAL LIFE", "affects": ["Families with savings handle surprise costs (a flat tire, a broken phone) calmly", "Families without savings often have to borrow when surprises hit", "A savings goal keeps you motivated when spending feels tempting", "Even small, steady saving builds a habit that lasts a lifetime"], "did_you_know": "A “rainy day fund” gets its name from the idea of saving on sunny days so you're prepared when a storm — or a surprise expense — eventually comes.", "smart_people": ["Save a little before spending, every time money comes in", "Name their savings goal so it feels real", "Keep an emergency fund separate from spending money", "Celebrate small savings milestones", "Avoid touching saved money for non-emergencies"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A kid wants a $150 bike. Instead of asking for it, they save $10/week from chores and gifts. In 15 weeks, they buy it themselves — and value it more because they earned it.", "strategist_qs": ["What's one goal you'd like to save for in the next 3 months?", "How would you handle a surprise $20 expense if you had no savings?", "Why might saving $5 every week beat saving $50 once in a while?"], "ff_question": "You want a $40 item. You could save $5/week for 8 weeks, or ask for it now and owe someone back. What's the smartest strategy?", "ff_choices": ["Save $5/week", "Ask and owe it back", "Wait for a gift"], "takeaway": "Saving isn't about missing out — it's about being ready.", "correct_index": 0, "level": "intro", "game_tiles": [{"text": "Set a savings goal with a number and date", "type": "smart"}, {"text": "Save first, spend what's left", "type": "smart"}, {"text": "Keep an emergency fund untouched", "type": "smart"}, {"text": "Spend every dollar as soon as it arrives", "type": "risky"}, {"text": "Borrow instead of saving up", "type": "risky"}, {"text": "Raid savings for non-emergencies", "type": "risky"}]}, {"week": 5, "date": "AUGUST 10, 2026", "stage": "KEEP", "fact_callout": "A TYPICAL SAVINGS ACCOUNT KEEPS YOUR MONEY SAFE AND INSURED UP TO $250,000 PER PERSON, PER BANK.", "headline": "WHERE DOES SAVED MONEY", "headline2": "ACTUALLY LIVE?", "subhead": "A bank isn't just a building — it's a system for keeping money safe and making it work for you.", "big_picture": ["A bank holds your money safely and keeps a record of every dollar", "A checking account is for everyday spending; a savings account is for goals", "Banks pay you a small amount (interest) just for keeping money with them"], "data_title": "PIGGY BANK VS. SAVINGS ACCOUNT", "data_rows": [["PIGGY BANK", "$100", "no growth", "Can be lost, no interest"], ["BASIC SAVINGS", "$101", "+1% a year", "Safe, insured, small growth"], ["HIGH-YIELD SAVINGS", "$104", "+4% a year", "Safe, insured, more growth"]], "numbers_meaning": [["$100 HOME", "$100", "No change after 1 year"], ["$100 IN BANK", "$101-104", "Grows a little, safely"], ["$100 LOST", "$0", "Cash at home can vanish"]], "affects_title": "HOW BANKS AFFECT EVERYDAY LIFE", "affects": ["Paychecks, allowance apps, and online purchases all run through banks", "A bank account is required for almost every adult job", "Banks track spending automatically, which makes budgeting easier", "Money in a real bank is protected even if the bank has problems"], "did_you_know": "The word “bank” comes from the Italian word “banco,” meaning bench — early bankers in Italy did business sitting on benches in the town square.", "smart_people": ["Keep savings in an account, not just a jar or wallet", "Check their account balance regularly", "Understand the difference between checking and savings", "Never share account passwords or PINs, even with friends", "Ask questions before opening any new account"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family opens a youth savings account for their child's birthday money instead of keeping it in a drawer. A year later, it's grown a little on its own — and it's still safe and insured.", "strategist_qs": ["Why might a bank be safer than a jar of cash at home?", "What's one reason a savings account is better than a piggy bank for a long-term goal?", "What would you ask a bank before opening your first account?"], "ff_question": "You have $50 in cash at home. A parent offers to help you open a savings account instead. What's the smartest strategy?", "ff_choices": ["Keep the cash at home", "Open the savings account", "Split it between both"], "takeaway": "A bank isn't just storage — it's a safe place for money to grow.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Keep savings in an insured bank account", "type": "smart"}, {"text": "Check your balance regularly", "type": "smart"}, {"text": "Ask questions before opening an account", "type": "smart"}, {"text": "Keep all your cash in a drawer", "type": "risky"}, {"text": "Share your PIN with a friend", "type": "risky"}, {"text": "Never check your account at all", "type": "risky"}]}, {"week": 6, "date": "AUGUST 17, 2026", "stage": "GROW", "fact_callout": "MONEY THAT EARNS INTEREST ON ITS OWN INTEREST IS CALLED COMPOUND INTEREST — SOME CALL IT THE 8TH WONDER OF THE WORLD.", "headline": "HOW MONEY MAKES", "headline2": "MORE MONEY", "subhead": "Interest means your money can earn on its own — even while you sleep.", "big_picture": ["Interest is a small percentage a bank (or investment) pays you over time", "Simple interest grows only on your original amount", "Compound interest grows on your original amount PLUS the interest you already earned"], "data_title": "$100 SAVED AT DIFFERENT RATES", "data_rows": [["1% A YEAR", "$110", "after 10 years", "Slow and steady"], ["5% A YEAR", "$163", "after 10 years", "Meaningful growth"], ["10% A YEAR", "$259", "after 10 years", "Compounding really shows"]], "numbers_meaning": [["YEAR 1", "$105", "Just the first bit of growth"], ["YEAR 5", "$128", "Interest earning interest"], ["YEAR 10", "$163", "Growth speeds up over time"]], "affects_title": "HOW INTEREST AFFECTS REAL LIFE", "affects": ["Interest can work FOR you (savings, investments) or AGAINST you (debt, loans)", "The earlier you start saving, the more time compounding has to work", "Two people saving the same amount can end up very different if one starts years earlier", "Understanding interest helps you spot a good deal — or a bad one"], "did_you_know": "If $100 grows at 7% a year, it roughly doubles every 10 years — a shortcut sometimes called the “Rule of 72” (72 ÷ interest rate = years to double).", "smart_people": ["Start saving early, even in small amounts", "Let interest work quietly in the background instead of withdrawing often", "Understand the rate before agreeing to any savings or loan", "Compare compound growth over several years, not just one", "Ask “what's the interest rate?” before any money decision"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "Two kids each save $200. One starts at age 10, the other at age 15. By age 25, the one who started at 10 has years more compounding — and a noticeably bigger balance — without saving any extra money.", "strategist_qs": ["Why does starting to save 5 years earlier matter so much?", "What's the difference between simple and compound interest, in your own words?", "How could interest work against you if you owe money instead of saving it?"], "ff_question": "You can save $100 starting today, or wait 3 years and save $100 then. Which builds more by age 20?", "ff_choices": ["Start today", "Wait 3 years", "It's exactly the same"], "takeaway": "Time is the secret ingredient that makes interest powerful.", "correct_index": 0, "level": "intro", "game_tiles": [{"text": "Start saving as early as possible", "type": "smart"}, {"text": "Let interest grow quietly over years", "type": "smart"}, {"text": "Ask ‘what's the interest rate?’ first", "type": "smart"}, {"text": "Wait years before you start saving", "type": "risky"}, {"text": "Withdraw savings before interest can build", "type": "risky"}, {"text": "Borrow without checking the interest rate", "type": "risky"}]}, {"week": 7, "date": "AUGUST 24, 2026", "stage": "GROW", "fact_callout": "OWNING A SHARE OF STOCK MEANS OWNING A TINY PIECE OF AN ACTUAL COMPANY — NOT JUST A NUMBER ON A SCREEN.", "headline": "WHAT DOES IT MEAN", "headline2": "TO “INVEST”?", "subhead": "Investing means putting money to work in something that can grow in value over time.", "big_picture": ["Investing is different from saving: it involves some risk, but more growth potential", "A stock is a small ownership piece of a real company", "Investors aim to hold for the long term, not chase quick wins"], "data_title": "SAVING VS. INVESTING $500 (30 YEARS)", "data_rows": [["UNDER THE BED", "$500", "no growth", "Loses value to rising prices"], ["SAVINGS ACCOUNT", "~$900", "~2% a year", "Safe, modest growth"], ["LONG-TERM INVESTING", "~$4,300", "~7% a year", "Higher growth, some risk"]], "numbers_meaning": [["YEAR 1", "$535", "Small, normal ups and downs"], ["YEAR 10", "$984", "Growth becomes visible"], ["YEAR 30", "$4,306", "Long time horizon pays off"]], "affects_title": "HOW INVESTING AFFECTS THE FUTURE", "affects": ["Many retirement funds for adults are built through long-term investing", "Prices of investments go up AND down — that's normal, not a failure", "Investing works best with patience, not with checking it every day", "Kids can learn the basics years before they ever invest real money"], "did_you_know": "The New York Stock Exchange, one of the world's largest stock markets, started in 1792 under a buttonwood tree with just 24 traders.", "smart_people": ["Only invest money they won't need very soon", "Understand that value can go up and down before it grows", "Learn about a company before considering owning a piece of it", "Think in years, not days, when investing", "Ask a trusted adult before making any real investment"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A parent helps their child buy one “pretend share” of a company they know well (like a favorite shoe brand) using a paper tracking game — watching its value move up and down over a few months to learn without any real risk.", "strategist_qs": ["What company would you want to “own a piece of,” and why?", "Why might investing be riskier than a savings account — but also grow more?", "Why do investors say “time in the market beats timing the market”?"], "ff_question": "Your investment drops in value one week. What's the smartest strategy for a long-term investor?", "ff_choices": ["Panic and sell right away", "Stay patient and hold", "Ask an adult before reacting"], "takeaway": "Investing rewards patience — not panic.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Only invest money you won't need soon", "type": "smart"}, {"text": "Think in years, not days", "type": "smart"}, {"text": "Learn about a company before investing", "type": "smart"}, {"text": "Panic-sell the moment prices dip", "type": "risky"}, {"text": "Invest money you need next week", "type": "risky"}, {"text": "Follow a hot tip with no research", "type": "risky"}]}, {"week": 8, "date": "AUGUST 31, 2026", "stage": "GROW", "fact_callout": "A WELL-DIVERSIFIED MIX CAN OWN DOZENS OR EVEN HUNDREDS OF DIFFERENT COMPANIES AT ONCE.", "headline": "DON'T PUT ALL YOUR EGGS", "headline2": "IN ONE BASKET", "subhead": "Risk is part of growing money — but spreading it out can make that risk much easier to handle.", "big_picture": ["Risk means the chance that something doesn't go as planned", "Diversification means spreading money across several different things", "If one investment drops, others may hold steady or grow, balancing things out"], "data_title": "ONE BASKET VS. MANY BASKETS", "data_rows": [["1 COMPANY", "-40%", "if it struggles", "All value tied to one thing"], ["10 COMPANIES", "-8%", "if one struggles", "Others help balance it out"], ["100+ COMPANIES", "-1%", "if one struggles", "Very spread out, very steady"]], "numbers_meaning": [["1 BASKET", "High risk", "One drop, big loss"], ["10 BASKETS", "Medium risk", "Losses feel smaller"], ["100+ BASKETS", "Lower risk", "Smooth, steady progress"]], "affects_title": "HOW DIVERSIFICATION AFFECTS REAL LIFE", "affects": ["Families relying on one company's stock for all savings face bigger swings", "Spreading savings across several types of investments smooths the ride", "Diversification doesn't remove risk completely — it just balances it", "This is also why having multiple income streams (Week 2!) matters"], "did_you_know": "Many long-term investors choose a single fund that automatically spreads money across hundreds of companies at once, instead of picking companies one at a time.", "smart_people": ["Spread money across different types of investments", "Avoid putting all savings into one single thing", "Remember that some risk is normal, not something to fear", "Think about balance, not just about picking a “winner”", "Reconsider all-in-one bets, even on something they love"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family plans to invest $100. Instead of putting it all into one favorite company, they choose a mix that includes several different companies — so no single bad month can hurt them too much.", "strategist_qs": ["Why might spreading money around lower your risk?", "What's a real-life example (outside of money) where “not all eggs in one basket” applies?", "Would you rather have one big bet or ten smaller ones? Why?"], "ff_question": "You have $100 to invest. What's the smartest strategy for managing risk?", "ff_choices": ["Put it all in one company", "Spread it across several", "Keep it all as cash instead"], "takeaway": "Spreading it out is how smart growth survives a bad day.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Spread money across several investments", "type": "smart"}, {"text": "Accept that some risk is normal", "type": "smart"}, {"text": "Balance instead of chasing one big win", "type": "smart"}, {"text": "Put all your money in one company", "type": "risky"}, {"text": "Avoid any and all risk forever", "type": "risky"}, {"text": "Chase the one ‘sure thing’", "type": "risky"}]}, {"week": 9, "date": "SEPTEMBER 7, 2026", "stage": "KEEP", "fact_callout": "CREDIT CARDS CAN CHARGE INTEREST RATES OF 20% OR MORE — FAR HIGHER THAN MOST SAVINGS ACCOUNTS EARN.", "headline": "GOOD DEBT, BAD DEBT,", "headline2": "AND BORROWED TROUBLE", "subhead": "Borrowing money isn't automatically bad — but not understanding the cost of it can be.", "big_picture": ["Debt is money you borrow and promise to pay back, usually with interest", "“Good” debt can build something valuable (like a home or education)", "“Bad” debt often pays for things that lose value fast, at a high cost"], "data_title": "BORROWING $100 AT DIFFERENT RATES", "data_rows": [["NO DEBT", "$0 owed", "n/a", "Nothing to pay back"], ["LOW-INTEREST", "$105", "5% a year", "Manageable if planned"], ["HIGH-INTEREST", "$122", "20%+ a year", "Grows fast if unpaid"]], "numbers_meaning": [["BORROW $100", "$100", "Owed the day you borrow it"], ["1 YEAR UNPAID", "$120+", "At a high interest rate"], ["3 YEARS UNPAID", "$173+", "Debt can snowball quickly"]], "affects_title": "HOW DEBT AFFECTS REAL FAMILIES", "affects": ["Unpaid debt can grow faster than many people expect", "Paying only the minimum on a debt can take years to pay off", "Good borrowing (with a clear plan) can help build a future", "Avoiding unnecessary debt is one of the fastest paths to financial freedom"], "did_you_know": "A “credit score” is a number that shows how reliably someone pays back money they've borrowed — it can affect the cost of nearly every big purchase in adult life.", "smart_people": ["Ask what the interest rate is before borrowing anything", "Borrow only for things that build lasting value", "Pay back debt as fast as reasonably possible", "Avoid borrowing just to keep up with wants", "Understand the total cost, not just the monthly payment"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A teen wants a $200 bike now. Borrowing it at a high rate could cost $240+ if repaid slowly. Saving for 10 weeks instead costs exactly $200 — and zero stress.", "strategist_qs": ["What's one example of “good” debt and one example of “bad” debt?", "Why might a low price with high interest still end up expensive?", "How does patience (saving first) compare to borrowing for the same item?"], "ff_question": "You want a $50 item today but only have $20. What's the smartest strategy?", "ff_choices": ["Borrow the rest at high interest", "Save until you have $50", "Ask to split the cost with a friend"], "takeaway": "Debt isn't the enemy — not understanding it is.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Ask the interest rate before borrowing", "type": "smart"}, {"text": "Pay back debt as fast as possible", "type": "smart"}, {"text": "Borrow only for lasting value", "type": "smart"}, {"text": "Borrow for things that lose value fast", "type": "risky"}, {"text": "Pay only the minimum, forever", "type": "risky"}, {"text": "Ignore the total cost of a loan", "type": "risky"}]}, {"week": 10, "date": "SEPTEMBER 14, 2026", "stage": "KEEP", "fact_callout": "TAXES HELP PAY FOR ROADS, SCHOOLS, PARKS, AND EMERGENCY SERVICES THAT ENTIRE COMMUNITIES SHARE.", "headline": "WHY DOES EVERYONE", "headline2": "TALK ABOUT TAXES?", "subhead": "Taxes are one reason the price on the sticker isn't always the price at the register.", "big_picture": ["A tax is a small portion of money collected by the government", "Taxes fund shared things like schools, roads, parks, and emergency services", "Sales tax is added when you buy things; income tax comes from money earned"], "data_title": "A $20 PURCHASE WITH TAX", "data_rows": [["NO TAX AREA", "$20.00", "final price", "Rare in the U.S."], ["TYPICAL TAX (6%)", "$21.20", "final price", "Most common range"], ["HIGHER TAX (9%)", "$21.80", "final price", "Some cities/states"]], "numbers_meaning": [["$20 ITEM", "+$1.20", "Typical sales tax added"], ["$100 PAYCHECK", "-$15-25", "Typical income tax withheld"], ["COMMUNITY", "shared cost", "Everyone chips in a little"]], "affects_title": "HOW TAXES AFFECT EVERYDAY LIFE", "affects": ["The price on a shelf often isn't the price you actually pay at checkout", "Adults' paychecks are usually smaller than their full salary because of taxes", "Taxes are one reason budgeting (Week 3!) needs a little cushion", "Understanding tax helps you predict your real cost before you buy"], "did_you_know": "Sales tax rates can be different from one city or state to the next — which is why the same $20 item can cost slightly different amounts in different places.", "smart_people": ["Expect tax to be added to the sticker price when shopping", "Understand that a paycheck isn't the same as “take-home” money", "Build a little tax cushion into any spending plan", "Ask questions about where tax money goes in their community", "Don't treat taxes as unfair — treat them as a shared cost of shared things"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family budgets exactly $20 for a toy, but the register shows $21.20 with tax. Because they planned for a small tax cushion, they still have enough — no surprise, no stress.", "strategist_qs": ["Why might the price on the shelf be different from the price you pay?", "Name one thing in your community that's paid for by taxes.", "How could you build a “tax cushion” into your own budget?"], "ff_question": "You have exactly $20 for a $20 item, and tax will be added. What's the smartest strategy?", "ff_choices": ["Bring exactly $20", "Bring a little extra for tax", "Ask the store to skip tax"], "takeaway": "A smart budget always leaves a little room for tax.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Expect tax to be added at checkout", "type": "smart"}, {"text": "Build a small tax cushion into budgets", "type": "smart"}, {"text": "Learn where tax dollars go", "type": "smart"}, {"text": "Bring the exact sticker price, no more", "type": "risky"}, {"text": "Forget tax exists when planning", "type": "risky"}, {"text": "Assume the price tag is the final price", "type": "risky"}]}, {"week": 11, "date": "SEPTEMBER 21, 2026", "stage": "KEEP", "fact_callout": "INSURANCE WORKS BY SHARING RISK: MANY PEOPLE PAY A LITTLE SO THE FEW WHO NEED HELP GET A LOT.", "headline": "PROTECTING WHAT", "headline2": "YOU'VE ALREADY BUILT", "subhead": "Earning, saving, and growing money matters little if one bad surprise can wipe it all out.", "big_picture": ["Insurance is a small regular payment that protects against a big possible loss", "It works because many people share the risk, even though only some need a payout", "Common types include health, car, home/renters, and even phone insurance"], "data_title": "NO INSURANCE VS. INSURANCE", "data_rows": [["NO INSURANCE", "$0/mo", "then $500+ if broken", "One accident, big cost"], ["BASIC PLAN", "$5/mo", "small repair covered", "Predictable, manageable"], ["FULL PLAN", "$12/mo", "most repairs covered", "Highest protection"]], "numbers_meaning": [["1 YEAR, NO PLAN", "$0 or $500+", "All-or-nothing risk"], ["1 YEAR, BASIC", "$60", "Steady, predictable cost"], ["1 ACCIDENT", "priceless", "Peace of mind when it counts"]], "affects_title": "HOW INSURANCE AFFECTS REAL FAMILIES", "affects": ["One accident without insurance can undo years of careful saving", "Insurance turns a huge, unpredictable cost into a small, predictable one", "Most adults carry several kinds of insurance at once", "Skipping insurance to save a little now can cost a lot more later"], "did_you_know": "Some of the earliest forms of insurance date back thousands of years, when merchants pooled money together to cover losses if a shipment was lost at sea.", "smart_people": ["Understand what their protection actually covers", "Compare a small steady cost against a big possible loss", "Ask questions before assuming something is or isn't covered", "Treat insurance as protection, not as a wasted expense", "Review coverage as their belongings and needs change"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family pays $5/month for phone insurance. When the screen cracks, repair only costs $20 instead of $150 — the small monthly payments paid for themselves many times over.", "strategist_qs": ["Why would someone pay a little every month for something they might never use?", "What's one valuable item you own that could be expensive to replace?", "How is insurance similar to the diversification idea from Week 8?"], "ff_question": "A new phone costs $12/month extra to insure against damage. What's the smartest strategy?", "ff_choices": ["Skip it to save $12/month", "Get the insurance", "Only get it after something breaks"], "takeaway": "Protecting what you've built is as important as building it.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Protect big-value items with insurance", "type": "smart"}, {"text": "Compare a small cost to a big loss", "type": "smart"}, {"text": "Review coverage as needs change", "type": "smart"}, {"text": "Skip insurance to save a little now", "type": "risky"}, {"text": "Assume nothing bad will ever happen", "type": "risky"}, {"text": "Never check what's actually covered", "type": "risky"}]}, {"week": 12, "date": "SEPTEMBER 28, 2026", "stage": "REPEAT", "fact_callout": "THIS WEEK COMPLETES THE CYCLE: EARN → KEEP → GROW → REPEAT. NOW IT'S TIME TO BUILD YOUR OWN PLAN.", "headline": "YOUR FINANCIAL FREEDOM", "headline2": "PLAN STARTS NOW", "subhead": "Twelve weeks of ideas mean nothing without a plan you actually follow. Let's build yours.", "big_picture": ["Financial freedom means your money works for you, not the other way around", "It's built through a repeating cycle: Earn, Keep, Grow, and Repeat", "The cycle never really ends — it just gets bigger and steadier over time"], "data_title": "YOUR 12-WEEK JOURNEY, REVIEWED", "data_rows": [["EARN (WK 1-2)", "income", "sources", "Where your money starts"], ["KEEP (WK 3-5, 9-11)", "budget/save/bank", "protect", "Where your money stays safe"], ["GROW (WK 6-8)", "interest/invest", "diversify", "Where your money multiplies"]], "numbers_meaning": [["EARN", "step 1", "Bring money in"], ["KEEP + GROW", "steps 2-3", "Protect it, multiply it"], ["REPEAT", "step 4", "Do it again, bigger"]], "affects_title": "HOW THIS CYCLE AFFECTS YOUR WHOLE LIFE", "affects": ["The same 4-step cycle works at every age and every income level", "Small, consistent habits now compound into major freedom later", "Every adult managing money well is still running this exact cycle", "Starting the habit early is the single biggest advantage you have"], "did_you_know": "Financial freedom isn't a fixed dollar amount — for most people, it simply means having enough saved and growing that money stops being a source of daily stress.", "smart_people": ["Revisit their plan regularly instead of setting it and forgetting it", "Celebrate progress, not just the finish line", "Keep earning, keep saving, keep learning — on repeat", "Adjust the plan as goals and income change", "Teach what they've learned to someone else"], "real_life_title": "BUILD YOUR OWN 4-STEP PLAN", "real_life": "Write down one goal for each stage: 1 way to EARN this month, 1 amount to KEEP (save) each week, 1 way to GROW it (bank or learn about investing), and 1 date to REPEAT and review your progress.", "strategist_qs": ["Which of the 4 stages (Earn, Keep, Grow, Repeat) is your strongest right now?", "Which stage do you most want to improve in the next 12 weeks?", "What's one habit from this series you'll keep doing going forward?"], "ff_question": "You've finished the 12-week series. What's the smartest next strategy?", "ff_choices": ["Stop — you know it all now", "Pick one habit and repeat it weekly", "Wait until you have more money to start"], "takeaway": "Financial freedom isn't a destination — it's a cycle you keep repeating.", "correct_index": 1, "level": "intro", "game_tiles": [{"text": "Set one Earn, Keep, Grow, and Repeat goal", "type": "smart"}, {"text": "Revisit your plan regularly", "type": "smart"}, {"text": "Teach someone else what you learned", "type": "smart"}, {"text": "Never write the plan down", "type": "risky"}, {"text": "Set the goal and forget it forever", "type": "risky"}, {"text": "Keep everything you learned to yourself", "type": "risky"}]}], "advanced": [{"week": 1, "date": "OCTOBER 5, 2026", "stage": "KEEP", "fact_callout": "YOUR NET WORTH IS THE SINGLE NUMBER THAT TRACKS WHETHER YOU'RE ACTUALLY BUILDING WEALTH — NOT JUST MOVING MONEY AROUND.", "headline": "YOUR REAL SCORE ISN'T", "headline2": "YOUR ALLOWANCE. IT'S YOUR NET WORTH.", "subhead": "You already know how to earn, save, and grow money. Now it's time to measure the whole picture.", "big_picture": ["Net worth = everything you own (assets) minus everything you owe (liabilities)", "Cash in a piggy bank counts, but so does a bike, a savings account, or money owed to you", "Debt you owe — even a small IOU — subtracts from your net worth until it's paid"], "data_title": "A SAMPLE KID NET WORTH STATEMENT", "data_rows": [["ASSETS", "$340", "savings + bike + gear", "What you own"], ["LIABILITIES", "−$40", "owed to a sibling", "What you owe"], ["NET WORTH", "$300", "assets − liabilities", "Your real position"]], "numbers_meaning": [["$0 NET WORTH", "starting line", "Nothing built yet, and that's fine"], ["GROWING", "each quarter", "Track it 4x a year, not daily"], ["$1,000+", "a real milestone", "First serious net worth goal"]], "affects_title": "WHY NET WORTH BEATS INCOME ALONE", "affects": ["Two people can earn the same amount and end up in very different financial places", "High income with high debt can still mean low (or negative) net worth", "Tracking net worth reveals whether spending habits are helping or hurting", "Adults use this exact statement to apply for loans and plan retirement"], "did_you_know": "Many financial advisors ask new clients to build a net worth statement before anything else — it's considered the single most honest financial snapshot that exists.", "smart_people": ["Calculate net worth on a regular schedule, not just when it feels good", "Count debts honestly, even small ones owed to family", "Track the trend over time, not just one snapshot", "Treat a rising net worth as the real goal, not just a bigger allowance", "Separate what they own from what they still owe"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A teen with $500 saved but $150 owed to a parent for a phone repair actually has a $350 net worth — not $500. Once the debt is paid off, their true net worth catches up to their savings.", "strategist_qs": ["What would your own net worth statement include right now?", "Why might someone with a high income still have a low net worth?", "How often should you realistically check your net worth?"], "ff_question": "You have $200 saved but owe a friend $50. A new gadget costs $180. What's the smartest strategy?", "ff_choices": ["Buy the gadget now", "Pay off the $50 first", "Ignore the debt, it's small"], "takeaway": "Net worth, not spending power, is the real financial scoreboard.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Track assets minus liabilities honestly", "type": "smart"}, {"text": "Count small debts, not just big ones", "type": "smart"}, {"text": "Check net worth on a regular schedule", "type": "smart"}, {"text": "Count income but ignore what you owe", "type": "risky"}, {"text": "Check net worth once and never again", "type": "risky"}, {"text": "Assume more spending power means more wealth", "type": "risky"}]}, {"week": 2, "date": "OCTOBER 12, 2026", "stage": "EARN", "fact_callout": "A BUSINESS THAT KEEPS 20-30% PROFIT AFTER COSTS IS CONSIDERED HEALTHY IN MANY SMALL-BUSINESS INDUSTRIES.", "headline": "FROM SIDE HUSTLE", "headline2": "TO REAL SMALL BUSINESS", "subhead": "Earning from odd jobs is step one. Scaling it into something repeatable is the next level.", "big_picture": ["A business has costs (supplies, time, tools) and revenue (what customers pay)", "Profit margin is what's left after subtracting costs from revenue", "Scaling means growing the same idea to serve more customers, not just working harder"], "data_title": "LAWN-MOWING: SIDE JOB VS. SMALL BUSINESS", "data_rows": [["1 CUSTOMER/WK", "$20 rev.", "$5 cost → $15 profit", "A side job"], ["5 CUSTOMERS/WK", "$100 rev.", "$25 cost → $75 profit", "A growing operation"], ["15 CUSTOMERS/WK", "$300 rev.", "$60 cost → $240 profit", "A real small business"]], "numbers_meaning": [["PROFIT MARGIN", "75%", "$15 profit ÷ $20 revenue"], ["BREAK-EVEN", "1 customer", "Covers costs, no profit yet"], ["REINVESTED", "20% of profit", "Better tools = more customers"]], "affects_title": "HOW SCALING AFFECTS REAL BUSINESSES", "affects": ["Most real companies started as one person solving one problem well", "Reinvesting profit into better tools or ads is how small operations grow", "Margin (not just revenue) determines whether a business is actually healthy", "Scaling takes systems — pricing, scheduling, tracking — not just more hours"], "did_you_know": "Profit margin, not revenue, is usually the number investors care about most — a business with huge sales but tiny margin can still struggle to survive.", "smart_people": ["Track revenue AND costs, not just money coming in", "Reinvest a portion of profit into growing the business", "Set a clear price instead of guessing customer by customer", "Look for systems (schedules, checklists) that let them serve more people", "Know their profit margin, not just their total sales"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A teen running a $75/week lawn business reinvests $15 of profit into a better mower. The upgrade lets her take on 5 more customers — turning a side job into a real small business within a season.", "strategist_qs": ["What's the difference between revenue and profit, in your own words?", "If you earned $100 but spent $40 on supplies, what's your profit margin?", "What's one system that could help a side hustle serve more customers?"], "ff_question": "Your side hustle earns $75 profit this month. What's the smartest strategy?", "ff_choices": ["Spend all of it", "Reinvest some to grow it", "Save every penny, reinvest nothing"], "takeaway": "Scaling isn't working harder — it's building something repeatable.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Track both revenue and costs", "type": "smart"}, {"text": "Reinvest some profit to grow", "type": "smart"}, {"text": "Know your profit margin, not just sales", "type": "smart"}, {"text": "Track sales but ignore your costs", "type": "risky"}, {"text": "Spend all profit with nothing reinvested", "type": "risky"}, {"text": "Guess at pricing customer by customer", "type": "risky"}]}, {"week": 3, "date": "OCTOBER 19, 2026", "stage": "KEEP", "fact_callout": "ZERO-BASED BUDGETING MEANS EVERY SINGLE DOLLAR GETS A JOB — NOTHING IS LEFT UNASSIGNED.", "headline": "BEYOND 50/30/20:", "headline2": "ZERO-BASED BUDGETING", "subhead": "You've mastered the basic split. Now let's build a budget precise enough to handle uneven income.", "big_picture": ["Zero-based budgeting assigns every dollar a specific job until $0 is left unplanned", "Cash flow is the timing of money in and money out — not just the totals", "Irregular income (like seasonal jobs) needs a buffer month built into the plan"], "data_title": "A ZERO-BASED MONTH: $180 INCOME", "data_rows": [["SAVINGS GOAL", "$60", "bike fund", "Assigned first"], ["FLEXIBLE SPENDING", "$70", "games, outings", "Assigned second"], ["BUFFER / NEXT MONTH", "$50", "irregular income cushion", "Assigned last, $0 left"]], "numbers_meaning": [["UNPLANNED $", "$0", "The goal of zero-based budgeting"], ["BUFFER MONTH", "1 month", "Expenses saved ahead, for slow periods"], ["REVIEW CYCLE", "monthly", "Re-assign every dollar as income changes"]], "affects_title": "HOW THIS AFFECTS REAL CASH FLOW", "affects": ["Freelancers and small business owners rely on this to survive slow months", "A buffer month prevents a single slow week from becoming a crisis", "Assigning every dollar removes the guesswork of “where did it go?”", "This is the same method many households use to manage uneven paychecks"], "did_you_know": "Zero-based budgeting doesn't mean spending everything — saving and buffer categories count as “jobs” for your dollars too, just like bills do.", "smart_people": ["Assign every dollar a job before the month begins", "Build a buffer for months when income is lower than usual", "Reassign the plan monthly instead of using the same numbers forever", "Separate long-term goals from flexible spending clearly", "Review actual spending against the plan, not just at the end"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A teen who mows lawns earns $300 in summer but $50 in winter. Instead of spending it all in summer, she assigns part of each dollar to a winter buffer — so slow months don't derail her plan.", "strategist_qs": ["Why might irregular income need a different budgeting approach than a steady allowance?", "What's one “job” you'd assign to your next $20 using zero-based budgeting?", "How does a buffer month protect you during a slow period?"], "ff_question": "Your income varies month to month. What's the smartest cash-flow strategy?", "ff_choices": ["Spend based on your best month", "Build a buffer from strong months", "Ignore the ups and downs"], "takeaway": "Give every dollar a job — including the job of waiting for a slow month.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Give every dollar a job before the month starts", "type": "smart"}, {"text": "Build a buffer for slow months", "type": "smart"}, {"text": "Reassign the plan every month", "type": "smart"}, {"text": "Leave money unassigned and hope it works out", "type": "risky"}, {"text": "Spend based on your best month only", "type": "risky"}, {"text": "Use the same plan no matter what changes", "type": "risky"}]}, {"week": 4, "date": "OCTOBER 26, 2026", "stage": "KEEP", "fact_callout": "CREDIT UTILIZATION — HOW MUCH OF YOUR AVAILABLE CREDIT YOU'RE USING — IS ONE OF THE BIGGEST FACTORS IN A CREDIT SCORE.", "headline": "THE CREDIT SCORE", "headline2": "FORMULA, DECODED", "subhead": "You know debt has a cost. Now let's break down exactly what builds — or damages — a credit score.", "big_picture": ["A credit score estimates how reliably someone repays borrowed money", "It's built from payment history, amounts owed, length of credit history, and more", "A higher score usually means lower interest rates on future loans"], "data_title": "WHAT SHAPES A CREDIT SCORE", "data_rows": [["PAYMENT HISTORY", "~35%", "on-time vs. late", "The single biggest factor"], ["AMOUNTS OWED", "~30%", "credit utilization", "Using less of your limit helps"], ["CREDIT HISTORY LENGTH", "~15%", "how long accounts are open", "Time in the system matters"]], "numbers_meaning": [["30% UTILIZATION", "healthy", "Using less than a third of your limit"], ["90% UTILIZATION", "risky", "Looks like financial stress to lenders"], ["1 LATE PAYMENT", "real impact", "Can affect a score for months"]], "affects_title": "HOW CREDIT SCORES AFFECT REAL LIFE", "affects": ["A good score can mean tens of thousands saved in interest over a lifetime", "Landlords, some employers, and lenders all may check credit history", "One missed payment can outweigh months of good habits", "Building credit safely and early gives a long head start on the “length of history” factor"], "did_you_know": "Someone can have a low credit score for having too little credit history — not just for handling debt poorly. Both extremes affect the number.", "smart_people": ["Pay every bill on time, every time, without exception", "Keep credit utilization low, even with a small available limit", "Avoid opening or closing accounts unnecessarily", "Check their own credit report periodically once they have one", "Understand that credit score improvements take consistent time, not shortcuts"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A young adult with a $500 credit limit keeps their balance under $150 (30% utilization) and pays it off in full every month — building a strong score without ever paying interest.", "strategist_qs": ["Why might using 90% of a credit limit hurt a score even if it's paid off eventually?", "What's one habit that builds credit history without any real risk?", "How could a strong credit score save real money later in life?"], "ff_question": "You have a $500 credit limit. What's the smartest utilization strategy?", "ff_choices": ["Use close to $500 for rewards", "Keep usage under ~$150", "Never use it at all"], "takeaway": "Credit score is built in small, boring, consistent habits — not big moves.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Pay every bill on time, always", "type": "smart"}, {"text": "Keep credit utilization low", "type": "smart"}, {"text": "Check your credit report periodically", "type": "smart"}, {"text": "Max out your available credit limit", "type": "risky"}, {"text": "Miss payments and assume it's fine", "type": "risky"}, {"text": "Open and close accounts constantly", "type": "risky"}]}, {"week": 5, "date": "NOVEMBER 2, 2026", "stage": "KEEP", "fact_callout": "AT JUST 3% ANNUAL INFLATION, PRICES ROUGHLY DOUBLE EVERY 24 YEARS — EVEN WITHOUT ANY SINGLE BIG PRICE SHOCK.", "headline": "WHY $100 TODAY WON'T BUY", "headline2": "$100 OF STUFF LATER", "subhead": "Saving money is smart. But if it just sits still, inflation can quietly shrink what it's worth.", "big_picture": ["Inflation is the general rise in prices over time, which lowers money's buying power", "“Real return” means growth after subtracting inflation — not just the number on a statement", "Cash sitting still, with 0% growth, actually loses value every year inflation exists"], "data_title": "$1,000 AFTER 10 YEARS AT 3% INFLATION", "data_rows": [["CASH (0% GROWTH)", "$744", "real buying power", "Loses value every year"], ["SAVINGS (2% GROWTH)", "$895", "real buying power", "Still losing to inflation"], ["INVESTING (7% GROWTH)", "$1,344", "real buying power", "Outpaces inflation"]], "numbers_meaning": [["NOMINAL RETURN", "the sticker number", "Growth before inflation"], ["REAL RETURN", "the true number", "Growth after inflation"], ["3% INFLATION", "~24 yrs to double prices", "A useful shortcut to remember"]], "affects_title": "HOW INFLATION AFFECTS REAL DECISIONS", "affects": ["Cash under a mattress is one of the riskiest “safe” choices over a long time", "This is exactly why long-term investing (Week 6-9!) matters, not just saving", "Prices of everyday goods — gas, food, rent — rise even in calm economic times", "Understanding real return prevents a false sense of financial progress"], "did_you_know": "A number like “7% average stock market return” is usually a nominal number — subtract inflation (often 2-3%) to see the real, buying-power return.", "smart_people": ["Ask whether a return is “real” or “nominal” before celebrating it", "Avoid keeping large amounts of long-term savings as pure cash", "Expect prices to rise gradually and plan spending accordingly", "Use inflation as a reason to invest, not a reason to panic", "Reassess long-term goals in today's dollars, not old prices"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family saving for a $20,000 goal in 10 years plans using today's prices — then adjusts the target upward slightly each year to account for inflation, so the goal doesn't quietly fall short.", "strategist_qs": ["Why might $1,000 saved in cash for 10 years actually feel like a loss?", "What's the difference between a nominal return and a real return?", "Why does inflation make long-term investing more important, not less?"], "ff_question": "You have $1,000 to hold for 10 years. What's the smartest inflation strategy?", "ff_choices": ["Keep it as cash", "Put it in a basic savings account", "Invest it for long-term growth"], "takeaway": "Standing still with your money means quietly falling behind.", "correct_index": 2, "level": "advanced", "game_tiles": [{"text": "Invest so growth can outpace inflation", "type": "smart"}, {"text": "Ask if a return is ‘real’ or ‘nominal’", "type": "smart"}, {"text": "Adjust long-term goals for rising prices", "type": "smart"}, {"text": "Keep large long-term savings as pure cash", "type": "risky"}, {"text": "Ignore inflation when setting goals", "type": "risky"}, {"text": "Assume a return is safe without checking", "type": "risky"}]}, {"week": 6, "date": "NOVEMBER 9, 2026", "stage": "GROW", "fact_callout": "A SINGLE TOTAL-MARKET INDEX FUND CAN GIVE YOU A SLICE OF THOUSANDS OF COMPANIES IN ONE PURCHASE.", "headline": "BEYOND ONE STOCK:", "headline2": "INDEXES, ETFS & MARKET CAP", "subhead": "You know what a single stock is. Now let's zoom out to how whole markets are measured and owned.", "big_picture": ["A stock index tracks a group of companies together, like a scoreboard for the market", "An ETF (exchange-traded fund) lets you buy a small piece of many companies in one purchase", "Market cap is a company's total value: share price × number of shares"], "data_title": "1 STOCK VS. AN INDEX FUND", "data_rows": [["1 COMPANY", "high risk", "tied to one story", "Can swing wildly"], ["10-STOCK ETF", "medium risk", "modest spread", "Smoother, still concentrated"], ["TOTAL MARKET INDEX", "lower risk", "thousands of companies", "Broadest diversification"]], "numbers_meaning": [["SMALL CAP", "under ~$2B", "Smaller, often higher risk/reward"], ["MID CAP", "~$2B–$10B", "A balance of growth and stability"], ["LARGE CAP", "over ~$10B", "Bigger, often steadier"]], "affects_title": "HOW INDEX INVESTING AFFECTS REAL PORTFOLIOS", "affects": ["Many long-term investors choose index funds specifically to avoid picking individual winners", "Index funds usually cost less to own than actively managed alternatives", "Market cap helps investors understand a company's actual size, not just its price per share", "This connects directly to the diversification idea from your first course"], "did_you_know": "A company with a high share price isn't necessarily bigger than one with a low share price — market cap (price × shares) is what actually measures size.", "smart_people": ["Understand market cap before assuming a stock is “big” or “small”", "Consider index funds for broad, low-effort diversification", "Compare the cost of owning a fund, not just its past performance", "Look at what a fund actually holds before investing in it", "Avoid confusing share price with company size"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "Instead of picking one favorite company, a family chooses a total-market index fund for a portion of their long-term investing — instantly owning a small piece of thousands of businesses at once.", "strategist_qs": ["Why might owning thousands of companies through one fund reduce risk?", "What's the difference between share price and market cap?", "Would you rather own 1 company or a small piece of 1,000? Why?"], "ff_question": "You want broad, low-effort diversification for long-term growth. What's the smartest strategy?", "ff_choices": ["Pick your favorite single stock", "Buy a total-market index fund", "Avoid the market altogether"], "takeaway": "You don't have to pick winners if you own the whole race.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Consider index funds for broad diversification", "type": "smart"}, {"text": "Check what a fund actually holds", "type": "smart"}, {"text": "Understand market cap before judging size", "type": "smart"}, {"text": "Confuse a high share price with a big company", "type": "risky"}, {"text": "Put everything into one favorite stock", "type": "risky"}, {"text": "Pick funds based on past hype alone", "type": "risky"}]}, {"week": 7, "date": "NOVEMBER 16, 2026", "stage": "GROW", "fact_callout": "REINVESTED DIVIDENDS HAVE HISTORICALLY MADE UP A MEANINGFUL SHARE OF LONG-TERM STOCK MARKET RETURNS.", "headline": "DIVIDENDS & DCA:", "headline2": "TWO QUIET GROWTH ENGINES", "subhead": "Growth isn't only about price going up. Two steady habits can compound it further.", "big_picture": ["A dividend is a small cash payment some companies share with their owners (shareholders)", "Reinvesting dividends buys more shares automatically, compounding growth", "Dollar-cost averaging (DCA) means investing the same amount on a regular schedule, regardless of price"], "data_title": "LUMP SUM VS. DOLLAR-COST AVERAGING", "data_rows": [["ALL AT ONCE", "$1,200", "invested on 1 date", "Fully exposed to that day's price"], ["MONTHLY DCA", "$100 × 12", "invested over the year", "Buys more shares when prices dip"], ["DIVIDENDS REINVESTED", "compounding", "extra shares over time", "Growth builds on growth"]], "numbers_meaning": [["DIVIDEND YIELD", "example: 2%", "Cash paid per year, per share value"], ["REINVESTED", "more shares", "Same money, growing share count"], ["DCA DISCIPLINE", "same date monthly", "Removes emotion from timing"]], "affects_title": "HOW THIS AFFECTS LONG-TERM INVESTORS", "affects": ["DCA helps new investors avoid trying to “time” the market perfectly", "Reinvested dividends can meaningfully add to total long-term growth", "Consistent investing schedules build a habit, similar to the bi-weekly system from before", "Both tools reduce the temptation to react emotionally to short-term price swings"], "did_you_know": "Dollar-cost averaging doesn't guarantee the best possible return — its real value is removing guesswork and emotion from when to invest.", "smart_people": ["Invest on a set schedule instead of trying to guess the perfect moment", "Reinvest dividends automatically when the option is available", "Judge dividend yield alongside a company's overall health, not alone", "Stay consistent through both rising and falling prices", "Treat DCA as a long-term habit, not a one-time decision"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "Instead of waiting for the “perfect time” to invest a $600 gift, a teen invests $100 a month for 6 months — buying more shares in months when prices dip, and fewer when prices rise.", "strategist_qs": ["Why might investing the same amount every month be less stressful than timing the market?", "How do reinvested dividends add to compounding beyond price growth alone?", "What's one real decision where DCA could reduce emotional stress?"], "ff_question": "You receive a $600 gift to invest. What's the smartest strategy?", "ff_choices": ["Invest it all today", "Invest $100/month for 6 months", "Wait for the 'perfect' price"], "takeaway": "Consistency, not perfect timing, is what compounds quietly in the background.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Invest the same amount on a set schedule", "type": "smart"}, {"text": "Reinvest dividends automatically", "type": "smart"}, {"text": "Stay consistent through ups and downs", "type": "smart"}, {"text": "Try to time the ‘perfect’ moment", "type": "risky"}, {"text": "Cash out dividends and spend them all", "type": "risky"}, {"text": "Stop investing the moment prices dip", "type": "risky"}]}, {"week": 8, "date": "NOVEMBER 23, 2026", "stage": "GROW", "fact_callout": "A MORTGAGE IS SIMPLY A LOAN USED TO BUY PROPERTY, PAID BACK WITH INTEREST OVER MANY YEARS.", "headline": "RENT, BUY, OR INVEST:", "headline2": "REAL ESTATE 101", "subhead": "Housing is often the biggest financial decision people make. Here's how to think about it early.", "big_picture": ["Renting means paying for the right to live somewhere, without owning it", "Buying means taking a loan (mortgage) to own property over time", "Real estate can also be an investment — owned to earn rent or long-term value growth"], "data_title": "RENTING VS. BUYING (SIMPLIFIED, 5 YEARS)", "data_rows": [["RENTING", "$0 owned", "flexible, no maintenance cost", "Money spent, nothing built"], ["BUYING (MORTGAGE)", "building equity", "fixed costs, upkeep required", "Ownership grows slowly"], ["BUYING TO RENT OUT", "income + equity", "landlord responsibilities", "Two ways to build wealth"]], "numbers_meaning": [["DOWN PAYMENT", "often 5-20%", "Upfront cost of buying property"], ["EQUITY", "grows over time", "The portion of a home you truly own"], ["MAINTENANCE", "ongoing cost", "A cost renters usually don't pay directly"]], "affects_title": "HOW HOUSING DECISIONS AFFECT REAL LIFE", "affects": ["Housing is usually the single largest expense in most family budgets", "Buying isn't automatically “better” than renting — it depends on stability and goals", "Real estate can build long-term net worth (Week 1!) through equity", "Understanding mortgages early prevents confusion about the biggest loan most adults take"], "did_you_know": "Equity — the part of a home actually owned outright — grows slowly at first, since early mortgage payments go mostly toward interest, not ownership.", "smart_people": ["Compare total costs of renting and buying, not just the monthly number", "Understand that a mortgage is a long-term loan with real interest cost", "Consider stability and life plans before committing to buying", "Recognize real estate as one possible investment, not the only one", "Ask what maintenance and upkeep costs might really add up to"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A family compares renting an apartment for $1,500/month against buying a similar home with a mortgage payment of $1,700/month plus upkeep — and realizes the real comparison includes far more than the sticker payment.", "strategist_qs": ["What's one cost of owning a home that a renter doesn't usually pay?", "Why might renting make more sense for someone who moves often?", "How does real estate connect to the net worth idea from Week 1?"], "ff_question": "Someone plans to move cities in 2 years but is considering buying a home. What's the smartest strategy?", "ff_choices": ["Buy anyway for the equity", "Rent until plans are more settled", "Buy and rent it out immediately"], "takeaway": "The biggest purchase of a lifetime deserves the most careful math.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Compare total costs, not just the payment", "type": "smart"}, {"text": "Consider stability before committing to buy", "type": "smart"}, {"text": "Ask about upkeep and maintenance costs", "type": "smart"}, {"text": "Ignore maintenance costs when comparing", "type": "risky"}, {"text": "Buy without considering how long you'll stay", "type": "risky"}, {"text": "Assume buying always beats renting", "type": "risky"}]}, {"week": 9, "date": "NOVEMBER 30, 2026", "stage": "GROW", "fact_callout": "A COMMON RULE OF THUMB SUGGESTS SUBTRACTING YOUR AGE FROM 110 TO ESTIMATE A ROUGH STOCK PERCENTAGE — THOUGH GOALS MATTER MORE THAN AGE ALONE.", "headline": "ASSET ALLOCATION:", "headline2": "YOUR PERSONAL RISK MIX", "subhead": "Diversification spreads risk. Asset allocation decides exactly how much risk fits your goals and timeline.", "big_picture": ["Asset allocation is how money is split between stocks, bonds, cash, and other investments", "A longer time horizon can typically support more risk (more stocks, less cash)", "Rebalancing means periodically adjusting back to your target mix as values shift"], "data_title": "THREE SAMPLE ALLOCATIONS", "data_rows": [["AGGRESSIVE (LONG GOAL)", "90/10", "stocks/bonds", "More growth, more swings"], ["BALANCED (MID GOAL)", "60/40", "stocks/bonds", "Moderate growth and stability"], ["CONSERVATIVE (SHORT GOAL)", "30/70", "stocks/bonds", "Less growth, more stability"]], "numbers_meaning": [["DRIFT", "up to ~10%", "How far a mix can wander before rebalancing"], ["REBALANCE", "yearly", "A common, simple checkup schedule"], ["TIME HORIZON", "the biggest factor", "Longer goals can usually accept more risk"]], "affects_title": "HOW ALLOCATION AFFECTS REAL RESULTS", "affects": ["The right mix depends on the goal's timeline, not just personal preference", "A portfolio ignored for years can drift far from its original, intended risk level", "Rebalancing forces a disciplined “sell high, buy low” habit automatically", "Two people investing the same amount can have very different risk exposure"], "did_you_know": "Rebalancing can mean selling a bit of what's grown the most and buying more of what's lagged — which feels backward, but is actually disciplined long-term investing.", "smart_people": ["Choose an allocation based on the goal's timeline, not just comfort", "Check their allocation periodically instead of ignoring it for years", "Rebalance on a set schedule rather than reacting emotionally", "Adjust allocation as a goal gets closer, shifting toward more stability", "Understand that rebalancing can feel counterintuitive but is intentional"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A young investor with a 90/10 target sees stocks grow so much their mix drifts to 96/4. Instead of leaving it, they rebalance back to 90/10 — locking in some gains and managing risk on purpose.", "strategist_qs": ["Why might a shorter goal need a more conservative allocation?", "What does it mean for a portfolio to “drift” from its target mix?", "Why does rebalancing sometimes mean selling your best performer?"], "ff_question": "Your portfolio's target is 70/30 but has drifted to 85/15 after a strong year. What's the smartest strategy?", "ff_choices": ["Leave it exactly as is", "Rebalance back toward 70/30", "Move everything to cash"], "takeaway": "The right mix isn't about chasing the winner — it's about matching your timeline.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Match your allocation to your timeline", "type": "smart"}, {"text": "Rebalance back to your target on schedule", "type": "smart"}, {"text": "Adjust risk as a goal gets closer", "type": "smart"}, {"text": "Let a portfolio drift for years untouched", "type": "risky"}, {"text": "Ignore your original target mix", "type": "risky"}, {"text": "Pick an allocation with no real timeline", "type": "risky"}]}, {"week": 10, "date": "DECEMBER 7, 2026", "stage": "GROW", "fact_callout": "MONEY INVESTED IN YOUR TEENS OR TWENTIES CAN HAVE 40-50 YEARS TO COMPOUND BEFORE A TYPICAL RETIREMENT AGE.", "headline": "RETIREMENT ACCOUNTS:", "headline2": "COMPOUNDING OVER DECADES", "subhead": "You've seen compounding over years. Retirement accounts show what compounding over decades can really do.", "big_picture": ["A retirement account is a special account designed to grow money for decades, often with tax advantages", "Some employers or accounts match a portion of what's contributed, which is essentially free money", "The biggest advantage most young people have isn't a huge income — it's time"], "data_title": "$100/MONTH STARTING AT 3 DIFFERENT AGES", "data_rows": [["START AT AGE 35", "~$100K", "by retirement, ~7% growth", "Solid, but a shorter runway"], ["START AT AGE 25", "~$210K", "by retirement, ~7% growth", "Ten extra years compounding"], ["START AT AGE 18", "~$340K", "by retirement, ~7% growth", "The earliest start wins by far"]], "numbers_meaning": [["10 YEARS EARLIER", "often 2x+ more", "The single biggest lever available"], ["EMPLOYER MATCH", "essentially free money", "Skipping it leaves money on the table"], ["SAME MONTHLY AMOUNT", "very different results", "Time, not amount, does the heavy lifting"]], "affects_title": "HOW THIS AFFECTS REAL LONG-TERM WEALTH", "affects": ["Starting even a small retirement habit in your teens or twenties is a massive head start", "Many people regret not starting earlier far more than they regret starting small", "This connects directly to the compound interest idea from your first course, just stretched over decades", "A realistic retirement plan is built from decades of small, consistent contributions"], "did_you_know": "Someone who invests for just 10 years in their 20s and then stops can sometimes end up with more at retirement than someone who invests twice as long starting in their 30s — because of how many decades the early money had to compound.", "smart_people": ["Start a retirement or long-term investing habit as early as possible", "Never skip a full employer match, if one is offered later in life", "Understand that time matters more than the exact amount contributed", "Increase contributions gradually as income grows", "Avoid withdrawing long-term retirement money early except in true emergencies"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "A young adult starts contributing to a retirement account at 22 instead of waiting until 30. Even at the same monthly amount, those extra 8 years of compounding could add tens of thousands of dollars by retirement.", "strategist_qs": ["Why does starting at 18 instead of 35 make such a big difference at the same monthly amount?", "What does it mean if an employer “matches” retirement contributions?", "What's one habit you could start now that your future self would thank you for?"], "ff_question": "You're 18 and could start investing $50/month now, or wait until 28 and invest $100/month. Which likely builds more by retirement?", "ff_choices": ["Wait and invest double later", "Start smaller, now", "They'll be about the same"], "takeaway": "Time in the market is the one advantage that gets harder to get back later.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Start a long-term investing habit early", "type": "smart"}, {"text": "Never skip a full employer match", "type": "smart"}, {"text": "Increase contributions as income grows", "type": "smart"}, {"text": "Wait until later to start investing", "type": "risky"}, {"text": "Skip the employer match entirely", "type": "risky"}, {"text": "Withdraw retirement savings early, not for emergencies", "type": "risky"}]}, {"week": 11, "date": "DECEMBER 14, 2026", "stage": "KEEP", "fact_callout": "RECESSIONS ARE A NORMAL, RECURRING PART OF ECONOMIC CYCLES — NOT A SIGN THAT SOMETHING IS PERMANENTLY BROKEN.", "headline": "BOOMS, RECESSIONS,", "headline2": "AND STAYING STEADY", "subhead": "The economy moves in cycles. Knowing the pattern helps you make calm decisions instead of panicked ones.", "big_picture": ["An economic cycle moves through periods of growth (expansion) and slowdown (recession)", "Interest rates often rise to slow fast growth, and fall to encourage slow growth", "Markets and prices react to these cycles — which is normal, expected behavior"], "data_title": "A TYPICAL ECONOMIC CYCLE", "data_rows": [["EXPANSION", "growth phase", "jobs and spending rise", "Feels good, can overheat"], ["PEAK", "turning point", "growth slows down", "Often followed by a pullback"], ["RECESSION", "slowdown phase", "spending and jobs pull back", "Uncomfortable, but temporary"]], "numbers_meaning": [["AVG. RECESSION", "several months to ~1-2 yrs", "Cycles are temporary by nature"], ["HISTORICAL MARKETS", "have recovered over time", "Long-term trend has been upward"], ["YOUR TIMELINE", "the real deciding factor", "Long goals can typically ride out cycles"]], "affects_title": "HOW ECONOMIC CYCLES AFFECT REAL DECISIONS", "affects": ["Panicking and selling investments during a downturn often locks in losses", "Interest rate changes affect loans, savings accounts, and borrowing costs", "A strong emergency fund (Week 4, intro course!) matters most during downturns", "Long-term investors who stay calm through cycles tend to fare better than those who react"], "did_you_know": "The word “recession” simply describes a temporary slowdown — economies have moved through many cycles of expansion and recession throughout history and have historically continued growing over the long run.", "smart_people": ["Expect cycles to happen instead of being surprised by them", "Keep a strong emergency fund heading into uncertain times", "Avoid panic-selling long-term investments during a downturn", "Remember that interest rate changes affect both saving and borrowing costs", "Focus on their own timeline instead of daily headlines"], "real_life_title": "A SIMPLE REAL-LIFE MOVE", "real_life": "During a market downturn, an investor with a 20-year goal keeps contributing on schedule instead of pulling money out — buying more shares at lower prices, the same dollar-cost averaging idea from Week 7.", "strategist_qs": ["Why might selling investments during a downturn lock in a loss instead of avoiding one?", "How does an emergency fund help someone stay calm during a recession?", "Why do interest rates often change during different parts of the economic cycle?"], "ff_question": "The market drops sharply and news headlines are alarming. What's the smartest strategy for a long-term investor?", "ff_choices": ["Sell everything immediately", "Stick to the long-term plan", "Panic and stop tracking money"], "takeaway": "Cycles are normal. A calm, steady plan is how you outlast them.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Keep a strong emergency fund ready", "type": "smart"}, {"text": "Stay calm and stick to the plan", "type": "smart"}, {"text": "Expect cycles as a normal part of investing", "type": "smart"}, {"text": "Panic-sell during every downturn", "type": "risky"}, {"text": "Assume a slowdown means it's all over", "type": "risky"}, {"text": "React to every headline instead of your plan", "type": "risky"}]}, {"week": 12, "date": "DECEMBER 21, 2026", "stage": "REPEAT", "fact_callout": "THIS WEEK COMPLETES LEVEL 2. YOU NOW HAVE THE TOOLS TO BUILD, PROTECT, GROW — AND EVENTUALLY PASS ON — REAL WEALTH.", "headline": "BUILDING WEALTH", "headline2": "THAT OUTLASTS YOU", "subhead": "Financial freedom isn't just for you. The most advanced level is knowing how to build something that lasts.", "big_picture": ["Generational wealth means resources and knowledge passed from one generation to the next", "It includes money, but also habits, knowledge, and financial confidence", "Giving strategically — not just spending or hoarding — is part of an advanced financial plan"], "data_title": "LEVEL 2, REVIEWED", "data_rows": [["KEEP (ADVANCED)", "net worth, credit, inflation", "protect & measure", "Know your real position"], ["GROW (ADVANCED)", "index funds, real estate, allocation", "multiply wisely", "Build wealth deliberately"], ["REPEAT (ADVANCED)", "legacy & giving", "pass it forward", "Wealth that outlasts you"]], "numbers_meaning": [["KNOWLEDGE", "priceless", "The habits taught are worth more than any single dollar"], ["DECADES", "your biggest asset", "Time is still the most powerful tool you have"], ["GIVING", "a real strategy", "Not the opposite of wealth-building, but part of it"]], "affects_title": "HOW THIS AFFECTS YOUR WHOLE LIFE (AND OTHERS')", "affects": ["Financial habits are often passed down — for better or worse — within families", "Teaching what you've learned to someone else reinforces it for you too", "A wealth plan that includes giving tends to be more sustainable and meaningful long-term", "Real financial freedom includes options: for you, and for people you care about"], "did_you_know": "Many wealthy families intentionally teach financial literacy to the next generation early — because knowledge, not just money, is often what determines whether wealth actually lasts.", "smart_people": ["Teach financial habits to someone younger or newer to the topic", "Build giving into their financial plan on purpose, not as an afterthought", "Revisit their full plan (Earn, Keep, Grow, Repeat) at least once a year", "Think in decades, not just the next paycheck or purchase", "Treat financial knowledge as something to pass on, not keep private"], "real_life_title": "BUILD YOUR ADVANCED WEALTH PLAN", "real_life": "Write down: 1 way you'll keep building net worth this year, 1 advanced investing habit you'll start or continue, 1 way you'll stay calm through the next economic cycle, and 1 person you'll teach something from this course.", "strategist_qs": ["What's the single most valuable thing you learned across these 12 advanced weeks?", "Who is one person you could teach a financial habit to?", "What does “wealth that outlasts you” mean, in your own words?"], "ff_question": "You've completed both levels of this course. What's the smartest next strategy?", "ff_choices": ["Consider it finished", "Keep applying it and teach someone else", "Wait until you have more money to care"], "takeaway": "The most advanced financial move is teaching it forward.", "correct_index": 1, "level": "advanced", "game_tiles": [{"text": "Teach a financial habit to someone else", "type": "smart"}, {"text": "Build giving into your financial plan", "type": "smart"}, {"text": "Revisit your full plan every year", "type": "smart"}, {"text": "Keep financial knowledge to yourself", "type": "risky"}, {"text": "Treat wealth-building as finished forever", "type": "risky"}, {"text": "Never revisit or update the plan", "type": "risky"}]}]};
+
+const STAGE_COLOR = { EARN:"var(--green)", KEEP:"var(--gold)", GROW:"var(--blue)", REPEAT:"var(--purple)" };
+const STAGE_ICON = { EARN:"$", KEEP:"\u{1F512}", GROW:"\u{1F4C8}", REPEAT:"\u21BB" };
+const LEVEL_META = {
+  intro: { title:"LEVEL 1: FOUNDATIONS", color:"var(--blue)", tag:"Start here", desc:"Earn it, keep it, grow it, repeat it \u2014 the essentials of financial freedom." },
+  advanced: { title:"LEVEL 2: ADVANCED", color:"var(--purple)", tag:"Next level", desc:"Net worth, credit, investing mechanics, and building wealth that lasts." },
+};
+const SECTION_ORDER = ["big_picture","data","numbers","affects","dyk","smart","reallife","pattern","strategist","quiz","game","takeaway"];
+const SECTION_LABEL = {
+  big_picture:"The Big Picture", data:"By The Numbers", numbers:"What It Means", affects:"How It Affects You",
+  dyk:"Did You Know?", smart:"Smart Moves", reallife:"Real-Life Move", pattern:"The Pattern",
+  strategist:"Think Like A Strategist", quiz:"Your Turn!", game:"Money Run!", takeaway:"Takeaway"
+};
+const SECTION_COLOR = {
+  big_picture:"var(--blue)", data:"var(--navy-d)", numbers:"var(--green)", affects:"var(--purple)",
+  dyk:"var(--navy-d)", smart:"var(--gold)", reallife:"var(--blue)", pattern:"var(--green)",
+  strategist:"var(--teal)", quiz:"var(--red)", game:"#E8891D", takeaway:"var(--gold)"
+};
+const SECTION_ICON = {
+  big_picture:"\u{1F30E}", data:"\u{1F4CA}", numbers:"\u{1F4C8}", affects:"\u{1F3DB}", dyk:"\u{1F4A1}",
+  smart:"\u2605", reallife:"\u{1F4A1}", pattern:"\u{1F504}", strategist:"\u{1F9E0}", quiz:"\u2753", game:"\u{1F3C3}", takeaway:"\u{1F3C6}"
+};
+
+let state = {
+  screen: "home",
+  level: null,
+  weekIndex: 0,
+  section: 0,
+  completed: { intro:new Set(), advanced:new Set() },
+  checklists: {},   // key `${level}-${week}` -> Set of checked indices
+  quizPicked: {},   // key `${level}-${week}` -> chosen index
+  games: {},        // key `${level}-${week}` -> {pool:[...], solved:0, done:false}
+};
+
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+function renderTopbar(){
+  const bar = document.getElementById('topbar');
+  if(state.screen==='home'){
+    bar.innerHTML = `
+      <div class="logo">PVM</div>
+      <div class="brand">PVM <span>KIDS</span> \u2014 Financial Freedom</div>
+      <div class="spacer"></div>
+    `;
+    return;
+  }
+  const meta = LEVEL_META[state.level];
+  const doneCount = state.completed[state.level].size;
+  let backLabel = "Back";
+  let backAction = "goHome()";
+  if(state.screen==='week'){ backLabel="Map"; backAction="goMap()"; }
+  bar.innerHTML = `
+    <button class="backbtn" onclick="${backAction}">\u2190 ${backLabel}</button>
+    <div class="brand" style="font-size:15px;">${meta.title}</div>
+    <div class="spacer"></div>
+    <div class="progresspill">${doneCount}/12 complete</div>
+  `;
+}
+
+function goHome(){ state.screen='home'; state.level=null; render(); }
+function goMap(){ state.screen='map'; render(); }
+function openWeek(idx){ state.screen='week'; state.weekIndex=idx; state.section=0; render(); window.scrollTo(0,0); }
+function openLevel(lvl){ state.level=lvl; state.screen='map'; render(); }
+
+function currentWeek(){ return WEEKS_DATA[state.level][state.weekIndex]; }
+function keyFor(w){ return `${state.level}-${w.week}`; }
+
+function renderHome(){
+  const app = document.getElementById('app');
+  const introDone = state.completed.intro.size, advDone = state.completed.advanced.size;
+  app.innerHTML = `
+  <div class="screen"><div class="wrap">
+    <div class="hero">
+      <div class="kicker">\u2605 INTERACTIVE JOURNEY \u2605</div>
+      <h1 class="display">Your Financial Freedom Adventure</h1>
+      <p>24 weeks. Two levels. Real skills for real life. Pick a level below to jump in \u2014 tap through each week, take the quiz, and build your streak!</p>
+    </div>
+    <div class="levelgrid">
+      ${renderLevelCard('intro', introDone)}
+      ${renderLevelCard('advanced', advDone)}
+    </div>
+  </div></div>`;
+}
+function renderLevelCard(lvl, done){
+  const meta = LEVEL_META[lvl];
+  const pct = Math.round(done/12*100);
+  return `
+    <div class="levelcard" onclick="openLevel('${lvl}')">
+      <div class="badge" style="background:${meta.color}">${meta.tag.toUpperCase()}</div>
+      <h2 class="display">${meta.title}</h2>
+      <p>${meta.desc}</p>
+      <div class="stages">
+        ${['EARN','KEEP','GROW','REPEAT'].map(s=>`<span class="stagechip" style="background:${STAGE_COLOR[s]}">${STAGE_ICON[s]} ${s}</span>`).join('')}
+      </div>
+      <div class="progressbar"><div style="width:${pct}%; background:${meta.color}"></div></div>
+      <div class="progresslabel">${done} / 12 weeks complete</div>
+      <div class="enterrow">
+        <span style="font-size:13px;color:var(--muted);font-weight:700;">${done===0?'Not started':(done===12?'All done! \u2605':'In progress')}</span>
+        <button class="enterbtn" style="background:${meta.color}">Enter \u2192</button>
+      </div>
+    </div>`;
+}
+
+function renderMap(){
+  const app = document.getElementById('app');
+  const meta = LEVEL_META[state.level];
+  const weeks = WEEKS_DATA[state.level];
+  app.innerHTML = `
+  <div class="screen"><div class="wrap">
+    <div class="mapheader">
+      <h2 class="display">${meta.title}</h2>
+      <p>Tap any week to start \u2014 explore in any order you like!</p>
+    </div>
+    <div class="nodegrid">
+      ${weeks.map((w,i)=>{
+        const done = state.completed[state.level].has(w.week);
+        return `
+        <div class="node" onclick="openWeek(${i})">
+          ${done?'<div class="check">\u2713</div>':''}
+          <div class="wnum">WEEK ${w.week}</div>
+          <div class="wicon" style="background:${STAGE_COLOR[w.stage]}">${STAGE_ICON[w.stage]}</div>
+          <div class="wtitle">${w.headline}</div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div></div>`;
+}
+
+function renderWeek(){
+  const app = document.getElementById('app');
+  const w = currentWeek();
+  const sec = SECTION_ORDER[state.section];
+  app.innerHTML = `
+  <div class="screen"><div class="wrap">
+    <div class="weekhead">
+      <div class="stagepillrow">
+        <span class="pill" style="background:${STAGE_COLOR[w.stage]}">STAGE: ${w.stage}</span>
+        <span class="pill" style="background:var(--navy-d)">WEEK ${w.week} OF 12</span>
+      </div>
+      <h2 class="display">${w.headline}<span class="l2">${w.headline2}</span></h2>
+      <div class="sub">${w.subhead}</div>
+      <div class="factchip">\u{1F4A1} ${w.fact_callout}</div>
+    </div>
+
+    <div class="progressdots">
+      ${SECTION_ORDER.map((s,i)=>`<div class="dot ${i===state.section?'active':''}" onclick="jumpSection(${i})"></div>`).join('')}
+    </div>
+
+    <div class="sectioncard">
+      <div class="sectionhead" style="background:${SECTION_COLOR[sec]}">${SECTION_ICON[sec]}&nbsp; ${SECTION_LABEL[sec].toUpperCase()}</div>
+      <div class="sectionbody">${renderSection(sec, w)}</div>
+    </div>
+
+    <div class="navrow">
+      <button class="navbtn secondary" onclick="prevSection()" ${state.section===0?'disabled':''}>\u2190 Back</button>
+      <button class="navbtn" onclick="nextSection()" ${state.section===SECTION_ORDER.length-1?'disabled':''}>Next \u2192</button>
+    </div>
+  </div></div>`;
+  attachSectionHandlers(sec, w);
+}
+
+function renderSection(sec, w){
+  if(sec==='big_picture'){
+    return `<ul class="bullets">${w.big_picture.map(b=>`<li>${b}</li>`).join('')}</ul>`;
+  }
+  if(sec==='data'){
+    return `<div style="font-weight:800;color:var(--navy-d);font-size:13px;letter-spacing:0.5px;margin-bottom:8px;">${w.data_title.toUpperCase()}</div>` +
+      w.data_rows.map(r=>`
+        <div class="datarow">
+          <div class="lbl">${r[0]}</div>
+          <div class="val"><b>${r[1]}</b><span>${r[2]}</span></div>
+          <div class="note">${r[3]}</div>
+        </div>`).join('');
+  }
+  if(sec==='numbers'){
+    const colors=['var(--green)','var(--gold)','var(--red)'];
+    return `<div class="nmgrid">${w.numbers_meaning.map((n,i)=>`
+      <div class="nmbox" style="border-top-color:${colors[i%3]}">
+        <div class="l">${n[0]}</div><div class="v" style="color:${colors[i%3]}">${n[1]}</div><div class="n">${n[2]}</div>
+      </div>`).join('')}</div>`;
+  }
+  if(sec==='affects'){
+    return `<div style="font-weight:800;color:var(--navy-d);font-size:14px;margin-bottom:10px;">${w.affects_title}</div><ul class="bullets">${w.affects.map(b=>`<li>${b}</li>`).join('')}</ul>`;
+  }
+  if(sec==='dyk'){
+    return `<div class="fact">${w.did_you_know}</div>`;
+  }
+  if(sec==='smart'){
+    const k = keyFor(w);
+    if(!state.checklists[k]) state.checklists[k] = new Set();
+    const checked = state.checklists[k];
+    return `<ul class="checklist">${w.smart_people.map((s,i)=>`
+      <li class="checkitem ${checked.has(i)?'checked':''}" data-idx="${i}">
+        <div class="checkbox">${checked.has(i)?'\u2713':''}</div><span class="txt">${s}</span>
+      </li>`).join('')}</ul>
+      <div class="checkprogress">${checked.size} / ${w.smart_people.length} habits checked off \u2014 nice work!</div>`;
+  }
+  if(sec==='reallife'){
+    return `<div style="font-weight:800;color:var(--navy-d);font-size:14px;margin-bottom:10px;">${w.real_life_title}</div><div class="reallife">${w.real_life}</div>`;
+  }
+  if(sec==='pattern'){
+    return `<div class="cyclewrap">${cycleSvg(w.stage)}</div>`;
+  }
+  if(sec==='strategist'){
+    return `<ul class="strategistlist">${w.strategist_qs.map(q=>`<li>${q}</li>`).join('')}</ul>`;
+  }
+  if(sec==='quiz'){
+    const k = keyFor(w);
+    const picked = state.quizPicked[k];
+    const letters = ['A','B','C'];
+    return `
+      <div class="quizq">${w.ff_question}</div>
+      <div class="choices">
+        ${w.ff_choices.map((c,i)=>{
+          let cls='';
+          if(picked!==undefined){
+            cls='disabled';
+            if(i===w.correct_index) cls+=' correct';
+            else if(i===picked) cls+=' incorrect';
+          }
+          return `<button class="choicebtn ${cls}" data-idx="${i}" ${picked!==undefined?'disabled':''}>
+            <span class="lettercirc">${letters[i]}</span>${c}
+          </button>`;
+        }).join('')}
+      </div>
+      ${picked!==undefined ? `<div class="feedback ${picked===w.correct_index?'good':'bad'}">
+        ${picked===w.correct_index ? '\u2705 Great strategy! ' + w.takeaway : '\u{1F914} Good thinking \u2014 the strongest strategy here is choice ' + letters[w.correct_index] + '. ' + w.takeaway}
+      </div>` : ''}
+      <textarea class="explain" placeholder="Explain your strategy in your own words (optional)..."></textarea>
+    `;
+  }
+  if(sec==='game'){
+    const k = keyFor(w);
+    if(!state.games[k]) initGame(k, w);
+    const g = state.games[k];
+    const total = w.game_tiles.length;
+    const trackPct = total>1 ? (g.solved/total)*80 : 0; // leave room so runner doesn't overlap flag
+    return `
+      <div class="gamewrap">
+        <div class="gameintro">Drag each card into the zone where it belongs. Every correct drop sends your runner jumping over the next obstacle \u2014 sort them all to reach the finish line!</div>
+        <div class="gamestatus">${g.solved} / ${total} sorted</div>
+        <div class="track" id="track">
+          ${w.game_tiles.map((t,i)=>{
+            const pos = 12 + (i/(total)) * 76;
+            return `<div class="obstacle ${i<g.solved?'passed':''}" style="left:${pos}%">\u{1F6A7}</div>`;
+          }).join('')}
+          <div class="trackline"></div>
+          <div class="trackflag">\u{1F3C1}</div>
+          <div class="runner" id="runner" style="left:${12+trackPct}%">\u{1F3C3}</div>
+        </div>
+        ${g.done ? `
+          <div class="gamedone">
+            <div style="font-size:40px;">\u{1F3C6}</div>
+            <div class="big display">You crossed the finish line!</div>
+            <button class="playagainbtn" onclick="resetGame('${k}')">\u21BB Play Again</button>
+          </div>
+        ` : `
+          <div class="zones">
+            <div class="dropzone zone-smart" data-zone="smart"><div class="zlabel">\u2705 SMART MOVE</div><div class="zsub">Builds financial freedom</div></div>
+            <div class="dropzone zone-risky" data-zone="risky"><div class="zlabel">\u26A0\uFE0F RISKY MOVE</div><div class="zsub">Hurts financial freedom</div></div>
+          </div>
+          <div class="tilepool" id="tilepool">
+            ${g.pool.map(t=>`<div class="tile" data-id="${t.id}" data-type="${t.type}">${t.text}</div>`).join('')}
+          </div>
+        `}
+      </div>`;
+  }
+  if(sec==='takeaway'){
+    const done = state.completed[state.level].has(w.week);
+    return `
+      <div class="takeawaybox">
+        <div class="trophybig">\u{1F3C6}</div>
+        <div class="msg display">${w.takeaway}</div>
+        <button class="completebtn" onclick="completeWeek()">${done ? '\u2713 Week Complete!' : 'Mark Week Complete \u2192'}</button>
+      </div>`;
+  }
+  return '';
+}
+
+function attachSectionHandlers(sec, w){
+  if(sec==='smart'){
+    document.querySelectorAll('.checkitem').forEach(item=>{
+      item.addEventListener('click', ()=>{
+        const idx = parseInt(item.getAttribute('data-idx'));
+        const k = keyFor(w);
+        const set = state.checklists[k];
+        if(set.has(idx)) set.delete(idx); else set.add(idx);
+        renderWeek();
+      });
+    });
+  }
+  if(sec==='quiz'){
+    document.querySelectorAll('.choicebtn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const idx = parseInt(btn.getAttribute('data-idx'));
+        const k = keyFor(w);
+        if(state.quizPicked[k]===undefined){
+          state.quizPicked[k] = idx;
+          renderWeek();
+        }
+      });
+    });
+  }
+  if(sec==='game'){
+    attachGameHandlers(w);
+  }
+}
+
+function initGame(k, w){
+  const tiles = w.game_tiles.map((t,i)=>({ id:k+'-'+i, text:t.text, type:t.type }));
+  for(let i=tiles.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [tiles[i],tiles[j]] = [tiles[j],tiles[i]];
+  }
+  state.games[k] = { pool: tiles, solved: 0, done: false };
+}
+function resetGame(k){
+  delete state.games[k];
+  renderWeek();
+}
+
+function attachGameHandlers(w){
+  const pool = document.getElementById('tilepool');
+  if(!pool) return;
+  pool.querySelectorAll('.tile').forEach(tile=>{
+    tile.addEventListener('pointerdown', (e)=>startDrag(e, tile, w));
+  });
+}
+
+let dragCtx = null;
+function startDrag(e, tile, w){
+  e.preventDefault();
+  const rect = tile.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const offsetY = e.clientY - rect.top;
+  const placeholder = document.createElement('div');
+  placeholder.className = 'tile';
+  placeholder.style.visibility = 'hidden';
+  placeholder.style.width = rect.width+'px';
+  placeholder.style.height = rect.height+'px';
+  tile.parentNode.insertBefore(placeholder, tile);
+
+  tile.classList.add('dragging');
+  tile.style.width = rect.width+'px';
+  tile.style.left = rect.left+'px';
+  tile.style.top = rect.top+'px';
+  document.body.appendChild(tile);
+
+  dragCtx = { tile, placeholder, offsetX, offsetY, w };
+
+  function onMove(ev){
+    if(!dragCtx) return;
+    tile.style.left = (ev.clientX - offsetX)+'px';
+    tile.style.top = (ev.clientY - offsetY)+'px';
+    document.querySelectorAll('.dropzone').forEach(z=>{
+      z.classList.remove('hover-smart','hover-risky');
+    });
+    const zone = zoneUnder(ev.clientX, ev.clientY);
+    if(zone) zone.classList.add(zone.dataset.zone==='smart' ? 'hover-smart' : 'hover-risky');
+  }
+  function onUp(ev){
+    document.removeEventListener('pointermove', onMove);
+    document.removeEventListener('pointerup', onUp);
+    finishDrag(ev.clientX, ev.clientY);
+  }
+  document.addEventListener('pointermove', onMove);
+  document.addEventListener('pointerup', onUp);
+}
+
+function zoneUnder(x,y){
+  const zones = document.querySelectorAll('.dropzone');
+  for(const z of zones){
+    const r = z.getBoundingClientRect();
+    if(x>=r.left && x<=r.right && y>=r.top && y<=r.bottom) return z;
+  }
+  return null;
+}
+
+function finishDrag(x,y){
+  if(!dragCtx) return;
+  const { tile, placeholder, w } = dragCtx;
+  document.querySelectorAll('.dropzone').forEach(z=> z.classList.remove('hover-smart','hover-risky'));
+  const zone = zoneUnder(x,y);
+  const k = keyFor(w);
+  const g = state.games[k];
+  const tileType = tile.dataset.type;
+
+  if(zone && zone.dataset.zone === tileType){
+    g.pool = g.pool.filter(t => t.id !== tile.dataset.id);
+    g.solved += 1;
+    if(g.solved >= w.game_tiles.length) g.done = true;
+    tile.remove(); placeholder.remove();
+    renderWeek();
+    const runner = document.getElementById('runner');
+    if(runner){ runner.classList.add('jump'); setTimeout(()=>runner.classList.remove('jump'), 600); }
+    if(g.done) setTimeout(launchConfetti, 300);
+  } else if(zone){
+    tile.remove();
+    placeholder.replaceWith(tile);
+    tile.classList.remove('dragging');
+    tile.style.left=''; tile.style.top=''; tile.style.width='';
+    const runner = document.getElementById('runner');
+    if(runner){ runner.classList.add('stumble'); setTimeout(()=>runner.classList.remove('stumble'), 450); }
+  } else {
+    tile.remove();
+    placeholder.replaceWith(tile);
+    tile.classList.remove('dragging');
+    tile.style.left=''; tile.style.top=''; tile.style.width='';
+  }
+  dragCtx = null;
+}
+
+function jumpSection(i){ state.section=i; renderWeek(); }
+function nextSection(){ if(state.section<SECTION_ORDER.length-1){ state.section++; renderWeek(); window.scrollTo(0,0);} }
+function prevSection(){ if(state.section>0){ state.section--; renderWeek(); window.scrollTo(0,0);} }
+
+function completeWeek(){
+  const w = currentWeek();
+  const wasComplete = state.completed[state.level].has(w.week);
+  state.completed[state.level].add(w.week);
+  if(!wasComplete) launchConfetti();
+  renderWeek();
+  renderTopbar();
+}
+
+function cycleSvg(activeStage){
+  const stages=['EARN','KEEP','GROW','REPEAT'];
+  const cx=[65,205,345,485];
+  const colorMap={EARN:'#1F7A4D',KEEP:'#C9A227',GROW:'#1B5FAE',REPEAT:'#5B3A9E'};
+  let parts = [`<svg viewBox="0 0 550 175" style="width:100%;max-width:520px;height:auto">`];
+  stages.forEach((s,i)=>{
+    const x=cx[i]; const active = s===activeStage; const color=colorMap[s]; const r = active?42:36;
+    parts.push(`<circle cx="${x}" cy="55" r="${r}" fill="${color}" opacity="${active?1:0.32}"/>`);
+    if(active) parts.push(`<circle cx="${x}" cy="55" r="${r+6}" fill="none" stroke="${color}" stroke-width="3"/>`);
+    parts.push(`<text x="${x}" y="63" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="white">${STAGE_ICON[s]}</text>`);
+    parts.push(`<text x="${x}" y="122" text-anchor="middle" font-family="Arial" font-size="15" font-weight="800" fill="${active?color:'#122452'}">${s}</text>`);
+    if(i<stages.length-1){
+      parts.push(`<line x1="${x+44}" y1="55" x2="${cx[i+1]-44}" y2="55" stroke="#5B6478" stroke-width="2.5" marker-end="url(#arrH)"/>`);
+    }
+  });
+  parts.push(`<path d="M ${cx[3]} 100 Q ${(cx[3]+cx[0])/2} 150 ${cx[0]} 100" fill="none" stroke="#5B6478" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrH)"/>`);
+  parts.push(`<defs><marker id="arrH" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5B6478"/></marker></defs>`);
+  parts.push('</svg>');
+  return parts.join('');
+}
+
+function launchConfetti(){
+  const colors=['#C9A227','#1B5FAE','#1F7A4D','#5B3A9E','#C0272D'];
+  for(let i=0;i<60;i++){
+    const p = document.createElement('div');
+    p.className='confetti-piece';
+    p.style.left = Math.random()*100+'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration = (2+Math.random()*1.5)+'s';
+    p.style.transform = `rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 4000);
+  }
+}
+
+function render(){
+  renderTopbar();
+  if(state.screen==='home') renderHome();
+  else if(state.screen==='map') renderMap();
+  else if(state.screen==='week') renderWeek();
+}
+
+render();
+</script>
+</body>
+</html>
