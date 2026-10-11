@@ -4,7 +4,9 @@ export const missions = [
  {id:'time',title:'Help with yard work',type:'TIME → SERVICE',gross:60,cost:0,xp:140,hours:3,explanation:'You traded 3 hours of reliable work for $60. Your time created value by helping a neighbor.'},
  {id:'skill',title:'Tutor a younger student',type:'SKILL → SERVICE',gross:100,cost:0,xp:180,hours:4,explanation:'Your math skills helped someone learn. Four hours at $25 an hour earned $100. Skills take practice.'},
  {id:'product',title:'Sell original art prints',type:'IDEA → PRODUCT',gross:150,cost:40,xp:220,hours:5,explanation:'Customers paid $150, but supplies cost $40. Your profit is $110, not $150. An idea earns when it meets a need.'} ]},
- {id:2,title:'Save & grow',topic:'Saving & Emergency Fund',sector:'THE FINANCIAL DISTRICT',icon:'◈',brief:'Bring the money you earned into a pretend future payday. Save first, then see how it helps with a surprise.',lesson:'Pay yourself first: keep part of what you earn, cover needs, then decide what is left for wants. An emergency fund keeps surprises from becoming loans.',savings:[0,250,500,750]}
+ {id:2,title:'Income mixer',topic:'Building Income Streams',sector:'THE MARKET STREET',icon:'✦',brief:'One way to earn is great. More useful ways can make your money grow.',lesson:'Income can come from helping, making, and sharing useful ideas.',income:120,savings:[0,250,500,750]},
+ {id:3,title:'Save & grow',topic:'Saving & Paying Yourself First',sector:'THE FINANCIAL DISTRICT',icon:'◈',brief:'Bring the money you earned into a pretend future payday. Save first, then see how it helps with a surprise.',lesson:'Pay yourself first: keep part of what you earn, cover needs, then decide what is left for wants. An emergency fund keeps surprises from becoming loans.',savings:[0,250,500,750]},
+ {id:4,title:'Money map',topic:'Budgeting & Smart Spending',sector:'THE PLANNING PLAZA',icon:'⌁',brief:'Give each pretend dollar a home: needs, wants, or savings.',lesson:'A budget gives money a job. Needs come first, then saving, then wants.',budgetSave:100}
 ];
 export const events = [
  {id:'repair',title:'Car repair',amount:-600,description:'In this future-adult scenario, your car stops working. You need a $600 repair to get to work.'},
@@ -16,4 +18,4 @@ export const events = [
  {id:'prices',title:'Price increase',amount:-65,description:'Your planned groceries and transport cost $65 more.'},
  {id:'fee',title:'Unexpected fee',amount:-35,description:'A missed deadline brings a $35 fee. Check due dates next time.'}
 ];
-export const badges=[{id:'earner',icon:'↗',name:'Value creator',detail:'Complete your first paid project.'},{id:'buffer',icon:'◈',name:'Shock absorber',detail:'Cover the car repair without borrowing.'},{id:'planner',icon:'⌁',name:'Mission strategist',detail:'Complete both playable missions.'},{id:'practice',icon:'↻',name:'Second perspective',detail:'Finish a practice replay.'}];
+export const badges=[{id:'earner',icon:'↗',name:'Value creator',detail:'Complete your first paid project.'},{id:'streams',icon:'✦',name:'Income explorer',detail:'Build three useful ways to earn.'},{id:'buffer',icon:'◈',name:'Shock absorber',detail:'Cover the car repair without borrowing.'},{id:'planner',icon:'⌁',name:'Money mapper',detail:'Give every dollar a job.'},{id:'practice',icon:'↻',name:'Second perspective',detail:'Finish a practice replay.'}];
