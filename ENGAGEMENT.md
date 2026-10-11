@@ -12,8 +12,9 @@ For each later weekly level:
 4. Immediate visual feedback after each action. Incorrect drops give a gentle retry, not a penalty.
 5. A visible financial consequence: earned money, used supplies, savings paying a bill, or money owed.
 6. A short reward and replay loop. Details live behind “Why?” or the grown-up menu.
+7. One continuous cause-and-effect story. Money or choices from one activity must visibly travel into the next activity and change its result.
 
-Keep controls at least 64px where possible, support pointer dragging plus tap/tap and keyboard alternatives, avoid mandatory timers, respect reduced motion, and preserve progress mid-activity. Read-to-me uses browser speech when supported; voice availability varies.
+Keep controls at least 64px where possible, support pointer dragging plus tap/tap and keyboard alternatives, avoid mandatory timers, respect reduced motion, and preserve progress mid-activity. Animate the art inside a target rather than moving the target itself. Read-to-me uses browser speech when supported; voice availability varies.
 
 Use `src/drag.js` for pointer interaction and `src/play.js` for the current illustrated activities. Pure state transitions keep finances separate from rendering. New weekly mechanics will need their own transition and renderer; these two pilot missions do not implement arbitrary lessons automatically.
 

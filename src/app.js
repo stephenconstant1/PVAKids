@@ -36,6 +36,8 @@ app.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(e.t
 app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b||b.disabled||!p)return;const action=b.dataset.action;
  if(performance.now()<suppressClickUntil)return;
  if(action==='read-aloud'){const text=document.querySelector('.play-prompt')?.textContent||'Choose mission one to help and earn money. Then choose mission two to save.';if('speechSynthesis' in window){const utterance=new SpeechSynthesisUtterance(text);utterance.rate=.85;window.speechSynthesis.cancel();window.speechSynthesis.speak(utterance);}else document.querySelector('#announcer').textContent='Read aloud is not supported in this browser.';return;}
+ if(action==='cheer'){b.classList.remove('cheer');void b.offsetWidth;b.classList.add('cheer');sound('success',p.muted);document.querySelector('#announcer').textContent='Your adventure buddy is cheering!';return;}
+ if(action.startsWith('pop-spark-')){b.classList.add('collected');b.disabled=true;sound('xp',p.muted);document.querySelector('#announcer').textContent='Shining star collected!';return;}
  if(action.startsWith('select-')){selectedToken=action.slice(7);app.querySelectorAll('[data-drag]').forEach(el=>{const active=el.dataset.drag===selectedToken;el.classList.toggle('picked',active);el.setAttribute('aria-pressed',String(active));});document.querySelector('#announcer').textContent='Picked up. Now tap its home.';return;}
  if(action.startsWith('drop-')){if(selectedToken)handleDrop(selectedToken,action.slice(5));return;}
  const playNext=playAction(p,action);if(playNext){commit(playNext,playNext.active.step==='debrief'?'earn':action.startsWith('save-')?'click':'xp');return;}
@@ -47,6 +49,7 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b
  if(action==='next'){const a=p.active;if(a&&['brief','learn'].includes(a.step))commit({...p,active:{...a,step:'choice'}});return;}
  if(action.startsWith('choose-')){commit(choose(p,action.slice(7)),p.active.id===1?'earn':'warning');return;}
  if(action==='resolve'){commit(resolve(p),'loss');return;}
+ if(action==='finish-to-plan'&&p.active?.id===1&&p.active.step==='debrief'&&!p.active.practice){const earned=p.active.choice.gross-p.active.choice.cost,job=p.active.choice.id;const completed=finish(p);const next=begin(completed,2);next.active={...next.active,fromEarning:{amount:earned,job},jobBanked:false};tab='operations';commit(next,completed.lastReward?.rankUp?'rank':'achievement');document.querySelector('#announcer').textContent=`You earned ${money(earned)}. Your money came with you to the saving plan.`;return;}
  if(action==='finish'){const next=finish(p);tab='operations';commit(next,next.lastReward?.rankUp?'rank':'achievement');return;}
  if(action==='random'){commit(randomEvent(p),'warning');return;}
  if(action==='dismiss'){commit({...p,lastReward:null});return;}
@@ -56,5 +59,38 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b
 });
 render();
 
-function handleDrop(token,target){const next=dropAction(p,token,target);if(next){commit(next,next.active.step==='debrief'?'earn':'xp',next.active.step==='debrief');document.querySelector('#announcer').textContent=next.active.step==='debrief'?'You helped and earned money!':next.active.hint||'Nice!';}}
+function progressCount(a){
+ if(!a)return 0;
+ if(a.id===1)return (a.workDone||[]).length;
+ if(a.step==='event'||a.step==='debrief')return (a.repairDone||[]).length+5;
+ return (a.jobBanked?1:0)+(a.planned||0)/250;
+}
+function handleDrop(token,target){
+ const before=p.active,next=dropAction(p,token,target);
+ if(!next)return;
+ const after=next.active,finished=after.step==='debrief',progressed=progressCount(after)>progressCount(before)||after.step!==before.step;
+ let kind='retry';
+ if(progressed){
+  if(finished)kind=after.id===1?'earn':'achievement';
+  else if(token==='earnings-bag'||token.startsWith('coin'))kind='coin';
+  else if(token.startsWith('tool-'))kind='repair';
+  else kind='success';
+ }
+ commit(next,kind,finished);
+ const stage=app.querySelector('.visual-play');
+ stage?.classList.add(progressed?'action-success':'action-retry');
+ stage?.querySelector('.journey-buddy')?.classList.add(progressed?'cheer':'oops');
+ if(progressed&&!finished){
+  let fresh=null;
+  if(token==='earnings-bag'||token.startsWith('coin'))fresh=stage?.querySelector('.jar');
+  else if(token.startsWith('tool-'))fresh=stage?.querySelector('.car-bay .play-art');
+  else if(target==='basket')fresh=stage?.querySelector('.drop-basket');
+  else fresh=stage?.querySelector(`[data-drop="${target}"]`);
+  fresh?.classList.add('fresh-success');
+ }
+ const message=finished
+  ?after.id===1?'Job done! You earned money.':'The car is fixed. See how savings helped.'
+  :progressed?(after.hint||'Great move!'):after.hint||'Try its matching home!';
+ document.querySelector('#announcer').textContent=message;
+}
 installDrag(app,(token,target)=>{suppressClickUntil=performance.now()+150;handleDrop(token,target);});

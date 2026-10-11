@@ -14,10 +14,12 @@ export function begin(p,id){
 export function earn(wallet,choice){return {...wallet,cash:wallet.cash+choice.gross-choice.cost};}
 export function budget(wallet,saved){
  if(!missions[1].savings.includes(saved))throw Error('Invalid savings choice');
- const available=wallet.cash+2500;
+ const earnedSaved=wallet.cash;
+ const available=earnedSaved+2500;
  const needs=1750;
- if(saved+needs>available)throw Error('Savings exceed available money');
- return {wallet:{...wallet,cash:0,savings:wallet.savings+saved,monthlyIncome:2500,monthlyExpenses:needs},available,needs,wants:available-needs-saved,saved};
+ if(saved+needs>2500)throw Error('Savings exceed payday money');
+ const totalSaved=earnedSaved+saved;
+ return {wallet:{...wallet,cash:0,savings:wallet.savings+totalSaved,monthlyIncome:2500,monthlyExpenses:needs},available,needs,wants:2500-needs-saved,saved,earnedSaved,totalSaved};
 }
 export function applyEvent(wallet,event){
  const w={...wallet}; let savingsUsed=0,cashUsed=0,borrowed=0;
@@ -38,6 +40,6 @@ export function finish(p){
  const out=structuredClone(p);const oldRank=rank(p.xp);
  if(!a.practice){Object.assign(out,a.wallet);out.xp+=a.result.xp;out.completed.push(a.id);out.snapshots[a.id]=a.start;if(a.id===1)out.badges.push('earner');if(a.id===2){out.badges.push('planner');if(!a.result.borrowed)out.badges.push('buffer');}}
  else if(!out.badges.includes('practice'))out.badges.push('practice');
- out.history.unshift({mission:a.id,practice:a.practice,worth:netWorth(a.wallet),choice:a.id===1?a.choice.title:`Saved $${a.choice.saved}`,borrowed:a.result.borrowed||0});out.history=out.history.slice(0,12);out.active=null;out.screen='base';out.lastReward={xp:a.practice?0:a.result.xp,rankUp:oldRank!==rank(out.xp)?rank(out.xp):null};return out;
+ out.history.unshift({mission:a.id,practice:a.practice,worth:netWorth(a.wallet),choice:a.id===1?a.choice.title:`Saved $${a.choice.totalSaved??a.choice.saved}`,borrowed:a.result.borrowed||0});out.history=out.history.slice(0,12);out.active=null;out.screen='base';out.lastReward={xp:a.practice?0:a.result.xp,rankUp:oldRank!==rank(out.xp)?rank(out.xp):null};return out;
 }
 export function randomEvent(p,rng=Math.random){if(!p.completed.includes(2)||p.eventUsed)return p;const event=events[1+Math.floor(rng()*(events.length-1))];const outcome=applyEvent(p,event);return {...p,...outcome.wallet,eventUsed:true,lastEvent:outcome};}

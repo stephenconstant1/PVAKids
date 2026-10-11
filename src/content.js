@@ -4,7 +4,7 @@ export const missions = [
  {id:'time',title:'Help with yard work',type:'TIME → SERVICE',gross:60,cost:0,xp:140,hours:3,explanation:'You traded 3 hours of reliable work for $60. Your time created value by helping a neighbor.'},
  {id:'skill',title:'Tutor a younger student',type:'SKILL → SERVICE',gross:100,cost:0,xp:180,hours:4,explanation:'Your math skills helped someone learn. Four hours at $25 an hour earned $100. Skills take practice.'},
  {id:'product',title:'Sell original art prints',type:'IDEA → PRODUCT',gross:150,cost:40,xp:220,hours:5,explanation:'Customers paid $150, but supplies cost $40. Your profit is $110, not $150. An idea earns when it meets a need.'} ]},
- {id:2,title:'Save & grow',topic:'Saving & Emergency Fund',sector:'THE FINANCIAL DISTRICT',icon:'◈',brief:'Fast-forward to your future first paycheck: $2,500. Bring your earlier earnings with you and build a buffer before spending.',lesson:'Pay yourself first: set aside savings, cover needs, then decide what is left for wants. An emergency fund keeps surprises from becoming loans.',savings:[0,250,500,750,850]}
+ {id:2,title:'Save & grow',topic:'Saving & Emergency Fund',sector:'THE FINANCIAL DISTRICT',icon:'◈',brief:'Bring the money you earned into a pretend future payday. Save first, then see how it helps with a surprise.',lesson:'Pay yourself first: keep part of what you earn, cover needs, then decide what is left for wants. An emergency fund keeps surprises from becoming loans.',savings:[0,250,500,750]}
 ];
 export const events = [
  {id:'repair',title:'Car repair',amount:-600,description:'In this future-adult scenario, your car stops working. You need a $600 repair to get to work.'},
