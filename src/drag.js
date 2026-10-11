@@ -1,0 +1,9 @@
+// Pointer dragging works with mouse, pen, and touch. Tap selection provides an alternative.
+export function installDrag(root,onDrop){let drag=null,ghost=null;
+ root.addEventListener('pointerdown',e=>{const token=e.target.closest('[data-drag]');if(!token||token.disabled||e.button!==0)return;drag={token,id:e.pointerId,x:e.clientX,y:e.clientY,moved:false};});
+ root.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<8)return;e.preventDefault();if(!ghost){drag.moved=true;root.setPointerCapture(e.pointerId);ghost=drag.token.cloneNode(true);ghost.removeAttribute('id');ghost.classList.add('drag-ghost');ghost.setAttribute('aria-hidden','true');document.body.append(ghost);drag.token.classList.add('dragging');}ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px';root.querySelectorAll('[data-drop]').forEach(el=>el.classList.toggle('drop-ready',el===document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-drop]')));});
+ function end(e){if(!drag||e.pointerId!==drag.id)return;const current=drag;if(root.hasPointerCapture(e.pointerId))root.releasePointerCapture(e.pointerId);drag=null;ghost?.remove();ghost=null;current.token.classList.remove('dragging');root.querySelectorAll('.drop-ready').forEach(el=>el.classList.remove('drop-ready'));if(current.moved){const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-drop]');if(target)onDrop(current.token.dataset.drag,target.dataset.drop);e.preventDefault();}}
+ root.addEventListener('pointerup',end);root.addEventListener('pointercancel',()=>{drag?.token.classList.remove('dragging');drag=null;ghost?.remove();ghost=null;});
+ // Remain responsive if a finger/pointer leaves the game area.
+ document.addEventListener('pointerup',e=>{if(drag)end(e);});
+}
