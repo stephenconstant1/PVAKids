@@ -57,7 +57,7 @@ function frameRead(a){
  if(a.id!==1)return '';
  if(['brief','learn'].includes(a.step))return 'Week one. Earning and creating value. Use your time, your skills, or your ideas to build value and get paid.';
  if(a.step==='choice'&&!a.project)return 'Choose one: your time, your skills, or your ideas.';
- if(a.step==='choice'&&a.project==='time')return 'Use your time. Put the leaves in the basket.';
+ if(a.step==='choice'&&a.project==='time')return 'Use your time. Put on the gloves, open the leaf bag, pick up the rake, and rake the leaves into the bag.';
  if(a.step==='choice'&&a.project==='skill')return 'Use your skills. Help a friend match the pictures.';
  if(a.step==='choice'&&a.project==='product')return 'Use your ideas. Match paint, crayons, and markers to make three pictures.';
  if(a.step==='debrief'){const earned=(a.choice?.gross??0)-(a.choice?.cost??0);return `You built value and got paid. You earned ${money(earned)}.`;}
