@@ -1,17 +1,22 @@
 export const characters={
- maya:{name:'Maya',role:'careful planner',sprite:1},
- jordan:{name:'Jordan',role:'entrepreneur',sprite:0},
- sofia:{name:'Sofia',role:'creative problem-solver',sprite:3},
- kai:{name:'Kai',role:'analytical investor',sprite:2}
+ maya:{name:'Maya',role:'careful planner',image:'maya.png'},
+ jordan:{name:'Jordan',role:'entrepreneur',image:'jordan.png'},
+ sofia:{name:'Sofia',role:'creative problem-solver',image:'sofia.png'},
+ kai:{name:'Kai',role:'analytical investor',image:'kai.png'},
+ eli:{name:'Eli',role:'technology builder',image:'eli.png'},
+ ruby:{name:'Ruby',role:'goal coach',image:'ruby.png'}
 };
+
+export const castIds=['jordan','maya','kai','sofia','eli','ruby'];
 
 export const character=id=>characters[id]||characters.maya;
 
 export function portrait(id,className=''){
  const c=character(id);
- return `<span class="character-portrait ${className}" style="--cast-index:${c.sprite}" role="img" aria-label="${c.name}, ${c.role}"></span>`;
+ return `<img class="character-portrait ${className}" src="assets/cast/${c.image}" alt="${c.name}, ${c.role}">`;
 }
 
-export function castPortraits(className=''){
- return `<div class="curriculum-cast ${className}" aria-label="Money Ops student team">${['jordan','maya','kai','sofia'].map(id=>portrait(id)).join('')}</div>`;
+export function castPortraits(className='',ids=castIds){
+ if(className.includes('debrief-cast')&&ids===castIds)ids=['eli','ruby','maya'];
+ return `<div class="curriculum-cast ${className}" aria-label="Money Ops student team">${ids.map(id=>`<div class="cast-member">${portrait(id)}<b>${character(id).name}</b></div>`).join('')}</div>`;
 }
