@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {begin,choose,finish,newGame,netWorth,rank,resolve} from '../src/engine.js';
+import {begin,choose,finish,newGame,netWorth,rank,resolve,missionScore,passingScore} from '../src/engine.js';
 import {curriculum,missions} from '../src/content.js';
 import {financialFields,validFinances} from '../src/finance.js';
 import {load,save} from '../src/persistence.js';
@@ -61,6 +61,9 @@ test('campaign content defines 32 ordered, playable mission schemas',()=>{
   assert.equal(typeof mission.topic,'string',`mission ${mission.id} needs a topic`);
   assert.ok(mission.topic.trim(),`mission ${mission.id} topic cannot be blank`);
   assert.equal(typeof mission.icon,'string',`mission ${mission.id} needs an icon`);
+  assert.ok(mission.terms?.length>=3,`mission ${mission.id} needs prompt-aligned lesson terms`);
+  assert.ok(mission.scripture?.reference?.trim(),`mission ${mission.id} needs a scripture reference`);
+  assert.ok(mission.scripture?.text?.trim(),`mission ${mission.id} needs the scripture text, not only its reference`);
   assert.ok(mission.title===curriculum[mission.id-1]||mission.topic===curriculum[mission.id-1],`mission ${mission.id} must retain its curriculum title or topic`);
 
   if(mission.id<5)continue;
@@ -139,6 +142,19 @@ test('advanced missions require both decision stages before completion',()=>{
 
   profile=finish(play);
  }
+});
+
+test('each level calculates a score and requires 70 points to pass',()=>{
+ const profile={...newGame(),completed:[1,2,3,4]};
+ let play=atChoice(profile,5);
+ play=choose(play,missions[4].decision.options.at(-1).id);
+ play=choose(play,missions[4].event.options.at(-1).id);
+ assert.equal(play.active.step,'debrief');
+ assert.equal(missionScore(play.active),60);
+ assert.equal(passingScore,70);
+ const blocked=finish(play);
+ assert.equal(blocked.active.step,'debrief');
+ assert.equal(blocked.completed.includes(5),false);
 });
 
 test('locks require every prior mission, including after a migrated gap',()=>{

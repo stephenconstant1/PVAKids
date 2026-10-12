@@ -3,6 +3,7 @@ import {missions11to16} from './missions-11-16.js';
 import {missions17to22} from './missions-17-22.js';
 import {missions23to28} from './missions-23-28.js';
 import {missions29to32} from './missions-29-32.js';
+import {curriculumMeta} from './curriculum-meta.js';
 
 export const curriculum = ['Earning & Creating Value','Building Income Streams','Saving & Paying Yourself First','Budgeting & Smart Spending','Investing & Growing Your Money','Oil, Gas & World Events','Credit, Loans & Smart Borrowing','Entrepreneurship & Starting a Business','Investing & Building Wealth','Budgeting & Goal Setting','Stocks & Owning a Piece of a Company','Compound Interest & the Power of Time','Risk, Reward & Diversification','ETFs, Index Funds & Building a Portfolio','The Stock Market & How Markets Work','Reading a Company — Revenue, Profit & Value','Supply, Demand & Why Prices Change','Inflation & the Changing Value of Money','Banks, Interest & How Money Moves','Credit Scores & Building Strong Credit','Debt & Interest — What Borrowing Really Costs','Insurance & Protecting What You Build','Taxes & Your Paycheck','Starting a Business — Problem to Opportunity','Pricing, Revenue, Expenses & Profit','Marketing, Customers & Building a Brand','Real Estate & Building Wealth Through Property','Careers, Skills & Increasing Your Income','Giving, Generosity & Using Money to Help Others','Financial Independence & Designing Your Future','Building Your Personal Financial Freedom Plan','The Financial Freedom Challenge — Put It All Together'];
 const openingMissions = [
@@ -16,7 +17,8 @@ const openingMissions = [
 ];
 
 openingMissions[0].location=openingMissions[0].sector;
-export const missions=[...openingMissions,...missions05to10,...missions11to16,...missions17to22,...missions23to28,...missions29to32];
+export const missions=[...openingMissions,...missions05to10,...missions11to16,...missions17to22,...missions23to28,...missions29to32]
+ .map(mission=>({...mission,...curriculumMeta[mission.id],concepts:curriculumMeta[mission.id].terms,principle:curriculumMeta[mission.id].scripture}));
 export const events = [
  {id:'repair',title:'Car repair',amount:-600,description:'In this future-adult scenario, your car stops working. You need a $600 repair to get to work.'},
  {id:'phone',title:'Broken phone',amount:-180,description:'Your phone needs a replacement screen. The repair costs $180.'},

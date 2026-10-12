@@ -5,9 +5,18 @@ export {finances,netWorth};
 export const ranks=[['Rookie',0],['Earner',140],['Saver',550],['Investor',1400],['Entrepreneur',2800],['Wealth Builder',4800],['Financially Free',7200]];
 export const rank=xp=>ranks.filter(r=>xp>=r[1]).at(-1)[0];
 export const nextRank=xp=>ranks.find(r=>r[1]>xp);
+export const passingScore=70;
+export function missionScore(active){
+ if(!active)return 0;
+ if(active.id===1)return active.choice?.id==='product'?100:active.choice?.id==='skill'?95:90;
+ if(active.id===2||active.id===4)return 100;
+ if(active.id===3)return active.result?.borrowed?75:100;
+ const qualities=(active.decisions||[]).map(decision=>decision.quality).filter(Number.isFinite);
+ return qualities.length?Math.round(40+(qualities.reduce((sum,value)=>sum+value,0)/qualities.length)*20):0;
+}
 
-export function newGame(name='Strategist',avatar='◈'){
- return {version:4,name,avatar,...defaultFinances(),xp:0,completed:[],badges:[],missionMedals:{},decisions:{},history:[],snapshots:{},portfolio:{},business:{},goal:{},active:null,screen:'base',muted:true,musicVolume:.35,sfxVolume:.7,eventUsed:false};
+export function newGame(name='Strategist',avatar='maya',playerStyle={}){
+ return {version:4,name,avatar,playerStyle:{accent:playerStyle.accent||'#d9f577',emblem:playerStyle.emblem||'◈'},...defaultFinances(),xp:0,completed:[],badges:[],missionMedals:{},decisions:{},history:[],snapshots:{},portfolio:{},business:{},goal:{},active:null,screen:'base',muted:true,musicVolume:.35,sfxVolume:.7,eventUsed:false};
 }
 
 export function begin(p,id){
@@ -107,6 +116,7 @@ function decisionMedal(decisions=[]){
 
 export function finish(p){
  const a=p.active;if(a?.step!=='debrief')return p;
+ if(!a.practice&&missionScore(a)<passingScore)return p;
  const out=structuredClone(p),oldRank=rank(p.xp);
  if(!a.practice){
   Object.assign(out,a.wallet);out.xp+=a.result.xp;out.completed.push(a.id);out.snapshots[a.id]=a.start;

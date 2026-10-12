@@ -1,5 +1,5 @@
 import {missions} from './content.js';
-import {choose,netWorth,rank,resolve} from './engine.js';
+import {choose,netWorth,rank,resolve,missionScore,passingScore} from './engine.js';
 import {effectLabels} from './finance.js';
 import {character,portrait,castPortraits,castIds} from './characters.js';
 const money=n=>'$'+n.toLocaleString('en-US');
@@ -79,8 +79,8 @@ function dialoguePanel(lines=[]){
  return `<div class="character-dialogue">${lines.map((line,i)=>{const c=character(line.speaker);return `<article class="dialogue-card ${i%2?'reverse':''}">${portrait(line.speaker)}<div><b>${c.name}</b><small>${c.role}</small><p>${line.text}</p></div></article>`;}).join('')}</div>`;
 }
 
-function decisionCards(group){
- return `<div class="decision-grid">${group.options.map(option=>`<button class="decision-card" data-action="choose-${option.id}"><span class="decision-icon" aria-hidden="true">${option.icon}</span><strong>${option.label}</strong><p>${option.detail}</p><small>MAKE THIS MOVE →</small></button>`).join('')}</div>`;
+function decisionCards(group,mode='route'){
+ return `<div class="decision-grid decision-${mode}">${group.options.map((option,index)=>`<button class="decision-card" style="--choice:${index}" data-action="choose-${option.id}"><span class="decision-number">${index+1}</span><span class="decision-icon" aria-hidden="true">${option.icon}</span><strong>${option.label}</strong><p>${option.detail}</p><small>${mode==='portfolio'?'ADD TO PLAN':mode==='path'?'TAKE THIS PATH':mode==='build'?'BUILD THIS':mode==='protect'?'RAISE SHIELD':'MAKE THIS MOVE'} →</small></button>`).join('')}</div>`;
 }
 
 function missionWallet(wallet){
@@ -120,22 +120,57 @@ function missionMechanic(m,a){
 }
 
 const missionGuide=id=>castIds[(id-1)%castIds.length];
+const lessonMode=id=>id<=4?'starter':[5,9,11,12,13,14,15,16].includes(id)?'portfolio':[7,20,21].includes(id)?'path':[8,24,25,26,28].includes(id)?'build':[6,18,22].includes(id)?'protect':[10,30,31,32].includes(id)?'goal':'route';
+const actionWords={
+ portfolio:['TYPES A BUY ORDER','⌨','Kai compares investments, types the amount, and watches the chart move.'],
+ path:['BUILDS A PAYMENT PATH','▤','Maya points to each payment and moves the plan forward.'],
+ build:['BUILDS THE IDEA','⚙','Jordan puts the pieces together and tests the new idea.'],
+ protect:['RAISES THE SAFETY SHIELD','◇','Ruby checks the risk and protects what the team built.'],
+ goal:['MAPS THE NEXT STEP','◎','Ruby writes the goal, checks the plan, and points to the finish.'],
+ route:['MOVES MONEY THROUGH THE SYSTEM','$','Eli follows the money and shows where it goes next.']
+};
+function scriptureCard(m){const s=m.scripture||m.principle;return `<aside class="scripture-card"><span>TODAY’S SCRIPTURE</span><blockquote>“${s.text}”</blockquote><cite>${s.reference}</cite></aside>`;}
+function characterHeader(m,step){
+ const lead=missionGuide(m.id),partner=castIds[m.id%castIds.length],c=character(lead);
+ const cues={brief:'I’ll show you the big idea.',choice:'Watch us act it out. Then choose!',event:'A surprise! Let’s adjust the plan.',debrief:'We did it! Tell what you learned.'};
+ return `<header class="lesson-character-header">${portrait(lead,'header-character lead-character')}<div><small>${c.name.toUpperCase()} LEADS LESSON ${m.id}</small><b>${cues[step]||cues.brief}</b><span>${m.title}</span></div>${portrait(partner,'header-character partner-character')}</header>`;
+}
+function characterFooter(m,step){
+ const lead=missionGuide(m.id),c=character(lead),cue=step==='debrief'?'Celebrate, then carry this skill to the next lesson!':'Follow the characters. Try the action. Make your choice.';
+ return `<footer class="lesson-character-footer"><div class="footer-runner">${portrait(lead,'footer-character')}<span aria-hidden="true">→</span></div><b>${c.name} says: ${cue}</b>${castPortraits('footer-cast')}</footer>`;
+}
+function characterActionDemo(m,a){
+ const mode=lessonMode(m.id),lead=missionGuide(m.id),[label,icon,description]=actionWords[mode],isBank=m.id===19,isInvest=['portfolio'].includes(mode);
+ return `<div class="lesson-action-demo action-${mode} ${isBank?'action-bank':''}">
+  <div class="action-demo-character">${portrait(lead,'action-demo-portrait')}<span class="animated-arm" aria-hidden="true"></span><span class="action-prop" aria-hidden="true">${icon}</span></div>
+  ${isBank?'<div class="walk-in-bank" aria-hidden="true"><b>BANK</b><i></i><i></i><span>TELLER</span></div>':''}
+  ${isInvest?'<div class="typing-computer" aria-hidden="true"><div><i></i><i></i><i></i><i></i></div><span>⌨</span><em></em><em></em></div>':''}
+  <p><b>${character(lead).name} ${label}.</b><span>${description}</span></p>
+ </div>`;
+}
+function valueFireworks(){return `<div class="value-fireworks" aria-hidden="true">${Array.from({length:14},(_,i)=>`<i style="--spark:${i}">✦</i>`).join('')}</div><div class="value-word-reveal"><span>YOU</span><span>CREATED</span><span>VALUE!</span></div>`;}
+function scoreCard(a,button){
+ const score=missionScore(a),passed=a.practice||score>=passingScore;
+ return `<section class="level-score ${passed?'score-pass':'score-retry'}" role="status"><div class="score-ring" style="--score:${score}"><strong>${score}</strong><span>/ 100</span></div><div><small>${a.practice?'PRACTICE SCORE':'LEVEL SCORE'}</small><h2>${a.practice?'PRACTICE COMPLETE!':passed?'LEVEL PASSED!':'ALMOST THERE!'}</h2><p>${a.practice?'Practice helps you test a new choice.':passed?'Great choices! You are ready for the next lesson.':'Your character has a new plan. Try again and reach 70 points.'}</p></div>${passed?'':button('TRY THIS LEVEL AGAIN ↻','retry-mission','primary')}</section>`;
+}
 function advancedVisual(p,a,m,button){
  const phase=a.step==='brief'?'BRIEFING':a.step==='choice'?'DECISION':a.step==='event'?'CHALLENGE':'DEBRIEF';
  const phaseRail=`<div class="advanced-phase" aria-label="Mission progress"><span class="done">BRIEF</span><i></i><span class="${['choice','event','debrief'].includes(a.step)?'done':''}">DECIDE</span><i></i><span class="${['event','debrief'].includes(a.step)?'done':''}">ADAPT</span><i></i><span class="${a.step==='debrief'?'done':''}">RESULT</span></div>`;
  let body='';
- if(a.step==='brief')body=`<div class="advanced-brief"><div class="mission-number">MISSION ${String(m.id).padStart(2,'0')} / 32 · ${m.location}</div><span class="advanced-icon" aria-hidden="true">${m.icon}</span><h1>${m.title}</h1><p class="play-prompt">${m.brief}</p>${m.principle?`<blockquote class="mission-principle"><small>MISSION PRINCIPLE · ${m.principle.reference}</small><p>“${m.principle.text}”</p></blockquote>`:''}<div class="concept-chips">${m.concepts.map(term=>`<span>${term}</span>`).join('')}</div>${dialoguePanel(m.dialogue)}${button('START THE MISSION →','next','primary')}</div>`;
- if(a.step==='choice')body=`<div class="advanced-decision"><span class="eyebrow">PLAYER DECISION</span><h1>${m.decision.prompt}</h1><p class="play-prompt">Choose a move. You will see the consequence.</p>${missionMechanic(m,a)}${decisionCards(m.decision)}</div>`;
- if(a.step==='event')body=`<div class="advanced-event"><div class="cast-reaction">${portrait(missionGuide(m.id),'reaction-portrait')}<div><span class="eyebrow">CONSEQUENCE</span><h1>${a.firstOutcome.label}</h1><p class="outcome-copy">${a.firstOutcome.feedback}</p></div></div>${effectChips(a.firstOutcome)}${missionWallet(a.wallet)}<div class="event-turn"><span>${m.event.title}</span><h2>${m.event.prompt}</h2></div>${missionMechanic(m,a)}${decisionCards(m.event)}</div>`;
+ const mode=lessonMode(m.id);
+ if(a.step==='brief')body=`<div class="advanced-brief"><div class="mission-number">MISSION ${String(m.id).padStart(2,'0')} / 32 · ${m.location}</div><span class="advanced-icon" aria-hidden="true">${m.icon}</span><h1>${m.title}</h1><p class="play-prompt">${m.brief}</p><div class="concept-chips">${m.terms.map(term=>`<span>${term}</span>`).join('')}</div>${dialoguePanel(m.dialogue)}${button('START THE MISSION →','next','primary')}</div>`;
+ if(a.step==='choice')body=`<div class="advanced-decision interaction-${mode}"><span class="eyebrow">PLAYER DECISION</span><h1>${m.decision.prompt}</h1><p class="play-prompt">Watch the character demonstrate the skill. Then choose your move.</p>${characterActionDemo(m,a)}${missionMechanic(m,a)}${decisionCards(m.decision,mode)}</div>`;
+ if(a.step==='event')body=`<div class="advanced-event interaction-${mode}"><div class="cast-reaction">${portrait(missionGuide(m.id),'reaction-portrait')}<div><span class="eyebrow">CONSEQUENCE</span><h1>${a.firstOutcome.label}</h1><p class="outcome-copy">${a.firstOutcome.feedback}</p></div></div>${effectChips(a.firstOutcome)}${missionWallet(a.wallet)}<div class="event-turn"><span>${m.event.title}</span><h2>${m.event.prompt}</h2></div>${characterActionDemo(m,a)}${missionMechanic(m,a)}${decisionCards(m.event,mode)}</div>`;
  if(a.step==='debrief'){
   const finale=m.finale?finalReport(a.wallet,p):'';
   const medal=missionMedal(a.decisions);
-  body=`${finale}<div class="advanced-debrief ${m.finale?'finale-debrief':''}"><span class="eyebrow">${m.finale?'YOUR FINANCIAL STORY':'MISSION DEBRIEF'}</span>${m.finale?'':`<div class="complete-medal ${medal}">${m.icon}<small>${medal.toUpperCase()}</small></div><h1>${m.title} COMPLETE</h1>`}<div class="debrief-team">${castPortraits('debrief-cast')}<b>TEAM MISSION COMPLETE!</b></div><div class="decision-recap">${(a.decisions||[]).map(d=>`<article><small>${d.stage==='choice'?'FIRST DECISION':'SECOND DECISION'}</small><h3>${d.label}</h3><p>${d.feedback}</p>${effectChips(d)}</article>`).join('')}</div><div class="takeaway"><b>WHY IT MATTERS</b><p>${m.takeaway}</p></div>${missionWallet(a.wallet)}<div class="result-rewards"><span>+${a.result.xp} XP</span><span>${medal.toUpperCase()} MEDAL</span><span>${rank(p.xp+a.result.xp)}</span></div>${button(m.finale?'REVIEW MY JOURNEY →':'COMPLETE MISSION →','finish','primary')}</div>`;
+  const passed=a.practice||missionScore(a)>=passingScore;
+  body=`${finale}<div class="advanced-debrief ${m.finale?'finale-debrief':''}"><span class="eyebrow">${m.finale?'YOUR FINANCIAL STORY':'MISSION DEBRIEF'}</span>${m.finale?'':`<div class="complete-medal ${medal}">${m.icon}<small>${medal.toUpperCase()}</small></div><h1>${m.title} ${passed?'COMPLETE':'REVIEW'}</h1>`}<div class="debrief-team">${castPortraits('debrief-cast')}<b>TEAM MISSION COMPLETE!</b></div><div class="decision-recap">${(a.decisions||[]).map(d=>`<article><small>${d.stage==='choice'?'FIRST DECISION':'SECOND DECISION'}</small><h3>${d.label}</h3><p>${d.feedback}</p>${effectChips(d)}</article>`).join('')}</div><div class="takeaway"><b>WHY IT MATTERS</b><p>${m.takeaway}</p></div>${missionWallet(a.wallet)}${scoreCard(a,button)}${passed?`<div class="result-rewards"><span>+${a.result.xp} XP</span><span>${medal.toUpperCase()} MEDAL</span><span>${rank(p.xp+a.result.xp)}</span></div>${button(m.finale?'REVIEW MY JOURNEY →':'COMPLETE MISSION →','finish','primary')}`:''}</div>`;
  }
  const guideId=missionGuide(m.id),guide=character(guideId);
  if(a.step==='brief')body=body.replace('<div class="mission-number">',`<div class="mission-guide">${portrait(guideId,'mission-guide-character')}<span><b>${guide.name}</b>Your mission guide</span></div><div class="mission-number">`);
  if(a.step==='choice')body=body.replace('<span class="eyebrow">',`<div class="mission-guide compact">${portrait(guideId,'mission-guide-character')}<span><b>${guide.name}</b>Choose with me!</span></div><span class="eyebrow">`);
- return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>${phase} · MISSION ${String(m.id).padStart(2,'0')}</span></div>${phaseRail}<section class="mission-body visual-play advanced-play" data-read="${m.brief.replaceAll('"','&quot;')}">${body}</section>`;
+ return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>${phase} · MISSION ${String(m.id).padStart(2,'0')}</span></div>${characterHeader(m,a.step)}${scriptureCard(m)}${phaseRail}<section class="mission-body visual-play advanced-play interaction-${mode}" data-read="${m.brief.replaceAll('"','&quot;')}">${body}</section>${characterFooter(m,a.step)}`;
 }
 function taskActor(type,progress){
  const id=type==='time'||type==='repair'?'jordan':type==='skill'||type==='saving'?'maya':type==='income'||type==='planning'?'kai':'sofia';
@@ -145,13 +180,23 @@ function taskActor(type,progress){
 }
 function moneyActionScene(a){
  const move=a.lastMove||'ready';
- return `<div class="money-action-scene move-${move}" aria-label="Maya can save at the bank. Kai can invest using the computer app."><div class="bank-action"><div class="scene-character">${portrait('maya','action-character')}<span class="money-bundle" aria-hidden="true">$</span></div><div class="bank-building" aria-hidden="true"><b>BANK</b><i></i><i></i><i></i><strong>SAFE &amp; READY</strong></div><p><b>Maya saves at the bank.</b><span>Money stays ready for later.</span></p></div><div class="invest-action"><div class="computer-desk" aria-hidden="true"><div class="invest-app"><small>MY INVESTING APP</small><div class="app-chart"><i></i><i></i><i></i><i></i></div><b>BUY $250</b></div><span class="keyboard">▦</span></div><div class="scene-character">${portrait('kai','action-character')}<span class="tap-hand" aria-hidden="true">☝</span></div><p><b>Kai invests on the computer.</b><span>Money can grow over time.</span></p></div></div>`;
+ return `<div class="money-action-scene move-${move}" aria-label="Maya walks inside the bank to save. Kai types an investment order on the computer."><div class="bank-action"><div class="scene-character bank-walker">${portrait('maya','action-character')}<span class="money-bundle" aria-hidden="true">$</span></div><div class="bank-building bank-interior" aria-hidden="true"><b>BANK</b><i class="bank-door left-door"></i><i class="bank-door right-door"></i><div class="bank-teller"><span>●‿●</span><strong>TELLER</strong></div><em>WELCOME INSIDE</em></div><p><b>Maya walks into the bank.</b><span>She hands the teller money to keep in savings.</span></p></div><div class="invest-action"><div class="computer-desk" aria-hidden="true"><div class="invest-app"><small>MY INVESTING APP</small><div class="app-chart"><i></i><i></i><i></i><i></i></div><b>BUY $250</b></div><span class="keyboard">▦</span><i class="typing-hand hand-left"></i><i class="typing-hand hand-right"></i></div><div class="scene-character typing-character">${portrait('kai','action-character')}</div><p><b>Kai types an investment order.</b><span>His hands type while the growth chart responds.</span></p></div></div>`;
 }
 function workActionScene(type,progress){
  if(type==='time')return `<div class="character-action-scene yard-action action-step-${progress}"><div class="yard-leaves" aria-hidden="true">🍂 🍂 🍂</div><div class="working-character">${portrait('jordan','full-task-character')}<span class="carried-leaves" aria-hidden="true">🍂</span></div><div class="scene-basket" aria-hidden="true">🧺</div><p><b>Jordan uses his time.</b><span>He carries each leaf pile to the basket.</span></p></div>`;
  if(type==='skill')return `<div class="character-action-scene tutor-action action-step-${progress}"><div class="student-desk"><span>★</span><span>●</span><span>♥</span></div><div class="working-character">${portrait('maya','full-task-character')}<i class="pointing-hand" aria-hidden="true">☝</i></div><div class="lesson-board"><b>HELP A FRIEND</b><span>★ → ★</span><span>● → ●</span><span>♥ → ♥</span></div><p><b>Maya uses her skills.</b><span>She teaches her friend how to match each shape.</span></p></div>`;
  const canvas=progress?createdArt(Math.min(2,progress-1)):`${svg('<rect x="45" y="24" width="210" height="142" rx="10" fill="#fffdf5" stroke="#78583d" stroke-width="7"/><path d="M80 135q55-90 140 0" fill="none" stroke="#d7d2c4" stroke-width="5" stroke-dasharray="10 8"/>','blank-idea-picture')}`;
- return `<div class="character-action-scene artist-action action-step-${progress}"><div class="working-character">${portrait('sofia','full-task-character')}<span class="painting-arm" aria-hidden="true">🖌️</span></div><div class="scene-easel">${canvas}<b>${progress?'ART CREATED!':'READY TO CREATE'}</b></div><div class="paint-dots" aria-hidden="true"><i></i><i></i><i></i></div><p><b>Sofia uses her ideas.</b><span>She paints and creates art that someone will buy.</span></p></div>`;
+ const paintingArm='<svg class="painting-arm" viewBox="0 0 150 100" aria-hidden="true"><g><path d="M8 75 Q38 53 70 55" fill="none" stroke="#ee6686" stroke-width="26" stroke-linecap="round"/><path d="M65 55 Q84 48 96 35" fill="none" stroke="#9b603f" stroke-width="16" stroke-linecap="round"/><path d="M94 37 L132 9" fill="none" stroke="#6b442c" stroke-width="8"/><path d="M129 12 L143 2" stroke="#52a8d1" stroke-width="12" stroke-linecap="round"/></g></svg>';
+ return `<div class="character-action-scene artist-action action-step-${progress}"><div class="working-character">${portrait('sofia','full-task-character')}${paintingArm}</div><div class="scene-easel">${canvas}<svg class="live-brush-stroke" viewBox="0 0 260 150" aria-hidden="true"><path d="M45 105 Q95 35 145 95 T225 55"/></svg><b>${progress?'ART CREATED!':'READY TO CREATE'}</b></div><div class="paint-dots" aria-hidden="true"><i></i><i></i><i></i></div><p><b>Sofia uses her arms to paint.</b><span>Her hand moves the brush and draws the picture on the canvas.</span></p></div>`;
+}
+function garageRepairScene(progress){
+ const fixes=[['WHEEL','○'],['ENGINE','⚙'],['POWER','ϟ']];
+ return `<div class="garage-repair-scene repair-step-${progress}" aria-label="Jordan takes his car into the garage, checks the problem, and fixes it with tools.">
+  <div class="garage-sign"><b>JORDAN’S GARAGE</b><span>${progress<3?'DIAGNOSE → REPAIR':'REPAIR COMPLETE!'}</span></div>
+  <div class="garage-jordan">${portrait('jordan','garage-character')}<svg class="repairing-arm" viewBox="0 0 130 95" aria-hidden="true"><path d="M8 62 Q40 48 66 54" stroke="#16806e" stroke-width="25" fill="none" stroke-linecap="round"/><path d="M62 54 89 39" stroke="#8b5338" stroke-width="15" fill="none" stroke-linecap="round"/><path d="m86 39 32-22m-8-9 9 9-9 9" stroke="#d6e3dc" stroke-width="7" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="garage-car"><div class="open-hood"></div>${art('car')}<span class="repair-sparks" aria-hidden="true">✦</span></div>
+  <div class="diagnostic-board"><b>CAR CHECK</b>${fixes.map(([label,icon],i)=>`<span class="${i<progress?'fixed':''}"><i>${i<progress?'✓':icon}</i>${label}</span>`).join('')}<strong>${progress}/3 FIXED</strong></div>
+ </div>`;
 }
 export function visualMission(p,button,escape){
  const a=p.active,m=missions.find(m=>m.id===a.id);let body='';
@@ -160,7 +205,7 @@ export function visualMission(p,button,escape){
   const earned=a.fromEarning.amount??a.wallet.cash;
   body=`<div class="story-bridge"><div class="bridge-map" aria-hidden="true"><div class="bridge-yard">${art(a.fromEarning.job||'time')}<span>EARNED!</span></div><div class="bridge-road"><div class="bridge-coins"><i>$</i><i>$</i><i>$</i></div><div class="bridge-buddy">${buddy('carrying')}</div></div><div class="bridge-home">${art('safe')}<span>SAVE!</span></div></div><div class="bridge-copy"><div class="eyebrow">THE SAME MONEY ADVENTURE</div><h1>YOU EARNED ${money(earned)}!</h1><p class="play-prompt">Bring it with you. Add a pretend payday. Save first!</p><div class="money-arrives" aria-label="Your earned money ${money(earned)} plus a pretend payday of $2,500"><span><small>EARNED MONEY</small><b>${money(earned)}</b></span><i>+</i><span><small>PAYDAY</small><b>$2,500</b></span><i>→</i><strong>PLAN IT!</strong></div>${button('LET’S SAVE →','next','primary')}</div></div>`;
  } else if(['brief','learn'].includes(a.step))body=a.id===1
-  ?`<div class="play-intro week-one-intro"><div class="week-one-hero"><div class="week-one-slogan"><small>YOUR SKILLS. YOUR IDEAS.</small><strong>A BRIGHTER TOMORROW.</strong></div>${castPortraits('poster-cast')}</div><div class="week-one-copy"><div class="eyebrow">WEEK 1 · COLOSSIANS 3:23</div><h1 class="week-one-title">EARNING &amp;<br>CREATING VALUE</h1><div class="value-rule"><b>YOU PROVIDE VALUE</b><span>→</span><b>SOMEONE PROVIDES MONEY</b></div><div class="value-icons" aria-label="Value can solve a problem, help someone, or make something"><span><i>⚙</i><b>SOLVE</b></span><span><i>♥</i><b>HELP</b></span><span><i>★</i><b>CREATE</b></span></div><p class="play-prompt">You help someone. They pay you.</p>${button('CHOOSE: TIME, SKILLS, OR IDEAS →','next','primary')}</div></div>`
+  ?`<div class="play-intro week-one-intro"><div class="week-one-hero"><div class="week-one-slogan"><small>YOUR SKILLS. YOUR IDEAS.</small><strong>A BRIGHTER TOMORROW.</strong></div>${castPortraits('poster-cast')}</div><div class="week-one-copy"><div class="eyebrow">WEEK 1 · EARNING &amp; CREATING VALUE</div><h1 class="week-one-title">EARNING &amp;<br>CREATING VALUE</h1><div class="value-rule"><b>YOU PROVIDE VALUE</b><span>→</span><b>SOMEONE PROVIDES MONEY</b></div><div class="value-icons" aria-label="Value can solve a problem, help someone, or make something"><span><i>⚙</i><b>SOLVE</b></span><span><i>♥</i><b>HELP</b></span><span><i>★</i><b>CREATE</b></span></div><p class="play-prompt">You help someone. They pay you.</p>${button('CHOOSE: TIME, SKILLS, OR IDEAS →','next','primary')}</div></div>`
   :`<div class="play-intro">${art('safe')}<div><div class="eyebrow">MONEY ADVENTURE</div><h1 class="${a.id===2?'build-income-title':''}">${a.id===2?'BUILD INCOME!':a.id===3?'SAVE FOR A SURPRISE.':'MAKE A MONEY MAP!'}</h1><p class="play-prompt">${a.id===2?'Use your time, your skills, and your ideas to create value.':a.id===3?'Your job money joins a pretend payday. Save some first!':'Put needs, wants, and savings in the right places.'}</p>${button(a.id===2?'USE ALL 3 →':a.id===3?'LET’S SAVE →':'MAP IT →','next','primary')}</div></div>`;
  if(a.step==='choice'&&a.id===1&&!a.project)body=`<h1>EARN MONEY WITH…</h1><p class="play-prompt">Choose YOUR TIME, YOUR SKILLS, or YOUR IDEAS.</p><div class="job-cards">${m.choices.map(c=>{const labels=c.id==='time'?['YOUR TIME','Help with yard work','HELPING PEOPLE']:c.id==='skill'?['YOUR SKILLS','Teach a friend','PROVIDING KNOWLEDGE']:['YOUR IDEAS','Make art','MAKING SOMETHING'];return `<button class="job-card" data-action="job-${c.id}" aria-label="${labels[0].toLowerCase()}: ${labels[1].toLowerCase()}">${art(c.id)}<h2>${labels[0]}</h2><span class="job-example">${labels[1]}</span><span class="job-pay">Earn ${money(c.gross-c.cost)}</span><span class="job-time">${labels[2]}</span></button>`;}).join('')}</div>`;
  if(a.step==='choice'&&a.id===1&&a.project){const done=a.workDone||[],type=a.project;
@@ -197,8 +242,9 @@ export function visualMission(p,button,escape){
   const finishAction=isEarn&&!a.practice?'finish-to-plan':'finish';
   const finishLabel=isEarn&&!a.practice?'BUILD MORE INCOME →':isEarn?'DONE →':'BACK TO TOWN →';
   const valueKind=a.choice?.id==='time'?'YOUR TIME':a.choice?.id==='skill'?'YOUR SKILLS':'YOUR IDEAS';
-  body=`<div class="result-celebration ${borrowed?'learning-result':''}">${coins()}${buddy('cheer')}${!isEarn?`<div class="fixed-car">${art('car')}</div>`:`<div class="value-result-art">${art(a.choice.id)}<b>${valueKind}</b></div>`}<h1>${resultTitle}</h1><p class="play-prompt">${resultPrompt}</p></div><div class="visual-equation">${outcomeEquation}</div><div class="result-rewards"><span>${a.practice?'Practice':`+${r.xp} XP`}</span>${isEarn?'':`<span>Net worth ${money(netWorth(a.wallet))}</span>`}</div><details class="why"><summary>Why?</summary><p>${escape(r.explanation)}</p>${!isEarn?`<p>Your ${money(a.choice.earnedSaved??a.start.cash??0)} job money went into savings first. Fun money was already spent, so savings helped before borrowing.</p>`:''}</details>${button(finishLabel,finishAction,'primary')}`;
+  body=`<div class="result-celebration ${borrowed?'learning-result':''}">${coins()}${buddy('cheer')}${isEarn?valueFireworks():''}${!isEarn?`<div class="fixed-car">${art('car')}</div>`:`<div class="value-result-art">${art(a.choice.id)}<b>${valueKind}</b></div>`}<h1>${resultTitle}</h1><p class="play-prompt">${resultPrompt}</p></div><div class="visual-equation">${outcomeEquation}</div><div class="result-rewards"><span>${a.practice?'Practice':`+${r.xp} XP`}</span>${isEarn?'':`<span>Net worth ${money(netWorth(a.wallet))}</span>`}</div><details class="why"><summary>Why?</summary><p>${escape(r.explanation)}</p>${!isEarn?`<p>Your ${money(a.choice.earnedSaved??a.start.cash??0)} job money went into savings first. Fun money was already spent, so savings helped before borrowing.</p>`:''}</details>${button(finishLabel,finishAction,'primary')}`;
  }
+ if(a.step==='debrief'&&a.id<5)body+=scoreCard(a,button);
  if(a.id===1&&a.step==='choice'&&a.project){
   const progress=(a.workDone||[]).length;
   body=body.replace(`<div class="work-stage ${a.project}">`,`<div class="action-work-layout">${workActionScene(a.project,progress)}<div class="work-stage ${a.project}">`);
@@ -210,10 +256,10 @@ export function visualMission(p,button,escape){
   body=body.replace('<div class="saving-playground money-choice">',`<div class="money-action-layout">${moneyActionScene(a)}<div class="saving-playground money-choice">`);
   body=body.replace('</div><div class="save-tools">','</div></div><div class="save-tools">');
  }
- if(a.id===3&&a.step==='event')body=body.replace('<div class="repair-scene">',`<div class="repair-scene actor-stage">${taskActor('repair',(a.repairDone||[]).length)}`);
+ if(a.id===3&&a.step==='event')body=`${garageRepairScene((a.repairDone||[]).length)}${body.replace('<div class="repair-scene">',`<div class="repair-scene actor-stage">${taskActor('repair',(a.repairDone||[]).length)}`)}`;
  if(a.id===4&&a.step==='choice')body=body.replace('<div class="income-stage budget-map">',`<div class="income-stage budget-map actor-stage">${taskActor('planning',(a.mapDone||[]).length)}`);
  const read=frameRead(a);
- return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>ONE MONEY ADVENTURE${a.practice?' · PRACTICE':''}</span></div>${storyRail(a)}<section class="mission-body visual-play"${read?` data-read="${escape(read)}"`:''}>${body}</section>`;
+ return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>ONE MONEY ADVENTURE${a.practice?' · PRACTICE':''}</span></div>${characterHeader(m,a.step)}${scriptureCard(m)}${storyRail(a)}<section class="mission-body visual-play"${read?` data-read="${escape(read)}"`:''}>${body}</section>${characterFooter(m,a.step)}`;
 }
 export function dropAction(p,token,target){
  const a=p.active;if(!a)return null;

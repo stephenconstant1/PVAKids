@@ -22,6 +22,7 @@ function migrate(p){
   p.missionMedals||={};p.decisions||={};p.portfolio||={};p.business||={};p.goal||={};
   p.musicVolume??=.35;p.sfxVolume??=.7;p.version=4;
  }
+ p.playerStyle||={accent:'#d9f577',emblem:'◈'};
  return p;
 }
 
