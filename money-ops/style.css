@@ -1699,3 +1699,54 @@ button.world-buddy.cheer:after{
  .chapter-heading>b{position:absolute;right:14px;top:14px}
 }
 @media(prefers-reduced-motion:reduce){.next-mission-action>span{animation:none!important}}
+
+/* Poster-derived recurring cast and a visible deployment marker. */
+.campaign-route:before{
+ content:'LIVE BUILD 32.1 · ALL 32 LESSONS';
+ display:block;
+ width:max-content;
+ max-width:100%;
+ margin:0 0 10px auto;
+ padding:7px 11px;
+ border:1px solid #8da26e;
+ border-radius:999px;
+ background:#1b2a20;
+ color:var(--lime);
+ font:800 9px var(--mono);
+ letter-spacing:.08em
+}
+.character-portrait{
+ position:relative;
+ display:block;
+ flex:0 0 104px;
+ width:104px;
+ height:120px;
+ border-radius:24px 24px 8px 8px;
+ background-image:url('assets/curriculum-cast.png');
+ background-repeat:no-repeat;
+ background-size:400% 100%;
+ background-position:calc(var(--cast-index) * 33.333333%) center;
+ filter:drop-shadow(0 8px 8px #0007)
+}
+.curriculum-cast{display:flex;align-items:flex-end;justify-content:center}
+.curriculum-cast .character-portrait{margin-left:-15px}
+.curriculum-cast .character-portrait:first-child{margin-left:0}
+.week-one-cast{display:grid;align-content:end;min-height:360px;padding:20px;border-radius:24px;background:linear-gradient(#87d5ff,#f5d56a 66%,#4a8a48);overflow:hidden}
+.week-one-cast .poster-cast{align-self:end}
+.week-one-cast .character-portrait{width:128px;height:170px;flex-basis:128px;margin-left:-30px;border-radius:30px 30px 10px 10px}
+.week-one-cast>span{position:relative;margin-top:12px;padding:9px 12px;border-radius:12px;background:#102e54;color:#fff;font:900 13px var(--mono);line-height:1.5;text-align:center;transform:rotate(-1deg)}
+.cast-reaction{display:flex;align-items:center;gap:22px;margin-bottom:18px}
+.cast-reaction .reaction-portrait{align-self:center;width:112px;height:132px;flex-basis:112px}
+.cast-reaction h1{margin:5px 0 12px}
+.debrief-team{display:grid;justify-content:center;gap:7px;margin:18px auto;color:var(--lime);font:800 10px var(--mono);letter-spacing:.08em}
+.debrief-cast .character-portrait{width:76px;height:90px;flex-basis:76px;margin-left:-12px}
+@media(max-width:700px){
+ .week-one-cast{min-height:260px;padding:12px}
+ .week-one-cast .character-portrait{width:88px;height:118px;flex-basis:88px;margin-left:-24px}
+ .cast-reaction{align-items:flex-start;gap:12px}
+ .cast-reaction .reaction-portrait{width:82px;height:100px;flex-basis:82px}
+}
+@media(max-width:460px){
+ .week-one-cast .character-portrait{width:68px;height:94px;flex-basis:68px;margin-left:-20px}
+ .campaign-route:before{margin-right:auto}
+}

@@ -1,13 +1,22 @@
-export const curriculum = ['Earning & Creating Value','Building Income Streams','Saving & Paying Yourself First','Budgeting & Smart Spending','Investing & Growing Your Money','Oil, Gas & World Events','Credit, Loans & Smart Borrowing','Entrepreneurship & Starting a Business','Investing & Building Wealth','Budgeting & Goal Setting','Stocks & Owning a Piece of a Company','Compound Interest & the Power of Time','Risk, Reward & Diversification','ETFs, Index Funds & Building a Portfolio','The Stock Market & How Markets Work','Reading a Company — Revenue, Profit & Value','Supply, Demand & Why Prices Change','Inflation & the Changing Value of Money','Banks, Interest & How Money Moves','Credit Scores & Building Strong Credit','Debt & Interest — What Borrowing Really Costs','Insurance & Protecting What You Build','Taxes & Your Paycheck','Starting a Business — Problem to Opportunity','Pricing, Revenue, Expenses & Profit','Marketing, Customers & Building a Brand','Real Estate & Building Wealth Through Property','Careers, Skills & Increasing Your Income','Giving, Generosity & Using Money to Help Others','Financial Independence & Designing Your Future','Building Your Personal Financial Freedom Plan','The Financial Freedom Challenge'];
-export const missions = [
- {id:1, title:'Help & earn', topic:'Earning & Creating Value', sector:'THE NEIGHBORHOOD', icon:'↗', brief:'Your community has problems to solve. Turn your time, skills, or ideas into your first earnings.', lesson:'People pay for something useful. Higher pay can mean more time, supplies, or a practiced skill.', choices:[
- {id:'time',title:'Help with yard work',type:'TIME → SERVICE',gross:60,cost:0,xp:140,hours:3,explanation:'You traded 3 hours of reliable work for $60. Your time created value by helping a neighbor.'},
- {id:'skill',title:'Tutor a younger student',type:'SKILL → SERVICE',gross:100,cost:0,xp:180,hours:4,explanation:'Your math skills helped someone learn. Four hours at $25 an hour earned $100. Skills take practice.'},
- {id:'product',title:'Sell original art prints',type:'IDEA → PRODUCT',gross:150,cost:40,xp:220,hours:5,explanation:'Customers paid $150, but supplies cost $40. Your profit is $110, not $150. An idea earns when it meets a need.'} ]},
- {id:2,title:'Income mixer',topic:'Building Income Streams',sector:'THE MARKET STREET',icon:'✦',brief:'One way to earn is great. More useful ways can make your money grow.',lesson:'Income can come from helping, making, and sharing useful ideas.',income:120,savings:[0,250,500,750]},
- {id:3,title:'Save & grow',topic:'Saving & Paying Yourself First',sector:'THE FINANCIAL DISTRICT',icon:'◈',brief:'Bring the money you earned into a pretend future payday. Save first, then see how it helps with a surprise.',lesson:'Pay yourself first: keep part of what you earn, cover needs, then decide what is left for wants. An emergency fund keeps surprises from becoming loans.',savings:[0,250,500,750]},
- {id:4,title:'Money map',topic:'Budgeting & Smart Spending',sector:'THE PLANNING PLAZA',icon:'⌁',brief:'Give each pretend dollar a home: needs, wants, or savings.',lesson:'A budget gives money a job. Needs come first, then saving, then wants.',budgetSave:100}
+import {missions05to10} from './missions-05-10.js';
+import {missions11to16} from './missions-11-16.js';
+import {missions17to22} from './missions-17-22.js';
+import {missions23to28} from './missions-23-28.js';
+import {missions29to32} from './missions-29-32.js';
+
+export const curriculum = ['Earning & Creating Value','Building Income Streams','Saving & Paying Yourself First','Budgeting & Smart Spending','Investing & Growing Your Money','Oil, Gas & World Events','Credit, Loans & Smart Borrowing','Entrepreneurship & Starting a Business','Investing & Building Wealth','Budgeting & Goal Setting','Stocks & Owning a Piece of a Company','Compound Interest & the Power of Time','Risk, Reward & Diversification','ETFs, Index Funds & Building a Portfolio','The Stock Market & How Markets Work','Reading a Company — Revenue, Profit & Value','Supply, Demand & Why Prices Change','Inflation & the Changing Value of Money','Banks, Interest & How Money Moves','Credit Scores & Building Strong Credit','Debt & Interest — What Borrowing Really Costs','Insurance & Protecting What You Build','Taxes & Your Paycheck','Starting a Business — Problem to Opportunity','Pricing, Revenue, Expenses & Profit','Marketing, Customers & Building a Brand','Real Estate & Building Wealth Through Property','Careers, Skills & Increasing Your Income','Giving, Generosity & Using Money to Help Others','Financial Independence & Designing Your Future','Building Your Personal Financial Freedom Plan','The Financial Freedom Challenge — Put It All Together'];
+const openingMissions = [
+ {id:1, title:'Earning & Creating Value', topic:'Your Time • Your Skills • Your Ideas', sector:'THE NEIGHBORHOOD', icon:'♥', brief:'Use your time, your skills, or your ideas to create value and earn money.', lesson:'You provide value. Someone provides money. Value can solve a problem, save time, share knowledge, entertain, make something, or help someone.', choices:[
+ {id:'time',title:'Your time — Work outside',type:'YOUR TIME → SERVICE',gross:60,cost:0,xp:140,hours:3,explanation:'You used your time to work outside and help a neighbor. You provided value, so the neighbor provided money.'},
+ {id:'skill',title:'Your skills — Explain schoolwork',type:'YOUR SKILLS → SERVICE',gross:100,cost:0,xp:180,hours:4,explanation:'You used your skills to explain and help someone learn. You provided value, so the learner provided money.'},
+ {id:'product',title:'Your ideas — Create art',type:'YOUR IDEAS → PRODUCT',gross:150,cost:40,xp:220,hours:5,explanation:'You used your ideas to make art people wanted. Art supplies cost $40, so you kept $110 after creating value.'} ]},
+ {id:2,title:'Building Income Streams',topic:'Earned • Business • Freelance • Creative Income',sector:'MARKET STREET',location:'MARKET STREET',icon:'✦',brief:'Use your time, skills, and ideas to build more than one way to earn.',lesson:'An income stream is a way money comes in. Your time, your skills, and your ideas can each create value and earn money.',income:120,savings:[0,250,500,750]},
+ {id:3,title:'Saving & Paying Yourself First',topic:'SAVE FIRST → SPEND SECOND',sector:'FINANCIAL DISTRICT',location:'FINANCIAL DISTRICT',icon:'◈',brief:'Bring the money you earned into a future payday. Save first, then see how it helps with a surprise.',lesson:'Pay Yourself First means SAVE FIRST → SPEND SECOND. An emergency fund helps keep surprises from becoming loans.',savings:[0,250,500,750]},
+ {id:4,title:'Budgeting & Smart Spending',topic:'Needs • Wants • Savings • 50/30/20',sector:'PLANNING PLAZA',location:'PLANNING PLAZA',icon:'⌁',brief:'Give every dollar a job, balance needs and wants, and save toward a goal.',lesson:'A budget is a plan for your money. The 50/30/20 rule is a simple guide: 50% needs, 30% wants, and 20% savings and goals.',budgetSave:100}
 ];
+
+openingMissions[0].location=openingMissions[0].sector;
+export const missions=[...openingMissions,...missions05to10,...missions11to16,...missions17to22,...missions23to28,...missions29to32];
 export const events = [
  {id:'repair',title:'Car repair',amount:-600,description:'In this future-adult scenario, your car stops working. You need a $600 repair to get to work.'},
  {id:'phone',title:'Broken phone',amount:-180,description:'Your phone needs a replacement screen. The repair costs $180.'},
@@ -18,4 +27,16 @@ export const events = [
  {id:'prices',title:'Price increase',amount:-65,description:'Your planned groceries and transport cost $65 more.'},
  {id:'fee',title:'Unexpected fee',amount:-35,description:'A missed deadline brings a $35 fee. Check due dates next time.'}
 ];
-export const badges=[{id:'earner',icon:'↗',name:'Value creator',detail:'Complete your first paid project.'},{id:'streams',icon:'✦',name:'Income explorer',detail:'Build three useful ways to earn.'},{id:'buffer',icon:'◈',name:'Shock absorber',detail:'Cover the car repair without borrowing.'},{id:'planner',icon:'⌁',name:'Money mapper',detail:'Give every dollar a job.'},{id:'practice',icon:'↻',name:'Second perspective',detail:'Finish a practice replay.'}];
+export const badges=[
+ {id:'earner',icon:'↗',name:'Value Creator',detail:'Complete your first paid project.'},
+ {id:'streams',icon:'✦',name:'Income Explorer',detail:'Build three useful ways to earn.'},
+ {id:'buffer',icon:'◈',name:'Shock Absorber',detail:'Cover the car repair without borrowing.'},
+ {id:'planner',icon:'⌁',name:'Money Mapper',detail:'Give every dollar a job.'},
+ {id:'investor',icon:'↗',name:'First Investor',detail:'Build your first investment portfolio.'},
+ {id:'founder',icon:'◆',name:'Business Founder',detail:'Turn a need into a business idea.'},
+ {id:'analyst',icon:'▥',name:'Company Analyst',detail:'Compare revenue, expenses, profit, and value.'},
+ {id:'paycheck',icon:'$',name:'Paycheck Pro',detail:'Explain gross pay and net pay.'},
+ {id:'giver',icon:'♥',name:'Community Builder',detail:'Use money to create community impact.'},
+ {id:'freedom',icon:'★',name:'Financially Free',detail:'Complete the full 32-mission campaign.'},
+ {id:'practice',icon:'↻',name:'Second Perspective',detail:'Finish a practice replay.'}
+];

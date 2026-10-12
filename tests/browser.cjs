@@ -62,12 +62,6 @@ const assert=require('node:assert/strict');
  const beforeHome=moneyState(await state(p));
  await click(p,'cheer');
  assert.equal(await p.locator('.world-buddy').evaluate(e=>e.classList.contains('cheer')),true);
- for(let i=0;i<3;i++){
-  await click(p,`pop-spark-${i}`);
-  const spark=p.locator(`[data-action="pop-spark-${i}"]`);
-  assert.equal(await spark.evaluate(e=>e.classList.contains('collected')),true);
-  assert.equal(await spark.isDisabled(),true);
- }
  assert.deepEqual(moneyState(await state(p)),beforeHome);
  await p.screenshot({path:'/tmp/money-ops-new-world.png',fullPage:true});
 
@@ -127,7 +121,11 @@ const assert=require('node:assert/strict');
  assert.equal((await state(p)).xp,620);
  await begin(p,1);
  await click(p,'job-product');
- for(let i=0;i<3;i++)await drag(p,'brush',`canvas-${i}`);
+ assert.equal(await p.locator('.art-tool').count(),3);
+ await p.getByRole('button',{name:'Pick paint'}).waitFor();
+ await p.getByRole('button',{name:'Pick crayons'}).waitFor();
+ await p.getByRole('button',{name:'Pick markers'}).waitFor();
+ for(let i=0;i<3;i++)await drag(p,`art-${i}`,`canvas-${i}`);
  await click(p,'finish');
  assert.equal((await state(p)).savings,330);
  await click(p,'tab-honors');
@@ -137,19 +135,52 @@ const assert=require('node:assert/strict');
  await click(p,'mute');
  assert.equal((await state(p)).muted,false);
  await click(p,'mute');
- await click(p,'random');
- assert.equal((await state(p)).eventUsed,true);
  for(const width of [1024,768,390]){
   await p.setViewportSize({width,height:950});
   await p.reload();
   await p.waitForTimeout(300);
-  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  const overflow=await p.evaluate(()=>({wide:document.documentElement.scrollWidth>innerWidth,elements:[...document.querySelectorAll('*')].map(element=>{const box=element.getBoundingClientRect();return {name:`${element.tagName}.${element.className}`,left:box.left,right:box.right,width:box.width};}).filter(box=>box.right>innerWidth+1||box.left<-1).slice(0,8)}));
+  assert.equal(overflow.wide,false,`horizontal overflow at ${width}px: ${JSON.stringify(overflow.elements)}`);
   await p.screenshot({path:`/tmp/money-ops-play-${width}.png`,fullPage:true});
  }
  await p.emulateMedia({reducedMotion:'reduce'});
- const reducedAnimations=await p.locator('.world-cloud,.world-buddy,.world-spark').evaluateAll(elements=>elements.map(e=>getComputedStyle(e).animationName));
+ const reducedAnimations=await p.locator('.world-buddy,.route-node.current,.next-mission-action>span').evaluateAll(elements=>elements.map(e=>getComputedStyle(e).animationName));
  assert.ok(reducedAnimations.length>=3);
  assert.deepEqual([...new Set(reducedAnimations)],['none']);
+
+ // Complete the budget map, then exercise every reusable mission frame through the finale.
+ await p.emulateMedia({reducedMotion:'no-preference'});
+ await p.setViewportSize({width:1280,height:950});
+ await begin(p,4);
+ for(const [i,target] of ['need-home','need-food','save-home','fun-home','fun-home'].entries())await tap(p,`map-${i}`,target);
+ assert.equal((await state(p)).active.step,'debrief');
+ await click(p,'finish');
+ for(let id=5;id<=32;id++){
+  await click(p,`begin-${id}`);
+  assert.equal(await p.locator('.character-dialogue .dialogue-card').count(),2);
+  await click(p,'next');
+  assert.ok(await p.locator('.advanced-decision .decision-card').count()>=2);
+  await p.locator('.advanced-decision .decision-card').first().click();
+  assert.equal((await state(p)).active.step,'event');
+  assert.ok(await p.locator('.advanced-event .decision-card').count()>=2);
+  await p.locator('.advanced-event .decision-card').first().click();
+  assert.equal((await state(p)).active.step,'debrief');
+  if(id===32){
+   assert.equal(await p.locator('.final-report').count(),1);
+   assert.match(await p.locator('.final-rank').textContent(),/FINANCIALLY FREE/i);
+   await p.screenshot({path:'/tmp/money-ops-finale.png',fullPage:true});
+  }
+  await click(p,'finish');
+ }
+ const complete=await state(p);
+ assert.equal(complete.completed.length,32);
+ assert.equal(complete.badges.includes('freedom'),true);
+ assert.equal(await p.locator('.campaign-complete').count(),1);
+ await click(p,'profile');
+ await p.locator('#music-volume').fill('0.2');
+ await p.locator('#sfx-volume').fill('0.5');
+ assert.equal((await state(p)).musicVolume,0.2);
+ assert.equal((await state(p)).sfxVolume,0.5);
 
  const q=await student(390,true);
  await begin(q,1);
@@ -177,7 +208,6 @@ const assert=require('node:assert/strict');
  assert.equal((await state(q)).active.step,'debrief');
  await click(q,'finish');
  assert.equal((await state(q)).debt,170);
- await q.locator('.grownup-menu summary').click();
  await click(q,'profile');
  assert.equal(await q.locator('#rename').count(),1);
  await click(q,'reset');
@@ -193,6 +223,6 @@ const assert=require('node:assert/strict');
  assert.equal((await state(k)).active.step,'debrief');
 
  assert.deepEqual(errors,[]);
- console.log('PASS: animated home actions preserve progress; car repair requires three tools with mouse, tap, keyboard, and touch play; reload preserves work and repair progress; savings/debt outcomes, practice, badges, audio, reset, reduced motion, and responsive layouts pass without console errors.');
+ console.log('PASS: all 32 rendered missions complete through the finale; opening activities work with mouse, tap, keyboard, and touch; reload, accounting, replay, audio controls, reset, reduced motion, and responsive layouts pass without console errors.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});
