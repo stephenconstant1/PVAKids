@@ -1,4 +1,4 @@
-# Upload this pilot to GitHub
+# Publish Money Ops on GitHub Pages
 
 This ZIP is arranged as a complete static site. `index.html` is at the top level so GitHub Pages can load the game directly.
 
@@ -11,4 +11,4 @@ This ZIP is arranged as a complete static site. `index.html` is at the top level
 
 GitHub's repository page does not unpack a ZIP dropped into the repository. Extract it first and upload the contents. If replacing an older site, remove or rename its old root `index.html` so this package's `index.html` is the one GitHub Pages serves.
 
-The child-facing pilot contains two activities: **Help & earn** and **Save & grow**. It saves progress in the browser and needs no backend, secret keys, or build command.
+The site contains the complete 32-mission campaign. It saves progress in the browser and needs no backend, secret keys, package install, or build command.
