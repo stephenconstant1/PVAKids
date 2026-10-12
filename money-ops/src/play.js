@@ -133,7 +133,7 @@ function scriptureCard(m){const s=m.scripture||m.principle;return `<aside class=
 function characterHeader(m,step){
  const lead=missionGuide(m.id),partner=castIds[m.id%castIds.length],c=character(lead);
  const cues={brief:'I’ll show you the big idea.',choice:'Watch us act it out. Then choose!',event:'A surprise! Let’s adjust the plan.',debrief:'We did it! Tell what you learned.'};
- return `<header class="lesson-character-header">${portrait(lead,'header-character lead-character')}<div><small>${c.name.toUpperCase()} LEADS LESSON ${m.id}</small><b>${cues[step]||cues.brief}</b><span>${m.title}</span></div>${portrait(partner,'header-character partner-character')}</header>`;
+ return `<header class="lesson-character-header">${portrait(lead,'header-character lead-character')}<div class="direction-bubble"><small>${c.name.toUpperCase()} SAYS:</small><b>${cues[step]||cues.brief}</b><span>${m.title}</span></div>${portrait(partner,'header-character partner-character')}</header>`;
 }
 function characterFooter(m,step){
  const lead=missionGuide(m.id),c=character(lead),cue=step==='debrief'?'Celebrate, then carry this skill to the next lesson!':'Follow the characters. Try the action. Make your choice.';
