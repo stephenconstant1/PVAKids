@@ -112,6 +112,13 @@ test('all rendered lesson titles, core ideas, and terms use the canonical curric
  assert.ok(missions[24].terms.includes('PROFIT = REVENUE - EXPENSES'));
 });
 
+test('every lesson scripture is displayed in the NIV',()=>{
+ for(const mission of missions){
+  assert.match(mission.scripture.reference,/\(NIV\)$/);
+  assert.ok(mission.scripture.text.length>15);
+ }
+});
+
 test('all 32 missions complete sequentially with finite, nonnegative persistent finances',()=>{
  let profile=newGame('Full Campaign Tester','★');
  assertValidMoney(profile,'new game');

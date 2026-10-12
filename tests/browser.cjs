@@ -66,12 +66,25 @@ const assert=require('node:assert/strict');
    await workbench.locator('[data-action="confirm-decision"]').click();
   }
  }
+ async function traceLine(p){
+  const board=p.locator('.trace-board');
+  await board.scrollIntoViewIfNeeded();
+  const points=await board.evaluate(svg=>{const path=svg.querySelector('.trace-guide'),length=path.getTotalLength(),matrix=path.getScreenCTM();return Array.from({length:100},(_,i)=>{const point=path.getPointAtLength(length*i/99);return {x:matrix.a*point.x+matrix.c*point.y+matrix.e,y:matrix.b*point.x+matrix.d*point.y+matrix.f};});});
+  await p.mouse.move(points[0].x,points[0].y);await p.mouse.down();
+  for(const point of points.slice(1))await p.mouse.move(point.x,point.y,{steps:2});
+  await p.mouse.up();await p.waitForTimeout(180);
+ }
  async function begin(p,id){
   await click(p,`begin-${id}`);
   await click(p,'next');
  }
 
  const p=await student();
+ assert.equal(await p.locator('.my-city-crew .city-cast .cast-member').count(),6);
+ assert.deepEqual(await p.locator('.my-city-crew .city-cast .cast-member>b').allTextContents(),['Jordan','Maya','Kai','Sofia','Eli','Ruby']);
+ assert.equal(await p.locator('.hero-money-sign').count(),1);
+ assert.equal(await p.locator('.hero-gold').count(),1);
+ assert.equal(await p.locator('.hero-goals').count(),1);
  assert.equal(await p.locator('[data-action="begin-2"]').isDisabled(),true);
  const beforeHome=moneyState(await state(p));
  await click(p,'cheer');
@@ -144,7 +157,7 @@ const assert=require('node:assert/strict');
  await p.getByRole('button',{name:'Pick paint'}).waitFor();
  await p.getByRole('button',{name:'Pick crayons'}).waitFor();
  await p.getByRole('button',{name:'Pick markers'}).waitFor();
- for(let i=0;i<3;i++)await drag(p,`art-${i}`,`canvas-${i}`);
+ for(let i=0;i<3;i++){await drag(p,`art-${i}`,`canvas-${i}`);await traceLine(p);}
  await click(p,'finish');
  assert.equal((await state(p)).savings,330);
  await click(p,'tab-honors');
@@ -204,6 +217,16 @@ const assert=require('node:assert/strict');
  await p.locator('#sfx-volume').fill('0.5');
  assert.equal((await state(p)).musicVolume,0.2);
  assert.equal((await state(p)).sfxVolume,0.5);
+
+ const artPage=await student();
+ await begin(artPage,1);
+ await click(artPage,'job-product');
+ for(let i=0;i<3;i++){
+  await drag(artPage,`art-${i}`,`canvas-${i}`);
+  assert.equal((await state(artPage)).active.traceTool,i);
+  await traceLine(artPage);
+ }
+ assert.equal((await state(artPage)).active.step,'debrief');
 
  const q=await student(390,true);
  await begin(q,1);
