@@ -56,6 +56,16 @@ const assert=require('node:assert/strict');
   const token=await p.locator('.save-coin:not(:disabled)').first().getAttribute('data-drag');
   await move(p,token,'save');
  }
+ async function makeDecision(p,scope){
+  const workbench=p.locator(`${scope} .decision-workbench`);
+  if(await workbench.evaluate(element=>element.classList.contains('method-grab'))){
+   const token=await workbench.locator('[data-drag]').first().getAttribute('data-drag');
+   await drag(p,token,'decision-zone');
+  }else{
+   await workbench.locator('.decision-card').first().click();
+   await workbench.locator('[data-action="confirm-decision"]').click();
+  }
+ }
  async function begin(p,id){
   await click(p,`begin-${id}`);
   await click(p,'next');
@@ -71,12 +81,17 @@ const assert=require('node:assert/strict');
 
  await begin(p,1);
  await click(p,'job-time');
- await drag(p,'leaf-0','basket');
+ await drag(p,'yard-gloves','jordan-gear');
+ assert.deepEqual((await state(p)).active.yardPrep,['gloves']);
+ await tap(p,'yard-bag','bag-spot');
+ await keyboardTap(p,'yard-rake','jordan-gear');
+ assert.deepEqual((await state(p)).active.yardPrep,['gloves','bag','rake']);
+ await drag(p,'leaf-0','leaf-bag');
  assert.equal((await state(p)).active.workDone.length,1);
  await p.reload();
  assert.equal((await state(p)).active.workDone.length,1);
- await tap(p,'leaf-1','basket');
- await tap(p,'leaf-2','basket');
+ await tap(p,'leaf-1','leaf-bag');
+ await tap(p,'leaf-2','leaf-bag');
  assert.equal((await state(p)).active.wallet.cash,60);
  assert.equal(await p.locator('.why').getAttribute('open'),null);
  await click(p,'finish-to-plan');
@@ -159,16 +174,19 @@ const assert=require('node:assert/strict');
  for(const [i,target] of ['need-home','need-food','save-home','fun-home','fun-home'].entries())await tap(p,`map-${i}`,target);
  assert.equal((await state(p)).active.step,'debrief');
  await click(p,'finish');
+ const bubbleCharacters=new Set();
  for(let id=5;id<=32;id++){
   await click(p,`begin-${id}`);
+  assert.equal(await p.locator('.direction-bubble').count(),1);
+  bubbleCharacters.add(await p.locator('.lesson-character-header').getAttribute('data-character'));
   assert.equal(await p.locator('.character-dialogue .dialogue-card').count(),2);
   await click(p,'next');
   assert.ok(await p.locator('.advanced-decision .decision-card').count()>=2);
-  await p.locator('.advanced-decision .decision-card').first().click();
+  await makeDecision(p,'.advanced-decision');
   assert.equal((await state(p)).active.step,'event');
   assert.ok(await p.locator('.advanced-event .decision-card').count()>=2);
-  await p.locator('.advanced-event .decision-card').first().click();
-  assert.equal((await state(p)).active.step,'debrief');
+  await makeDecision(p,'.advanced-event');
+  assert.equal((await state(p)).active.step,'debrief',`mission ${id} event interaction must reach debrief`);
   if(id===32){
    assert.equal(await p.locator('.final-report').count(),1);
    assert.match(await p.locator('.final-rank').textContent(),/FINANCIALLY FREE/i);
@@ -176,6 +194,7 @@ const assert=require('node:assert/strict');
   }
   await click(p,'finish');
  }
+ assert.deepEqual([...bubbleCharacters].sort(),['eli','jordan','kai','maya','ruby','sofia']);
  const complete=await state(p);
  assert.equal(complete.completed.length,32);
  assert.equal(complete.badges.includes('freedom'),true);
@@ -189,7 +208,8 @@ const assert=require('node:assert/strict');
  const q=await student(390,true);
  await begin(q,1);
  await click(q,'job-time');
- for(let i=0;i<3;i++)await tap(q,`leaf-${i}`,'basket');
+ await tap(q,'yard-gloves','jordan-gear');await tap(q,'yard-bag','bag-spot');await tap(q,'yard-rake','jordan-gear');
+ for(let i=0;i<3;i++)await tap(q,`leaf-${i}`,'leaf-bag');
  await click(q,'finish-to-plan');
  assert.equal((await state(q)).active.id,2);
  assert.equal((await state(q)).active.step,'brief');
@@ -223,7 +243,8 @@ const assert=require('node:assert/strict');
  const k=await student(768);
  await begin(k,1);
  await click(k,'job-time');
- for(let i=0;i<3;i++)await keyboardTap(k,`leaf-${i}`,'basket');
+ await keyboardTap(k,'yard-gloves','jordan-gear');await keyboardTap(k,'yard-bag','bag-spot');await keyboardTap(k,'yard-rake','jordan-gear');
+ for(let i=0;i<3;i++)await keyboardTap(k,`leaf-${i}`,'leaf-bag');
  assert.equal((await state(k)).active.step,'debrief');
 
  assert.deepEqual(errors,[]);

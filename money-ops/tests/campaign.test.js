@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {begin,choose,finish,newGame,netWorth,rank,resolve,missionScore,passingScore} from '../src/engine.js';
 import {curriculum,missions} from '../src/content.js';
+import {curriculumLanguage} from '../src/curriculum-language.js';
 import {financialFields,validFinances} from '../src/finance.js';
 import {load,save} from '../src/persistence.js';
 
@@ -89,6 +90,26 @@ test('campaign content defines 32 ordered, playable mission schemas',()=>{
    }
   }
  }
+});
+
+test('week one teaches build value and get paid without promising payment for helping',()=>{
+ const weekOne=JSON.stringify(missions[0]).toLowerCase();
+ assert.match(weekOne,/build value/);
+ assert.match(weekOne,/get paid/);
+ assert.doesNotMatch(weekOne,/help someone[^.]*they pay|helped someone[^.]*earned/);
+});
+
+test('all rendered lesson titles, core ideas, and terms use the canonical curriculum language',()=>{
+ for(const mission of missions){
+  const canonical=curriculumLanguage[mission.id];
+  assert.equal(mission.title,canonical.title,`mission ${mission.id} title drifted from the supplied lesson`);
+  assert.equal(mission.coreIdea,canonical.coreIdea,`mission ${mission.id} core idea was paraphrased`);
+  assert.deepEqual(mission.terms,canonical.terms,`mission ${mission.id} terminology was interpreted`);
+ }
+ assert.equal(missions[16].title,'Supply, Demand & Why Prices Change');
+ assert.equal(missions[19].title,'Credit Scores & Building Strong Credit');
+ assert.ok(missions[22].terms.includes('GROSS PAY ≠ TAKE-HOME PAY'));
+ assert.ok(missions[24].terms.includes('PROFIT = REVENUE - EXPENSES'));
 });
 
 test('all 32 missions complete sequentially with finite, nonnegative persistent finances',()=>{
