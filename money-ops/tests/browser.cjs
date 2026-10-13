@@ -76,6 +76,11 @@ const assert=require('node:assert/strict');
  }
  async function begin(p,id){
   await click(p,`begin-${id}`);
+  const scriptureBox=await p.locator('.scripture-card').boundingBox(),characterBox=await p.locator('.lesson-character-header').boundingBox();
+  assert.ok(scriptureBox.y<scriptureBox.y+scriptureBox.height&&scriptureBox.y+scriptureBox.height<=characterBox.y,`mission ${id} scripture must be the header above the character lesson`);
+  const bigIdea=(await p.locator('.sequence-brief .big-idea-description').textContent()).trim();
+  assert.match(bigIdea,/^BIG IDEA:\s+\S/);
+  assert.ok(bigIdea.length>25,`mission ${id} opening bubble must explain its big idea`);
   await click(p,'next');
  }
 
@@ -120,6 +125,9 @@ const assert=require('node:assert/strict');
  assert.equal(await p.locator('.save-coin').count(),0);
  await drag(p,'earnings-bag','save');
  assert.equal((await state(p)).active.jobBanked,true);
+ assert.equal(await p.locator('.invest-action .seated-eli img[alt^="Eli"]').count(),1);
+ assert.equal(await p.locator('.invest-action .eli-chair').count(),1);
+ assert.match(await p.locator('.invest-action>p').textContent(),/Eli types a buy order/i);
  assert.equal(await p.locator('.save-coin').count(),3);
  for(let i=0;i<3;i++)await moveNextCoin(p);
  assert.equal((await state(p)).active.planned,750);
