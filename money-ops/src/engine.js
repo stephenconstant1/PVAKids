@@ -16,7 +16,7 @@ export function missionScore(active){
 }
 
 export function newGame(name='Strategist',avatar='maya',playerStyle={}){
- return {version:4,name,avatar,playerStyle:{accent:playerStyle.accent||'#d9f577',emblem:playerStyle.emblem||'◈'},...defaultFinances(),xp:0,completed:[],badges:[],missionMedals:{},decisions:{},history:[],snapshots:{},portfolio:{},business:{},goal:{},active:null,screen:'base',muted:true,musicVolume:.35,sfxVolume:.7,eventUsed:false};
+ return {version:4,mode:'career',name,avatar,playerStyle:{accent:playerStyle.accent||'#d9f577',emblem:playerStyle.emblem||'◈'},...defaultFinances(),xp:0,completed:[],badges:[],missionMedals:{},decisions:{},history:[],snapshots:{},portfolio:{},business:{},goal:{},active:null,screen:'base',muted:true,musicVolume:.35,sfxVolume:.7,eventUsed:false};
 }
 
 export function begin(p,id){

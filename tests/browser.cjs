@@ -85,6 +85,12 @@ const assert=require('node:assert/strict');
  }
 
  const p=await student();
+ assert.equal((await state(p)).mode,'career');
+ assert.equal((await state(p)).cash,0);
+ assert.equal((await state(p)).savings,0);
+ assert.equal((await state(p)).investments,0);
+ assert.match(await p.locator('.career-mode-ribbon').textContent(),/CAREER MODE/);
+ assert.match(await p.locator('.career-portfolio').textContent(),/STARTED AT \$0/);
  assert.equal(await p.locator('.my-city-crew .city-cast .cast-member').count(),6);
  assert.deepEqual(await p.locator('.my-city-crew .city-cast .cast-member>b').allTextContents(),['Jordan','Maya','Kai','Sofia','Eli','Ruby']);
  assert.equal(await p.locator('.hero-money-sign').count(),1);
@@ -222,7 +228,7 @@ const assert=require('node:assert/strict');
   }
   await click(p,'finish');
  }
- assert.deepEqual([...bubbleCharacters].sort(),['eli','jordan','kai','maya','ruby','sofia']);
+ assert.deepEqual([...bubbleCharacters],['jordan']);
  const complete=await state(p);
  assert.equal(complete.completed.length,32);
  assert.equal(complete.badges.includes('freedom'),true);

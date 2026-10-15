@@ -92,6 +92,21 @@ test('campaign content defines 32 ordered, playable mission schemas',()=>{
  }
 });
 
+test('career mode starts one chosen hero at zero and carries a persistent portfolio',()=>{
+ const profile=newGame('Career Player','eli',{accent:'#54c7de',emblem:'◎'});
+ assert.equal(profile.mode,'career');
+ assert.equal(profile.avatar,'eli');
+ assert.equal(profile.completed.length,0);
+ assert.equal(profile.cash,0);
+ assert.equal(profile.savings,0);
+ assert.equal(profile.investments,0);
+ assert.equal(netWorth(profile),0);
+ const afterFirst=completeMission(profile,1);
+ assert.equal(afterFirst.completed.length,1);
+ assert.equal(afterFirst.avatar,'eli');
+ assert.ok(afterFirst.cash+afterFirst.savings+afterFirst.investments>0);
+});
+
 test('week one teaches build value and get paid without promising payment for helping',()=>{
  const weekOne=JSON.stringify(missions[0]).toLowerCase();
  assert.match(weekOne,/build value/);
