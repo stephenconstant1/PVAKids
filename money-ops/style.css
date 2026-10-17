@@ -1156,8 +1156,9 @@ button.world-buddy.cheer:after{
 .city-crew-copy p:after{content:'';position:absolute;left:30%;bottom:-22px;width:30px;height:30px;border-right:4px solid #102d55;border-bottom:4px solid #102d55;background:#fffbea;transform:rotate(45deg)}
 .city-crew-copy p b{display:block;margin-bottom:4px;color:#c55123;font:950 13px var(--mono);letter-spacing:.06em}
 .my-city-crew .city-cast{position:absolute;z-index:3;inset:clamp(176px,18vw,215px) 2% 5%;align-items:end;gap:clamp(2px,1vw,16px)}
-.my-city-crew .city-cast .cast-member{height:100%;padding-bottom:30px}
-.my-city-crew .city-cast .character-portrait{width:auto;max-width:none;height:100%;max-height:none;object-fit:contain;object-position:center bottom;justify-self:center;filter:drop-shadow(0 13px 8px #153f4770);animation:cityCrewArrive .7s cubic-bezier(.2,.85,.3,1.25) both}
+.my-city-crew .city-cast{width:auto;padding-inline:clamp(5px,1vw,12px)}
+.my-city-crew .city-cast .cast-member{height:auto;align-self:end;padding-bottom:30px}
+.my-city-crew .city-cast .character-portrait{width:auto;max-width:none;height:clamp(102px,28vw,360px);max-height:none;object-fit:contain;object-position:center bottom;justify-self:center;filter:drop-shadow(0 13px 8px #153f4770);animation:cityCrewArrive .7s cubic-bezier(.2,.85,.3,1.25) both}
 .my-city-crew .city-cast .cast-member:nth-child(2) .character-portrait{animation-delay:.08s}
 .my-city-crew .city-cast .cast-member:nth-child(3) .character-portrait{animation-delay:.16s}
 .my-city-crew .city-cast .cast-member:nth-child(4) .character-portrait{animation-delay:.24s}
@@ -1828,19 +1829,20 @@ button.world-buddy.cheer:after{
 .week-one-intro{display:grid!important;grid-template-columns:1fr!important;gap:0!important;width:100%;max-width:none;padding:0!important;overflow:visible}
 .week-one-hero{position:relative;min-height:clamp(430px,58vh,620px);border-radius:28px 28px 0 0;background:linear-gradient(180deg,#7fd3ff 0 55%,#f7d369 55% 68%,#4b914f 68%);overflow:hidden}
 .week-one-hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 14% 12%,#fff9bd 0 5%,transparent 5.5%),linear-gradient(125deg,transparent 0 60%,#ffffff38 60% 61%,transparent 61%);pointer-events:none}
-.week-one-hero .poster-cast{position:absolute;z-index:2;inset:70px 3% 0;align-items:end}
+.week-one-hero .poster-cast{position:absolute;z-index:2;inset:70px 4% 0;align-items:end}
 .week-one-hero .poster-cast .cast-member:nth-child(1){transform:translateY(18px) rotate(-1deg)}
 .week-one-hero .poster-cast .cast-member:nth-child(2){transform:translateY(-4px) rotate(1deg)}
 .week-one-hero .poster-cast .cast-member:nth-child(3){transform:translateY(12px) rotate(-1deg)}
 .week-one-hero .poster-cast .cast-member:nth-child(4){transform:translateY(-10px) rotate(1deg)}
 .week-one-hero .poster-cast .cast-member:nth-child(5){transform:translateY(8px) rotate(-1deg)}
 .week-one-hero .poster-cast .cast-member:nth-child(6){transform:translate(-28px,-6px) rotate(1deg)}
-.week-one-hero .poster-cast .cast-member{height:100%}
+.week-one-hero .poster-cast{width:auto;padding-inline:clamp(5px,1vw,12px)}
+.week-one-hero .poster-cast .cast-member{height:auto;align-self:end;transform:none!important}
 .week-one-hero .poster-cast .character-portrait{
  width:auto;
  max-width:none;
- height:100%;
- max-height:390px;
+ height:clamp(102px,28vw,360px);
+ max-height:none;
  justify-self:center
 }
 .week-one-slogan{position:absolute;z-index:4;top:22px;left:4%;right:4%;display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:14px 20px;border-radius:15px;background:#102e54ed;color:white;box-shadow:0 8px 0 #09203d}
@@ -1939,14 +1941,14 @@ button.world-buddy.cheer:after{
 @keyframes actorDoesTask{0%{transform:translateX(-18px)}45%{transform:translateX(22px) translateY(-6px)}100%{transform:none}}
 
 @media(max-width:760px){
- .week-one-hero{min-height:410px}.week-one-hero .poster-cast{inset:104px 2% 0}.week-one-slogan{align-items:flex-start;flex-direction:column;gap:3px}.week-one-slogan strong{text-align:left}
+ .week-one-hero{min-height:410px}.week-one-hero .poster-cast{inset:104px 4% 0}.week-one-slogan{align-items:flex-start;flex-direction:column;gap:3px}.week-one-slogan strong{text-align:left}
  .character-action-scene{grid-template-columns:.8fr 1fr .8fr;min-height:280px;padding-inline:10px}.working-character{height:225px}.character-action-scene>p{right:12px}.character-action-scene>p span{display:none}
  .money-action-scene{grid-template-columns:1fr;min-height:650px}.bank-action,.invest-action{min-height:270px}.bank-run-scene{grid-template-columns:120px 45px 1fr;padding-inline:4%}.bank-run-character{width:120px;height:190px}
  .action-work-layout{grid-template-columns:1fr}.action-work-layout .character-action-scene{min-height:280px}
  .money-action-layout{grid-template-columns:1fr}.money-action-layout .saving-playground{order:-1}.money-action-layout .money-action-scene{min-height:650px}
 }
 @media(max-width:480px){
- .week-one-hero{min-height:360px}.week-one-hero .poster-cast{inset:145px 1% 0;gap:2px}.curriculum-cast .cast-member>b{font-size:6px;padding:3px 4px}.week-one-copy{padding:24px 13px}.week-one-copy .week-one-title{font-size:36px}
+ .week-one-hero{min-height:360px}.week-one-hero .poster-cast{inset:145px 3% 0;gap:2px}.curriculum-cast .cast-member>b{font-size:6px;padding:3px 4px}.week-one-copy{padding:24px 13px}.week-one-copy .week-one-title{font-size:36px}
  .character-action-scene{grid-template-columns:.65fr 1fr .65fr;min-height:245px}.working-character{height:178px}.character-action-scene>p{top:8px;left:8px;right:8px}.character-action-scene>p b{font-size:13px}.yard-leaves{font-size:27px}.scene-basket{font-size:56px}.lesson-board{padding:8px;border-width:4px}.lesson-board b{font-size:9px}.lesson-board span{font-size:13px}.student-desk{border-width:4px;font-size:20px}.painting-arm{right:-25px;font-size:28px}.scene-easel>b{font-size:8px}
  .bank-run-scene{grid-template-columns:95px 34px 1fr;min-height:205px}.bank-run-character{width:96px;height:160px}.bank-run-money{width:34px;height:34px;font-size:18px}.bank-building{min-height:135px;padding:50px 9px 15px;gap:5px;border-width:5px}.bank-building>b{top:28px;font-size:17px}.bank-building>i{height:60px;border-width:4px}
  .money-action-scene{padding:64px 8px 10px;min-height:590px}.bank-action,.invest-action{grid-template-columns:1fr 1fr;padding:5px}.bank-action .scene-character,.invest-action .scene-character{height:190px}.invest-app{width:145px}.money-action-scene p span{display:none}
@@ -2077,7 +2079,7 @@ button.world-buddy.cheer:after{
 @media(max-width:560px){.title-screen>footer{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;width:100%;overflow:hidden}.title-screen>footer .title-footer-character{display:block;width:auto;max-width:none;height:76px;margin:0 auto;object-fit:contain}.title-screen>footer>span{display:none}}
 
 /* Every lesson opens with two distinct character voices: scripture, then lesson. */
-.scripture-character-card{display:grid;grid-template-columns:180px minmax(0,1fr);align-items:end;gap:10px;min-height:190px;padding:12px 26px 0!important;text-align:left;overflow:visible}.scripture-character-card:after{z-index:0}.scripture-character{position:relative;z-index:2;align-self:end;width:170px;height:180px;object-fit:contain;filter:drop-shadow(0 8px 6px #6d551966);animation:scriptureSpeaker 2.6s ease-in-out infinite}.scripture-bubble{position:relative;z-index:2;align-self:center;margin:12px 0 23px;padding:16px 22px;border:4px solid #896920;border-radius:24px;background:#fffaf0;color:#173e61;box-shadow:0 7px 0 #b68e2f}.scripture-bubble:before{content:'';position:absolute;left:-29px;bottom:27px;width:30px;height:30px;background:#fffaf0;clip-path:polygon(100% 0,100% 100%,0 100%)}.scripture-bubble:after{content:'';position:absolute;z-index:-1;left:-36px;bottom:22px;width:36px;height:38px;background:#896920;clip-path:polygon(100% 0,100% 100%,0 100%)}.scripture-bubble>span{display:block;color:#a04b21;font:950 10px var(--mono);letter-spacing:.1em}.scripture-character-card blockquote{margin:7px 0 5px;max-width:none;text-align:left}.scripture-character-card cite{text-align:left}.lesson-number-badge{align-self:center!important;display:grid;place-items:center;min-width:120px;margin:12px;padding:14px!important;border:3px solid #fff1a9;border-radius:22px;background:#17303a;color:#fff1a9;text-align:center!important;box-shadow:0 7px 0 #0b283d}.lesson-number-badge small{font:900 9px var(--mono);letter-spacing:.1em}.lesson-number-badge b{margin:0!important;color:#fff1a9!important;font-size:42px!important;line-height:1!important}.lesson-number-badge i{font-size:28px;font-style:normal}.lesson-character-header .big-idea-description{display:block}.lesson-character-header .big-idea-description strong{display:inline;color:#a04b21}.lesson-character-header[data-career-player="true"] .lead-character{animation:lessonSpeaker 2.2s ease-in-out infinite}
+.scripture-character-card{display:grid;grid-template-columns:180px minmax(0,1fr);align-items:end;gap:16px;min-height:190px;padding:12px 26px 0!important;text-align:left;overflow:visible}.scripture-character-card:after{z-index:0}.scripture-character{position:relative;z-index:2;align-self:end;width:170px;height:180px;object-fit:contain;filter:drop-shadow(0 8px 6px #6d551966);animation:scriptureSpeaker 2.6s ease-in-out infinite}.scripture-bubble{position:relative;z-index:2;align-self:center;margin:12px 0 23px;padding:16px 22px;border:4px solid #896920;border-radius:24px;background:#fffaf0;color:#173e61;box-shadow:0 7px 0 #b68e2f}.scripture-bubble:before{content:'';position:absolute;left:-29px;bottom:27px;width:30px;height:30px;background:#fffaf0;clip-path:polygon(100% 0,100% 100%,0 100%)}.scripture-bubble:after{content:'';position:absolute;z-index:-1;left:-36px;bottom:22px;width:36px;height:38px;background:#896920;clip-path:polygon(100% 0,100% 100%,0 100%)}.scripture-bubble>span{display:block;color:#a04b21;font:950 10px var(--mono);letter-spacing:.1em}.scripture-character-card blockquote{margin:7px 0 5px;max-width:none;text-align:left}.scripture-character-card cite{text-align:left}.lesson-number-badge{align-self:center!important;display:grid;place-items:center;min-width:120px;margin:12px;padding:14px!important;border:3px solid #fff1a9;border-radius:22px;background:#17303a;color:#fff1a9;text-align:center!important;box-shadow:0 7px 0 #0b283d}.lesson-number-badge small{font:900 9px var(--mono);letter-spacing:.1em}.lesson-number-badge b{margin:0!important;color:#fff1a9!important;font-size:42px!important;line-height:1!important}.lesson-number-badge i{font-size:28px;font-style:normal}.lesson-character-header .big-idea-description{display:block}.lesson-character-header .big-idea-description strong{display:inline;color:#a04b21}.lesson-character-header[data-career-player="true"] .lead-character{animation:lessonSpeaker 2.2s ease-in-out infinite}
 @keyframes scriptureSpeaker{50%{transform:translateY(-5px) rotate(1deg)}}@keyframes lessonSpeaker{50%{transform:translateY(-8px) rotate(-2deg) scale(1.02)}}
 @media(max-width:760px){.scripture-character-card{grid-template-columns:125px minmax(0,1fr);min-height:160px;padding:8px 14px 0!important}.scripture-character{width:120px;height:155px}.scripture-bubble{margin-bottom:18px;padding:13px 15px;border-radius:19px}.scripture-character-card blockquote{font-size:14px}.lesson-number-badge{min-width:78px;margin:6px;padding:10px!important}.lesson-number-badge b{font-size:30px!important}.lesson-number-badge i{font-size:21px}}
 @media(max-width:480px){.scripture-character-card{grid-template-columns:90px minmax(0,1fr);gap:4px;min-height:150px;padding:6px 8px 0!important}.scripture-character{width:88px;height:145px}.scripture-bubble{margin:8px 0 14px;padding:11px 10px;border-width:3px;border-radius:16px}.scripture-bubble:before{left:-20px;bottom:22px;width:21px;height:23px}.scripture-bubble:after{left:-25px;bottom:18px;width:26px;height:29px}.scripture-bubble>span{font-size:7px;letter-spacing:.04em}.scripture-character-card blockquote{font-size:12px;line-height:1.25}.scripture-character-card cite{font-size:9px}.lesson-number-badge{display:none}.lesson-character-header{grid-template-columns:105px minmax(0,1fr)}}
@@ -2213,7 +2215,7 @@ button.world-buddy.cheer:after{
 
 /* Lessons use static guides and player-controlled activities. */
 .lesson-action-demo,.typing-computer,.walk-in-bank,.animated-arm,.action-prop{display:none!important}
-.lesson-character-header{grid-template-columns:minmax(145px,200px) minmax(0,1fr) 105px;align-items:center;min-height:300px;padding:24px;overflow:hidden}
+.lesson-character-header{grid-template-columns:minmax(145px,200px) minmax(0,1fr) 105px;align-items:center;gap:clamp(10px,2vw,24px);min-height:300px;padding:24px;overflow:hidden}
 .lesson-character-header .header-character,.lesson-character-header .lead-character{align-self:center;width:100%;max-width:185px;height:220px;max-height:220px;animation:none!important;transform:none!important}
 .lesson-character-header.sequence-brief:before{display:none}
 .lesson-character-header .direction-bubble{align-self:center;margin:0 8px;padding:20px 24px;animation:none}

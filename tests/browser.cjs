@@ -110,9 +110,12 @@ const assert=require('node:assert/strict');
   assert.match(bigIdea,new RegExp(`^LESSON ${String(id).padStart(2,'0')} · BIG IDEA:\\s+\\S`));
   assert.ok(bigIdea.length>25,`mission ${id} opening bubble must explain its big idea`);
   if(id===1){
-   const crewHeights=await p.locator('.week-one-hero .poster-cast .character-portrait').evaluateAll(images=>images.map(image=>Math.round(image.getBoundingClientRect().height)));
-   assert.equal(crewHeights.length,6,'week one must show all six students');
-   assert.ok(Math.max(...crewHeights)-Math.min(...crewHeights)<=2,`week one students must have one visual height: ${crewHeights.join(', ')}`);
+   for(const width of [1280,768,390]){
+    await p.setViewportSize({width,height:950});
+    await assertCharacterLessonPattern(p,id);
+    await assertWeekOneCrewLayout(p,width);
+   }
+   await p.setViewportSize({width:1280,height:950});
   }
   await click(p,'next');
   await assertCharacterLessonPattern(p,id);
@@ -142,14 +145,32 @@ const assert=require('node:assert/strict');
   assert.match((await p.locator('.lesson-character-header .big-idea-description').textContent()).trim(),new RegExp(`^LESSON ${String(id).padStart(2,'0')} · BIG IDEA:`));
   const languageColumns=await p.locator('.lesson-language-card').evaluate(element=>getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length);
   assert.equal(languageColumns,1,`mission ${id} vocabulary must use the full-width lesson flow`);
-  const layout=await p.locator('.lesson-character-header').evaluate(header=>{const character=header.querySelector('.lead-character').getBoundingClientRect(),bubble=header.querySelector('.direction-bubble').getBoundingClientRect(),frame=header.getBoundingClientRect();return {characterBottom:character.bottom,bubbleLeft:bubble.left,characterRight:character.right,frameBottom:frame.bottom};});
-  assert.ok(layout.characterBottom<=layout.frameBottom+1,`mission ${id} character must stay inside its guide frame`);
+  const layout=await p.locator('.lesson-character-header').evaluate(header=>{const character=header.querySelector('.lead-character').getBoundingClientRect(),bubble=header.querySelector('.direction-bubble').getBoundingClientRect(),frame=header.getBoundingClientRect();return {characterLeft:character.left,characterTop:character.top,characterBottom:character.bottom,bubbleLeft:bubble.left,characterRight:character.right,frameLeft:frame.left,frameTop:frame.top,frameRight:frame.right,frameBottom:frame.bottom,bubbleOverflow:bubble.scrollWidth>bubble.clientWidth+1||bubble.scrollHeight>bubble.clientHeight+1};});
+  assert.ok(layout.characterLeft>=layout.frameLeft-1&&layout.characterTop>=layout.frameTop-1&&layout.characterRight<=layout.frameRight+1&&layout.characterBottom<=layout.frameBottom+1,`mission ${id} character must stay inside its guide border`);
   assert.ok(layout.characterRight<=layout.bubbleLeft+1,`mission ${id} character must not step on lesson words`);
+  assert.equal(layout.bubbleOverflow,false,`mission ${id} lesson bubble text must stay inside its border`);
+  const scriptureLayout=await p.locator('.scripture-character-card').evaluate(frame=>{const character=frame.querySelector('.scripture-character').getBoundingClientRect(),bubble=frame.querySelector('.scripture-bubble').getBoundingClientRect(),box=frame.getBoundingClientRect();return {characterLeft:character.left,characterTop:character.top,characterRight:character.right,characterBottom:character.bottom,bubbleLeft:bubble.left,frameLeft:box.left,frameTop:box.top,frameRight:box.right,frameBottom:box.bottom,bubbleOverflow:bubble.scrollWidth>bubble.clientWidth+1||bubble.scrollHeight>bubble.clientHeight+1};});
+  assert.ok(scriptureLayout.characterLeft>=scriptureLayout.frameLeft-1&&scriptureLayout.characterTop>=scriptureLayout.frameTop-1&&scriptureLayout.characterRight<=scriptureLayout.frameRight+1&&scriptureLayout.characterBottom<=scriptureLayout.frameBottom+1,`mission ${id} scripture character must stay inside its border`);
+  assert.ok(scriptureLayout.characterRight<=scriptureLayout.bubbleLeft+1,`mission ${id} scripture character must not cover the verse`);
+  assert.equal(scriptureLayout.bubbleOverflow,false,`mission ${id} scripture text must stay inside its bubble`);
   const dialogue=p.locator('.character-dialogue');
   if(await dialogue.count()){
    const dialogueColumns=await dialogue.evaluate(element=>getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length);
    assert.equal(dialogueColumns,1,`mission ${id} character dialogue must stack in the full-width lesson flow`);
   }
+ }
+
+ async function assertWeekOneCrewLayout(p,width){
+  const layout=await p.locator('.week-one-hero').evaluate(hero=>{const rect=e=>{const r=e.getBoundingClientRect();return {left:r.left,top:r.top,right:r.right,bottom:r.bottom,height:r.height};},frame=rect(hero),banner=rect(hero.querySelector('.week-one-slogan')),people=[...hero.querySelectorAll('.cast-member')].map(member=>({image:rect(member.querySelector('img')),label:rect(member.querySelector('b'))}));return {frame,banner,people,bannerOverflow:hero.querySelector('.week-one-slogan').scrollWidth>hero.querySelector('.week-one-slogan').clientWidth+1};});
+  assert.equal(layout.people.length,6,`week one must show all six students at ${width}px`);
+  const heights=layout.people.map(person=>Math.round(person.image.height));
+  assert.ok(Math.max(...heights)-Math.min(...heights)<=2,`week one students must have one visual height at ${width}px: ${heights.join(', ')}`);
+  for(const person of layout.people){
+   assert.ok(person.image.left>=layout.frame.left-1&&person.image.right<=layout.frame.right+1&&person.image.bottom<=layout.frame.bottom+1,`week one character must stay inside the poster border at ${width}px`);
+   assert.ok(person.label.left>=layout.frame.left-1&&person.label.right<=layout.frame.right+1&&person.label.bottom<=layout.frame.bottom+1,`week one name must stay inside the poster border at ${width}px`);
+   assert.ok(person.image.top>=layout.banner.bottom+8,`week one character must not cover the banner at ${width}px`);
+  }
+  assert.equal(layout.bannerOverflow,false,`week one banner text must stay inside its border at ${width}px`);
  }
 
  const arcadeContext=await browser.newContext({viewport:{width:1280,height:950}});
