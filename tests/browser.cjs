@@ -149,6 +149,7 @@ const assert=require('node:assert/strict');
  assert.match(await p.locator('.career-portfolio').textContent(),/STARTED AT \$0/);
  assert.equal(await p.locator('.my-city-crew .city-cast .cast-member').count(),6);
  assert.deepEqual(await p.locator('.my-city-crew .city-cast .cast-member>b').allTextContents(),['Jordan','Maya','Kai','Sofia','Eli','Ruby']);
+ assert.equal(await p.locator('.my-city-crew .city-cast .cast-kai .character-portrait').evaluate(element=>getComputedStyle(element).scale),'1.23');
  assert.equal(await p.locator('.hero-money-sign').count(),1);
  assert.equal(await p.locator('.hero-gold').count(),1);
  assert.equal(await p.locator('.hero-goals').count(),1);

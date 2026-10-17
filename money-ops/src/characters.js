@@ -18,5 +18,5 @@ export function portrait(id,className=''){
 
 export function castPortraits(className='',ids=castIds){
  if(className.includes('debrief-cast')&&ids===castIds)ids=['eli','ruby','maya'];
- return `<div class="curriculum-cast ${className}" aria-label="Money Ops student team">${ids.map(id=>`<div class="cast-member">${portrait(id)}<b>${character(id).name}</b></div>`).join('')}</div>`;
+ return `<div class="curriculum-cast ${className}" aria-label="Money Ops student team">${ids.map(id=>`<div class="cast-member cast-${id}">${portrait(id)}<b>${character(id).name}</b></div>`).join('')}</div>`;
 }
