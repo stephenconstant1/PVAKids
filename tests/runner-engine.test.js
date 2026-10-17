@@ -27,7 +27,8 @@ test('the three updated boys have distinct high-resolution transparent portrait 
  for(const id of ['jordan','kai','eli']){
   const portrait=dimensions(new URL(`../assets/cast/${id}.png`,import.meta.url));
   const runner=dimensions(new URL(`../assets/runner/${id}-right.png`,import.meta.url));
-  assert.ok(portrait.width>=800&&portrait.height>=1500,`${id} needs high-resolution portrait art`);
+  assert.equal(portrait.width,1024,`${id} portrait canvas width`);
+  assert.equal(portrait.height,1536,`${id} portrait canvas height`);
   assert.ok(runner.width>=1300&&runner.height>=1100,`${id} needs high-resolution runner art`);
   assert.equal(portrait.colorType,6,`${id} portrait needs transparency`);
   assert.equal(runner.colorType,6,`${id} runner needs transparency`);
@@ -53,7 +54,7 @@ test('the run ends when the player collects the 100th reward',()=>{
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
  const game=harness(1,'pre').runner;
- assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.5$/);
+ assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.6$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
  assert.equal(game.speed,155);
@@ -75,7 +76,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
- assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.5$/);
+ assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.6$/);
 });
 
 test('runner events publish lesson vocabulary for the side stream',()=>{
