@@ -10,11 +10,13 @@ From this directory:
 npm start
 ```
 
-Open `http://127.0.0.1:8080`. There is no application install, backend, account, or build step. Progress is stored in local storage on the current browser origin.
+Open `http://127.0.0.1:8080`. There is no application install, backend, account, or build step. Career Mode progress is stored in local storage on the current browser origin.
+
+Choose **Career Mode** for one saved hero and the connected 32-lesson financial journey. Choose **Arcade Mode** to play any runner level at any time with any of the six characters. Arcade Mode is temporary: its character choice, scores, coins, XP, and results are never written to the Career save file and disappear when Arcade Mode is closed.
 
 Run the complete state and calculation suite with `npm test`.
 
-Each new lesson opens with an optional pre-lesson runner of up to 60 seconds. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Arcade rewards are stored separately from simulated net worth.
+Each new lesson opens with an optional pre-lesson runner of up to 60 seconds. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Runner rewards earned inside the saved Career journey are stored separately from simulated net worth. Standalone Arcade Mode never saves its rewards.
 
 During a run, use **Space** or **Up Arrow** to jump, **Down Arrow** to duck, and **P** or **Escape** to pause. Touch players can tap to jump or swipe down to duck. The on-screen controls include pause, restart, and an immediate lesson/continue action.
 

@@ -2165,3 +2165,42 @@ button.world-buddy.cheer:after{
 .yard-prep-board .sequence-list{grid-column:auto}
 @media(max-width:760px){.yard-prep-board{grid-template-columns:minmax(0,1fr)!important}.yard-prep-board .sequence-list{grid-column:auto}}
 @media(max-width:520px){.runner-end-actions{width:100%;margin:0;flex-direction:column}.runner-end-actions .text-button{margin:0}}
+
+/* Career or temporary Arcade mode entry. */
+.title-content{max-width:1040px}
+.title-description{max-width:720px}
+.mode-entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:28px 0 36px;max-width:900px}
+.mode-entry-card{display:flex;flex-direction:column;align-items:flex-start;min-height:245px;padding:24px;border:3px solid #668078;border-radius:22px;background:#14231ee8;box-shadow:0 9px 0 #08120e}
+.mode-entry-card>span,.career-form-heading>span{padding:6px 9px;border-radius:999px;background:#d9f577;color:#182114;font:900 9px var(--mono);letter-spacing:.08em}
+.mode-entry-card h2{margin-top:14px;font-size:32px;color:#fff3a8}
+.mode-entry-card p{flex:1;font-size:14px;line-height:1.55;color:#d5dfd4}
+.mode-entry-card .primary{width:100%;margin-top:10px}
+.mode-entry-card.arcade-entry{border-color:#ffcf65;background:linear-gradient(145deg,#4b3920ee,#1b2b25ee)}
+.mode-entry-card.arcade-entry>span{background:#ffcf65}
+.mode-jump{display:inline-flex;align-items:center;min-height:48px;padding:13px 18px;border:1px solid #d9f577;background:#263b2e;color:#eaffac;font:900 10px var(--mono)}
+.career-form-heading{max-width:700px;margin:28px 0 18px;padding-top:28px;border-top:1px solid #64756c}
+.career-form-heading p{font-size:13px}
+.arcade-unsaved{padding:8px 11px;border:2px solid #ffcf65;border-radius:999px;background:#49351f;color:#fff2bc}
+.arcade-unsaved i{background:#ffcf65;box-shadow:0 0 10px #ffcf65}
+.arcade-hub{width:min(1260px,100%);margin:auto;padding:24px 30px 60px}
+.arcade-warning,.arcade-run-warning{display:flex;align-items:center;justify-content:center;gap:15px;padding:15px 20px;border:3px solid #ffcf65;border-radius:16px;background:#533a1e;color:#fff4c7;text-align:center}
+.arcade-warning b,.arcade-run-warning b{color:#ffdc78;font:950 12px var(--mono);letter-spacing:.06em}
+.arcade-warning span,.arcade-run-warning span{font-size:13px}
+.arcade-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin:30px 0 20px}
+.arcade-heading h1{margin-top:8px;font-size:clamp(36px,6vw,72px);color:#fff2a7}
+.arcade-character-panel,.arcade-time-panel{margin-bottom:22px;padding:22px;border:2px solid #617c73;border-radius:22px;background:#152923}
+.arcade-character-panel h2{margin:7px 0 18px;color:#fff1a0}
+.arcade-character-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.arcade-character{display:grid;justify-items:center;min-width:0;padding:9px 5px 12px;border:3px solid #46635a;border-radius:18px;background:#1d3832}
+.arcade-character:hover:not(:disabled){background:#294c42}
+.arcade-character.selected{border-color:#ffdf78;background:#3c5d45;box-shadow:0 0 0 4px #ffdf7833}
+.arcade-character-image{width:105px;height:138px;max-width:100%;object-fit:contain}
+.arcade-character b{color:#fff1a2;font-size:16px}.arcade-character small{color:#c5d6ce;text-align:center}
+.arcade-time-panel>div{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.arcade-time-panel button.selected{border:2px solid #ffcf65;background:#ffcf65;color:#162119;font:900 10px var(--mono);padding:11px 15px}
+.arcade-level-section{margin-top:32px}.arcade-level-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px}
+.arcade-level-card{display:flex;flex-direction:column;min-height:270px;padding:20px;border:2px solid #526e65;border-top:7px solid var(--arcade-accent);border-radius:18px;background:#152720}
+.arcade-level-card>div{display:flex;align-items:center;justify-content:space-between;color:var(--arcade-accent);font:900 9px var(--mono)}.arcade-level-card>div b{font-size:29px}.arcade-level-card h3{margin:11px 0 5px;color:#fff3ac}.arcade-level-card>small{color:#a8beb4}.arcade-level-card p{flex:1;font-size:11px}.arcade-level-card .primary{width:100%}
+.arcade-footer{align-items:center;margin-top:28px;padding:20px;border:2px solid #ffcf65;border-radius:14px;background:#3e2d1d;color:#fff0bd}.arcade-footer b{color:#ffdb73;font-size:12px}.arcade-footer span{font-size:11px}
+.arcade-run-warning{margin:-12px -12px 25px;border-radius:14px}.arcade-results .arcade-run-warning{margin:-12px -12px 22px}
+@media(max-width:850px){.arcade-character-grid{grid-template-columns:repeat(3,1fr)}.arcade-heading{align-items:flex-start;flex-direction:column}.mode-entry-grid{grid-template-columns:1fr}.mode-entry-card{min-height:0}.title-content{max-width:100%}}
+@media(max-width:560px){.arcade-hub{padding:14px 12px 40px}.arcade-warning,.arcade-run-warning{align-items:flex-start;flex-direction:column;text-align:left}.arcade-character-panel,.arcade-time-panel{padding:14px}.arcade-character-grid{grid-template-columns:repeat(2,1fr)}.arcade-character-image{height:120px}.arcade-level-grid{grid-template-columns:1fr}.arcade-footer{align-items:flex-start;flex-direction:column}.mode-entry-card{padding:18px}.mode-entry-card h2{font-size:27px}}
