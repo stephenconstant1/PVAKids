@@ -74,8 +74,31 @@ const assert=require('node:assert/strict');
   for(const point of points.slice(1))await p.mouse.move(point.x,point.y,{steps:2});
   await p.mouse.up();await p.waitForTimeout(180);
  }
- async function begin(p,id){
+ async function enterLesson(p,id,exerciseRunner=false){
   await click(p,`begin-${id}`);
+  if(await p.locator('.runner-intro').count()){
+   assert.match(await p.locator('.runner-titlebar').textContent(),new RegExp(`WEEK ${String(id).padStart(2,'0')}`));
+   assert.ok(await p.locator('.runner-chip.hazard').count()>=2);
+   assert.ok(await p.locator('.runner-chip.reward').count()>=3);
+   const before=await state(p),beforeWorth=before.cash+before.checking+before.savings+before.emergencyFund+before.investments+before.stocks+before.etfs+before.assets+before.otherAssets+before.property+before.businessValue-before.debt-before.loans;
+   if(exerciseRunner){
+    await click(p,'runner-start');
+    assert.equal(await p.locator('#runner-canvas').count(),1);
+    assert.equal(await p.locator('[data-runner-hud="lives"]').count(),1);
+    await p.keyboard.press('Space');await p.keyboard.press('ArrowDown');
+    await click(p,'runner-pause');assert.match(await p.locator('[data-runner-hud="power"]').textContent(),/PAUSED/);
+    await p.waitForTimeout(250);await click(p,'runner-pause');
+    await click(p,'runner-jump');await p.waitForTimeout(450);await click(p,'runner-finish-now');
+   }else await click(p,'runner-skip');
+   assert.equal(await p.locator('.runner-results').count(),1);
+   const afterRun=await state(p),afterWorth=afterRun.cash+afterRun.checking+afterRun.savings+afterRun.emergencyFund+afterRun.investments+afterRun.stocks+afterRun.etfs+afterRun.assets+afterRun.otherAssets+afterRun.property+afterRun.businessValue-afterRun.debt-afterRun.loans;
+   assert.equal(afterWorth,beforeWorth,'arcade rewards must not change financial net worth');
+   assert.equal(afterRun.runnerProgress[id].pre.completed,true);
+   await click(p,'runner-start-lesson');
+  }
+ }
+ async function begin(p,id,exerciseRunner=false){
+  await enterLesson(p,id,exerciseRunner);
   const scriptureBox=await p.locator('.scripture-card').boundingBox(),characterBox=await p.locator('.lesson-character-header').boundingBox();
   assert.ok(scriptureBox.y<scriptureBox.y+scriptureBox.height&&scriptureBox.y+scriptureBox.height<=characterBox.y,`mission ${id} scripture must be the header above the character lesson`);
   await assertCharacterLessonPattern(p,id);
@@ -84,6 +107,19 @@ const assert=require('node:assert/strict');
   assert.ok(bigIdea.length>25,`mission ${id} opening bubble must explain its big idea`);
   await click(p,'next');
   await assertCharacterLessonPattern(p,id);
+ }
+ async function finishLesson(p,action='finish',exerciseBonus=false){
+  await click(p,action);
+  if(!await p.locator('.runner-bonus-intro').count())return;
+  assert.match(await p.locator('.runner-bonus-intro').textContent(),/KNOWLEDGE UNLOCKED/);
+  if(exerciseBonus){
+   await click(p,'runner-start');
+   assert.equal(await p.locator('#runner-canvas').count(),1);
+   await click(p,'runner-jump');await p.waitForTimeout(350);await click(p,'runner-finish-now');
+   assert.equal(await p.locator('.runner-comparison').count(),1);
+   assert.match(await p.locator('.runner-reflection').textContent(),/not a financial literacy grade/i);
+   await click(p,'runner-continue');
+  }else await click(p,'runner-skip');
  }
  async function assertCharacterLessonPattern(p,id){
   assert.equal(await p.locator('.scripture-character-card .scripture-character').count(),1,`mission ${id} needs a character speaking scripture`);
@@ -95,6 +131,13 @@ const assert=require('node:assert/strict');
   assert.match((await p.locator('.scripture-bubble blockquote').textContent()).trim(),/^“\S[\s\S]+”$/);
   assert.match((await p.locator('.scripture-bubble cite').textContent()).trim(),/\(NIV\)$/);
   assert.match((await p.locator('.lesson-character-header .big-idea-description').textContent()).trim(),new RegExp(`^LESSON ${String(id).padStart(2,'0')} · BIG IDEA:`));
+  const languageColumns=await p.locator('.lesson-language-card').evaluate(element=>getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length);
+  assert.equal(languageColumns,1,`mission ${id} vocabulary must use the full-width lesson flow`);
+  const dialogue=p.locator('.character-dialogue');
+  if(await dialogue.count()){
+   const dialogueColumns=await dialogue.evaluate(element=>getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length);
+   assert.equal(dialogueColumns,1,`mission ${id} character dialogue must stack in the full-width lesson flow`);
+  }
  }
 
  const p=await student();
@@ -116,7 +159,7 @@ const assert=require('node:assert/strict');
  assert.deepEqual(moneyState(await state(p)),beforeHome);
  await p.screenshot({path:'/tmp/money-ops-new-world.png',fullPage:true});
 
- await begin(p,1);
+ await begin(p,1,true);
  await click(p,'job-time');
  await drag(p,'yard-gloves','jordan-gear');
  assert.deepEqual((await state(p)).active.yardPrep,['gloves']);
@@ -131,15 +174,13 @@ const assert=require('node:assert/strict');
  await tap(p,'leaf-2','leaf-bag');
  assert.equal((await state(p)).active.wallet.cash,60);
  assert.equal(await p.locator('.why').getAttribute('open'),null);
- await click(p,'finish-to-plan');
- const chainedMission=await state(p);
- assert.equal(chainedMission.active.id,2);
- assert.equal(chainedMission.active.step,'brief');
- await click(p,'next');
+ await finishLesson(p,'finish-to-plan',true);
+ assert.equal((await state(p)).completed.includes(1),true);
+ await begin(p,2);
  for(let i=0;i<3;i++)await drag(p,`stream-${i}`,'income-wallet');
- await click(p,'finish-to-save');
- assert.equal((await state(p)).active.id,3);
- await click(p,'next');
+ await finishLesson(p,'finish-to-save');
+ assert.equal((await state(p)).completed.includes(2),true);
+ await begin(p,3);
  assert.equal(await p.locator('[data-drag="earnings-bag"]').count(),1);
  assert.equal(await p.locator('.save-coin').count(),0);
  await drag(p,'earnings-bag','save');
@@ -168,7 +209,7 @@ const assert=require('node:assert/strict');
  assert.deepEqual(moneyState((await state(p)).active.wallet),repairBudget);
  await keyboardTap(p,'tool-2','car-bay');
  assert.equal((await state(p)).active.step,'debrief');
- await click(p,'finish');
+ await finishLesson(p);
  assert.equal((await state(p)).savings,330);
  assert.equal((await state(p)).debt,0);
 
@@ -178,7 +219,7 @@ const assert=require('node:assert/strict');
  assert.equal((await state(p)).active.workDone.length,0);
  assert.match(await p.locator('.task-feedback').textContent(),/matching/);
  for(let i=0;i<3;i++)await drag(p,`picture-${i}`,`slot-${i}`);
- await click(p,'finish');
+ await finishLesson(p);
  assert.equal((await state(p)).cash,0);
  assert.equal((await state(p)).xp,620);
  await begin(p,1);
@@ -188,7 +229,7 @@ const assert=require('node:assert/strict');
  await p.getByRole('button',{name:'Pick crayons'}).waitFor();
  await p.getByRole('button',{name:'Pick markers'}).waitFor();
  for(let i=0;i<3;i++){await drag(p,`art-${i}`,`canvas-${i}`);await traceLine(p);}
- await click(p,'finish');
+ await finishLesson(p);
  assert.equal((await state(p)).savings,330);
  await click(p,'tab-honors');
  assert.equal(await p.locator('.badge.earned').count(),4);
@@ -220,10 +261,10 @@ const assert=require('node:assert/strict');
  assert.ok(moneyOptions.every(box=>kaiBubble.x+kaiBubble.width<=box.x||box.x+box.width<=kaiBubble.x||kaiBubble.y+kaiBubble.height<=box.y||box.y+box.height<=kaiBubble.y),'Kai bubble must not cover a money option');
  for(const [i,target] of ['need-home','need-food','save-home','fun-home','fun-home'].entries())await tap(p,`map-${i}`,target);
  assert.equal((await state(p)).active.step,'debrief');
- await click(p,'finish');
+ await finishLesson(p);
  const bubbleCharacters=new Set();
  for(let id=5;id<=32;id++){
-  await click(p,`begin-${id}`);
+  await enterLesson(p,id);
   await assertCharacterLessonPattern(p,id);
   assert.equal(await p.locator('.direction-bubble').count(),1);
   bubbleCharacters.add(await p.locator('.lesson-character-header').getAttribute('data-character'));
@@ -243,13 +284,18 @@ const assert=require('node:assert/strict');
    assert.match(await p.locator('.final-rank').textContent(),/FINANCIALLY FREE/i);
    await p.screenshot({path:'/tmp/money-ops-finale.png',fullPage:true});
   }
-  await click(p,'finish');
+  await finishLesson(p);
  }
  assert.deepEqual([...bubbleCharacters],['jordan']);
  const complete=await state(p);
  assert.equal(complete.completed.length,32);
  assert.equal(complete.badges.includes('freedom'),true);
+ assert.equal(Object.keys(complete.runnerProgress).length,32);
+ assert.ok(Object.values(complete.runnerProgress).every(week=>week.pre.completed&&week.lessonStarted&&week.lessonCompleted&&week.post.completed));
  assert.equal(await p.locator('.campaign-complete').count(),1);
+ await click(p,'tab-teacher');
+ assert.equal(await p.locator('.teacher-week-table>div').count(),33);
+ assert.match(await p.locator('.teacher-view>p').first().textContent(),/not financial literacy grades/i);
  await click(p,'profile');
  await p.locator('#music-volume').fill('0.2');
  await p.locator('#sfx-volume').fill('0.5');
@@ -271,14 +317,11 @@ const assert=require('node:assert/strict');
  await click(q,'job-time');
  await tap(q,'yard-gloves','jordan-gear');await tap(q,'yard-bag','bag-spot');await tap(q,'yard-rake','jordan-gear');
  for(let i=0;i<3;i++)await tap(q,`leaf-${i}`,'leaf-bag');
- await click(q,'finish-to-plan');
- assert.equal((await state(q)).active.id,2);
- assert.equal((await state(q)).active.step,'brief');
- await click(q,'next');
+ await finishLesson(q,'finish-to-plan');
+ await begin(q,2);
  for(let i=0;i<3;i++)await touchDrag(q,`stream-${i}`,'income-wallet');
- await click(q,'finish-to-save');
- assert.equal((await state(q)).active.id,3);
- await click(q,'next');
+ await finishLesson(q,'finish-to-save');
+ await begin(q,3);
  await touchDrag(q,'earnings-bag','save');
  assert.equal((await state(q)).active.jobBanked,true);
  await moveNextCoin(q,touchDrag);
@@ -291,7 +334,7 @@ const assert=require('node:assert/strict');
  }
  await touchDrag(q,'tool-2','car-bay');
  assert.equal((await state(q)).active.step,'debrief');
- await click(q,'finish');
+ await finishLesson(q);
  assert.equal((await state(q)).debt,170);
  await click(q,'profile');
  assert.equal(await q.locator('#rename').count(),1);
@@ -309,6 +352,6 @@ const assert=require('node:assert/strict');
  assert.equal((await state(k)).active.step,'debrief');
 
  assert.deepEqual(errors,[]);
- console.log('PASS: all 32 rendered missions complete through the finale; opening activities work with mouse, tap, keyboard, and touch; reload, accounting, replay, audio controls, reset, reduced motion, and responsive layouts pass without console errors.');
+ console.log('PASS: the runner, all 32 pre/lesson/bonus flows, the finale, activities, persistence, accounting, controls, teacher view, reduced motion, and responsive layouts pass without console errors.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});

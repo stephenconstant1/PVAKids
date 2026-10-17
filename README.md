@@ -1,6 +1,6 @@
 # Financial Freedom: Money Ops
 
-Money Ops is a complete, static 32-mission financial education campaign for grades 6–8. One persistent financial profile carries the player's cash, savings, investments, assets, income, expenses, credit, debt, giving, XP, rank, achievements, and mission medals from Week 1 through the finale.
+Money Ops is a complete, static 32-mission financial education campaign with an integrated Financial Runner. One persistent profile carries the player's lesson progress, financial simulation, runner participation, arcade coins, arcade XP, achievements, and selected character from Week 1 through the finale.
 
 ## Run
 
@@ -13,6 +13,8 @@ npm start
 Open `http://127.0.0.1:8080`. There is no application install, backend, account, or build step. Progress is stored in local storage on the current browser origin.
 
 Run the complete state and calculation suite with `npm test`.
+
+Each new lesson opens with an optional pre-lesson runner of up to 60 seconds. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Arcade rewards are stored separately from simulated net worth.
 
 The optional Playwright regression requires Playwright outside this repository and a system Chromium:
 
@@ -44,9 +46,13 @@ All companies, markets, returns, life events, properties, and prices are fiction
 - `src/simulators.js`: interest, budget, tax, debt, portfolio, business, inflation, and property calculations
 - `src/persistence.js`: versioned local save and migration
 - `src/play.js`: illustrated activities, shared mission renderer, visual simulators, and campaign route
+- `src/runner-config.js`: distinct hazards, rewards, environments, and power-ups for all 32 lessons
+- `src/runner.js`: Canvas physics, rendering, controls, collisions, timer, scoring, and animation states
+- `src/runner-state.js`: saved pre-run, lesson, bonus-run, comparison, and arcade progression
 - `src/app.js`: navigation, HUD, accessibility, settings, and interaction controller
 - `src/audio.js`: original synthesized music and sound effects with mute and volume controls
 - `src/teacher.js`: modular student, mission, classroom, JSON, and CSV summary adapters
 - `tests/`: full campaign, accounting, persistence, calculations, activities, classroom export, and browser regression
+- `RUNNER_ASSETS.md`: current original artwork coverage and procedural placeholder inventory
 
 Week 1 follows the supplied **Earning & Creating Value** terminology, including **Your Time, Your Skills, Your Ideas** and **You provide value → someone provides money**. Week 10 preserves the supplied **50/30/20 Rule**, **SMART** goal terminology, and Proverbs 21:5 principle. Unsupplied poster text is not represented as a verbatim poster quotation.

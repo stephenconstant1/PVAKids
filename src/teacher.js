@@ -28,6 +28,8 @@ function effectSummary(decisions=[]){
 export function studentSummary(profile={}){
  const wallet=finances(profile),completed=completedIds(profile),xp=number(profile.xp);
  const next=missions.find(mission=>!completed.includes(mission.id));
+ const runner=profile.runnerProgress&&typeof profile.runnerProgress==='object'?profile.runnerProgress:{};
+ const runnerWeeks=Object.values(runner);
  return {
   studentId:text(profile.studentId??profile.id),
   studentName:text(profile.name)||'Strategist',
@@ -40,6 +42,10 @@ export function studentSummary(profile={}){
   nextMissionId:next?.id??null,
   nextMissionTitle:next?.title??'',
   badgeCount:Array.isArray(profile.badges)?new Set(profile.badges).size:0,
+  preRunsCompleted:runnerWeeks.filter(week=>week?.pre?.completed&&!week.pre.skipped).length,
+  bonusRunsCompleted:runnerWeeks.filter(week=>week?.post?.completed&&!week.post.skipped).length,
+  arcadeXp:number(profile.arcadeXp),
+  arcadeCoins:number(profile.arcadeCoins),
   cash:wallet.cash+wallet.checking,
   savings:wallet.savings+wallet.emergencyFund,
   investments:wallet.investments+wallet.stocks+wallet.etfs,
@@ -56,12 +62,17 @@ export function missionOutcomeRecords(profile={}){
   const outcome=history.find(item=>item?.mission===missionId&&!item.practice)
    ??history.find(item=>item?.mission===missionId)??{};
   const decisions=Array.isArray(profile.decisions?.[missionId])?profile.decisions[missionId]:[];
+  const runner=profile.runnerProgress?.[missionId]||{};
   return {
    studentId:student.studentId,
    studentName:student.studentName,
    missionId,
    missionTitle:mission?.title??text(outcome.title),
    status:'completed',
+   preRunCompleted:Boolean(runner.pre?.completed&&!runner.pre?.skipped),
+   bonusRunCompleted:Boolean(runner.post?.completed&&!runner.post?.skipped),
+   preRunScore:number(runner.pre?.score),
+   bonusRunScore:number(runner.post?.score),
    medal:text(profile.missionMedals?.[missionId]),
    practice:Boolean(outcome.practice),
    choice:text(outcome.choice),
@@ -84,6 +95,9 @@ export function classroomSummary(profiles=[]){
   missionCompletions:students.reduce((sum,item)=>sum+item.missionsCompleted,0),
   averageCompletionPercent:average('completionPercent'),
   averageXp:average('xp'),
+  preRunParticipations:students.reduce((sum,item)=>sum+item.preRunsCompleted,0),
+  bonusRunParticipations:students.reduce((sum,item)=>sum+item.bonusRunsCompleted,0),
+  totalArcadeXp:students.reduce((sum,item)=>sum+item.arcadeXp,0),
   averageNetWorth:average('netWorth'),
   financiallyFreeStudents:students.filter(item=>item.rank==='Financially Free').length,
   students
