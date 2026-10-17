@@ -1,4 +1,5 @@
 import {missions} from './content.js';
+import {lessonVocabulary} from './runner-vocabulary.js';
 
 export const runnerEnvironments={
  school:{name:'Financial Freedom School',sky:'#79c9e8',far:'#cfe9d6',near:'#4d8c69',ground:'#294f45',accent:'#ffe071'},
@@ -55,15 +56,15 @@ const reflections={
 };
 
 export const runnerLessons=rows.map(([id,environment,hazards,rewards,power])=>{
- const mission=missions[id-1],effect=power[1];
+ const mission=missions[id-1],effect=power[1],vocabulary=lessonVocabulary(id),definitionFor=label=>vocabulary.find(item=>item.term.toLowerCase()===label.toLowerCase())?.definition||`Connect this runner word to ${mission.title}.`;
  return {
-  lessonId:id,title:mission.title,environment,
-  obstacleSet:hazards.map((label,index)=>({id:`w${id}-hazard-${index+1}`,label,icon:icons[(id+index)%icons.length],behavior:behaviors[(id+index)%behaviors.length],art:{hue:(id*47+index*131)%360,pattern:(id+index)%6,variant:(id*3+index)%9}})),
-  collectibleSet:rewards.map((label,index)=>({id:`w${id}-reward-${index+1}`,label,icon:rewardIcons[index],kind:index===0?'dollar':index===1?'gold':'lesson',value:index===0?1:index===1?5:10})),
-  powerUp:{id:`w${id}-power`,name:power[0],effect,icon:effect==='shield'?'◇':effect==='magnet'?'◎':effect==='multiplier'?'×2':effect==='dash'?'↠':effect==='slow'?'◷':effect==='warning'?'!':effect==='clear'?'✦':effect==='income'?'$+':'★'},
+  lessonId:id,title:mission.title,environment,vocabulary,
+  obstacleSet:hazards.map((label,index)=>({id:`w${id}-hazard-${index+1}`,label,definition:definitionFor(label),icon:icons[(id+index)%icons.length],behavior:behaviors[(id+index)%behaviors.length],art:{hue:(id*47+index*131)%360,pattern:(id+index)%6,variant:(id*3+index)%9}})),
+  collectibleSet:rewards.map((label,index)=>({id:`w${id}-reward-${index+1}`,label,definition:definitionFor(label),icon:rewardIcons[index],kind:index===0?'dollar':index===1?'gold':'lesson',value:index===0?1:index===1?5:10})),
+  powerUp:{id:`w${id}-power`,name:power[0],label:power[0],definition:definitionFor(power[0]),effect,icon:effect==='shield'?'◇':effect==='magnet'?'◎':effect==='multiplier'?'×2':effect==='dash'?'↠':effect==='slow'?'◷':effect==='warning'?'!':effect==='clear'?'✦':effect==='income'?'$+':'★'},
   reflection:reflections[effect],
-  pre:{targetCoins:20,maxLives:3,difficulty:1},
-  post:{targetCoins:20,maxLives:3,difficulty:1.08}
+  pre:{targetCoins:100,maxLives:3,difficulty:1},
+  post:{targetCoins:100,maxLives:3,difficulty:1.08}
  };
 });
 

@@ -30,12 +30,13 @@ test('three financial hazard collisions consume three lives and end the run',()=
  assert.equal(game.result.completed,true);
 });
 
-test('the run ends when the player collects the 20th reward',()=>{
+test('the run ends when the player collects the 100th reward',()=>{
  const game=harness(1,'pre');game.runner.running=true;game.runner.startedAt=Date.now();
- for(let count=0;count<20;count++)game.runner.collect({value:1,kind:'dollar',x:200,y:100,done:false});
+ for(let count=0;count<100;count++)game.runner.collect({label:'Paycheck',definition:'Money earned for work.',value:1,kind:'dollar',x:200,y:100,done:false});
  assert.equal(game.result.reason,'goal');
- assert.equal(game.result.collected,20);
- assert.equal(game.runner.config.targetCoins,20);
+ assert.equal(game.result.collected,100);
+ assert.equal(game.runner.config.targetCoins,100);
+ assert.ok(game.result.vocabularySeen.includes('time'));
 });
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
@@ -43,11 +44,11 @@ test('the selected character art is loaded and the kid-friendly pace accelerates
  assert.match(game.image._src,/assets\/runner\/maya-right\.png$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
- assert.equal(game.speed,165);
+ assert.equal(game.speed,155);
  game.distance=900;
  game.update(.01,1);
  assert.ok(game.speed<300,'the early run should remain approachable');
- game.collected=16;game.update(.01,2);
+ game.collected=80;game.update(.01,2);
  assert.ok(game.speed>300,'collecting rewards should increase the pace');
 });
 
@@ -63,6 +64,17 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
  assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png$/);
+});
+
+test('runner events publish lesson vocabulary for the side stream',()=>{
+ const game=harness(10,'pre').runner;game.running=true;game.startedAt=Date.now();
+ game.collect({...game.config.collectibleSet[0],x:200,y:100,done:false});
+ assert.equal(game.vocabEvent.action,'COLLECTED');
+ assert.equal(game.vocabEvent.term,game.config.vocabulary[0].term);
+ assert.ok(game.vocabEvent.definition.length>20);
+ game.rememberVocabulary(game.config.obstacleSet[0],'CLEARED');
+ assert.equal(game.vocabEvent.object,game.config.obstacleSet[0].label);
+ assert.equal(game.vocabEvent.term,game.config.vocabulary[1].term);
 });
 
 test('keyboard and touch-facing controls trigger jump, duck, and pause states',()=>{

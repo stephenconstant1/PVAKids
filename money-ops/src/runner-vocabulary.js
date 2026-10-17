@@ -1,0 +1,110 @@
+import {curriculumLanguage} from './curriculum-language.js';
+
+const definitions={
+ 'time':'Hours and effort you can use to create value.',
+ 'skills':'Abilities you learn and improve through practice.',
+ 'ideas':'Thoughts that can become solutions, products, or services.',
+ 'products':'Things a business creates for customers to buy or use.',
+ 'services':'Useful work performed for another person or organization.',
+ 'employee':'A person who works for an organization and earns pay.',
+ 'self-employed':'Earning income by working for your own customers.',
+ 'business owner':'A person who builds and operates a business.',
+ 'creator':'A person who makes useful or enjoyable work for an audience.',
+ 'earned income':'Money received for doing work.',
+ 'business income':'Money a business earns from selling products or services.',
+ 'freelance income':'Money earned by completing independent work for clients.',
+ 'investment income':'Money produced by investments, such as interest or dividends.',
+ 'rental income':'Money received for allowing someone to use property.',
+ 'creative income':'Money earned from original art, media, writing, or designs.',
+ 'passive income':'Income that may continue with less day-to-day work after it is built.',
+ 'save first → spend second':'Set money aside for savings before choosing what to spend.',
+ 'emergency savings':'Money reserved for unexpected necessary costs.',
+ 'short-term goals':'Money goals planned for the near future.',
+ 'long-term goals':'Money goals that may take years to reach.',
+ 'needs':'Things required for health, safety, or daily living.',
+ 'wants':'Things that are enjoyable but are not required.',
+ 'budgeting':'Making a plan for how money will be used.',
+ 'budget':'A plan that gives income a job across spending, saving, and goals.',
+ 'needs vs. wants':'Comparing required expenses with optional purchases.',
+ 'smart spending':'Using money in ways that support your needs and goals.',
+ 'financial tradeoffs':'Giving up one use of money so it can support another priority.',
+ '50/30/20':'A guide that divides money among needs, wants, and savings or goals.',
+ 'stocks':'Small ownership pieces of a company.',
+ 'bonds':'Loans investors make to a government or organization for interest.',
+ 'real estate':'Land and buildings that can be owned, used, or rented.',
+ 'etfs':'Funds traded like stocks that can hold many investments together.',
+ 'mutual funds':'Pooled investments managed for a group of investors.',
+ 'diversify':'Spread money across investments so one loss has less impact.',
+ 'diversification':'Owning different investments to manage concentration risk.',
+ 'risk':'The possibility that an outcome may be different or worse than expected.',
+ 'reward':'The possible benefit received for taking a thoughtful risk.',
+ 'credit':'The ability to borrow money and repay it later.',
+ 'loan':'Money borrowed with an agreement to repay it.',
+ 'apr':'The yearly cost of borrowing, including interest.',
+ 'principal':'The original amount saved, invested, or borrowed.',
+ 'interest':'Money paid for borrowing or earned for saving and investing.',
+ 'compound interest':'Growth earned on the starting money and earlier growth.',
+ 'portfolio':'A collection of investments owned by one person or organization.',
+ 'asset allocation':'How a portfolio is divided among different investment types.',
+ 'share':'One unit of ownership in a company.',
+ 'ownership':'Having a financial claim on part of an asset or company.',
+ 'dividend':'Part of a company’s profit paid to eligible shareholders.',
+ 'revenue':'All money a business receives before expenses are subtracted.',
+ 'expenses':'Money spent to operate, produce, or provide something.',
+ 'profit':'Money remaining after expenses are subtracted from revenue.',
+ 'supply':'How much of a product or service is available.',
+ 'demand':'How much buyers want and can purchase.',
+ 'scarcity':'A situation where available resources cannot meet every want.',
+ 'inflation':'A broad rise in prices over time.',
+ 'purchasing power':'How much a specific amount of money can buy.',
+ 'deposit':'Money placed into a bank or financial account.',
+ 'deposits':'Money placed into bank or financial accounts.',
+ 'payment history':'A record of whether borrowed payments were made on time.',
+ 'credit usage':'The share of available revolving credit currently being used.',
+ 'minimum payments':'The smallest required debt payment for a billing period.',
+ 'debt snowball':'Paying the smallest debt first while maintaining other payments.',
+ 'debt avalanche':'Paying the highest-interest debt first while maintaining other payments.',
+ 'insurance':'Protection that helps cover specified financial losses.',
+ 'insured':'Protected by an active insurance policy.',
+ 'uninsured':'Without insurance protection for a particular risk.',
+ 'gross pay':'Pay earned before taxes and deductions are removed.',
+ 'net pay':'Pay remaining after taxes and deductions.',
+ 'deductions':'Amounts removed from gross pay for taxes, benefits, or other purposes.',
+ 'w-2':'A form reporting wages and taxes withheld from an employee.',
+ '1099':'A form that can report nonemployee or other types of income.',
+ 'customer':'A person or organization that buys or uses a product or service.',
+ 'solution':'A product, service, or action that addresses a problem.',
+ 'startup cost':'Money needed to begin a business.',
+ 'price':'The amount charged for a product or service.',
+ 'fixed expenses':'Costs that usually stay similar when sales change.',
+ 'variable expenses':'Costs that change as production or sales change.',
+ 'target customer':'The specific group a business aims to serve.',
+ 'brand':'The identity and expectations people connect with a business.',
+ 'mortgage':'A loan commonly used to buy real estate.',
+ 'down payment':'Money paid upfront toward a purchase.',
+ 'equity':'The value owned after related debt is subtracted.',
+ 'cash flow':'Money moving in and out over a period of time.',
+ 'appreciation':'An increase in an asset’s value over time.',
+ 'certifications':'Credentials showing that specific knowledge or skills were demonstrated.',
+ 'earning potential':'The amount of income a person may be able to earn.',
+ 'generosity':'Choosing to share time, resources, or money with others.',
+ 'community impact':'The effect an action has on people in a community.',
+ 'financial goal':'A specific money result a person plans to reach.',
+ 'emergency fund':'Savings reserved for unexpected essential expenses.'
+};
+
+function definitionFor(term,lesson){
+ const key=term.toLowerCase();
+ if(definitions[key])return definitions[key];
+ if(key.includes('profit = revenue'))return 'Profit equals revenue minus every business expense.';
+ if(key.includes('gross pay'))return 'Take-home pay is gross pay after taxes and deductions.';
+ if(key.includes('problem →'))return 'A business connects a customer problem to a useful solution that can earn revenue and profit.';
+ if(key.includes('50/30/20'))return definitions['50/30/20'];
+ return `A key idea in ${lesson.title}: ${lesson.coreIdea}`;
+}
+
+export function lessonVocabulary(lessonId){
+ const lesson=curriculumLanguage[Number(lessonId)];
+ if(!lesson)return [];
+ return lesson.terms.map(term=>({term,definition:definitionFor(term,lesson)}));
+}

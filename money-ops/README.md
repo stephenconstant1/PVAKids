@@ -41,7 +41,7 @@ The final mission reports income, savings, investments, business value, property
 
 All companies, markets, returns, life events, properties, and prices are fictional simulations. Investment results are never presented as guaranteed.
 
-The Financial Runner now clears each level when the student collects 20 rewards. It starts at an approachable pace and speeds up every four rewards. Money Boxes release separate bonus game dollars during post-lesson runs; students can place those dollars in saved, invested, or budgeted buckets, or buy Jump Boots, a Coin Magnet, and Penny the original Money Dragon companion. These game dollars never change the financial simulation's net worth.
+The Financial Runner clears each level when the student collects 100 rewards. It starts at an approachable pace and rises through five speed stages, one every 20 rewards. Larger labeled hazards make each obstacle readable. A separate live vocabulary stream reinforces the canonical terms for the current lesson without covering the playfield, and the results screen reviews every vocabulary word with a short definition. All 32 lesson configurations use their own curriculum vocabulary. Money Boxes release separate bonus game dollars during post-lesson runs; students can place those dollars in saved, invested, or budgeted buckets, or buy Jump Boots, a Coin Magnet, and Penny the original Money Dragon companion. These game dollars never change the financial simulation's net worth.
 
 All six students have dedicated right-facing runner artwork. Their eyes, faces, bodies, and running poses point toward incoming obstacles while their original front-facing portraits remain in lessons and selection screens.
 

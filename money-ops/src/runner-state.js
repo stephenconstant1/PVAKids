@@ -1,6 +1,6 @@
 import {runnerConfig} from './runner-config.js';
 
-const zeroResult=()=>({completed:false,skipped:false,score:0,coins:0,collected:0,bonusMoney:0,xp:0,distance:0,avoided:0,survivalSeconds:0,powerUpsUsed:0});
+const zeroResult=()=>({completed:false,skipped:false,score:0,coins:0,collected:0,bonusMoney:0,xp:0,distance:0,avoided:0,survivalSeconds:0,powerUpsUsed:0,vocabularySeen:[]});
 
 export function runnerProgress(profile,lessonId){
  const saved=profile?.runnerProgress?.[lessonId]||{};
@@ -25,7 +25,7 @@ export function markLessonCompleted(profile,lessonId){
 
 export function recordRunnerResult(profile,lessonId,phase,result={}){
  runnerConfig(lessonId,phase);
- const progress=runnerProgress(profile,lessonId),clean={...zeroResult(),...result,completed:true,score:Math.max(0,Math.round(Number(result.score)||0)),coins:Math.max(0,Math.round(Number(result.coins)||0)),collected:Math.max(0,Math.round(Number(result.collected)||0)),bonusMoney:Math.max(0,Math.round(Number(result.bonusMoney)||0)),xp:Math.max(0,Math.round(Number(result.xp)||0)),distance:Math.max(0,Math.round(Number(result.distance)||0)),avoided:Math.max(0,Math.round(Number(result.avoided)||0)),survivalSeconds:Math.max(0,Math.round(Number(result.survivalSeconds)||0)),powerUpsUsed:Math.max(0,Math.round(Number(result.powerUpsUsed)||0))};
+ const progress=runnerProgress(profile,lessonId),clean={...zeroResult(),...result,completed:true,score:Math.max(0,Math.round(Number(result.score)||0)),coins:Math.max(0,Math.round(Number(result.coins)||0)),collected:Math.max(0,Math.round(Number(result.collected)||0)),bonusMoney:Math.max(0,Math.round(Number(result.bonusMoney)||0)),xp:Math.max(0,Math.round(Number(result.xp)||0)),distance:Math.max(0,Math.round(Number(result.distance)||0)),avoided:Math.max(0,Math.round(Number(result.avoided)||0)),survivalSeconds:Math.max(0,Math.round(Number(result.survivalSeconds)||0)),powerUpsUsed:Math.max(0,Math.round(Number(result.powerUpsUsed)||0)),vocabularySeen:[...new Set((Array.isArray(result.vocabularySeen)?result.vocabularySeen:[]).map(String))].slice(0,40)};
  const next={...progress,[phase]:clean,bestScore:Math.max(progress.bestScore,clean.score),characterId:result.characterId||profile.avatar};
  const achievement=clean.score>=1000?`runner-${lessonId}-1000`:clean.avoided>=10?`runner-${lessonId}-dodger`:null;
  const achievements=[...new Set([...(profile.arcadeAchievements||[]),...(achievement?[achievement]:[])])];
