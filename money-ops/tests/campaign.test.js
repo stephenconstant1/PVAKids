@@ -5,9 +5,14 @@ import {curriculum,missions} from '../src/content.js';
 import {curriculumLanguage} from '../src/curriculum-language.js';
 import {financialFields,validFinances} from '../src/finance.js';
 import {load,save} from '../src/persistence.js';
+import {characters,castIds} from '../src/characters.js';
 
 const advancedFields=['location','brief','concepts','dialogue','decision','event','takeaway'];
 const cast=new Set(['maya','jordan','sofia','kai']);
+
+test('the student cast uses the approved character names',()=>{
+ assert.deepEqual(castIds.map(id=>characters[id].name),['Canyon','Maya','Everest','Sofia','Zion','Ruby']);
+});
 
 function atChoice(profile,id){
  const started=begin(profile,id);

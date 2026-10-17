@@ -1,9 +1,9 @@
 export const characters={
  maya:{name:'Maya',role:'careful planner',image:'maya.png'},
- jordan:{name:'Jordan',role:'entrepreneur',image:'jordan.png'},
+ jordan:{name:'Canyon',role:'entrepreneur',image:'jordan.png'},
  sofia:{name:'Sofia',role:'creative problem-solver',image:'sofia.png'},
- kai:{name:'Kai',role:'analytical investor',image:'kai.png'},
- eli:{name:'Eli',role:'technology builder',image:'eli.png'},
+ kai:{name:'Everest',role:'analytical investor',image:'kai.png'},
+ eli:{name:'Zion',role:'technology builder',image:'eli.png'},
  ruby:{name:'Ruby',role:'goal coach',image:'ruby.png'}
 };
 
