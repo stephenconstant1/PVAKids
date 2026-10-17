@@ -41,6 +41,10 @@ The final mission reports income, savings, investments, business value, property
 
 All companies, markets, returns, life events, properties, and prices are fictional simulations. Investment results are never presented as guaranteed.
 
+The Financial Runner now clears each level when the student collects 20 rewards. It starts at an approachable pace and speeds up every four rewards. Money Boxes release separate bonus game dollars during post-lesson runs; students can place those dollars in saved, invested, or budgeted buckets, or buy Jump Boots, a Coin Magnet, and Penny the original Money Dragon companion. These game dollars never change the financial simulation's net worth.
+
+Lesson characters serve as static guides in contained header frames. Students perform the activities themselves through tracing, choosing, circling, crossing out, tapping, and drag-and-drop interactions. When debts exceed assets, the interface labels the amount “Debt above assets” and explains it instead of showing an unexplained negative net-worth number.
+
 ## Architecture
 
 - `src/content.js` and `src/missions-*.js`: 32-week curriculum and data-driven mission schemas
@@ -51,7 +55,7 @@ All companies, markets, returns, life events, properties, and prices are fiction
 - `src/persistence.js`: versioned local save and migration
 - `src/play.js`: illustrated activities, shared mission renderer, visual simulators, and campaign route
 - `src/runner-config.js`: distinct hazards, rewards, environments, and power-ups for all 32 lessons
-- `src/runner.js`: Canvas physics, rendering, controls, collisions, timer, scoring, and animation states
+- `src/runner.js`: Canvas physics, rendering, controls, collisions, 20-coin goal, scoring, and animation states
 - `src/runner-state.js`: saved pre-run, lesson, bonus-run, comparison, and arcade progression
 - `src/app.js`: navigation, HUD, accessibility, settings, and interaction controller
 - `src/audio.js`: original synthesized music and sound effects with mute and volume controls

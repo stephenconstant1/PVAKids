@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {FinancialRunner} from '../src/runner.js';
 import {runnerConfig} from '../src/runner-config.js';
 
-function harness(lessonId=21,phase='pre'){
+function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
  globalThis.matchMedia=()=>({matches:false});
  globalThis.Image=class{constructor(){this.complete=true;this.naturalWidth=400;}set src(value){this._src=value;}};
@@ -13,7 +13,7 @@ function harness(lessonId=21,phase='pre'){
  const ctx=new Proxy({measureText:text=>({width:String(text).length*5})},{get(target,key){return key in target?target[key]:noop;},set(target,key,value){target[key]=value;return true;}});
  const canvas={style:{},getContext:()=>ctx,addEventListener:(name,fn)=>listeners.set(`c-${name}`,fn)};
  let result=null,updates=[];
- const runner=new FinancialRunner(canvas,runnerConfig(lessonId,phase),{onComplete:value=>{result=value;},onUpdate:value=>updates.push(value)});
+ const runner=new FinancialRunner(canvas,runnerConfig(lessonId,phase),{...options,onComplete:value=>{result=value;},onUpdate:value=>updates.push(value)});
  return {runner,listeners,get result(){return result;},updates};
 }
 
@@ -25,12 +25,12 @@ test('three financial hazard collisions consume three lives and end the run',()=
  assert.equal(game.result.completed,true);
 });
 
-test('the strict 90-second maximum expires even when a run is paused',()=>{
- const game=harness(1,'pre');game.runner.paused=true;game.runner.start(Date.now()-91_000);
- assert.equal(game.result.reason,'timer');
- assert.ok(game.result.survivalSeconds<=90);
- const bonus=harness(1,'post');
- assert.equal(bonus.runner.config.durationSeconds,180);
+test('the run ends when the player collects the 20th reward',()=>{
+ const game=harness(1,'pre');game.runner.running=true;game.runner.startedAt=Date.now();
+ for(let count=0;count<20;count++)game.runner.collect({value:1,kind:'dollar',x:200,y:100,done:false});
+ assert.equal(game.result.reason,'goal');
+ assert.equal(game.result.collected,20);
+ assert.equal(game.runner.config.targetCoins,20);
 });
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
@@ -38,10 +38,26 @@ test('the selected character art is loaded and the kid-friendly pace accelerates
  assert.match(game.image._src,/assets\/cast\/maya\.png$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
- assert.equal(game.speed,220);
+ assert.equal(game.speed,165);
  game.distance=900;
  game.update(.01,1);
  assert.ok(game.speed<300,'the early run should remain approachable');
+ game.collected=16;game.update(.01,2);
+ assert.ok(game.speed>300,'collecting rewards should increase the pace');
+});
+
+test('Money Boxes add bonus dollars and owned items change play',()=>{
+ const game=harness(4,'post',{characterId:'ruby',ownedItems:['boots','magnet','companion']});
+ game.runner.running=true;game.runner.startedAt=Date.now();
+ game.runner.openMoneyBox({x:240,y:100,done:false});
+ assert.equal(game.runner.bonusMoney,5);
+ assert.equal(game.runner.player.vy,120);
+ game.runner.player.grounded=true;game.runner.jump();
+ assert.equal(game.runner.player.vy,-720,'jump boots increase jump height');
+ assert.equal(game.runner.companionShield,true);
+ game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
+ assert.equal(game.runner.lives,3,'the original companion blocks one collision');
+ assert.match(game.runner.image._src,/assets\/cast\/ruby\.png$/);
 });
 
 test('keyboard and touch-facing controls trigger jump, duck, and pause states',()=>{

@@ -17,8 +17,8 @@ test('all 32 lessons have distinct runner hazards, rewards, and complete stage c
   assert.ok(lesson.obstacleSet.every(hazard=>hazard.art&&Number.isFinite(hazard.art.hue)),`week ${lesson.lessonId} needs distinct hazard art`);
   assert.ok(lesson.collectibleSet.length>=3,`week ${lesson.lessonId} needs rewards`);
   assert.ok(lesson.powerUp.name&&lesson.powerUp.effect,`week ${lesson.lessonId} needs a power-up`);
-  assert.equal(runnerConfig(lesson.lessonId,'pre').durationSeconds,90);
-  assert.equal(runnerConfig(lesson.lessonId,'post').durationSeconds,180);
+  assert.equal(runnerConfig(lesson.lessonId,'pre').targetCoins,20);
+  assert.equal(runnerConfig(lesson.lessonId,'post').targetCoins,20);
   assert.equal(lesson.pre.maxLives,3);
   assert.equal(lesson.post.maxLives,3);
  }
@@ -36,12 +36,14 @@ test('runner progression saves pre, lesson, and bonus stages without changing fi
  profile=markLessonStarted(profile,1);
  profile=markLessonCompleted(profile,1);
  profile=openRunner(profile,1,'post');
- profile=recordRunnerResult(profile,1,'post',{score:410,coins:12,xp:55,distance:160,avoided:8,survivalSeconds:25,powerUpsUsed:2});
+ profile=recordRunnerResult(profile,1,'post',{score:410,coins:12,collected:20,bonusMoney:10,xp:55,distance:160,avoided:8,survivalSeconds:25,powerUpsUsed:2,characterId:'jordan'});
  const comparison=runnerComparison(profile,1);
  assert.equal(comparison.scoreChange,190);
  assert.equal(comparison.bestScore,410);
  assert.equal(comparison.longestSurvival,25);
  assert.equal(profile.arcadeCoins,19);
+ assert.equal(profile.bonusWallet.available,10);
+ assert.equal(runnerProgress(profile,1).characterId,'jordan');
  assert.equal(netWorth(profile),worth);
 });
 

@@ -62,8 +62,8 @@ export const runnerLessons=rows.map(([id,environment,hazards,rewards,power])=>{
   collectibleSet:rewards.map((label,index)=>({id:`w${id}-reward-${index+1}`,label,icon:rewardIcons[index],kind:index===0?'dollar':index===1?'gold':'lesson',value:index===0?1:index===1?5:10})),
   powerUp:{id:`w${id}-power`,name:power[0],effect,icon:effect==='shield'?'◇':effect==='magnet'?'◎':effect==='multiplier'?'×2':effect==='dash'?'↠':effect==='slow'?'◷':effect==='warning'?'!':effect==='clear'?'✦':effect==='income'?'$+':'★'},
   reflection:reflections[effect],
-  pre:{durationSeconds:90,maxLives:3,difficulty:1},
-  post:{durationSeconds:180,maxLives:3,difficulty:1.15}
+  pre:{targetCoins:20,maxLives:3,difficulty:1},
+  post:{targetCoins:20,maxLives:3,difficulty:1.08}
  };
 });
 
@@ -71,5 +71,5 @@ export function runnerConfig(lessonId,phase='pre'){
  const lesson=runnerLessons.find(item=>item.lessonId===Number(lessonId));
  if(!lesson)throw Error('Unknown runner lesson');
  const stage=phase==='post'?lesson.post:lesson.pre;
- return {...lesson,phase,durationSeconds:stage.durationSeconds,maxLives:stage.maxLives,difficulty:stage.difficulty,environmentData:runnerEnvironments[lesson.environment]};
+ return {...lesson,phase,targetCoins:stage.targetCoins,maxLives:stage.maxLives,difficulty:stage.difficulty,environmentData:runnerEnvironments[lesson.environment]};
 }
