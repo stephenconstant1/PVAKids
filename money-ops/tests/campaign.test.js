@@ -11,7 +11,7 @@ const advancedFields=['location','brief','concepts','dialogue','decision','event
 const cast=new Set(['maya','jordan','sofia','kai']);
 
 test('the student cast uses the approved character names',()=>{
- assert.deepEqual(castIds.map(id=>characters[id].name),['Canyon','Maya','Everest','Sofia','Zion','Ruby']);
+ assert.deepEqual(castIds.map(id=>characters[id].name),['Kanyon','Maya','Everest','Sofia','Zion','Ruby']);
 });
 
 function atChoice(profile,id){
