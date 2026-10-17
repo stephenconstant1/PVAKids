@@ -22,6 +22,7 @@ function migrate(p){
   p.missionMedals||={};p.decisions||={};p.portfolio||={};p.business||={};p.goal||={};
   p.musicVolume??=.35;p.sfxVolume??=.7;p.version=4;
  }
+ if(p.version===4){p.city??={bank:0,lifetimeCoins:0,upgrades:{},lastBuild:null,notice:''};p.version=5;}
  p.playerStyle||={accent:'#d9f577',emblem:'◈'};
  return p;
 }
@@ -29,7 +30,7 @@ function migrate(p){
 export function load(){try{
  const raw=localStorage.getItem(key);if(!raw)return null;
  const p=migrate(JSON.parse(raw)),ids=new Set(Array.from({length:32},(_,i)=>i+1));
- if(p.version!==4||typeof p.name!=='string'||!p.name.trim()||typeof p.avatar!=='string'||!validFinances(p)||!Number.isFinite(p.xp)||p.xp<0||!Array.isArray(p.completed)||p.completed.some(id=>!ids.has(id))||new Set(p.completed).size!==p.completed.length||!Array.isArray(p.badges)||!Array.isArray(p.history)||!p.snapshots||p.completed.some(id=>!validFinances(p.snapshots[id])))throw Error('Invalid save');
+ if(p.version!==5||typeof p.name!=='string'||!p.name.trim()||typeof p.avatar!=='string'||!validFinances(p)||!Number.isFinite(p.xp)||p.xp<0||!Array.isArray(p.completed)||p.completed.some(id=>!ids.has(id))||new Set(p.completed).size!==p.completed.length||!Array.isArray(p.badges)||!Array.isArray(p.history)||!p.snapshots||p.completed.some(id=>!validFinances(p.snapshots[id])))throw Error('Invalid save');
  const a=p.active;
  if(a&&(!ids.has(a.id)||!['brief','learn','choice','event','debrief'].includes(a.step)||!validFinances(a.wallet)||!validFinances(a.start)||(a.step==='event'&&(!a.choice||!a.event))||(a.step==='debrief'&&(!a.result||!a.choice))))throw Error('Invalid mission');
  return {...newGame(),...p,...normalizeFinances(p)};

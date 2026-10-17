@@ -45,6 +45,7 @@ test('runner progression saves pre, lesson, and bonus stages without changing fi
  assert.equal(comparison.longestSurvival,25);
  assert.equal(profile.arcadeCoins,19);
  assert.equal(profile.bonusWallet.available,10);
+ assert.equal(profile.city.bank,100);
  assert.equal(runnerProgress(profile,1).characterId,'jordan');
  assert.deepEqual(runnerProgress(profile,1).post.vocabularySeen,['time','skills']);
  assert.equal(netWorth(profile),worth);

@@ -1,4 +1,5 @@
 import {runnerConfig} from './runner-config.js';
+import {depositCityCoins} from './city.js';
 
 const zeroResult=()=>({completed:false,skipped:false,score:0,coins:0,collected:0,bonusMoney:0,xp:0,distance:0,avoided:0,survivalSeconds:0,powerUpsUsed:0,vocabularySeen:[]});
 
@@ -30,7 +31,8 @@ export function recordRunnerResult(profile,lessonId,phase,result={}){
  const achievement=clean.score>=1000?`runner-${lessonId}-1000`:clean.avoided>=10?`runner-${lessonId}-dodger`:null;
  const achievements=[...new Set([...(profile.arcadeAchievements||[]),...(achievement?[achievement]:[])])];
  const bonusWallet=profile.bonusWallet||{available:0,saved:0,invested:0,budgeted:0,items:[]},careerBonus=profile.mode==='career'&&phase==='post'?clean.bonusMoney:0;
- return {...profile,bonusWallet:{...bonusWallet,available:(bonusWallet.available||0)+careerBonus,items:bonusWallet.items||[]},arcadeCoins:(profile.arcadeCoins||0)+clean.coins,arcadeXp:(profile.arcadeXp||0)+clean.xp,arcadeAchievements:achievements,runnerProgress:{...(profile.runnerProgress||{}),[lessonId]:next},runnerSession:{lessonId:Number(lessonId),phase,status:'results',result:clean}};
+ const awarded={...profile,bonusWallet:{...bonusWallet,available:(bonusWallet.available||0)+careerBonus,items:bonusWallet.items||[]},arcadeCoins:(profile.arcadeCoins||0)+clean.coins,arcadeXp:(profile.arcadeXp||0)+clean.xp,arcadeAchievements:achievements,runnerProgress:{...(profile.runnerProgress||{}),[lessonId]:next},runnerSession:{lessonId:Number(lessonId),phase,status:'results',result:clean}};
+ return depositCityCoins(awarded,clean.collected);
 }
 
 export function runnerComparison(profile,lessonId){
