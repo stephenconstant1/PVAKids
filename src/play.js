@@ -141,13 +141,14 @@ const actionWords={
 const missionMaterials={
  5:['ETFs','▥'],6:['energy prices','⛽'],7:['borrowing costs','▤'],8:['products or services','⚙'],9:['asset classes','◫'],10:['SMART financial goals','◎'],11:['shares','▥'],12:['rate of return','⌁'],13:['diversification','◫'],14:['asset allocation','▦'],15:['bids / offers','↕'],16:['revenue / expenses / profit','▤'],17:['supply / demand','⚖'],18:['purchasing power','🧺'],19:['deposits','▣'],20:['payment history','▤'],21:['APR','%'],22:['risk protection','◇'],23:['GROSS PAY ≠ TAKE-HOME PAY','$'],24:['PROBLEM → SOLUTION → CUSTOMER → REVENUE → PROFIT','→'],25:['PROFIT = REVENUE - EXPENSES','='],26:['marketing strategy','◉'],27:['cash flow','⌂'],28:['skills','◆'],29:['giving','♥'],30:['WHAT DOES FINANCIAL FREEDOM MEAN TO YOU?','◎'],31:['FINANCIAL FREEDOM PLAN','▣'],32:['long-term goals','★']
 };
-function scriptureCard(m){const s=m.scripture||m.principle;return `<aside class="scripture-card"><span>TODAY’S SCRIPTURE</span><blockquote>“${s.text}”</blockquote><cite>${s.reference}</cite></aside>`;}
-function lessonLanguageCard(m){return `<aside class="lesson-language-card"><div><small>LESSON ${m.id} · CORE IDEA</small><p>${m.coreIdea}</p></div><div class="lesson-term-strip" aria-label="Lesson ${m.id} terminology">${m.terms.map(term=>`<span>${term}</span>`).join('')}</div></aside>`;}
+function scriptureSpeaker(m,p){const lead=castIds.includes(p?.avatar)?p.avatar:missionGuide(m.id);let speaker=castIds[(m.id+1)%castIds.length];if(speaker===lead)speaker=castIds[(m.id+2)%castIds.length];return speaker;}
+function scriptureCard(m,speakerId){const s=m.scripture||m.principle,c=character(speakerId);return `<aside class="scripture-card scripture-character-card" data-scripture-speaker="${speakerId}">${portrait(speakerId,'scripture-character')}<div class="scripture-bubble"><span>${c.name.toUpperCase()} SHARES TODAY’S SCRIPTURE</span><blockquote>“${s.text}”</blockquote><cite>${s.reference}</cite></div></aside>`;}
+function lessonLanguageCard(m){return `<aside class="lesson-language-card vocabulary-only"><div><small>LESSON ${m.id} · WORDS TO KNOW</small><p>${m.title}</p></div><div class="lesson-term-strip" aria-label="Lesson ${m.id} terminology">${m.terms.map(term=>`<span>${term}</span>`).join('')}</div></aside>`;}
 function characterHeader(m,step,p){
- const lead=castIds.includes(p?.avatar)?p.avatar:missionGuide(m.id),suggested=castIds[m.id%castIds.length],partner=suggested===lead?castIds[(m.id+1)%castIds.length]:suggested,c=character(lead);
+ const lead=castIds.includes(p?.avatar)?p.avatar:missionGuide(m.id),c=character(lead);
  const cues={brief:'I’ll show you the big idea.',choice:'Watch us act it out. Then choose!',event:'A surprise! Let’s adjust the plan.',debrief:'We did it! Tell what you learned.'};
- const bigIdea=step==='brief'?`<p class="big-idea-description"><strong>BIG IDEA:</strong> ${m.coreIdea}</p>`:'';
- return `<header class="lesson-character-header sequence-${step}" data-character="${lead}" data-career-player="true">${portrait(lead,'header-character lead-character')}<div class="direction-bubble"><small>${c.name.toUpperCase()} · YOUR CAREER HERO</small><b>${cues[step]||cues.brief}</b>${bigIdea}<span>${m.title}</span></div>${portrait(partner,'header-character partner-character')}</header>`;
+ const bigIdea=`<p class="big-idea-description"><strong>LESSON ${String(m.id).padStart(2,'0')} · BIG IDEA:</strong> ${m.coreIdea}</p>`;
+ return `<header class="lesson-character-header sequence-${step}" data-character="${lead}" data-lesson-speaker="${lead}" data-career-player="true">${portrait(lead,'header-character lead-character')}<div class="direction-bubble"><small>${c.name.toUpperCase()} · YOUR CAREER HERO EXPLAINS THE LESSON</small><b>${cues[step]||cues.brief}</b>${bigIdea}<span>${m.title}</span></div><div class="lesson-number-badge" aria-label="Lesson ${m.id}"><small>LESSON</small><b>${String(m.id).padStart(2,'0')}</b><i aria-hidden="true">${m.icon}</i></div></header>`;
 }
 function characterFooter(m,step){
  const lead=missionGuide(m.id),c=character(lead),cue=step==='debrief'?'Celebrate, then carry this skill to the next lesson!':'Follow the characters. Try the action. Make your choice.';
@@ -185,7 +186,8 @@ function advancedVisual(p,a,m,button){
  const guideId=missionGuide(m.id),guide=character(guideId);
  if(a.step==='brief')body=body.replace('<div class="mission-number">',`<div class="mission-guide">${portrait(guideId,'mission-guide-character')}<span><b>${guide.name}</b>Your mission guide</span></div><div class="mission-number">`);
  if(a.step==='choice')body=body.replace('<span class="eyebrow">',`<div class="mission-guide compact">${portrait(guideId,'mission-guide-character')}<span><b>${guide.name}</b>Choose with me!</span></div><span class="eyebrow">`);
- return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ${phase} · MISSION ${String(m.id).padStart(2,'0')}</span></div>${scriptureCard(m)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${phaseRail}<section class="mission-body visual-play advanced-play interaction-${mode}" data-read="${m.coreIdea.replaceAll('"','&quot;')}">${body}</section>${characterFooter(m,a.step)}`;
+ const verseSpeaker=scriptureSpeaker(m,p);
+ return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ${phase} · MISSION ${String(m.id).padStart(2,'0')}</span></div>${scriptureCard(m,verseSpeaker)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${phaseRail}<section class="mission-body visual-play advanced-play interaction-${mode}" data-read="${m.coreIdea.replaceAll('"','&quot;')}">${body}</section>${characterFooter(m,a.step)}`;
 }
 function taskActor(type,progress){
  const id=type==='time'||type==='repair'?'jordan':type==='skill'||type==='saving'?'maya':type==='income'||type==='planning'?'kai':'sofia';
@@ -274,7 +276,8 @@ export function visualMission(p,button,escape){
  if(a.id===3&&a.step==='event')body=`${garageRepairScene((a.repairDone||[]).length)}${body.replace('<div class="repair-scene">',`<div class="repair-scene actor-stage">${taskActor('repair',(a.repairDone||[]).length)}`)}`;
  if(a.id===4&&a.step==='choice')body=body.replace('<div class="income-stage budget-map">',`<div class="income-stage budget-map actor-stage">${taskActor('planning',(a.mapDone||[]).length)}`);
  const read=frameRead(a);
- return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ONE MONEY ADVENTURE${a.practice?' · PRACTICE':''}</span></div>${scriptureCard(m)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${storyRail(a)}<section class="mission-body visual-play" data-read="${escape(m.coreIdea)}">${body}</section>${characterFooter(m,a.step)}`;
+ const verseSpeaker=scriptureSpeaker(m,p);
+ return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ONE MONEY ADVENTURE${a.practice?' · PRACTICE':''}</span></div>${scriptureCard(m,verseSpeaker)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${storyRail(a)}<section class="mission-body visual-play" data-read="${escape(m.coreIdea)}">${body}</section>${characterFooter(m,a.step)}`;
 }
 export function dropAction(p,token,target){
  const a=p.active;if(!a)return null;

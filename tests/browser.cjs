@@ -78,10 +78,23 @@ const assert=require('node:assert/strict');
   await click(p,`begin-${id}`);
   const scriptureBox=await p.locator('.scripture-card').boundingBox(),characterBox=await p.locator('.lesson-character-header').boundingBox();
   assert.ok(scriptureBox.y<scriptureBox.y+scriptureBox.height&&scriptureBox.y+scriptureBox.height<=characterBox.y,`mission ${id} scripture must be the header above the character lesson`);
+  await assertCharacterLessonPattern(p,id);
   const bigIdea=(await p.locator('.sequence-brief .big-idea-description').textContent()).trim();
-  assert.match(bigIdea,/^BIG IDEA:\s+\S/);
+  assert.match(bigIdea,new RegExp(`^LESSON ${String(id).padStart(2,'0')} · BIG IDEA:\\s+\\S`));
   assert.ok(bigIdea.length>25,`mission ${id} opening bubble must explain its big idea`);
   await click(p,'next');
+  await assertCharacterLessonPattern(p,id);
+ }
+ async function assertCharacterLessonPattern(p,id){
+  assert.equal(await p.locator('.scripture-character-card .scripture-character').count(),1,`mission ${id} needs a character speaking scripture`);
+  assert.equal(await p.locator('.scripture-character-card .scripture-bubble').count(),1,`mission ${id} needs a scripture speech bubble`);
+  assert.equal(await p.locator('.lesson-character-header .direction-bubble').count(),1,`mission ${id} needs a character explaining the lesson`);
+  const verseSpeaker=await p.locator('.scripture-character-card').getAttribute('data-scripture-speaker');
+  const lessonSpeaker=await p.locator('.lesson-character-header').getAttribute('data-lesson-speaker');
+  assert.notEqual(verseSpeaker,lessonSpeaker,`mission ${id} must use two different character voices`);
+  assert.match((await p.locator('.scripture-bubble blockquote').textContent()).trim(),/^“\S[\s\S]+”$/);
+  assert.match((await p.locator('.scripture-bubble cite').textContent()).trim(),/\(NIV\)$/);
+  assert.match((await p.locator('.lesson-character-header .big-idea-description').textContent()).trim(),new RegExp(`^LESSON ${String(id).padStart(2,'0')} · BIG IDEA:`));
  }
 
  const p=await student();
@@ -211,15 +224,19 @@ const assert=require('node:assert/strict');
  const bubbleCharacters=new Set();
  for(let id=5;id<=32;id++){
   await click(p,`begin-${id}`);
+  await assertCharacterLessonPattern(p,id);
   assert.equal(await p.locator('.direction-bubble').count(),1);
   bubbleCharacters.add(await p.locator('.lesson-character-header').getAttribute('data-character'));
   assert.equal(await p.locator('.character-dialogue .dialogue-card').count(),2);
   await click(p,'next');
+  await assertCharacterLessonPattern(p,id);
   assert.ok(await p.locator('.advanced-decision .decision-card').count()>=2);
   await makeDecision(p,'.advanced-decision');
+  await assertCharacterLessonPattern(p,id);
   assert.equal((await state(p)).active.step,'event');
   assert.ok(await p.locator('.advanced-event .decision-card').count()>=2);
   await makeDecision(p,'.advanced-event');
+  await assertCharacterLessonPattern(p,id);
   assert.equal((await state(p)).active.step,'debrief',`mission ${id} event interaction must reach debrief`);
   if(id===32){
    assert.equal(await p.locator('.final-report').count(),1);
