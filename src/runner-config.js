@@ -62,8 +62,8 @@ export const runnerLessons=rows.map(([id,environment,hazards,rewards,power])=>{
   collectibleSet:rewards.map((label,index)=>({id:`w${id}-reward-${index+1}`,label,icon:rewardIcons[index],kind:index===0?'dollar':index===1?'gold':'lesson',value:index===0?1:index===1?5:10})),
   powerUp:{id:`w${id}-power`,name:power[0],effect,icon:effect==='shield'?'◇':effect==='magnet'?'◎':effect==='multiplier'?'×2':effect==='dash'?'↠':effect==='slow'?'◷':effect==='warning'?'!':effect==='clear'?'✦':effect==='income'?'$+':'★'},
   reflection:reflections[effect],
-  pre:{durationSeconds:60,maxLives:3,difficulty:1},
-  post:{durationSeconds:180,maxLives:3,difficulty:1.45}
+  pre:{durationSeconds:90,maxLives:3,difficulty:1},
+  post:{durationSeconds:180,maxLives:3,difficulty:1.15}
  };
 });
 

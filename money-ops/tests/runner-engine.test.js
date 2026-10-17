@@ -25,12 +25,23 @@ test('three financial hazard collisions consume three lives and end the run',()=
  assert.equal(game.result.completed,true);
 });
 
-test('the strict 60-second maximum expires even when a run is paused',()=>{
- const game=harness(1,'pre');game.runner.paused=true;game.runner.start(Date.now()-61_000);
+test('the strict 90-second maximum expires even when a run is paused',()=>{
+ const game=harness(1,'pre');game.runner.paused=true;game.runner.start(Date.now()-91_000);
  assert.equal(game.result.reason,'timer');
- assert.ok(game.result.survivalSeconds<=60);
+ assert.ok(game.result.survivalSeconds<=90);
  const bonus=harness(1,'post');
  assert.equal(bonus.runner.config.durationSeconds,180);
+});
+
+test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
+ const game=harness(1,'pre').runner;
+ assert.match(game.image._src,/assets\/cast\/maya\.png$/);
+ assert.equal(game.player.w,82);
+ assert.equal(game.player.h,124);
+ assert.equal(game.speed,220);
+ game.distance=900;
+ game.update(.01,1);
+ assert.ok(game.speed<300,'the early run should remain approachable');
 });
 
 test('keyboard and touch-facing controls trigger jump, duck, and pause states',()=>{

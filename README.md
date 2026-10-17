@@ -16,7 +16,7 @@ Choose **Career Mode** for one saved hero and the connected 32-lesson financial 
 
 Run the complete state and calculation suite with `npm test`.
 
-Each new lesson opens with an optional pre-lesson runner of up to 60 seconds. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Runner rewards earned inside the saved Career journey are stored separately from simulated net worth. Standalone Arcade Mode never saves its rewards.
+Each new lesson opens with an optional pre-lesson runner lasting up to 1 minute 30 seconds at a slower, kid-friendly pace. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Runner rewards earned inside the saved Career journey are stored separately from simulated net worth. Standalone Arcade Mode never saves its rewards.
 
 During a run, use **Space** or **Up Arrow** to jump, **Down Arrow** to duck, and **P** or **Escape** to pause. Touch players can tap to jump or swipe down to duck. The on-screen controls include pause, restart, and an immediate lesson/continue action.
 
