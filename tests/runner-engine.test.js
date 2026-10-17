@@ -1,12 +1,13 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
+import {existsSync} from 'node:fs';
 import {FinancialRunner} from '../src/runner.js';
 import {runnerConfig} from '../src/runner-config.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
  globalThis.matchMedia=()=>({matches:false});
- globalThis.Image=class{constructor(){this.complete=true;this.naturalWidth=400;}set src(value){this._src=value;}};
+ globalThis.Image=class{constructor(){this.complete=true;this.naturalWidth=500;this.naturalHeight=600;}set src(value){this._src=value;}};
  globalThis.window={devicePixelRatio:1,addEventListener:(name,fn)=>listeners.set(`w-${name}`,fn),removeEventListener:noop};
  globalThis.document={addEventListener:(name,fn)=>listeners.set(`d-${name}`,fn),removeEventListener:noop};
  globalThis.requestAnimationFrame=()=>1;globalThis.cancelAnimationFrame=noop;
@@ -16,6 +17,10 @@ function harness(lessonId=21,phase='pre',options={}){
  const runner=new FinancialRunner(canvas,runnerConfig(lessonId,phase),{...options,onComplete:value=>{result=value;},onUpdate:value=>updates.push(value)});
  return {runner,listeners,get result(){return result;},updates};
 }
+
+test('all six playable students have right-facing runner artwork',()=>{
+ for(const id of ['jordan','maya','kai','sofia','eli','ruby'])assert.equal(existsSync(new URL(`../assets/runner/${id}-right.png`,import.meta.url)),true,`${id} needs a directional runner asset`);
+});
 
 test('three financial hazard collisions consume three lives and end the run',()=>{
  const game=harness();game.runner.running=true;game.runner.startedAt=Date.now();
@@ -35,7 +40,7 @@ test('the run ends when the player collects the 20th reward',()=>{
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
  const game=harness(1,'pre').runner;
- assert.match(game.image._src,/assets\/cast\/maya\.png$/);
+ assert.match(game.image._src,/assets\/runner\/maya-right\.png$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
  assert.equal(game.speed,165);
@@ -57,7 +62,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
- assert.match(game.runner.image._src,/assets\/cast\/ruby\.png$/);
+ assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png$/);
 });
 
 test('keyboard and touch-facing controls trigger jump, duck, and pause states',()=>{

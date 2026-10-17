@@ -43,6 +43,8 @@ All companies, markets, returns, life events, properties, and prices are fiction
 
 The Financial Runner now clears each level when the student collects 20 rewards. It starts at an approachable pace and speeds up every four rewards. Money Boxes release separate bonus game dollars during post-lesson runs; students can place those dollars in saved, invested, or budgeted buckets, or buy Jump Boots, a Coin Magnet, and Penny the original Money Dragon companion. These game dollars never change the financial simulation's net worth.
 
+All six students have dedicated right-facing runner artwork. Their eyes, faces, bodies, and running poses point toward incoming obstacles while their original front-facing portraits remain in lessons and selection screens.
+
 Lesson characters serve as static guides in contained header frames. Students perform the activities themselves through tracing, choosing, circling, crossing out, tapping, and drag-and-drop interactions. When debts exceed assets, the interface labels the amount “Debt above assets” and explains it instead of showing an unexplained negative net-worth number.
 
 ## Architecture
