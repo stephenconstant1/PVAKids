@@ -272,10 +272,19 @@ const assert=require('node:assert/strict');
   await click(p,'next');
   await assertCharacterLessonPattern(p,id);
   assert.ok(await p.locator('.advanced-decision .decision-card').count()>=2);
+  if(id===5){
+   assert.equal(await p.locator('.advanced-decision .lesson-action-demo').count(),0);
+   assert.equal(await p.locator('.advanced-decision .typing-computer').count(),0);
+   assert.match(await p.locator('.advanced-decision>.play-prompt').textContent(),/Review the portfolio choices/i);
+  }
   await makeDecision(p,'.advanced-decision');
   await assertCharacterLessonPattern(p,id);
   assert.equal((await state(p)).active.step,'event');
   assert.ok(await p.locator('.advanced-event .decision-card').count()>=2);
+  if(id===5){
+   assert.equal(await p.locator('.advanced-event .lesson-action-demo').count(),0);
+   assert.equal(await p.locator('.advanced-event .typing-computer').count(),0);
+  }
   await makeDecision(p,'.advanced-event');
   await assertCharacterLessonPattern(p,id);
   assert.equal((await state(p)).active.step,'debrief',`mission ${id} event interaction must reach debrief`);
