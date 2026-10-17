@@ -1824,8 +1824,6 @@ button.world-buddy.cheer:after{
 .curriculum-cast .cast-member{position:relative;display:grid;min-width:0;justify-items:center;align-items:end}
 .curriculum-cast .character-portrait{width:100%;height:auto;max-height:390px;margin:0;object-fit:contain}
 .curriculum-cast .cast-member>b{position:absolute;bottom:8px;padding:5px 10px;border-radius:999px;background:#102e54e8;color:#fff5b5;font:900 10px var(--mono)}
-/* Everest's source portrait is wider, so object-fit made him look shorter in group art. */
-.curriculum-cast .cast-kai .character-portrait{scale:1.23;transform-origin:center bottom}
 
 .week-one-intro{display:grid!important;grid-template-columns:1fr!important;gap:0!important;width:100%;max-width:none;padding:0!important;overflow:visible}
 .week-one-hero{position:relative;min-height:clamp(430px,58vh,620px);border-radius:28px 28px 0 0;background:linear-gradient(180deg,#7fd3ff 0 55%,#f7d369 55% 68%,#4b914f 68%);overflow:hidden}

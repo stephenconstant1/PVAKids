@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {existsSync} from 'node:fs';
+import {existsSync,readFileSync} from 'node:fs';
 import {FinancialRunner} from '../src/runner.js';
 import {runnerConfig} from '../src/runner-config.js';
 
@@ -22,6 +22,18 @@ test('all six playable students have right-facing runner artwork',()=>{
  for(const id of ['jordan','maya','kai','sofia','eli','ruby'])assert.equal(existsSync(new URL(`../assets/runner/${id}-right.png`,import.meta.url)),true,`${id} needs a directional runner asset`);
 });
 
+test('the three updated boys have distinct high-resolution transparent portrait and runner art',()=>{
+ const dimensions=url=>{const png=readFileSync(url);return {width:png.readUInt32BE(16),height:png.readUInt32BE(20),colorType:png[25]};};
+ for(const id of ['jordan','kai','eli']){
+  const portrait=dimensions(new URL(`../assets/cast/${id}.png`,import.meta.url));
+  const runner=dimensions(new URL(`../assets/runner/${id}-right.png`,import.meta.url));
+  assert.ok(portrait.width>=800&&portrait.height>=1500,`${id} needs high-resolution portrait art`);
+  assert.ok(runner.width>=1300&&runner.height>=1100,`${id} needs high-resolution runner art`);
+  assert.equal(portrait.colorType,6,`${id} portrait needs transparency`);
+  assert.equal(runner.colorType,6,`${id} runner needs transparency`);
+ }
+});
+
 test('three financial hazard collisions consume three lives and end the run',()=>{
  const game=harness();game.runner.running=true;game.runner.startedAt=Date.now();
  for(let index=0;index<3;index++){game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});}
@@ -41,7 +53,7 @@ test('the run ends when the player collects the 100th reward',()=>{
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
  const game=harness(1,'pre').runner;
- assert.match(game.image._src,/assets\/runner\/maya-right\.png$/);
+ assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.0$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
  assert.equal(game.speed,155);
@@ -63,7 +75,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
- assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png$/);
+ assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.0$/);
 });
 
 test('runner events publish lesson vocabulary for the side stream',()=>{
