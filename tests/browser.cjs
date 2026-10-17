@@ -109,6 +109,11 @@ const assert=require('node:assert/strict');
   const bigIdea=(await p.locator('.sequence-brief .big-idea-description').textContent()).trim();
   assert.match(bigIdea,new RegExp(`^LESSON ${String(id).padStart(2,'0')} · BIG IDEA:\\s+\\S`));
   assert.ok(bigIdea.length>25,`mission ${id} opening bubble must explain its big idea`);
+  if(id===1){
+   const crewHeights=await p.locator('.week-one-hero .poster-cast .character-portrait').evaluateAll(images=>images.map(image=>Math.round(image.getBoundingClientRect().height)));
+   assert.equal(crewHeights.length,6,'week one must show all six students');
+   assert.ok(Math.max(...crewHeights)-Math.min(...crewHeights)<=2,`week one students must have one visual height: ${crewHeights.join(', ')}`);
+  }
   await click(p,'next');
   await assertCharacterLessonPattern(p,id);
  }
