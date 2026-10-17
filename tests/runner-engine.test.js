@@ -41,3 +41,28 @@ test('keyboard and touch-facing controls trigger jump, duck, and pause states',(
  game.runner.togglePause();assert.equal(game.runner.paused,false);
  assert.match(game.runner.config.obstacleSet.map(item=>item.label).join(' '),/APR|Late Fee/);
 });
+
+test('lesson power-ups change runner play instead of acting as labels only',()=>{
+ const income=harness(1,'post').runner;
+ income.activePower={effect:'income',until:Date.now()+5_000};
+ income.collect({value:5,kind:'gold',x:200,y:100,done:false});
+ assert.equal(income.coins,10,'Income Boost doubles fictional game coins');
+ const warning=harness(15,'post').runner;
+ warning.activatePower({...warning.config.powerUp,x:200,y:100,done:false});
+ assert.equal(warning.activePower.effect,'warning');
+ assert.doesNotThrow(()=>warning.drawEntity({...warning.config.obstacleSet[0],type:'obstacle',x:300,y:230,w:55,h:62}));
+});
+
+test('a jump clears a debt hazard and collectibles use the exact arcade values',()=>{
+ const game=harness(21,'pre').runner;
+ game.running=true;game.startedAt=Date.now();game.endAt=Date.now()+60_000;
+ game.player.grounded=false;game.player.y=110;game.player.vy=-20;game.state='jumping';
+ game.entities=[{...game.config.obstacleSet[1],type:'obstacle',x:game.player.x+12,y:game.ground-58,baseY:game.ground-58,w:48,h:58,seed:0,passed:false,done:false}];
+ game.update(.01,1);
+ assert.equal(game.lives,3,'jumping player must clear the compounding-debt hazard');
+ game.entities[0].x=game.player.x-60;game.update(.01,1.1);
+ assert.equal(game.avoided,1);
+ game.collect({value:1,kind:'dollar',x:200,y:100,done:false});
+ game.collect({value:5,kind:'gold',x:200,y:100,done:false});
+ assert.equal(game.coins,6,'dollar is +1 and gold coin is +5');
+});

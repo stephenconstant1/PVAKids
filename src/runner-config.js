@@ -58,7 +58,7 @@ export const runnerLessons=rows.map(([id,environment,hazards,rewards,power])=>{
  const mission=missions[id-1],effect=power[1];
  return {
   lessonId:id,title:mission.title,environment,
-  obstacleSet:hazards.map((label,index)=>({id:`w${id}-hazard-${index+1}`,label,icon:icons[(id+index)%icons.length],behavior:behaviors[(id+index)%behaviors.length]})),
+  obstacleSet:hazards.map((label,index)=>({id:`w${id}-hazard-${index+1}`,label,icon:icons[(id+index)%icons.length],behavior:behaviors[(id+index)%behaviors.length],art:{hue:(id*47+index*131)%360,pattern:(id+index)%6,variant:(id*3+index)%9}})),
   collectibleSet:rewards.map((label,index)=>({id:`w${id}-reward-${index+1}`,label,icon:rewardIcons[index],kind:index===0?'dollar':index===1?'gold':'lesson',value:index===0?1:index===1?5:10})),
   powerUp:{id:`w${id}-power`,name:power[0],effect,icon:effect==='shield'?'◇':effect==='magnet'?'◎':effect==='multiplier'?'×2':effect==='dash'?'↠':effect==='slow'?'◷':effect==='warning'?'!':effect==='clear'?'✦':effect==='income'?'$+':'★'},
   reflection:reflections[effect],

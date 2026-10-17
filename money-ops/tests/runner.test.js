@@ -9,9 +9,12 @@ test('all 32 lessons have distinct runner hazards, rewards, and complete stage c
  assert.deepEqual(runnerLessons.map(item=>item.lessonId),Array.from({length:32},(_,index)=>index+1));
  assert.equal(new Set(runnerLessons.map(item=>item.obstacleSet.map(hazard=>hazard.label).join('|'))).size,32);
  assert.equal(new Set(runnerLessons.map(item=>item.collectibleSet.map(reward=>reward.label).join('|'))).size,32);
+ const obstacleArt=runnerLessons.flatMap(item=>item.obstacleSet.map(hazard=>`${hazard.art.hue}-${hazard.art.pattern}-${hazard.art.variant}`));
+ assert.equal(new Set(obstacleArt).size,64,'every financial hazard needs its own visual treatment');
  for(const lesson of runnerLessons){
   assert.ok(runnerEnvironments[lesson.environment],`week ${lesson.lessonId} needs an environment`);
   assert.ok(lesson.obstacleSet.length>=2,`week ${lesson.lessonId} needs hazards`);
+  assert.ok(lesson.obstacleSet.every(hazard=>hazard.art&&Number.isFinite(hazard.art.hue)),`week ${lesson.lessonId} needs distinct hazard art`);
   assert.ok(lesson.collectibleSet.length>=3,`week ${lesson.lessonId} needs rewards`);
   assert.ok(lesson.powerUp.name&&lesson.powerUp.effect,`week ${lesson.lessonId} needs a power-up`);
   assert.equal(runnerConfig(lesson.lessonId,'pre').durationSeconds,60);

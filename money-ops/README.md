@@ -16,6 +16,8 @@ Run the complete state and calculation suite with `npm test`.
 
 Each new lesson opens with an optional pre-lesson runner of up to 60 seconds. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Arcade rewards are stored separately from simulated net worth.
 
+During a run, use **Space** or **Up Arrow** to jump, **Down Arrow** to duck, and **P** or **Escape** to pause. Touch players can tap to jump or swipe down to duck. The on-screen controls include pause, restart, and an immediate lesson/continue action.
+
 The optional Playwright regression requires Playwright outside this repository and a system Chromium:
 
 ```sh
