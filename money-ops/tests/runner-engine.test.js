@@ -54,7 +54,7 @@ test('the run ends when the player collects the 100th reward',()=>{
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
  const game=harness(1,'pre').runner;
- assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.6$/);
+ assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.7$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
  assert.equal(game.speed,155);
@@ -76,7 +76,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
- assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.6$/);
+ assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.7$/);
 });
 
 test('runner events publish lesson vocabulary for the side stream',()=>{
