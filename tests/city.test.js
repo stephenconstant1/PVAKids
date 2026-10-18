@@ -20,6 +20,15 @@ test('every collected runner coin enters the City Bank without changing net wort
  assert.equal(netWorth(result),worth);
 });
 
+test('a 100-coin Arcade run immediately funds one town-building stage',()=>{
+ let profile={...newGame('Arcade Builder','kai'),mode:'arcade'};
+ profile=recordRunnerResult(profile,1,'pre',{collected:100,coins:20,score:500});
+ assert.equal(cityTotals(profile).city.bank,100);
+ profile=buildCity(profile,'town-center');
+ assert.equal(cityTotals(profile).city.upgrades['town-center'],1);
+ assert.equal(cityTotals(profile).city.bank,0);
+});
+
 test('career construction costs 100 coins and requires one completed lesson per stage',()=>{
  let profile=depositCityCoins(newGame('Builder','jordan'),400);
  profile=buildCity(profile,'town-center');
