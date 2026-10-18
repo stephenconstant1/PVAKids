@@ -54,7 +54,7 @@ test('the run ends when the player collects the 100th reward',()=>{
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
  const game=harness(1,'pre').runner;
- assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.8$/);
+ assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=43\.9$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
  assert.equal(game.speed,155);
@@ -63,6 +63,22 @@ test('the selected character art is loaded and the kid-friendly pace accelerates
  assert.ok(game.speed<300,'the early run should remain approachable');
  game.collected=80;game.update(.01,2);
  assert.ok(game.speed>300,'collecting rewards should increase the pace');
+});
+
+test('Arcade intensity keeps Rookie slow and makes Expert 1.5 times faster',()=>{
+ const rookie=harness(1,'pre',{intensityLevel:0}).runner;
+ const standard=harness(1,'pre',{intensityLevel:1}).runner;
+ const expert=harness(1,'pre',{intensityLevel:1.5}).runner;
+ assert.equal(rookie.intensityLevel,0);
+ assert.equal(rookie.snapshot().speedStage,0);
+ assert.equal(standard.speed,155);
+ assert.equal(expert.speed,232.5);
+ const rookieSpeed=rookie.speed;
+ rookie.collected=100;rookie.distance=5000;rookie.update(.01,1);
+ assert.equal(rookie.speed,rookieSpeed,'Rookie pace must stay slow instead of accelerating');
+ standard.distance=900;expert.distance=900;
+ standard.update(.01,1);expert.update(.01,1);
+ assert.equal(expert.speed,standard.speed*1.5,'Expert must be exactly 1.5 times Intermediate');
 });
 
 test('Money Boxes add bonus dollars and owned items change play',()=>{
@@ -76,7 +92,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
- assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.8$/);
+ assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=43\.9$/);
 });
 
 test('runner events publish lesson vocabulary for the side stream',()=>{

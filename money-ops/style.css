@@ -2260,3 +2260,21 @@ button.world-buddy.cheer:after{
 @media(max-width:900px){.runner-game-grid{grid-template-columns:1fr}.runner-vocab-feed{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(170px,.6fr);gap:10px}.runner-vocab-feed>small{grid-column:1/-1}.runner-vocab-current{min-height:135px;margin:0}.runner-vocab-history{align-content:start}}
 @media(max-width:560px){.runner-vocab-feed{grid-template-columns:1fr}.runner-vocab-feed>small{grid-column:auto}.runner-vocab-current{min-height:125px}.runner-vocabulary-results{padding:13px}.runner-vocabulary-results>div:last-child{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.runner-vocab-current.vocab-pop,.runner-vocab-history span{animation:none}}
+
+/* Arcade mode stays easy to find from every game screen. */
+.arcade-nav-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border:2px solid #ffcf65;border-radius:13px;background:#ffcf65;color:#17221c;font:950 10px var(--mono);letter-spacing:.05em;white-space:nowrap;box-shadow:0 4px 0 #9f7728}
+.arcade-nav-button:hover:not(:disabled){background:#ffe08a;color:#101913;border-color:#ffe08a;transform:translateY(-2px)}
+.title-nav{gap:18px}.title-nav .arcade-nav-button{margin-left:auto}
+.title-screen>footer .arcade-nav-button{margin-left:auto;align-self:center}
+.global-arcade-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;min-height:82px;margin-top:24px;padding:16px clamp(18px,4vw,42px);border-top:2px solid #ffcf65;background:#101e20;color:#d9e3dc}
+.global-arcade-footer>span{font-size:10px;letter-spacing:.04em}.global-arcade-footer>span b{color:#ffdc76}
+.arcade-footer{display:flex;justify-content:space-between;gap:18px}.arcade-footer>div{display:flex;flex-direction:column;gap:4px}
+.arcade-intensity-panel{margin-bottom:22px;padding:22px;border:2px solid #ffcf65;border-radius:22px;background:linear-gradient(145deg,#21372f,#3c3220)}
+.arcade-intensity-panel h2{margin:7px 0 18px;color:#fff1a0}
+.arcade-intensity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.arcade-intensity{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:3px 12px;min-height:118px;padding:16px;border:3px solid #5e756d;border-radius:18px;background:#172d29;text-align:left}
+.arcade-intensity>span{grid-row:1/3;display:grid;place-content:center;width:58px;height:58px;border-radius:50%;background:#2e5147;color:#fff0a8;font:950 10px var(--mono)}
+.arcade-intensity>b{align-self:end;color:#fff4b0;font-size:18px}.arcade-intensity>small{align-self:start;color:#c8d8d0;font:12px/1.35 Arial,sans-serif}
+.arcade-intensity.selected{border-color:#ffcf65;background:#395444;box-shadow:0 0 0 4px #ffcf6533}.arcade-intensity.selected>span{background:#ffcf65;color:#182119}
+@media(max-width:800px){.header-right{gap:8px}.header-right .arcade-nav-button{padding:9px 11px;font-size:8px}.global-arcade-footer{margin-top:16px}.arcade-intensity-grid{grid-template-columns:1fr}.arcade-footer{align-items:flex-start;flex-direction:column}}
+@media(max-width:560px){.header-right .utility{display:none}.title-nav{align-items:center}.title-nav .eyebrow{display:none}.title-nav .arcade-nav-button{margin-left:0}.title-screen>footer .arcade-nav-button{grid-column:1/-1;width:100%;margin:10px 0 0}.title-screen>footer{min-height:145px;align-items:end}.global-arcade-footer{align-items:flex-start;flex-direction:column}.global-arcade-footer .arcade-nav-button{width:100%}.arcade-intensity-panel{padding:14px}.arcade-intensity{min-height:105px}.arcade-footer .arcade-nav-button{width:100%}}
