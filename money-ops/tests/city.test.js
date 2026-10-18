@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {newGame,netWorth} from '../src/engine.js';
-import {buildCity,cityLandmarks,cityStops,cityTotals,depositCityCoins} from '../src/city.js';
+import {buildCity,cityBuildCelebrationMarkup,cityLandmarks,cityStops,cityTotals,depositCityCoins} from '../src/city.js';
 import {recordRunnerResult} from '../src/runner-state.js';
 
 test('Grand Financial City has 32 destinations and eight four-stage landmarks',()=>{
@@ -27,6 +27,21 @@ test('a 100-coin Arcade run immediately funds one town-building stage',()=>{
  profile=buildCity(profile,'town-center');
  assert.equal(cityTotals(profile).city.upgrades['town-center'],1);
  assert.equal(cityTotals(profile).city.bank,0);
+});
+
+test('each city purchase opens a four-stage building picture and progress message',()=>{
+ const button=(text,action,cls='')=>`<button class="${cls}" data-action="${action}">${text}</button>`,escape=value=>String(value);
+ let profile={...newGame('Arcade Builder','kai'),mode:'arcade'};
+ profile=buildCity(depositCityCoins(profile,100),'town-center');
+ let markup=cityBuildCelebrationMarkup(profile,button,escape);
+ assert.match(markup,/Opportunity Town Center/);
+ assert.match(markup,/PURCHASE 1 OF 4 COMPLETE/);
+ assert.match(markup,/3 more 100-coin runs/i);
+ assert.equal((markup.match(/city-build-stage-dots/g)||[]).length,1);
+ for(let stage=2;stage<=4;stage++)profile=buildCity(depositCityCoins(profile,100),'town-center');
+ markup=cityBuildCelebrationMarkup(profile,button,escape);
+ assert.match(markup,/ALL 4 PURCHASES COMPLETE/);
+ assert.match(markup,/standing in your city/i);
 });
 
 test('career construction costs 100 coins and requires one completed lesson per stage',()=>{
