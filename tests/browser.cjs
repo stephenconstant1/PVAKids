@@ -74,6 +74,21 @@ const assert=require('node:assert/strict');
   for(const point of points.slice(1))await p.mouse.move(point.x,point.y,{steps:2});
   await p.mouse.up();await p.waitForTimeout(180);
  }
+ async function traceWithArrows(p){
+  const board=p.locator('.trace-board');
+  await board.scrollIntoViewIfNeeded();await board.focus();
+  const firstKey=await board.evaluate(svg=>{const path=svg.querySelector('.trace-guide'),length=path.getTotalLength(),total=Number(svg.dataset.traceTotal)||64,from=path.getPointAtLength(0),to=path.getPointAtLength(length*3/(total-1)),dx=to.x-from.x,dy=to.y-from.y;return Math.abs(dx)>=Math.abs(dy)?dx>=0?'ArrowRight':'ArrowLeft':dy>=0?'ArrowDown':'ArrowUp';});
+  const reverse={ArrowRight:'ArrowLeft',ArrowLeft:'ArrowRight',ArrowUp:'ArrowDown',ArrowDown:'ArrowUp'}[firstKey];
+  await p.keyboard.press(reverse);
+  assert.equal(Number(await board.getAttribute('data-trace-index')),0,'the reverse arrow must not move tracing backward or forward');
+  let previous=0;
+  for(let press=0;press<30&&await board.count();press++){
+   const key=await board.evaluate(svg=>{const path=svg.querySelector('.trace-guide'),length=path.getTotalLength(),total=Number(svg.dataset.traceTotal)||64,current=Number(svg.dataset.traceIndex)||0,step=Math.min(3,total-1-current),from=path.getPointAtLength(length*current/(total-1)),to=path.getPointAtLength(length*Math.min(total-1,current+step)/(total-1)),dx=to.x-from.x,dy=to.y-from.y;return Math.abs(dx)>=Math.abs(dy)?dx>=0?'ArrowRight':'ArrowLeft':dy>=0?'ArrowDown':'ArrowUp';});
+   await p.keyboard.press(key);
+   if(await board.count()){const current=Number(await board.getAttribute('data-trace-index'));assert.ok(current>previous,'arrow tracing must only move forward');previous=current;}
+  }
+  await p.waitForTimeout(180);
+ }
  async function enterLesson(p,id,exerciseRunner=false){
   await click(p,`begin-${id}`);
   if(await p.locator('.runner-intro').count()){
@@ -388,7 +403,7 @@ const assert=require('node:assert/strict');
  for(let i=0;i<3;i++){
   await drag(artPage,`art-${i}`,`canvas-${i}`);
   assert.equal((await state(artPage)).active.traceTool,i);
-  await traceLine(artPage);
+  if(i===1)await traceWithArrows(artPage);else await traceLine(artPage);
  }
  assert.equal((await state(artPage)).active.step,'debrief');
 

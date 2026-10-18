@@ -2031,6 +2031,7 @@ button.world-buddy.cheer:after{
 .trace-instruction{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;color:#173e61;font-size:15px}
 .trace-instruction b{padding:7px 10px;border-radius:10px;background:#ffe272;color:#173e61;font:950 13px var(--mono)}
 .trace-board{width:100%;height:auto;max-height:390px;border-radius:24px;cursor:crosshair;touch-action:none;filter:drop-shadow(0 8px 0 #35655c)}
+.trace-board:focus-visible{outline:7px solid #ffe272;outline-offset:5px}.trace-board.trace-wrong-key{animation:traceNudge .22s ease}
 .trace-board>rect{fill:#fffdf2;stroke:#78583d;stroke-width:9}
 .trace-guide{fill:none;stroke:#9aa8a2;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 30}
 .trace-ink{fill:none;stroke:#ef5f73;stroke-width:17;stroke-linecap:round;stroke-linejoin:round}
@@ -2040,7 +2041,9 @@ button.world-buddy.cheer:after{
 .trace-meter{position:relative;height:34px;border:4px solid #173e61;border-radius:999px;background:#d9e7d7;overflow:hidden}
 .trace-meter i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#72be6e,#ffe272);transition:width .1s linear}
 .trace-meter b{position:relative;z-index:1;display:grid;place-items:center;height:100%;color:#173e61;font:950 11px var(--mono)}
-.trace-keyboard{justify-self:center;padding:10px 16px;border:3px solid #fff0a0;border-radius:12px;background:#173e61;color:#fff5b0;font:900 10px var(--mono)}
+.trace-keyboard{display:flex;align-items:center;justify-self:center;gap:10px;padding:10px 16px;border:3px solid #fff0a0;border-radius:12px;background:#173e61;color:#fff5b0;font:900 10px var(--mono)}
+.trace-keyboard>b{color:#ffe272}.trace-keyboard strong{display:inline-grid;place-items:center;min-width:34px;min-height:30px;margin:0 3px;border:2px solid #ffe272;border-radius:8px;background:#fff7d1;color:#173e61;font-size:20px}
+@keyframes traceNudge{50%{transform:translateX(5px)}}
 .city-player-character{width:58px;height:76px;object-fit:contain;filter:drop-shadow(0 4px 3px #0006)}
 .artist-action .working-character{overflow:visible}
 .artist-action .full-task-character{animation:none!important}
