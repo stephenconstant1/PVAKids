@@ -13,7 +13,7 @@ export const character=id=>characters[id]||characters.maya;
 
 export function portrait(id,className=''){
  const c=character(id);
- return `<img class="character-portrait ${className}" src="assets/cast/${c.image}?v=44.5" alt="${c.name}, ${c.role}">`;
+ return `<img class="character-portrait ${className}" src="assets/cast/${c.image}?v=44.6" alt="${c.name}, ${c.role}">`;
 }
 
 export function castPortraits(className='',ids=castIds){
