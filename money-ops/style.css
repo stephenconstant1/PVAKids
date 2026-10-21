@@ -1158,9 +1158,9 @@ button.world-buddy.cheer:after{
 .my-city-crew .city-cast{position:absolute;z-index:3;inset:clamp(176px,18vw,215px) 2% 5%;align-items:end;gap:clamp(12px,2vw,28px)}
 .my-city-crew .city-cast{width:auto;padding-inline:clamp(5px,1vw,12px)}
 .my-city-crew .city-cast .cast-member{height:auto;align-self:end;padding-bottom:30px}
-.my-city-crew .city-cast .cast-maya,.my-city-crew .city-cast .cast-sofia,.my-city-crew .city-cast .cast-ruby{--crew-scale:.957}
-.my-city-crew .city-cast .cast-jordan{--crew-scale:.96}
-.my-city-crew .city-cast .cast-eli{--crew-scale:.92}
+.my-city-crew .city-cast .cast-maya,.my-city-crew .city-cast .cast-jordan{--crew-scale:.96}
+.my-city-crew .city-cast .cast-sofia,.my-city-crew .city-cast .cast-kai{--crew-scale:1}
+.my-city-crew .city-cast .cast-ruby,.my-city-crew .city-cast .cast-eli{--crew-scale:.92}
 .my-city-crew .city-cast .character-portrait{width:calc(152.0875% * var(--crew-scale,1));max-width:none;height:calc(clamp(102px,18vw,240px) * var(--crew-scale,1) * 1.520875);max-height:none;object-fit:contain;object-position:center bottom;justify-self:center;filter:drop-shadow(0 13px 8px #153f4770);animation:cityCrewArrive .7s cubic-bezier(.2,.85,.3,1.25) both}
 .my-city-crew .city-cast .cast-member:nth-child(2) .character-portrait{animation-delay:.08s}
 .my-city-crew .city-cast .cast-member:nth-child(3) .character-portrait{animation-delay:.16s}

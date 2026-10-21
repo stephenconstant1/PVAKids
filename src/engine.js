@@ -23,6 +23,7 @@ export function begin(p,id){
  const mission=missions.find(m=>m.id===id),practice=p.completed.includes(id);
  const missingPrerequisite=id>1&&Array.from({length:id-1},(_,index)=>index+1).some(required=>!p.completed.includes(required));
  if(!mission||(!practice&&missingPrerequisite))throw Error('Mission is locked');
+ if(p.moneybread&&id>1&&!p.moneybread.legacy.includes(id-1)&&!p.moneybread.weeks[id-1]?.reflection)throw Error('Complete your weekly city reflection to unlock the next level.');
  const source=practice?p.snapshots[id]:p;
  const wallet=finances(source||p);
  return {...p,screen:'mission',active:{id,step:'brief',practice,wallet,start:structuredClone(wallet),choice:null,event:null,result:null,decisions:[]}};

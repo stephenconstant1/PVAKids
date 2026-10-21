@@ -1,30 +1,52 @@
-# Financial Freedom: Money Ops
+# Money Ops — Moneybread City & Arcade
 
-Money Ops is a complete, static 32-mission financial education campaign with an integrated Financial Runner. One persistent profile carries the player's lesson progress, financial simulation, runner participation, arcade coins, arcade XP, achievements, and selected character from Week 1 through the finale.
+**Earn bread to run the city.** Career Mode now takes place in **Moneybread City**, an interactive illustrated city built through the original 32 lessons. Arcade Mode remains the existing standalone Financial Runner, with all 32 levels, six characters, intensity choices, temporary city rewards, and its device-local initials leaderboard.
+
+The landing uses the supplied full crew image, uncropped, with mode controls below it. Career Mode uses faithful source-image guide frames and a separate dimensional city map. No characters were renamed or redrawn.
 
 ## Run
 
-From this directory:
+The compiled browser files are committed. To play locally with Python 3:
 
 ```sh
 npm start
 ```
 
-Open `http://127.0.0.1:8080`. There is no application install, backend, account, or build step. Career Mode progress is stored in local storage on the current browser origin.
+Open `http://127.0.0.1:8080`. Playing the static site needs no account, backend, payment, or external service. Career saves remain in this browser's existing local storage; Arcade never overwrites them.
 
-Choose **Career Mode** for one saved hero and the connected 32-lesson financial journey. Choose **Arcade Mode** to play any runner level at any time with any of the six characters. Arcade Mode is temporary: its character choice, scores, coins, XP, and results are never written to the Career save file and disappear when Arcade Mode is closed.
+To edit the TypeScript city interface or rules, use Node 20.10+:
 
-Run the complete state and calculation suite with `npm test`.
+```sh
+npm ci
+npm run build
+npm test
+npm run typecheck
+```
 
-Each new lesson opens with an optional pre-lesson runner lasting up to 1 minute 30 seconds at a slower, kid-friendly pace. Completing the lesson unlocks an optional bonus runner of up to three minutes. **START LESSON NOW** and **SKIP BONUS RUN** always keep the educational path available. Runner rewards earned inside the saved Career journey are stored separately from simulated net worth. Standalone Arcade Mode never saves its rewards.
+TypeScript is the only new development dependency; it provides static checks and emits native browser JavaScript. No runtime library, C++, or WebAssembly was added. The build verifies all 32 original lesson mappings and synchronizes the existing root and `/money-ops/` copies.
 
-During a run, use **Space** or **Up Arrow** to jump, **Down Arrow** to duck, and **P** or **Escape** to pause. Touch players can tap to jump or swipe down to duck. The on-screen controls include pause, restart, and an immediate lesson/continue action.
+## Career Mode: Moneybread City
 
-The optional Playwright regression requires Playwright outside this repository and a system Chromium:
+**Learn → choose work → earn bread → save / spend / invest → improve the city → reflect → next lesson.**
+
+Visit the school for the current original lesson and its interactive activity. Choose a job using time, skills, or ideas; compare pay and supply costs. Plan your bread, fund a district project, and reflect using an original lesson word. The next level unlocks after the activity and reflection. Investment choices unlock with Lesson 5, respect the teaching sequence, and show fixed classroom scenarios, including possible losses, before selection.
+
+Explore the school, homes, shops, park, transit, hospital, bank, and studio. Funded districts brighten, display their stages, and animate improvements. The bread wallet separates available funds, total income, spending, savings, and investment value. City services need 10 bread each week: keeping a cushion supports the city, while running short slows services with an explanation and a chance to improve next week.
+
+The city wallet is separate from the original lessons' simulated dollars and Arcade coins. Original completed lessons migrate without being erased or paying duplicate rewards. Replay preserves bread and reflections. Rebuilding the map requires confirmation and preserves your finances and lesson progress. Profile → Export career save downloads a complete backup. No external student data collection was added.
+
+Editable curriculum, source provenance, accounting, architecture and art notes are in [career/README.md](career/README.md). All 32 original lesson sources and vocabulary lists were found; none require substitute content.
+
+## Browser validation
+
+The existing Playwright harness expects Playwright available to Node and system Chromium. For example, with Playwright installed outside this repository:
 
 ```sh
 NODE_PATH=/tmp/money-ops-validation/node_modules npm run test:browser
+NODE_PATH=/tmp/money-ops-validation/node_modules npm run test:city-browser
 ```
+
+Both scripts start an isolated local static server automatically, exercise the real browser interface, then close the server. Override `CHROMIUM_PATH` if Chromium is installed elsewhere. The suites cover the original 32 lessons, Arcade, actual Career work/allocation/build/reflection/save flow, mobile, keyboard interaction, reduced motion, missing-art fallback, and both static entry points.
 
 ## Campaign
 

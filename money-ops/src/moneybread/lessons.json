@@ -1,0 +1,2216 @@
+[
+    {
+        "id": 1,
+        "title": "Earning & Creating Value",
+        "coreIdea": "Money is earned by creating value through your time, skills, ideas, products, and services.",
+        "terms": [
+            "time",
+            "skills",
+            "ideas",
+            "products",
+            "services",
+            "employee",
+            "self-employed",
+            "business owner",
+            "creator"
+        ],
+        "brief": "Use your time, your skills, or your ideas to build value and get paid.",
+        "lesson": "Build value. Get paid. Value can solve a problem, save time, share knowledge, entertain, make something, or help others.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js"
+        ],
+        "district": "park",
+        "dialogue": [],
+        "decision": null,
+        "challenge": null
+    },
+    {
+        "id": 2,
+        "title": "Building Income Streams",
+        "coreIdea": "Learn the difference between earned, business, freelance, investment, rental, creative, and passive income.",
+        "terms": [
+            "earned income",
+            "business income",
+            "freelance income",
+            "investment income",
+            "rental income",
+            "creative income",
+            "passive income"
+        ],
+        "brief": "Use your time, skills, and ideas to build more than one way to earn.",
+        "lesson": "An income stream is a way money comes in. Your time, your skills, and your ideas can each create value and earn money.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js"
+        ],
+        "district": "shops",
+        "dialogue": [],
+        "decision": null,
+        "challenge": null
+    },
+    {
+        "id": 3,
+        "title": "Saving & Paying Yourself First",
+        "coreIdea": "Save before spending and begin building financial security.",
+        "terms": [
+            "SAVE FIRST → SPEND SECOND",
+            "emergency savings",
+            "short-term goals",
+            "long-term goals",
+            "needs",
+            "wants"
+        ],
+        "brief": "Bring the money you earned into a future payday. Save first, then see how it helps with a surprise.",
+        "lesson": "Pay Yourself First means SAVE FIRST → SPEND SECOND. An emergency fund helps keep surprises from becoming loans.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js"
+        ],
+        "district": "bank",
+        "dialogue": [],
+        "decision": null,
+        "challenge": null
+    },
+    {
+        "id": 4,
+        "title": "Budgeting & Smart Spending",
+        "coreIdea": "Give every dollar a purpose; understand needs, wants, and the 50/30/20 concept.",
+        "terms": [
+            "budgeting",
+            "needs vs. wants",
+            "smart spending",
+            "financial tradeoffs",
+            "50/30/20"
+        ],
+        "brief": "Give every dollar a job, balance needs and wants, and save toward a goal.",
+        "lesson": "A budget is a plan for your money. The 50/30/20 rule is a simple guide: 50% needs, 30% wants, and 20% savings and goals.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js"
+        ],
+        "district": "homes",
+        "dialogue": [],
+        "decision": null,
+        "challenge": null
+    },
+    {
+        "id": 5,
+        "title": "Investing & Growing Your Money",
+        "coreIdea": "Introduce stocks, bonds, ETFs, real estate, mutual funds, risk, diversification, and long-term investing.",
+        "terms": [
+            "stocks",
+            "bonds",
+            "real estate",
+            "ETFs",
+            "mutual funds",
+            "alternative investments",
+            "start early",
+            "diversify",
+            "think long term",
+            "understand risk",
+            "stay informed",
+            "be patient"
+        ],
+        "brief": "Put money into a mix of investments and give it time to grow.",
+        "lesson": "Introduce stocks, bonds, ETFs, real estate, mutual funds, risk, diversification, and long-term investing.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-05-10.js"
+        ],
+        "district": "bank",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Investing can help money grow, but every investment has risk."
+            },
+            {
+                "speaker": "kai",
+                "text": "Let’s start early, diversify, and think long term."
+            }
+        ],
+        "decision": {
+            "prompt": "How will you build your first $300 portfolio?",
+            "options": [
+                {
+                    "id": "diversified-start",
+                    "label": "Mix It Up",
+                    "icon": "🧺",
+                    "detail": "Spread $300 across stocks, ETFs, and other assets.",
+                    "effects": {
+                        "cash": -300,
+                        "stocks": 75,
+                        "etfs": 150,
+                        "otherAssets": 75
+                    },
+                    "feedback": "You diversified. A mix can reduce the effect of one investment falling."
+                },
+                {
+                    "id": "stock-focus",
+                    "label": "Stock Focus",
+                    "icon": "📊",
+                    "detail": "Put all $300 into stocks for more possible reward and more risk.",
+                    "effects": {
+                        "cash": -300,
+                        "stocks": 300
+                    },
+                    "feedback": "Stocks may rise or fall. A one-type portfolio carries more risk."
+                },
+                {
+                    "id": "patient-start",
+                    "label": "Patient Start",
+                    "icon": "🌱",
+                    "detail": "Invest $200 in ETFs and bonds, and keep $100 available.",
+                    "effects": {
+                        "cash": -200,
+                        "etfs": 150,
+                        "investments": 50
+                    },
+                    "feedback": "You started small and kept cash ready. Patience is part of long-term investing."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 6,
+        "title": "Oil, Gas & World Events",
+        "coreIdea": "Understand how energy, geopolitics, and events around the world can affect prices and household finances.",
+        "terms": [
+            "oil",
+            "natural gas",
+            "energy prices",
+            "transportation",
+            "food prices",
+            "heating",
+            "electricity",
+            "cost of living",
+            "global supply disruptions"
+        ],
+        "brief": "Respond when a fictional world event changes energy prices and the cost of living.",
+        "lesson": "Understand how energy, geopolitics, and events around the world can affect prices and household finances.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-05-10.js"
+        ],
+        "district": "transit",
+        "dialogue": [
+            {
+                "speaker": "jordan",
+                "text": "Why did food and transportation both get more expensive?"
+            },
+            {
+                "speaker": "maya",
+                "text": "Energy helps move and make things, so higher energy prices can spread."
+            }
+        ],
+        "decision": {
+            "prompt": "Energy prices rise. How will you adjust your monthly plan?",
+            "options": [
+                {
+                    "id": "reduce-energy-use",
+                    "label": "Use Less Energy",
+                    "icon": "💡",
+                    "detail": "Carpool, turn off unused lights, and protect your savings.",
+                    "effects": {
+                        "monthlyExpenses": -20,
+                        "savings": 20
+                    },
+                    "feedback": "Small changes lowered transportation and electricity costs."
+                },
+                {
+                    "id": "trim-wants",
+                    "label": "Pause a Want",
+                    "icon": "✋",
+                    "detail": "Move $30 from wants to cover food and heating.",
+                    "effects": {
+                        "monthlyExpenses": 15,
+                        "cash": -15
+                    },
+                    "feedback": "You covered the higher needs cost by making a financial tradeoff."
+                },
+                {
+                    "id": "ignore-prices",
+                    "label": "Change Nothing",
+                    "icon": "🙈",
+                    "detail": "Keep the old plan even though transportation and food cost more.",
+                    "effects": {
+                        "monthlyExpenses": 45,
+                        "savings": -45
+                    },
+                    "feedback": "The higher cost of living pulled money from savings."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 7,
+        "title": "Credit, Loans & Smart Borrowing",
+        "coreIdea": "Understand credit, loans, borrowing costs, and the difference between productive and dangerous debt.",
+        "terms": [
+            "credit",
+            "credit cards",
+            "auto loans",
+            "mortgages",
+            "student loans",
+            "business loans",
+            "good debt",
+            "risky debt"
+        ],
+        "brief": "Compare ways to pay and see the long-term cost before borrowing.",
+        "lesson": "Understand credit, loans, borrowing costs, and the difference between productive and dangerous debt.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-05-10.js"
+        ],
+        "district": "homes",
+        "dialogue": [
+            {
+                "speaker": "kai",
+                "text": "Borrowed money is not free money. It must be paid back."
+            },
+            {
+                "speaker": "sofia",
+                "text": "Let’s compare the total cost, the payment, and the purpose."
+            }
+        ],
+        "decision": {
+            "prompt": "You need a $400 computer for school and paid projects. How will you pay?",
+            "options": [
+                {
+                    "id": "save-and-pay",
+                    "label": "Save, Then Buy",
+                    "icon": "🐷",
+                    "detail": "Wait and pay $400 without interest.",
+                    "effects": {
+                        "cash": -200,
+                        "savings": -200
+                    },
+                    "feedback": "Waiting avoided debt and interest, but used money you had saved."
+                },
+                {
+                    "id": "planned-loan",
+                    "label": "Small Loan",
+                    "icon": "🏦",
+                    "detail": "Borrow $400 and repay $440 with planned monthly payments.",
+                    "effects": {
+                        "checking": 400,
+                        "loans": 440,
+                        "monthlyExpenses": 44,
+                        "creditScore": 3
+                    },
+                    "feedback": "The useful purchase had a plan, but borrowing added $40 to the total cost."
+                },
+                {
+                    "id": "card-minimums",
+                    "label": "Card Minimums",
+                    "icon": "🧾",
+                    "detail": "Charge $400 and make only small minimum payments.",
+                    "effects": {
+                        "checking": 400,
+                        "debt": 520,
+                        "monthlyExpenses": 25,
+                        "creditScore": -8
+                    },
+                    "feedback": "Small payments stretched the debt out and raised the long-term cost to $520."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 8,
+        "title": "Entrepreneurship & Starting a Business",
+        "coreIdea": "Turn skills and ideas into products or services that solve problems for customers.",
+        "terms": [
+            "find a need",
+            "generate ideas",
+            "research",
+            "plan",
+            "act",
+            "persist"
+        ],
+        "brief": "Find a need, choose an idea, and launch a small business that creates value.",
+        "lesson": "Turn skills and ideas into products or services that solve problems for customers.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-05-10.js"
+        ],
+        "district": "studio",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "People nearby need help. That could become a business idea."
+            },
+            {
+                "speaker": "jordan",
+                "text": "We should research the need and make a plan before we spend."
+            }
+        ],
+        "decision": {
+            "prompt": "Which small business will you start?",
+            "options": [
+                {
+                    "id": "yard-care",
+                    "label": "Yard Care",
+                    "icon": "🌿",
+                    "detail": "Spend $60 on tools and help neighbors with outdoor work.",
+                    "effects": {
+                        "cash": -60,
+                        "businessValue": 120,
+                        "monthlyIncome": 80,
+                        "monthlyExpenses": 20
+                    },
+                    "feedback": "You found a neighborhood need and built a service around your time."
+                },
+                {
+                    "id": "study-help",
+                    "label": "Study Help",
+                    "icon": "📚",
+                    "detail": "Spend $30 on materials and use your skills to help students.",
+                    "effects": {
+                        "cash": -30,
+                        "businessValue": 90,
+                        "monthlyIncome": 60,
+                        "monthlyExpenses": 10
+                    },
+                    "feedback": "You turned a useful skill into a low-cost service business."
+                },
+                {
+                    "id": "creative-kits",
+                    "label": "Creative Kits",
+                    "icon": "🎨",
+                    "detail": "Spend $100 to make and sell activity kits from your ideas.",
+                    "effects": {
+                        "cash": -100,
+                        "businessValue": 150,
+                        "monthlyIncome": 90,
+                        "monthlyExpenses": 35
+                    },
+                    "feedback": "You created a product. Materials cost more, so sales must cover expenses."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 9,
+        "title": "Investing & Building Wealth",
+        "coreIdea": "Go deeper into investing, risk/reward, asset classes, and long-term wealth creation.",
+        "terms": [
+            "asset classes",
+            "risk",
+            "reward",
+            "long-term investing",
+            "wealth building"
+        ],
+        "brief": "Review asset classes, balance risk and reward, and improve your portfolio.",
+        "lesson": "Go deeper into investing, risk/reward, asset classes, and long-term wealth creation.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-05-10.js"
+        ],
+        "district": "bank",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Building wealth usually takes a plan and time, not one lucky pick."
+            },
+            {
+                "speaker": "kai",
+                "text": "Different asset classes can react differently to the same event."
+            }
+        ],
+        "decision": {
+            "prompt": "How will you add $250 to your long-term portfolio?",
+            "options": [
+                {
+                    "id": "asset-mix",
+                    "label": "Diversified Mix",
+                    "icon": "🧩",
+                    "detail": "Spread the money across stocks, ETFs, and other assets.",
+                    "effects": {
+                        "cash": -250,
+                        "stocks": 50,
+                        "etfs": 125,
+                        "otherAssets": 75
+                    },
+                    "feedback": "You used several asset classes to balance risk and reward."
+                },
+                {
+                    "id": "growth-heavy",
+                    "label": "Growth Heavy",
+                    "icon": "📈",
+                    "detail": "Choose mostly stocks for more possible growth and bigger price swings.",
+                    "effects": {
+                        "cash": -250,
+                        "stocks": 175,
+                        "etfs": 75
+                    },
+                    "feedback": "The portfolio has more growth potential and more short-term risk."
+                },
+                {
+                    "id": "steady-step",
+                    "label": "Steady Step",
+                    "icon": "🪜",
+                    "detail": "Invest $150 in a broad fund and keep $100 for future choices.",
+                    "effects": {
+                        "cash": -150,
+                        "etfs": 150
+                    },
+                    "feedback": "You added to the portfolio while keeping money available. Returns are not guaranteed."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 10,
+        "title": "Budgeting & Goal Setting",
+        "coreIdea": "Connect a budget to SMART financial goals and create a plan for reaching them.",
+        "terms": [
+            "budget",
+            "50/30/20 Rule",
+            "Needs (50%)",
+            "Wants (30%)",
+            "Savings & Goals (20%)",
+            "SMART financial goals",
+            "Specific",
+            "Measurable",
+            "Achievable",
+            "Relevant",
+            "Time-Bound"
+        ],
+        "brief": "Use the 50/30/20 Rule and build a SMART financial goal.",
+        "lesson": "Connect a budget to SMART financial goals and create a plan for reaching them.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-05-10.js"
+        ],
+        "district": "homes",
+        "dialogue": [
+            {
+                "speaker": "jordan",
+                "text": "A budget helps us decide how to spend, save, and give."
+            },
+            {
+                "speaker": "maya",
+                "text": "The 50/30/20 Rule is a guide we can adjust for our goals."
+            }
+        ],
+        "decision": {
+            "prompt": "You have $200. Choose a budget for this month.",
+            "options": [
+                {
+                    "id": "fifty-thirty-twenty",
+                    "label": "50 / 30 / 20",
+                    "icon": "🥧",
+                    "detail": "$100 Needs • $60 Wants • $40 Savings & Goals",
+                    "effects": {
+                        "checking": -200,
+                        "monthlyExpenses": 160,
+                        "savings": 40
+                    },
+                    "feedback": "You used the 50/30/20 Rule to give every dollar a job."
+                },
+                {
+                    "id": "goal-sprint",
+                    "label": "Goal Sprint",
+                    "icon": "🏁",
+                    "detail": "$120 Needs • $20 Wants • $60 Savings & Goals",
+                    "effects": {
+                        "checking": -200,
+                        "monthlyExpenses": 140,
+                        "savings": 60
+                    },
+                    "feedback": "You adjusted the guide to save faster while keeping needs covered."
+                },
+                {
+                    "id": "wants-heavy",
+                    "label": "More Wants",
+                    "icon": "🎮",
+                    "detail": "$100 Needs • $80 Wants • $20 Savings & Goals",
+                    "effects": {
+                        "checking": -200,
+                        "monthlyExpenses": 180,
+                        "savings": 20
+                    },
+                    "feedback": "More wants left less for your goal. A budget makes that tradeoff visible."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 11,
+        "title": "Stocks & Owning a Piece of a Company",
+        "coreIdea": "Learn what shares are, why companies sell stock, and how investors can make or lose money.",
+        "terms": [
+            "stock",
+            "shares",
+            "ownership",
+            "why companies issue stock",
+            "stock-price gains/losses"
+        ],
+        "brief": "Research fictional companies, buy shares, and watch stock prices rise or fall with new information.",
+        "lesson": "Learn what shares are, why companies sell stock, and how investors can make or lose money.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-11-16.js"
+        ],
+        "district": "shops",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "A stock is a small piece of ownership in a company. Each piece is called a share."
+            },
+            {
+                "speaker": "jordan",
+                "text": "Companies issue stock to raise money, but a share price can rise or fall after we buy."
+            }
+        ],
+        "decision": {
+            "prompt": "Research the company cards. Which company will receive your $100 investment?",
+            "options": [
+                {
+                    "id": "buy-foods-shares",
+                    "label": "Neighborhood Foods",
+                    "icon": "🥕",
+                    "detail": "Buy shares in a grocery company with steady demand, modest growth, and manageable debt.",
+                    "effects": {
+                        "cash": -100,
+                        "stocks": 100
+                    },
+                    "feedback": "You bought shares and became a part-owner. Steadier demand can still come with stock-price gains or losses."
+                },
+                {
+                    "id": "buy-sunline-shares",
+                    "label": "Sunline Energy",
+                    "icon": "☀️",
+                    "detail": "Buy shares in a growing solar company whose price has made bigger moves.",
+                    "effects": {
+                        "cash": -100,
+                        "stocks": 100
+                    },
+                    "feedback": "You chose more possible growth with larger price swings. A promising industry does not guarantee a gain."
+                },
+                {
+                    "id": "buy-playworks-shares",
+                    "label": "PlayWorks Studio",
+                    "icon": "🎮",
+                    "detail": "Buy shares in a creative company whose results depend heavily on its next game launch.",
+                    "effects": {
+                        "cash": -100,
+                        "stocks": 100
+                    },
+                    "feedback": "You now own shares in a launch-dependent business. Research helps, but the future price remains uncertain."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 12,
+        "title": "Compound Interest & the Power of Time",
+        "coreIdea": "See how money can earn money and why starting early can be such a powerful advantage.",
+        "terms": [
+            "principal",
+            "interest",
+            "interest on interest",
+            "time",
+            "consistent contributions",
+            "starting amount",
+            "monthly contribution",
+            "rate of return",
+            "years invested"
+        ],
+        "brief": "Change the starting amount, monthly contribution, simulated rate of return, and years invested to see growth over time.",
+        "lesson": "See how money can earn money and why starting early can be such a powerful advantage.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-11-16.js"
+        ],
+        "district": "bank",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Principal is the money we start with. Interest is growth earned on that money."
+            },
+            {
+                "speaker": "kai",
+                "text": "With compound interest, earlier interest can earn interest too. Time and steady contributions can make a big difference."
+            }
+        ],
+        "decision": {
+            "prompt": "Set the time machine. Which long-term plan will you begin today?",
+            "options": [
+                {
+                    "id": "start-small-now",
+                    "label": "Start Small Now",
+                    "icon": "🌱",
+                    "detail": "$60 principal + $10 monthly • 5% simulated return • 20 years",
+                    "effects": {
+                        "cash": -70,
+                        "investments": 70
+                    },
+                    "feedback": "You invested the principal and first contribution. Starting earlier gives compounding more time, but the simulated rate is not guaranteed."
+                },
+                {
+                    "id": "build-consistently",
+                    "label": "Add Consistently",
+                    "icon": "📅",
+                    "detail": "$30 principal + $20 monthly • 5% simulated return • 20 years",
+                    "effects": {
+                        "cash": -50,
+                        "investments": 50
+                    },
+                    "feedback": "Regular contributions add new principal for possible growth. Actual returns can be higher, lower, or negative."
+                },
+                {
+                    "id": "start-bigger-later",
+                    "label": "Bigger, But Later",
+                    "icon": "⏰",
+                    "detail": "$120 principal + $0 monthly • 5% simulated return • 10 years",
+                    "effects": {
+                        "cash": -120,
+                        "investments": 120
+                    },
+                    "feedback": "A larger start helps, but fewer years means less time for interest on interest. The time-machine result is only a projection."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 13,
+        "title": "Risk, Reward & Diversification",
+        "coreIdea": "Understand why higher potential returns usually involve risk and why investors diversify.",
+        "terms": [
+            "risk",
+            "potential return",
+            "concentration",
+            "diversification",
+            "one concentrated portfolio",
+            "a diversified portfolio"
+        ],
+        "brief": "Build a concentrated or diversified portfolio, then watch a market shock affect each mix differently.",
+        "lesson": "Understand why higher potential returns usually involve risk and why investors diversify.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-11-16.js"
+        ],
+        "district": "bank",
+        "dialogue": [
+            {
+                "speaker": "jordan",
+                "text": "One exciting stock could climb fast, but one problem could also hit our whole portfolio."
+            },
+            {
+                "speaker": "maya",
+                "text": "Diversification spreads money across investments. It can reduce one-company damage, but it cannot prevent every loss."
+            }
+        ],
+        "decision": {
+            "prompt": "How will you divide $150 before the market-shock test?",
+            "options": [
+                {
+                    "id": "high-concentration",
+                    "label": "One Big Basket",
+                    "icon": "🎯",
+                    "detail": "Put $120 in one stock, $15 in an ETF, and $15 in another asset.",
+                    "effects": {
+                        "cash": -150,
+                        "stocks": 120,
+                        "etfs": 15,
+                        "otherAssets": 15
+                    },
+                    "feedback": "Most of the portfolio depends on one company. Concentration raises the effect of that company’s gains or losses."
+                },
+                {
+                    "id": "three-way-diversification",
+                    "label": "Three Equal Baskets",
+                    "icon": "🧩",
+                    "detail": "Put $50 in stocks, $50 in ETFs, and $50 in other assets.",
+                    "effects": {
+                        "cash": -150,
+                        "stocks": 50,
+                        "etfs": 50,
+                        "otherAssets": 50
+                    },
+                    "feedback": "You spread risk across several investments. Diversification reduces concentration, though the full portfolio can still fall."
+                },
+                {
+                    "id": "lower-stock-mix",
+                    "label": "Lower Stock Mix",
+                    "icon": "⚖️",
+                    "detail": "Put $30 in stocks, $60 in ETFs, and $60 in other assets.",
+                    "effects": {
+                        "cash": -150,
+                        "stocks": 30,
+                        "etfs": 60,
+                        "otherAssets": 60
+                    },
+                    "feedback": "You accepted less single-stock exposure and a different balance of risk and potential return."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 14,
+        "title": "ETFs, Index Funds & Building a Portfolio",
+        "coreIdea": "Learn how funds can provide ownership in many investments and how to construct a basic portfolio.",
+        "terms": [
+            "ETF",
+            "index",
+            "index fund",
+            "portfolio",
+            "diversification",
+            "asset allocation"
+        ],
+        "brief": "Match each fund term, choose an asset allocation, and build a portfolio from investment baskets.",
+        "lesson": "Learn how funds can provide ownership in many investments and how to construct a basic portfolio.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-11-16.js"
+        ],
+        "district": "bank",
+        "dialogue": [
+            {
+                "speaker": "kai",
+                "text": "An index is a list used to measure a market. An index fund follows an index."
+            },
+            {
+                "speaker": "sofia",
+                "text": "An ETF is a basket we can trade like a stock. Our asset allocation decides how we divide the whole portfolio."
+            }
+        ],
+        "decision": {
+            "prompt": "Choose an asset allocation for the next $120 in your portfolio.",
+            "options": [
+                {
+                    "id": "broad-index-etf",
+                    "label": "Broad Index ETF",
+                    "icon": "🌎",
+                    "detail": "Put $120 into an ETF that follows a broad fictional company index.",
+                    "effects": {
+                        "cash": -120,
+                        "etfs": 120
+                    },
+                    "feedback": "One ETF gave you pieces of many companies. A broad basket supports diversification but can still lose value."
+                },
+                {
+                    "id": "mixed-asset-allocation",
+                    "label": "Mixed Allocation",
+                    "icon": "🧩",
+                    "detail": "Put $90 in broad ETFs and $30 in other assets.",
+                    "effects": {
+                        "cash": -120,
+                        "etfs": 90,
+                        "otherAssets": 30
+                    },
+                    "feedback": "Your asset allocation uses more than one kind of holding. The mix should connect to the goal, time, and risk."
+                },
+                {
+                    "id": "single-sector-etf",
+                    "label": "One Sector ETF",
+                    "icon": "☀️",
+                    "detail": "Put $120 into an ETF containing only fictional solar companies.",
+                    "effects": {
+                        "cash": -120,
+                        "etfs": 120
+                    },
+                    "feedback": "This ETF holds several companies, but all share one industry risk. More holdings do not always mean broad diversification."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 15,
+        "title": "The Stock Market & How Markets Work",
+        "coreIdea": "Understand exchanges, buyers, sellers, prices, market movements, and why stock prices change.",
+        "terms": [
+            "buyers",
+            "sellers",
+            "exchanges",
+            "market prices",
+            "bids",
+            "offers",
+            "supply",
+            "demand",
+            "market movement"
+        ],
+        "brief": "Match bids with offers and watch supply and demand move a fictional market price.",
+        "lesson": "Understand exchanges, buyers, sellers, prices, market movements, and why stock prices change.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-11-16.js"
+        ],
+        "district": "shops",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "A bid is what a buyer will pay. An offer is what a seller will accept."
+            },
+            {
+                "speaker": "jordan",
+                "text": "When they match at an exchange, a trade happens. The latest matched trade becomes the market price."
+            }
+        ],
+        "decision": {
+            "prompt": "The best offer is $48. Which bid will you place in this simulated exchange?",
+            "options": [
+                {
+                    "id": "match-the-offer",
+                    "label": "Bid $48",
+                    "icon": "🤝",
+                    "detail": "Match the seller’s $48 offer so the trade happens now.",
+                    "effects": {
+                        "cash": -48,
+                        "stocks": 48
+                    },
+                    "feedback": "The bid met the offer, so buyers and sellers completed a trade at a $48 market price."
+                },
+                {
+                    "id": "bid-below-offer",
+                    "label": "Bid $45",
+                    "icon": "⏳",
+                    "detail": "Offer less than the seller will accept and wait for a match.",
+                    "effects": {
+                        "cash": 0,
+                        "stocks": 0
+                    },
+                    "feedback": "No seller accepted the $45 bid, so no trade happened. A bid is a request, not a guaranteed purchase."
+                },
+                {
+                    "id": "accept-higher-offer",
+                    "label": "Pay the New $50 Offer",
+                    "icon": "⚡",
+                    "detail": "Accept the higher offer after another buyer increases demand.",
+                    "effects": {
+                        "cash": -50,
+                        "stocks": 50
+                    },
+                    "feedback": "More buyer demand helped move the matched market price up. The stock can still move either way next."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 16,
+        "title": "Reading a Company — Revenue, Profit & Value",
+        "coreIdea": "Begin thinking like an investor by examining how a company makes money and whether the business is healthy.",
+        "terms": [
+            "revenue",
+            "expenses",
+            "profit",
+            "growth",
+            "debt",
+            "business model",
+            "company value"
+        ],
+        "brief": "Read fictional company reports and compare revenue, expenses, profit, growth, debt, and business models.",
+        "lesson": "Begin thinking like an investor by examining how a company makes money and whether the business is healthy.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-11-16.js"
+        ],
+        "district": "shops",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Revenue is money a company brings in. Expenses are its costs. Revenue minus expenses equals profit."
+            },
+            {
+                "speaker": "kai",
+                "text": "The highest revenue is not always the strongest company. Growth, debt, the business model, and profit also matter."
+            }
+        ],
+        "decision": {
+            "prompt": "Which fictional company appears strongest after you read the complete report?",
+            "options": [
+                {
+                    "id": "choose-neighborhood-foods",
+                    "label": "Neighborhood Foods",
+                    "icon": "🥕",
+                    "detail": "Revenue $1,200 • Expenses $900 • Profit $300 • Growth 8% • Debt $100",
+                    "effects": {
+                        "cash": -100,
+                        "stocks": 100
+                    },
+                    "feedback": "You chose steady profit, positive growth, and lower debt. These support the analysis, but they do not guarantee a higher stock price."
+                },
+                {
+                    "id": "choose-sunline-energy",
+                    "label": "Sunline Energy",
+                    "icon": "☀️",
+                    "detail": "Revenue $1,600 • Expenses $1,500 • Profit $100 • Growth 18% • Debt $600",
+                    "effects": {
+                        "cash": -100,
+                        "stocks": 100
+                    },
+                    "feedback": "Sunline has fast growth and high revenue, but thin profit and high debt add risk. Revenue alone does not show company strength."
+                },
+                {
+                    "id": "choose-playworks-studio",
+                    "label": "PlayWorks Studio",
+                    "icon": "🎮",
+                    "detail": "Revenue $900 • Expenses $1,000 • Profit -$100 • Growth -5% • Debt $300",
+                    "effects": {
+                        "cash": -100,
+                        "stocks": 100
+                    },
+                    "feedback": "Expenses exceeded revenue, creating a loss. A turnaround is possible, but this report shows greater risk today."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 17,
+        "title": "Supply, Demand & Why Prices Change",
+        "coreIdea": "Explore how scarcity, competition, buyers, and sellers influence prices.",
+        "terms": [
+            "supply",
+            "demand",
+            "competition",
+            "scarcity"
+        ],
+        "brief": "Shop as a consumer, then run a booth. Watch supply, demand, competition, and scarcity move prices.",
+        "lesson": "Explore how scarcity, competition, buyers, and sellers influence prices.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-17-22.js"
+        ],
+        "district": "shops",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "Only three art kits are left, and a crowd wants them. That scarcity may push the price up."
+            },
+            {
+                "speaker": "jordan",
+                "text": "Let’s compare choices as shoppers before we set a fair price at our own booth."
+            }
+        ],
+        "decision": {
+            "prompt": "You need an art kit, but high demand and low supply raised its price from $25 to $45. What do you do as a consumer?",
+            "options": [
+                {
+                    "id": "choose-substitute",
+                    "label": "Choose a $22 substitute",
+                    "icon": "🔁",
+                    "detail": "Compare quality and buy a similar kit from a competing seller.",
+                    "effects": {
+                        "cash": -22
+                    },
+                    "feedback": "Smart comparison. Competition gives buyers alternatives, and substitutes can reduce pressure on a scarce item."
+                },
+                {
+                    "id": "wait-for-supply",
+                    "label": "Wait for restock",
+                    "icon": "⏳",
+                    "detail": "Keep your money and check again when supply may be higher.",
+                    "effects": {
+                        "cash": 0
+                    },
+                    "feedback": "Waiting protects your cash. If supply rises or demand cools, the price may fall, though that outcome is not guaranteed."
+                },
+                {
+                    "id": "buy-scarce-kit",
+                    "label": "Pay the $45 price",
+                    "icon": "🛍️",
+                    "detail": "Get the scarce kit now because you need it today.",
+                    "effects": {
+                        "cash": -45
+                    },
+                    "feedback": "You met an urgent need, but scarcity cost you more. High demand with low supply often puts upward pressure on prices."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 18,
+        "title": "Inflation & the Changing Value of Money",
+        "coreIdea": "Understand purchasing power and why $100 today won't necessarily buy the same amount in the future.",
+        "terms": [
+            "inflation",
+            "purchasing power",
+            "price increases",
+            "real value of money"
+        ],
+        "brief": "Compare the same shopping basket across several years and protect your purchasing power as prices change.",
+        "lesson": "Understand purchasing power and why $100 today won't necessarily buy the same amount in the future.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-17-22.js"
+        ],
+        "district": "transit",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "The basket still holds the same food, but it costs more this year. That is a clue about inflation."
+            },
+            {
+                "speaker": "kai",
+                "text": "My $100 balance did not shrink, but it buys less. Its purchasing power changed."
+            }
+        ],
+        "decision": {
+            "prompt": "A weekly basket rose from $80 to $92 while your income stayed the same. Which move best prepares your plan?",
+            "options": [
+                {
+                    "id": "build-earning-skill",
+                    "label": "Build an earning skill",
+                    "icon": "🧰",
+                    "detail": "Spend $40 on training that may help you earn $10 more each month.",
+                    "effects": {
+                        "cash": -40,
+                        "monthlyIncome": 10,
+                        "businessValue": 10
+                    },
+                    "feedback": "Growing income can help answer price increases. Training has a cost, and the value depends on using the skill."
+                },
+                {
+                    "id": "long-term-invest",
+                    "label": "Invest for long-term goals",
+                    "icon": "📈",
+                    "detail": "Move $60 from cash into a diversified long-term investment.",
+                    "effects": {
+                        "cash": -60,
+                        "investments": 60
+                    },
+                    "feedback": "Long-term investing may help money grow faster than inflation, but returns can rise or fall and are never guaranteed."
+                },
+                {
+                    "id": "ignore-new-price",
+                    "label": "Keep the old plan",
+                    "icon": "🙈",
+                    "detail": "Make no change even though the basket costs $12 more each week.",
+                    "effects": {
+                        "monthlyExpenses": 12
+                    },
+                    "feedback": "The new cost squeezes your budget. Inflation reduces the real value of money when income and planning do not keep pace."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 19,
+        "title": "Banks, Interest & How Money Moves",
+        "coreIdea": "Learn what banks do with deposits, how interest works, and how money moves through the economy.",
+        "terms": [
+            "deposits",
+            "savings accounts",
+            "loans",
+            "interest",
+            "banking",
+            "money movement"
+        ],
+        "brief": "Move a paycheck through bank accounts, compare interest, and decide whether a loan is worth its total cost.",
+        "lesson": "Learn what banks do with deposits, how interest works, and how money moves through the economy.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-17-22.js"
+        ],
+        "district": "bank",
+        "dialogue": [
+            {
+                "speaker": "jordan",
+                "text": "A deposit moves money into an account. Checking is useful for spending, while savings can earn interest."
+            },
+            {
+                "speaker": "maya",
+                "text": "Banks may also lend money and charge interest. We should compare what we receive with what we repay."
+            }
+        ],
+        "decision": {
+            "prompt": "You receive $200 in cash. Where will you deposit it?",
+            "options": [
+                {
+                    "id": "split-deposit",
+                    "label": "$50 checking, $150 savings",
+                    "icon": "⚖️",
+                    "detail": "Keep spending money available and place the rest in an interest-earning savings account.",
+                    "effects": {
+                        "cash": -200,
+                        "checking": 50,
+                        "savings": 150
+                    },
+                    "feedback": "The split supports spending and saving. Account rates, fees, access, and protections should all be compared."
+                },
+                {
+                    "id": "checking-deposit",
+                    "label": "All in checking",
+                    "icon": "💳",
+                    "detail": "Keep all $200 ready for bills and purchases.",
+                    "effects": {
+                        "cash": -200,
+                        "checking": 200
+                    },
+                    "feedback": "Checking keeps money easy to use, but it may earn little or no interest. Easy access can also make spending tempting."
+                },
+                {
+                    "id": "hold-cash",
+                    "label": "Keep all the cash",
+                    "icon": "💵",
+                    "detail": "Do not make a bank deposit today.",
+                    "effects": {
+                        "cash": 0
+                    },
+                    "feedback": "Cash is immediate, but it cannot earn account interest and can be harder to replace if lost. Banking gives money other ways to move."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 20,
+        "title": "Credit Scores & Building Strong Credit",
+        "coreIdea": "Learn what affects credit scores and how financial behavior can strengthen or damage credit.",
+        "terms": [
+            "payment history",
+            "credit usage",
+            "length of credit",
+            "new credit",
+            "responsible borrowing"
+        ],
+        "brief": "Guide a live credit-score meter by making payment, balance, and application decisions.",
+        "lesson": "Learn what affects credit scores and how financial behavior can strengthen or damage credit.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-17-22.js"
+        ],
+        "district": "homes",
+        "dialogue": [
+            {
+                "speaker": "kai",
+                "text": "A credit score is a signal built from borrowing behavior. It is not extra money to spend."
+            },
+            {
+                "speaker": "sofia",
+                "text": "Payment history matters a lot, and using too much available credit can raise risk."
+            }
+        ],
+        "decision": {
+            "prompt": "An $80 card balance is due. What action will you take before the due date?",
+            "options": [
+                {
+                    "id": "pay-full-on-time",
+                    "label": "Pay $80 on time",
+                    "icon": "✅",
+                    "detail": "Pay the full statement balance before the due date.",
+                    "effects": {
+                        "cash": -80,
+                        "debt": -80,
+                        "creditScore": 18
+                    },
+                    "feedback": "On-time payment strengthens payment history and lowering the balance reduces credit usage. Actual score changes vary by credit file."
+                },
+                {
+                    "id": "pay-minimum-on-time",
+                    "label": "Pay $20 on time",
+                    "icon": "🟡",
+                    "detail": "Meet the minimum, but carry most of the balance.",
+                    "effects": {
+                        "cash": -20,
+                        "debt": -15,
+                        "monthlyExpenses": 5,
+                        "creditScore": 4
+                    },
+                    "feedback": "Paying on time protects payment history, but a carried balance can add interest and keep credit usage higher."
+                },
+                {
+                    "id": "miss-payment",
+                    "label": "Miss the payment",
+                    "icon": "⚠️",
+                    "detail": "Spend nothing now and let a late charge join the balance.",
+                    "effects": {
+                        "debt": 12,
+                        "creditScore": -35
+                    },
+                    "feedback": "A missed payment can hurt payment history and add fees. The exact score impact depends on the account and credit report."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 21,
+        "title": "Debt & Interest — What Borrowing Really Costs",
+        "coreIdea": "Examine principal, APR, interest accumulation, minimum payments, and debt repayment strategies.",
+        "terms": [
+            "principal",
+            "interest",
+            "APR",
+            "minimum payments",
+            "total borrowing cost",
+            "good vs. risky debt",
+            "larger payments",
+            "debt snowball",
+            "debt avalanche"
+        ],
+        "brief": "Test payments on a $600 balance, compare payoff strategies, and uncover the total borrowing cost.",
+        "lesson": "Examine principal, APR, interest accumulation, minimum payments, and debt repayment strategies.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-17-22.js"
+        ],
+        "district": "homes",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "Principal is what was borrowed. Interest is the cost of borrowing, and APR helps show that yearly cost."
+            },
+            {
+                "speaker": "jordan",
+                "text": "A minimum payment keeps the account moving, but a larger payment can shorten payoff time and reduce total borrowing cost."
+            }
+        ],
+        "decision": {
+            "prompt": "Your card has $600 of principal at 24% APR. The minimum is $25. What payment do you choose this month?",
+            "options": [
+                {
+                    "id": "minimum-payment",
+                    "label": "Pay the $25 minimum",
+                    "icon": "🐢",
+                    "detail": "Stay current, but reduce the balance slowly after interest.",
+                    "effects": {
+                        "cash": -25,
+                        "debt": -13,
+                        "monthlyExpenses": 12
+                    },
+                    "feedback": "The minimum keeps the payment current, but interest uses part of it. Slow payoff generally creates a higher total borrowing cost."
+                },
+                {
+                    "id": "larger-payment",
+                    "label": "Pay $75",
+                    "icon": "🚀",
+                    "detail": "Put more toward the balance now.",
+                    "effects": {
+                        "cash": -75,
+                        "debt": -63,
+                        "monthlyExpenses": 12
+                    },
+                    "feedback": "The same month of interest still applies, but more of the larger payment reduces principal. That can shorten payoff time."
+                },
+                {
+                    "id": "add-new-purchase",
+                    "label": "Pay $25, then charge $60",
+                    "icon": "🛒",
+                    "detail": "Make the minimum and add a want to the card.",
+                    "effects": {
+                        "cash": -25,
+                        "debt": 47,
+                        "monthlyExpenses": 12
+                    },
+                    "feedback": "The new purchase is larger than the principal you reduced, so debt grows. Borrowing for wants at a high APR is risky debt."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 22,
+        "title": "Insurance & Protecting What You Build",
+        "coreIdea": "Understand how insurance transfers risk and protects income, property, health, and wealth.",
+        "terms": [
+            "risk protection",
+            "auto insurance",
+            "health insurance",
+            "property/renters insurance",
+            "life insurance",
+            "insured",
+            "uninsured"
+        ],
+        "brief": "Build a protection plan, then respond when a surprise loss tests the choice between insured and uninsured risk.",
+        "lesson": "Understand how insurance transfers risk and protects income, property, health, and wealth.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-17-22.js"
+        ],
+        "district": "hospital",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Insurance transfers some financial risk. We pay a premium, and covered claims still may have a deductible."
+            },
+            {
+                "speaker": "kai",
+                "text": "The right protection depends on what could be lost, who depends on us, the policy rules, and what we can afford."
+            }
+        ],
+        "decision": {
+            "prompt": "You rent an apartment and drive to work. Which monthly protection plan will you choose?",
+            "options": [
+                {
+                    "id": "auto-and-renters",
+                    "label": "Auto + renters coverage",
+                    "icon": "🚗",
+                    "detail": "Pay $45 for two policies after checking limits, exclusions, and deductibles.",
+                    "effects": {
+                        "cash": -45,
+                        "insuranceCosts": 45
+                    },
+                    "feedback": "This plan protects two major risks, within policy terms. A premium buys coverage, but claims may still require a deductible."
+                },
+                {
+                    "id": "auto-only",
+                    "label": "Auto coverage only",
+                    "icon": "🚙",
+                    "detail": "Pay $28 for required vehicle protection and keep apartment property risk yourself.",
+                    "effects": {
+                        "cash": -28,
+                        "insuranceCosts": 28
+                    },
+                    "feedback": "The vehicle has protection, but belongings remain exposed. Lower premiums often mean accepting more risk elsewhere."
+                },
+                {
+                    "id": "skip-coverage",
+                    "label": "Skip both policies",
+                    "icon": "🎲",
+                    "detail": "Pay no premium and accept the full financial risk.",
+                    "effects": {
+                        "insuranceCosts": 0
+                    },
+                    "feedback": "You save the premium today, but an uninsured loss could be much larger. Auto coverage also may be legally required."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 23,
+        "title": "Taxes & Your Paycheck",
+        "coreIdea": "Learn gross vs. net pay, payroll deductions, taxes, Social Security/Medicare, W-2s, and 1099 income.",
+        "terms": [
+            "gross pay",
+            "net pay",
+            "federal taxes",
+            "state taxes",
+            "Social Security",
+            "Medicare",
+            "deductions",
+            "W-2",
+            "1099",
+            "GROSS PAY ≠ TAKE-HOME PAY"
+        ],
+        "brief": "Read a pay stub and make a plan with the money that actually arrives.",
+        "lesson": "Learn gross vs. net pay, payroll deductions, taxes, Social Security/Medicare, W-2s, and 1099 income.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-23-28.js"
+        ],
+        "district": "hospital",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "Gross is all the pay you earned before anything is taken out."
+            },
+            {
+                "speaker": "jordan",
+                "text": "Payroll deductions come out first. Net is the money that reaches you."
+            }
+        ],
+        "decision": {
+            "prompt": "Your pay stub shows $300 gross, $60 in payroll deductions, and $240 net. Which plan do you choose?",
+            "options": [
+                {
+                    "id": "plan-the-net",
+                    "label": "Plan the $240 net",
+                    "icon": "✅",
+                    "detail": "Put $60 in savings and keep $180 in checking.",
+                    "effects": {
+                        "checking": 180,
+                        "savings": 60,
+                        "monthlyIncome": 240,
+                        "taxes": 60
+                    },
+                    "feedback": "Smart plan! You used your net pay, so every dollar in the plan is really available."
+                },
+                {
+                    "id": "spend-the-net",
+                    "label": "Spend all $240",
+                    "icon": "🛍️",
+                    "detail": "Use the full net paycheck now and save nothing.",
+                    "effects": {
+                        "monthlyIncome": 240,
+                        "monthlyExpenses": 240,
+                        "taxes": 60
+                    },
+                    "feedback": "The plan fits your net pay, but no money remains for a goal or surprise."
+                },
+                {
+                    "id": "plan-the-gross",
+                    "label": "Plan the $300 gross",
+                    "icon": "⚠️",
+                    "detail": "Promise to spend $300 even though only $240 arrives.",
+                    "effects": {
+                        "monthlyIncome": 240,
+                        "monthlyExpenses": 300,
+                        "debt": 60,
+                        "taxes": 60
+                    },
+                    "feedback": "Gross is not take-home money. Planning with it created a $60 shortage."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 24,
+        "title": "Starting a Business — Problem to Opportunity",
+        "coreIdea": "Move from Problem → Solution → Customer → Revenue → Profit and design a small business concept.",
+        "terms": [
+            "PROBLEM → SOLUTION → CUSTOMER → REVENUE → PROFIT",
+            "problem",
+            "solution",
+            "customer",
+            "product/service",
+            "startup cost",
+            "price"
+        ],
+        "brief": "Spot a real problem and build a useful solution for a customer.",
+        "lesson": "Move from Problem → Solution → Customer → Revenue → Profit and design a small business concept.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-23-28.js"
+        ],
+        "district": "studio",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "A strong business begins with a problem that people truly want solved."
+            },
+            {
+                "speaker": "kai",
+                "text": "A solution helps a customer. Their payment creates revenue, and revenue left after costs is profit."
+            }
+        ],
+        "decision": {
+            "prompt": "Busy neighbors need dependable help caring for their dogs. How will you turn the problem into an opportunity?",
+            "options": [
+                {
+                    "id": "booking-service",
+                    "label": "Build a booking service",
+                    "icon": "🐕",
+                    "detail": "Offer scheduled walks and text updates. Customers pay $180 and supplies cost $40.",
+                    "effects": {
+                        "checking": 140,
+                        "monthlyIncome": 180,
+                        "monthlyExpenses": 40,
+                        "businessValue": 120
+                    },
+                    "feedback": "Problem → solution → customer → revenue → profit. You earned $140 profit after costs."
+                },
+                {
+                    "id": "logo-first",
+                    "label": "Design a logo first",
+                    "icon": "🎨",
+                    "detail": "Spend $80 on a logo before asking customers what help they need.",
+                    "effects": {
+                        "checking": -80,
+                        "monthlyExpenses": 80,
+                        "businessValue": 15
+                    },
+                    "feedback": "A logo can wait. First confirm the problem, solution, and customer."
+                },
+                {
+                    "id": "storefront-first",
+                    "label": "Borrow for a shop",
+                    "icon": "🏬",
+                    "detail": "Take a $1,000 loan for a storefront before making a sale.",
+                    "effects": {
+                        "loans": 1000,
+                        "monthlyExpenses": 300,
+                        "businessValue": 50
+                    },
+                    "feedback": "The large cost arrived before revenue. Test a small solution with customers first."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 25,
+        "title": "Pricing, Revenue, Expenses & Profit",
+        "coreIdea": "Learn how businesses determine prices, generate revenue, pay costs, and calculate profit.",
+        "terms": [
+            "price",
+            "units sold",
+            "revenue",
+            "fixed expenses",
+            "variable expenses",
+            "profit",
+            "PROFIT = REVENUE - EXPENSES"
+        ],
+        "brief": "Choose a price that customers accept and that covers every expense.",
+        "lesson": "Learn how businesses determine prices, generate revenue, pay costs, and calculate profit.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-23-28.js"
+        ],
+        "district": "shops",
+        "dialogue": [
+            {
+                "speaker": "jordan",
+                "text": "Pricing decides what each customer pays. All the sales together make revenue."
+            },
+            {
+                "speaker": "maya",
+                "text": "Expenses are business costs. Revenue minus expenses equals profit."
+            }
+        ],
+        "decision": {
+            "prompt": "Each creativity kit costs $6 to make. What price will you choose?",
+            "options": [
+                {
+                    "id": "balanced-price",
+                    "label": "$14 × 10 customers",
+                    "icon": "⚖️",
+                    "detail": "$140 revenue − $60 expenses = $80 profit.",
+                    "effects": {
+                        "checking": 80,
+                        "monthlyIncome": 140,
+                        "monthlyExpenses": 60,
+                        "businessValue": 60
+                    },
+                    "feedback": "This price covers expenses, earns profit, and still attracts all 10 customers."
+                },
+                {
+                    "id": "low-price",
+                    "label": "$7 × 10 customers",
+                    "icon": "⬇️",
+                    "detail": "$70 revenue − $60 expenses = $10 profit.",
+                    "effects": {
+                        "checking": 10,
+                        "monthlyIncome": 70,
+                        "monthlyExpenses": 60,
+                        "businessValue": 20
+                    },
+                    "feedback": "Customers like the low price, but only $10 remains to grow the business."
+                },
+                {
+                    "id": "high-price",
+                    "label": "$22 × 4 customers",
+                    "icon": "⬆️",
+                    "detail": "$88 revenue − $24 expenses = $64 profit.",
+                    "effects": {
+                        "checking": 64,
+                        "monthlyIncome": 88,
+                        "monthlyExpenses": 24,
+                        "businessValue": -10
+                    },
+                    "feedback": "Profit is positive, but six customers walked away. Price affects demand too."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 26,
+        "title": "Marketing, Customers & Building a Brand",
+        "coreIdea": "Learn how businesses identify customers, communicate value, market products, and build trust.",
+        "terms": [
+            "target customer",
+            "brand",
+            "message",
+            "marketing strategy",
+            "promotion"
+        ],
+        "brief": "Reach the right customers and earn trust with an honest message.",
+        "lesson": "Learn how businesses identify customers, communicate value, market products, and build trust.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-23-28.js"
+        ],
+        "district": "studio",
+        "dialogue": [
+            {
+                "speaker": "kai",
+                "text": "Marketing helps the right customer discover how your product can help."
+            },
+            {
+                "speaker": "sofia",
+                "text": "Your brand is the promise people remember. Every customer experience shapes it."
+            }
+        ],
+        "decision": {
+            "prompt": "You have $60 to market your creativity kits. Which message will build customer trust?",
+            "options": [
+                {
+                    "id": "honest-demo",
+                    "label": "Show an honest demo",
+                    "icon": "🎬",
+                    "detail": "Show families how the kit works and invite customers to share their creations.",
+                    "effects": {
+                        "checking": 180,
+                        "monthlyIncome": 240,
+                        "monthlyExpenses": 60,
+                        "businessValue": 120
+                    },
+                    "feedback": "The marketing reached likely customers and the honest demonstration strengthened the brand."
+                },
+                {
+                    "id": "giant-ad",
+                    "label": "Buy one giant ad",
+                    "icon": "🪧",
+                    "detail": "Borrow for a $300 ad shown to everyone, even people who do not need the kit.",
+                    "effects": {
+                        "checking": -180,
+                        "loans": 250,
+                        "monthlyIncome": 120,
+                        "monthlyExpenses": 300,
+                        "businessValue": 20
+                    },
+                    "feedback": "Many people saw the ad, but weak targeting made the marketing too expensive."
+                },
+                {
+                    "id": "wild-promise",
+                    "label": "Make a wild promise",
+                    "icon": "🤩",
+                    "detail": "Claim the kit can make anyone a famous artist overnight.",
+                    "effects": {
+                        "checking": 250,
+                        "monthlyIncome": 300,
+                        "monthlyExpenses": 50,
+                        "businessValue": -150
+                    },
+                    "feedback": "The claim brought quick sales, but disappointed customers damaged the brand."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 27,
+        "title": "Real Estate & Building Wealth Through Property",
+        "coreIdea": "Introduce homeownership, rental property, mortgages, equity, expenses, cash flow, and appreciation.",
+        "terms": [
+            "homeownership",
+            "renting",
+            "mortgage",
+            "down payment",
+            "equity",
+            "property expenses",
+            "rental income",
+            "cash flow",
+            "appreciation"
+        ],
+        "brief": "Balance a down payment, mortgage, equity, and monthly cash flow.",
+        "lesson": "Introduce homeownership, rental property, mortgages, equity, expenses, cash flow, and appreciation.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-23-28.js"
+        ],
+        "district": "homes",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "A down payment is paid first. A mortgage is a loan used to buy real estate."
+            },
+            {
+                "speaker": "jordan",
+                "text": "Equity is the property value you own after loans. Cash flow is rent received minus monthly costs."
+            }
+        ],
+        "decision": {
+            "prompt": "A small rental home costs $120,000 and can bring in $1,200 per month. Which path do you choose?",
+            "options": [
+                {
+                    "id": "strong-down-payment",
+                    "label": "Put 20% down",
+                    "icon": "🔑",
+                    "detail": "Pay $24,000 down, borrow $96,000, and expect $200 monthly cash flow after costs.",
+                    "effects": {
+                        "savings": -24000,
+                        "property": 120000,
+                        "loans": 96000,
+                        "monthlyIncome": 1200,
+                        "monthlyExpenses": 900,
+                        "insuranceCosts": 100
+                    },
+                    "feedback": "Your down payment creates $24,000 in starting equity, and the rent covers monthly costs."
+                },
+                {
+                    "id": "tiny-down-payment",
+                    "label": "Put 5% down",
+                    "icon": "🪙",
+                    "detail": "Pay $6,000 down, borrow $114,000, and expect negative $40 monthly cash flow after costs.",
+                    "effects": {
+                        "savings": -6000,
+                        "property": 120000,
+                        "loans": 114000,
+                        "monthlyIncome": 1200,
+                        "monthlyExpenses": 1120,
+                        "insuranceCosts": 120
+                    },
+                    "feedback": "You bought sooner, but the larger mortgage reduced equity and pushed cash flow below zero."
+                },
+                {
+                    "id": "prepare-first",
+                    "label": "Keep preparing",
+                    "icon": "🌱",
+                    "detail": "Save $5,000 more while studying repairs, neighborhoods, and mortgage costs.",
+                    "effects": {
+                        "savings": 5000,
+                        "monthlyExpenses": 700
+                    },
+                    "feedback": "You do not own property yet, but a stronger down payment can reduce the future mortgage."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 28,
+        "title": "Careers, Skills & Increasing Your Income",
+        "coreIdea": "Connect education and skill development to earning power and career opportunities.",
+        "terms": [
+            "CREATING VALUE",
+            "education",
+            "experience",
+            "skills",
+            "certifications",
+            "entrepreneurship",
+            "earning potential"
+        ],
+        "brief": "Match your strengths to a career and build skills that can increase income.",
+        "lesson": "Connect education and skill development to earning power and career opportunities.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-23-28.js"
+        ],
+        "district": "school",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Careers grow through useful skills, education, practice, and experience."
+            },
+            {
+                "speaker": "kai",
+                "text": "Higher income can take preparation. Compare the training cost with the opportunity it creates."
+            }
+        ],
+        "decision": {
+            "prompt": "You enjoy fixing things and solving puzzles. Which career path will you explore?",
+            "options": [
+                {
+                    "id": "paid-apprenticeship",
+                    "label": "Paid apprenticeship",
+                    "icon": "🧰",
+                    "detail": "Earn $2,400 monthly while learning from an experienced technician. Tools cost $150.",
+                    "effects": {
+                        "checking": 2250,
+                        "monthlyIncome": 2400,
+                        "monthlyExpenses": 150,
+                        "businessValue": 60
+                    },
+                    "feedback": "You gain income and hands-on experience while building valuable skills."
+                },
+                {
+                    "id": "career-certificate",
+                    "label": "Earn a certificate",
+                    "icon": "🎓",
+                    "detail": "Spend $800 from savings, then qualify for work paying $3,000 monthly.",
+                    "effects": {
+                        "savings": -800,
+                        "monthlyIncome": 3000,
+                        "monthlyExpenses": 250,
+                        "businessValue": 90
+                    },
+                    "feedback": "Education costs money now, but the new skill can open a higher-income career path."
+                },
+                {
+                    "id": "first-open-job",
+                    "label": "Take the first open job",
+                    "icon": "🚪",
+                    "detail": "Start immediately at $1,800 monthly without comparing the work to your skills.",
+                    "effects": {
+                        "checking": 1650,
+                        "monthlyIncome": 1800,
+                        "monthlyExpenses": 150
+                    },
+                    "feedback": "You earn sooner, but the job offers less skill growth and lower income."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 29,
+        "title": "Giving, Generosity & Using Money to Help Others",
+        "coreIdea": "Explore generosity, charitable giving, community impact, and using wealth with purpose.",
+        "terms": [
+            "giving",
+            "generosity",
+            "community impact",
+            "purpose"
+        ],
+        "brief": "Use part of what you built to help people while keeping your financial plan steady.",
+        "lesson": "Explore generosity, charitable giving, community impact, and using wealth with purpose.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-29-32.js"
+        ],
+        "district": "park",
+        "dialogue": [
+            {
+                "speaker": "sofia",
+                "text": "Money can build our future and help someone today."
+            },
+            {
+                "speaker": "maya",
+                "text": "Let’s choose an amount that is generous and fits the plan."
+            }
+        ],
+        "decision": {
+            "prompt": "How will you support the neighborhood food drive?",
+            "options": [
+                {
+                    "id": "give25",
+                    "label": "Give $25",
+                    "icon": "♥",
+                    "detail": "A direct gift with room left in your plan.",
+                    "effects": {
+                        "cash": -25,
+                        "giving": 25
+                    },
+                    "feedback": "Your gift stocks meal boxes and your plan stays flexible."
+                },
+                {
+                    "id": "match50",
+                    "label": "Unlock a match",
+                    "icon": "×2",
+                    "detail": "Give $50; a partner matches the impact.",
+                    "effects": {
+                        "cash": -50,
+                        "giving": 100
+                    },
+                    "feedback": "Your $50 unlocks $100 of community support."
+                },
+                {
+                    "id": "volunteer",
+                    "label": "Give time and $10",
+                    "icon": "◷",
+                    "detail": "Help at the drive and cover supplies.",
+                    "effects": {
+                        "cash": -10,
+                        "giving": 20
+                    },
+                    "feedback": "Your time and supplies help the team serve more families."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 30,
+        "title": "Financial Independence & Designing Your Future",
+        "coreIdea": "Define what financial freedom means personally and calculate the lifestyle students want to create.",
+        "terms": [
+            "WHAT DOES FINANCIAL FREEDOM MEAN TO YOU?",
+            "housing",
+            "transportation",
+            "food",
+            "travel",
+            "family",
+            "giving",
+            "savings",
+            "investing",
+            "income/assets"
+        ],
+        "brief": "Design a future lifestyle, then connect housing, transportation, food, travel, family, giving, saving, and investing to the income it needs.",
+        "lesson": "Define what financial freedom means personally and calculate the lifestyle students want to create.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-29-32.js"
+        ],
+        "district": "homes",
+        "dialogue": [
+            {
+                "speaker": "kai",
+                "text": "Financial freedom is personal. First we need to define the life we want."
+            },
+            {
+                "speaker": "jordan",
+                "text": "Then we price the plan instead of just wishing for it."
+            }
+        ],
+        "decision": {
+            "prompt": "Choose a future-life plan to model.",
+            "options": [
+                {
+                    "id": "steadyfuture",
+                    "label": "Steady & flexible",
+                    "icon": "⌂",
+                    "detail": "Moderate housing, reliable transportation, steady saving.",
+                    "effects": {
+                        "monthlyExpenses": 250,
+                        "goalTarget": 3000
+                    },
+                    "feedback": "A balanced lifestyle creates room for saving and choices."
+                },
+                {
+                    "id": "travelbuild",
+                    "label": "Travel & build",
+                    "icon": "✈",
+                    "detail": "More travel plus strong career and investment goals.",
+                    "effects": {
+                        "monthlyExpenses": 400,
+                        "goalTarget": 4500
+                    },
+                    "feedback": "The goal costs more, so income and investing must grow too."
+                },
+                {
+                    "id": "communitylife",
+                    "label": "Family & community",
+                    "icon": "♥",
+                    "detail": "Plan for family needs, giving, and a stable home.",
+                    "effects": {
+                        "monthlyExpenses": 325,
+                        "giving": 25,
+                        "goalTarget": 4000
+                    },
+                    "feedback": "Your plan includes both personal stability and community impact."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 31,
+        "title": "Building Your Personal Financial Freedom Plan",
+        "coreIdea": "Combine income, saving, budgeting, investing, credit, entrepreneurship, and goals into one personal plan.",
+        "terms": [
+            "income",
+            "budget",
+            "saving",
+            "emergency fund",
+            "debt",
+            "credit",
+            "investing",
+            "insurance",
+            "career",
+            "business",
+            "giving",
+            "future goals",
+            "FINANCIAL FREEDOM PLAN"
+        ],
+        "brief": "Turn your campaign decisions into one coordinated personal plan.",
+        "lesson": "Combine income, saving, budgeting, investing, credit, entrepreneurship, and goals into one personal plan.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-29-32.js"
+        ],
+        "district": "school",
+        "dialogue": [
+            {
+                "speaker": "maya",
+                "text": "A strong plan connects every money decision instead of treating them separately."
+            },
+            {
+                "speaker": "kai",
+                "text": "We should protect the basics, then aim the rest at the future."
+            }
+        ],
+        "decision": {
+            "prompt": "Which foundation will lead your written plan?",
+            "options": [
+                {
+                    "id": "securebase",
+                    "label": "Secure the foundation",
+                    "icon": "◈",
+                    "detail": "Strengthen emergency savings, insurance, and debt payments.",
+                    "effects": {
+                        "cash": -100,
+                        "emergencyFund": 100,
+                        "debt": -75,
+                        "insuranceCosts": 20,
+                        "creditScore": 8
+                    },
+                    "feedback": "Your plan protects today before taking more risk."
+                },
+                {
+                    "id": "growthbase",
+                    "label": "Build long-term growth",
+                    "icon": "↗",
+                    "detail": "Direct available money to diversified investments and skills.",
+                    "effects": {
+                        "cash": -100,
+                        "etfs": 75,
+                        "otherAssets": 25,
+                        "goalProgress": 100
+                    },
+                    "feedback": "Your plan emphasizes future growth with diversification."
+                },
+                {
+                    "id": "balancedbase",
+                    "label": "Use a balanced plan",
+                    "icon": "⚖",
+                    "detail": "Split resources among protection, debt, and investing.",
+                    "effects": {
+                        "cash": -120,
+                        "emergencyFund": 40,
+                        "debt": -40,
+                        "etfs": 40,
+                        "creditScore": 4
+                    },
+                    "feedback": "The plan advances several goals without depending on one strategy."
+                }
+            ]
+        },
+        "challenge": null
+    },
+    {
+        "id": 32,
+        "title": "The Financial Freedom Challenge — Put It All Together",
+        "coreIdea": "Final simulation/challenge where students use everything they've learned to make financial decisions and present their strategy.",
+        "terms": [
+            "income",
+            "career",
+            "business",
+            "budget",
+            "expenses",
+            "saving",
+            "credit",
+            "debt",
+            "investments",
+            "taxes",
+            "insurance",
+            "unexpected events",
+            "economic changes",
+            "giving",
+            "long-term goals"
+        ],
+        "brief": "Manage one final stretch of income, costs, risk, ownership, and purpose. Your earlier financial condition comes with you.",
+        "lesson": "Final simulation/challenge where students use everything they've learned to make financial decisions and present their strategy.",
+        "sourceFiles": [
+            "src/content.js",
+            "src/curriculum-language.js",
+            "src/curriculum-meta.js",
+            "src/missions-29-32.js"
+        ],
+        "district": "school",
+        "dialogue": [
+            {
+                "speaker": "jordan",
+                "text": "There is no single perfect move. The whole financial system has to work together."
+            },
+            {
+                "speaker": "sofia",
+                "text": "Let’s make choices that protect people today and create options tomorrow."
+            }
+        ],
+        "decision": {
+            "prompt": "A strong income month arrives. How will you deploy the surplus?",
+            "options": [
+                {
+                    "id": "finalbalance",
+                    "label": "Balance all priorities",
+                    "icon": "⚖",
+                    "detail": "Split money among reserves, debt, investing, and giving.",
+                    "effects": {
+                        "cash": 100,
+                        "emergencyFund": 100,
+                        "debt": -75,
+                        "etfs": 100,
+                        "giving": 25,
+                        "totalIncome": 400
+                    },
+                    "feedback": "The surplus improves resilience, ownership, debt, and impact together."
+                },
+                {
+                    "id": "finalgrowth",
+                    "label": "Prioritize ownership",
+                    "icon": "↗",
+                    "detail": "Keep some cash and invest more for long-term growth.",
+                    "effects": {
+                        "cash": 100,
+                        "investments": 225,
+                        "totalIncome": 400
+                    },
+                    "feedback": "Ownership grows, while a smaller liquid cushion remains available."
+                },
+                {
+                    "id": "finalsecure",
+                    "label": "Prioritize security",
+                    "icon": "◈",
+                    "detail": "Build reserves and reduce expensive debt first.",
+                    "effects": {
+                        "cash": 100,
+                        "emergencyFund": 175,
+                        "debt": -125,
+                        "creditScore": 8,
+                        "totalIncome": 400
+                    },
+                    "feedback": "Your balance sheet becomes safer before taking more risk."
+                }
+            ]
+        },
+        "challenge": null
+    }
+]
