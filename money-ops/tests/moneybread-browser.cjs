@@ -16,7 +16,7 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
  }
  await page.setViewportSize({width:1440,height:1000});await page.locator('#name').fill('City Builder');await page.locator('#profile-form button[type=submit]').click();
  assert.equal(await page.locator('.mb-building').count(),8);assert.equal(await page.locator('.mb-level').count(),32);
- assert.equal(await page.locator('[data-action="begin-2"]').isDisabled(),true);
+ assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true);
  await page.locator('[data-action="mb-view-school"]').first().focus();await page.keyboard.press('Enter');
  assert.match(await page.locator('.mb-school h2').textContent(),/Earning & Creating Value/);
  await click('begin-1');await click('runner-skip');await click('runner-start-lesson');await click('next');await click('job-time');
@@ -26,16 +26,16 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
  await click('finish-to-plan');await click('runner-skip');await click('mb-view-work');
  await page.locator('[data-action="mb-work-service"]').focus();await page.keyboard.press('Enter');
  assert.equal((await snapshot()).moneybread.wallet.income,100);
- await page.reload();assert.equal((await snapshot()).moneybread.wallet.income,100);
+ await page.reload();await click('continue-career');assert.equal((await snapshot()).moneybread.wallet.income,100);
  await click('mb-view-work');assert.equal(await page.locator('[data-action="mb-work-service"]').count(),0,'work cannot be paid twice after reload');
  assert.equal(await page.locator('[data-action="mb-allocate-mix"]').isDisabled(),true);await click('mb-allocate-save');await click('mb-build-park');
  assert.equal((await snapshot()).moneybread.buildings.park,1);
- assert.equal(await page.locator('[data-action="begin-2"]').isDisabled(),true,'activity alone cannot unlock next level');
+ assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true,'activity alone cannot unlock next level');
  await page.locator('#mb-reflection').fill('I used my time to create value and kept bread for services.');
  await page.locator('#mb-reflect-form button[type=submit]').click();
  const career=await snapshot();assert.ok(career.moneybread.weeks[1].reflection);assert.equal(career.moneybread.wallet.investmentResult,0);
- assert.equal(await page.locator('[data-action="begin-2"]').isDisabled(),false);
- await page.reload();assert.deepEqual((await snapshot()).moneybread,career.moneybread);
+ assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),false);
+ await page.reload();await click('continue-career');assert.deepEqual((await snapshot()).moneybread,career.moneybread);
  // Arcade remains temporary, playable, and isolated from the whole city save.
  const before=await page.evaluate(()=>localStorage.getItem('money-ops-v02'));
  await click('arcade-open');await click('arcade-intensity-rookie');await click('arcade-level-1');await click('runner-start');
@@ -54,10 +54,10 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
  await click('mb-reset-request');const saved=await snapshot();await click('mb-reset-confirm');const rebuilt=await snapshot();
  assert.deepEqual(rebuilt.moneybread.wallet,saved.moneybread.wallet);assert.deepEqual(rebuilt.completed,saved.completed);assert.deepEqual(rebuilt.moneybread.weeks,saved.moneybread.weeks);
  // Missing crew art has a text alternative rather than a broken portrait.
- await page.route('**/assets/crew/**',route=>route.abort());await page.reload();
- await page.waitForTimeout(200);assert.equal(await page.locator('.mb-portrait-fallback:not([hidden])').count(),1);
+ await page.route('**/assets/crew/**',route=>route.abort());await page.reload();await click('continue-career');
+ await page.waitForTimeout(200);assert.equal(await page.locator('.mb-source-city img').count(),1);
  // Both GitHub Pages paths serve the same new city modules and lesson data.
- await page.unroute('**/assets/crew/**');await page.goto(url+'/money-ops/');assert.equal(await page.locator('.mb-building').count(),8);
+ await page.unroute('**/assets/crew/**');await page.goto(url+'/money-ops/');await click('continue-career');assert.equal(await page.locator('.mb-building').count(),8);
  assert.deepEqual(errors,[]);await browser.close();
  console.log('PASS Moneybread City: actual lesson → keyboard work → allocation → city action → reflection → save/reload; Arcade isolation; five responsive sizes; reduced motion; safe rebuild; missing asset fallback; both entry points.');
 })().catch(e=>{console.error(e);process.exit(1);});

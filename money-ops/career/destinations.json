@@ -1,0 +1,418 @@
+[
+  {
+    "lessonId": 1,
+    "title": "Earning & Creating Value",
+    "name": "Value Village",
+    "sourceLocation": "THE NEIGHBORHOOD",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "park",
+    "x": 87.5,
+    "y": 28
+  },
+  {
+    "lessonId": 2,
+    "title": "Building Income Streams",
+    "name": "Income Avenue",
+    "sourceLocation": "MARKET STREET",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "shops",
+    "x": 62.5,
+    "y": 28
+  },
+  {
+    "lessonId": 3,
+    "title": "Saving & Paying Yourself First",
+    "name": "Savings Harbor",
+    "sourceLocation": "FINANCIAL DISTRICT",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 4,
+    "title": "Budgeting & Smart Spending",
+    "name": "Budget Boulevard",
+    "sourceLocation": "PLANNING PLAZA",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 5,
+    "title": "Investing & Growing Your Money",
+    "name": "Investment Heights",
+    "sourceLocation": "INVESTMENT LAB",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 6,
+    "title": "Oil, Gas & World Events",
+    "name": "Energy Junction",
+    "sourceLocation": "ENERGY HARBOR",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "transit",
+    "x": 12.5,
+    "y": 72
+  },
+  {
+    "lessonId": 7,
+    "title": "Credit, Loans & Smart Borrowing",
+    "name": "Credit Corner",
+    "sourceLocation": "CREDIT CROSSROADS",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 8,
+    "title": "Entrepreneurship & Starting a Business",
+    "name": "Founder Square",
+    "sourceLocation": "STARTUP STUDIO",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "studio",
+    "x": 87.5,
+    "y": 72
+  },
+  {
+    "lessonId": 9,
+    "title": "Investing & Building Wealth",
+    "name": "Wealth Way",
+    "sourceLocation": "WEALTH WORKSHOP",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 10,
+    "title": "Budgeting & Goal Setting",
+    "name": "Goal Gardens",
+    "sourceLocation": "GOAL GARDEN",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 11,
+    "title": "Stocks & Owning a Piece of a Company",
+    "name": "Ownership Exchange",
+    "sourceLocation": "OWNERSHIP EXCHANGE",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "shops",
+    "x": 62.5,
+    "y": 28
+  },
+  {
+    "lessonId": 12,
+    "title": "Compound Interest & the Power of Time",
+    "name": "Compound Clockworks",
+    "sourceLocation": "TIME MACHINE LAB",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 13,
+    "title": "Risk, Reward & Diversification",
+    "name": "Diversification Park",
+    "sourceLocation": "PORTFOLIO WEATHER STATION",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 14,
+    "title": "ETFs, Index Funds & Building a Portfolio",
+    "name": "Index Plaza",
+    "sourceLocation": "PORTFOLIO WORKSHOP",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 15,
+    "title": "The Stock Market & How Markets Work",
+    "name": "Market Station",
+    "sourceLocation": "MARKET MATCH FLOOR",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "shops",
+    "x": 62.5,
+    "y": 28
+  },
+  {
+    "lessonId": 16,
+    "title": "Reading a Company — Revenue, Profit & Value",
+    "name": "Company Row",
+    "sourceLocation": "COMPANY ANALYSIS LAB",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "shops",
+    "x": 62.5,
+    "y": 28
+  },
+  {
+    "lessonId": 17,
+    "title": "Supply, Demand & Why Prices Change",
+    "name": "Supply Market",
+    "sourceLocation": "Community Market",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "shops",
+    "x": 62.5,
+    "y": 28
+  },
+  {
+    "lessonId": 18,
+    "title": "Inflation & the Changing Value of Money",
+    "name": "Purchasing Power Point",
+    "sourceLocation": "Time-Travel Grocery",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "transit",
+    "x": 12.5,
+    "y": 72
+  },
+  {
+    "lessonId": 19,
+    "title": "Banks, Interest & How Money Moves",
+    "name": "Bank Bay",
+    "sourceLocation": "Money Ops Bank",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "bank",
+    "x": 62.5,
+    "y": 72
+  },
+  {
+    "lessonId": 20,
+    "title": "Credit Scores & Building Strong Credit",
+    "name": "Credit Commons",
+    "sourceLocation": "Credit Control Room",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 21,
+    "title": "Debt & Interest — What Borrowing Really Costs",
+    "name": "Debt-Free Drive",
+    "sourceLocation": "Payoff Strategy Lab",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 22,
+    "title": "Insurance & Protecting What You Build",
+    "name": "Protection Port",
+    "sourceLocation": "Risk Response Center",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "hospital",
+    "x": 37.5,
+    "y": 72
+  },
+  {
+    "lessonId": 23,
+    "title": "Taxes & Your Paycheck",
+    "name": "Paycheck Place",
+    "sourceLocation": "Payday Station",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "hospital",
+    "x": 37.5,
+    "y": 72
+  },
+  {
+    "lessonId": 24,
+    "title": "Starting a Business — Problem to Opportunity",
+    "name": "Opportunity Works",
+    "sourceLocation": "Opportunity Avenue",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "studio",
+    "x": 87.5,
+    "y": 72
+  },
+  {
+    "lessonId": 25,
+    "title": "Pricing, Revenue, Expenses & Profit",
+    "name": "Profit Promenade",
+    "sourceLocation": "Market Math Lab",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "shops",
+    "x": 62.5,
+    "y": 28
+  },
+  {
+    "lessonId": 26,
+    "title": "Marketing, Customers & Building a Brand",
+    "name": "Brand Boulevard",
+    "sourceLocation": "Brand Builder Boulevard",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "studio",
+    "x": 87.5,
+    "y": 72
+  },
+  {
+    "lessonId": 27,
+    "title": "Real Estate & Building Wealth Through Property",
+    "name": "Equity Estates",
+    "sourceLocation": "Homebuyer Harbor",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 28,
+    "title": "Careers, Skills & Increasing Your Income",
+    "name": "Career Campus",
+    "sourceLocation": "Career Climb Campus",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "school",
+    "x": 12.5,
+    "y": 28
+  },
+  {
+    "lessonId": 29,
+    "title": "Giving, Generosity & Using Money to Help Others",
+    "name": "Generosity Grove",
+    "sourceLocation": "COMMUNITY CENTER",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "park",
+    "x": 87.5,
+    "y": 28
+  },
+  {
+    "lessonId": 30,
+    "title": "Financial Independence & Designing Your Future",
+    "name": "Independence Heights",
+    "sourceLocation": "FUTURE LAB",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "homes",
+    "x": 37.5,
+    "y": 28
+  },
+  {
+    "lessonId": 31,
+    "title": "Building Your Personal Financial Freedom Plan",
+    "name": "Freedom Plan Center",
+    "sourceLocation": "FINANCIAL FREEDOM HQ",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "school",
+    "x": 12.5,
+    "y": 28
+  },
+  {
+    "lessonId": 32,
+    "title": "The Financial Freedom Challenge — Put It All Together",
+    "name": "Grand Financial City",
+    "sourceLocation": "FREEDOM SUMMIT",
+    "sourceFiles": [
+      "src/city.js",
+      "src/content.js"
+    ],
+    "district": "school",
+    "x": 12.5,
+    "y": 28
+  }
+]

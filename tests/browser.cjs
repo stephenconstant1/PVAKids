@@ -92,6 +92,7 @@ const assert=require('node:assert/strict');
   await p.waitForTimeout(180);
  }
  async function enterLesson(p,id,exerciseRunner=false){
+  if(!await p.locator(`[data-action="begin-${id}"]`).first().isVisible())await p.locator('.mb-progress-disclosure>summary').click();
   await click(p,`begin-${id}`);
   if(await p.locator('.runner-intro').count()){
    assert.match(await p.locator('.runner-titlebar').textContent(),new RegExp(`WEEK ${String(id).padStart(2,'0')}`));
@@ -247,7 +248,7 @@ const assert=require('node:assert/strict');
 
  const p=await student();
  assert.equal(await p.locator('.mb-hero').count(),1,'saved Career home opens in Moneybread City');
- assert.equal(await p.locator('.mb-guide .mb-reference-portrait').count(),1);
+ assert.equal(await p.locator('.mb-source-city img').count(),1,'Career uses the full original crew and city image');
  assert.equal((await state(p)).mode,'career');
  assert.equal((await state(p)).cash,0);
  assert.equal((await state(p)).savings,0);
@@ -284,7 +285,7 @@ const assert=require('node:assert/strict');
  assert.deepEqual((await state(p)).active.yardPrep,['gloves','bag','rake']);
  await drag(p,'leaf-0','leaf-bag');
  assert.equal((await state(p)).active.workDone.length,1);
- await p.reload();
+ await p.reload();await click(p,'continue-career');
  assert.equal((await state(p)).active.workDone.length,1);
  await tap(p,'leaf-1','leaf-bag');
  await tap(p,'leaf-2','leaf-bag');
@@ -308,7 +309,7 @@ const assert=require('node:assert/strict');
  for(let i=0;i<3;i++)await moveNextCoin(p);
  assert.equal((await state(p)).active.planned,750);
  await p.screenshot({path:'/tmp/money-ops-saving-play.png',fullPage:true});
- await p.reload();
+ await p.reload();await click(p,'continue-career');
  assert.equal((await state(p)).active.planned,750);
  await click(p,'pack-budget');
  const repairBudget=moneyState((await state(p)).active.wallet);
@@ -318,7 +319,7 @@ const assert=require('node:assert/strict');
  await drag(p,'tool-0','car-bay');
  assert.deepEqual((await state(p)).active.repairDone,[0]);
  assert.deepEqual(moneyState((await state(p)).active.wallet),repairBudget);
- await p.reload();
+ await p.reload();await click(p,'continue-career');
  assert.deepEqual((await state(p)).active.repairDone,[0]);
  await tap(p,'tool-1','car-bay');
  assert.deepEqual((await state(p)).active.repairDone,[0,1]);
@@ -357,7 +358,7 @@ const assert=require('node:assert/strict');
  await click(p,'mute');
  for(const width of [1024,768,390]){
   await p.setViewportSize({width,height:950});
-  await p.reload();
+  await p.reload();await click(p,'continue-career');
   await p.waitForTimeout(300);
   const overflow=await p.evaluate(()=>({wide:document.documentElement.scrollWidth>innerWidth,elements:[...document.querySelectorAll('*')].map(element=>{const box=element.getBoundingClientRect();return {name:`${element.tagName}.${element.className}`,left:box.left,right:box.right,width:box.width};}).filter(box=>box.right>innerWidth+1||box.left<-1).slice(0,8)}));
   assert.equal(overflow.wide,false,`horizontal overflow at ${width}px: ${JSON.stringify(overflow.elements)}`);

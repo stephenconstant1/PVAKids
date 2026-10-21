@@ -58,17 +58,38 @@ own confirmation. Profile → Export career save creates a complete local backup
   1280×748 reference image. The landing displays the whole image at its original
   aspect ratio, with mode buttons below it. Its SHA-256 is
   `a1ac7d3dd5c330279336a0b779110b3e594c4bcc6e8753e63c0242d7dae660f4`.
-- Career guide frames use SVG viewports into that exact image; no character is
-  redrawn, renamed, stretched, or replaced. All six source figures are used as
-  guides across the 32 weeks. Existing lesson portraits and directional runner
-  sprites remain the established Money Ops crew.
-- `assets/crew/moneybread-city-map.png` is a separate, city-only illustrated
-  environment generated from the reference's art direction: dimensional school,
-  homes, bakery/shops, park, transit, hospital, bank, and studio. It is not the
-  lettered poster and contains no substituted crew characters.
-- Gameplay labels, district controls, stage indicators, and explanations are
-  HTML over the city-only map or beside art. The full lettered poster is never
-  used beneath gameplay text or buttons.
+- Career Mode now displays that **same original image**, with the six crew members
+  together in their original city. The illustration is not cropped or stretched.
+  Gameplay controls and labels sit below the image, clear of its baked lettering.
+- The previously generated `moneybread-city-map.png` is retained as an asset but
+  is no longer shown as the Career city or hero background.
+- Lesson-dialogue portraits still frame the original artwork; the main city no
+  longer pastes a single cropped guide into a different background.
+- The original poster is a static illustration. Buildings and crew within it do
+  not independently animate. City choices update the separate controls and state.
+
+## Destinations and animation data
+
+`destinations.json` keeps all 32 original lesson titles, source locations and
+existing `src/city.js` stop names in order. Lesson 1 is **Earning & Creating Value**
+at **Value Village**. District controls and a brief next-stop pulse open the
+original lesson, with a static highlight under reduced motion. Coordinates are
+retained as editable metadata; the poster has no interactive overlays.
+
+`runner-rigs.json` describes upper/lower limb joints for the six existing runner
+images, including source hashes. `runner-stride.ts` draws an articulated Arcade
+stride from those source pixels without changing source faces or assets. This
+work predates the current focused homepage / Lesson 1 visual review.
+
+## Homepage and focused review
+
+Opening either static entry point always shows the homepage, including when a
+Career save exists. Continue Career resumes its saved screen without resetting
+progress. Saved players do not see the new-profile form. HOME returns to the
+homepage; Arcade remains a separate selectable mode.
+
+Run `npm run build`, `npm start`, then open http://localhost:8080. The focused
+browser check is `node scripts/validate-browser.mjs tests/homepage-city-browser.cjs`.
 
 `scripts/build.mjs` synchronizes source, emitted modules, tests, and assets to the
 existing `/money-ops/` mirror so both GitHub Pages entry points remain usable.

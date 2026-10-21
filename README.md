@@ -2,7 +2,7 @@
 
 **Earn bread to run the city.** Career Mode now takes place in **Moneybread City**, an interactive illustrated city built through the original 32 lessons. Arcade Mode remains the existing standalone Financial Runner, with all 32 levels, six characters, intensity choices, temporary city rewards, and its device-local initials leaderboard.
 
-The landing uses the supplied full crew image, uncropped, with mode controls below it. Career Mode uses faithful source-image guide frames and a separate dimensional city map. No characters were renamed or redrawn.
+The landing uses the supplied full crew image, uncropped, with mode controls below it. Career Mode now shows the same original city-and-crew image with all six characters together. Controls stay below the image. The poster itself is static; building stages and choice feedback appear in the separate interface. Opening the site always shows the homepage, with Continue Career for saved players. No characters were renamed or redrawn.
 
 ## Run
 
@@ -31,7 +31,7 @@ TypeScript is the only new development dependency; it provides static checks and
 
 Visit the school for the current original lesson and its interactive activity. Choose a job using time, skills, or ideas; compare pay and supply costs. Plan your bread, fund a district project, and reflect using an original lesson word. The next level unlocks after the activity and reflection. Investment choices unlock with Lesson 5, respect the teaching sequence, and show fixed classroom scenarios, including possible losses, before selection.
 
-Explore the school, homes, shops, park, transit, hospital, bank, and studio. Funded districts brighten, display their stages, and animate improvements. The bread wallet separates available funds, total income, spending, savings, and investment value. City services need 10 bread each week: keeping a cushion supports the city, while running short slows services with an explanation and a chance to improve next week.
+Explore the school, homes, shops, park, transit, hospital, bank, and studio. Funded district controls display their stages and animate choice feedback. The bread wallet separates available funds, total income, spending, savings, and investment value. City services need 10 bread each week: keeping a cushion supports the city, while running short slows services with an explanation and a chance to improve next week.
 
 The city wallet is separate from the original lessons' simulated dollars and Arcade coins. Original completed lessons migrate without being erased or paying duplicate rewards. Replay preserves bread and reflections. Rebuilding the map requires confirmation and preserves your finances and lesson progress. Profile → Export career save downloads a complete backup. No external student data collection was added.
 
@@ -44,6 +44,7 @@ The existing Playwright harness expects Playwright available to Node and system 
 ```sh
 NODE_PATH=/tmp/money-ops-validation/node_modules npm run test:browser
 NODE_PATH=/tmp/money-ops-validation/node_modules npm run test:city-browser
+node scripts/validate-browser.mjs tests/homepage-city-browser.cjs
 ```
 
 Both scripts start an isolated local static server automatically, exercise the real browser interface, then close the server. Override `CHROMIUM_PATH` if Chromium is installed elsewhere. The suites cover the original 32 lessons, Arcade, actual Career work/allocation/build/reflection/save flow, mobile, keyboard interaction, reduced motion, missing-art fallback, and both static entry points.

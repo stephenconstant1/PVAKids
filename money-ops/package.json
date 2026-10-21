@@ -9,7 +9,8 @@
     "test:browser": "node scripts/validate-browser.mjs tests/browser.cjs",
     "build": "node scripts/build.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test:city-browser": "node scripts/validate-browser.mjs tests/moneybread-browser.cjs"
+    "test:city-browser": "node scripts/validate-browser.mjs tests/moneybread-browser.cjs",
+    "test:upgrades-browser": "node scripts/validate-browser.mjs tests/upgrades-browser.cjs"
   },
   "engines": {
     "node": ">=20.10"
