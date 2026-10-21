@@ -93,3 +93,9 @@ browser check is `node scripts/validate-browser.mjs tests/homepage-city-browser.
 
 `scripts/build.mjs` synchronizes source, emitted modules, tests, and assets to the
 existing `/money-ops/` mirror so both GitHub Pages entry points remain usable.
+
+## Lesson 1 template checklist
+
+The active visual and interaction scope is Lesson 1. Use
+[LESSON-1-CHECKLIST.md](LESSON-1-CHECKLIST.md) for the complete review. Keep
+visual acceptance separate from automated checks before expanding the template.
