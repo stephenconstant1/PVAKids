@@ -99,3 +99,32 @@ existing `/money-ops/` mirror so both GitHub Pages entry points remain usable.
 The active visual and interaction scope is Lesson 1. Use
 [LESSON-1-CHECKLIST.md](LESSON-1-CHECKLIST.md) for the complete review. Keep
 visual acceptance separate from automated checks before expanding the template.
+
+## Complete construction-list artwork (45.5)
+
+The runner town-building list still uses the eight existing IDs and names from
+`src/city.js`. All eight cards, including those below the fold, use distinct
+panorama-inspired building art from `assets/crew/moneybread-landmarks.png`. The
+new atlas was generated using the project's `moneybread-city-map.png` panorama
+as its architecture/style reference. The original panorama and crew images were
+not modified. `landmark-art.json` maps each existing landmark ID to one atlas
+tile; it contains no lesson assignments.
+
+`landmark-art.ts` presents the saved construction stages: planned site (0),
+foundation (1), structure (2), finishing (3), and complete (4). A translucent
+completed-building preview identifies a planned site; a reveal from the base
+upward and temporary scaffolding show work progressing. These are visual states
+from one finished-building asset per landmark, not separate simulated structures.
+The same art and stage appear in the purchase celebration. Each card shows its
+stage, 100-coin stage cost, and 400-coin total.
+
+No purchase rules, landmark names, lesson content, or mappings were changed.
+Career still earns one construction permit per completed lesson; Arcade keeps
+its temporary construction rules. There is no source mapping assigning these
+eight landmarks to individual lessons, so none was added.
+
+Verification: `node scripts/validate-browser.mjs tests/landmark-art-browser.cjs`
+exercises every card and all 32 actual purchases, including the bottom card by
+keyboard, save/reload, phone layouts, reduced motion, fallback text and both
+static entry paths. `tests/landmark-art.test.js` checks complete ID/tile coverage
+and purchase/stage rendering. No new dependencies were added.

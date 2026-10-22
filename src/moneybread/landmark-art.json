@@ -1,0 +1,10 @@
+[
+    { "id": "town-center", "tile": 0, "architecture": "Clock-tower civic hall, stone columns and entrance stairs" },
+    { "id": "savings-bank", "tile": 1, "architecture": "Limestone bank with blue glass and arched entrance" },
+    { "id": "skills-academy", "tile": 2, "architecture": "Terracotta-roof school campus with classroom wings" },
+    { "id": "business-market", "tile": 3, "architecture": "Bakery and neighborhood shops with striped awnings" },
+    { "id": "investment-tower", "tile": 4, "architecture": "Blue-glass tower on a limestone podium" },
+    { "id": "housing-gardens", "tile": 5, "architecture": "Terracotta-roof homes with planted gardens" },
+    { "id": "community-center", "tile": 6, "architecture": "Glass-roof community building with a shared courtyard" },
+    { "id": "freedom-skyline", "tile": 7, "architecture": "Blue-and-gold high-rises on a shared city plaza" }
+]

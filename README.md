@@ -89,3 +89,7 @@ Lesson characters serve as static guides in contained header frames. Students pe
 - `RUNNER_ASSETS.md`: current original artwork coverage and procedural placeholder inventory
 
 Week 1 follows the supplied **Earning & Creating Value** terminology, including **Your Time, Your Skills, Your Ideas** and **You provide value → someone provides money**. Week 10 preserves the supplied **50/30/20 Rule**, **SMART** goal terminology, and Proverbs 21:5 principle. Unsupplied poster text is not represented as a verbatim poster quotation.
+
+The complete eight-card town construction list now uses individual building art
+and visible construction stages. Each stage retains its existing 100-coin price.
+See [construction artwork notes](career/README.md#complete-construction-list-artwork-455).

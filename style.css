@@ -2317,3 +2317,17 @@ button.world-buddy.cheer:after{
 @keyframes cityBuildPop{from{opacity:0;transform:scale(.72) translateY(45px)}to{opacity:1;transform:none}}@keyframes cityFloorBuild{from{transform:scaleX(.15);filter:brightness(2)}to{transform:scaleX(1);filter:none}}
 @media(max-width:680px){.city-build-modal{align-items:start;padding:10px}.city-build-celebration{margin:auto;padding:24px 15px;border-radius:24px}.city-build-celebration-layout{grid-template-columns:1fr;gap:20px}.city-build-pop-image{min-height:260px;padding:18px 25%}.city-build-pop-image>span{width:58px;height:58px;font-size:33px}.city-build-pop-image>i{height:28px}.city-build-celebration-layout h1{font-size:38px}.city-build-celebration-layout p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.city-build-celebration,.city-build-pop-image>i.built{animation:none}}
+
+/* Every city-list entry uses its own panorama-inspired architectural asset.
+   Saved construction state reveals the building from its foundation upwards. */
+.city-building.city-building-art{display:block;height:auto!important;aspect-ratio:16/13;padding:0!important;background:#c8ded0;border:1px solid #a6c3a0;overflow:hidden}
+.city-landmark-art{display:block;width:100%;height:auto;overflow:hidden}
+.city-stage-label{margin:0 0 9px;color:#f7dc93;font:800 10px var(--mono);line-height:1.5}
+.city-stage-price{margin:0 0 12px;color:#cfdfcf;font:10px var(--mono);line-height:1.6}
+.city-lot h3{min-height:34px}.city-lot .city-build-button{font-size:10px;line-height:1.5;min-height:46px}
+.city-build-pop-image.city-building-art{display:block;min-height:0;padding:0;border-width:3px;background:#c8ded0}
+.city-build-pop-image.city-building-art>b{display:block;margin:0;font-size:13px}
+.city-landmark-art .landmark-art-fallback{display:none}.city-landmark-art.art-missing image{display:none}.city-landmark-art.art-missing .landmark-art-fallback{display:block}
+.city-lot.finished .landmark-built{animation:cityArtworkFinish .5s ease-out both}
+@keyframes cityArtworkFinish{from{opacity:.5;transform:translateY(7px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.city-lot.finished .landmark-built{animation:none}}
