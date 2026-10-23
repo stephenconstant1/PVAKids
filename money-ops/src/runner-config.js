@@ -72,5 +72,5 @@ export function runnerConfig(lessonId,phase='pre'){
  const lesson=runnerLessons.find(item=>item.lessonId===Number(lessonId));
  if(!lesson)throw Error('Unknown runner lesson');
  const stage=phase==='post'?lesson.post:lesson.pre;
- return {...lesson,phase,targetCoins:stage.targetCoins,maxLives:stage.maxLives,difficulty:stage.difficulty,environmentData:runnerEnvironments[lesson.environment]};
+ return {...lesson,phase,targetCoins:Number(lessonId)===1?200:stage.targetCoins,maxLives:stage.maxLives,lifeCap:Number(lessonId)===1?5:stage.maxLives,extraLifeInterval:Number(lessonId)===1?18:0,continueAfterGoal:Number(lessonId)===1,difficulty:stage.difficulty,environmentData:runnerEnvironments[lesson.environment]};
 }

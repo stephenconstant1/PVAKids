@@ -2331,3 +2331,8 @@ button.world-buddy.cheer:after{
 .city-lot.finished .landmark-built{animation:cityArtworkFinish .5s ease-out both}
 @keyframes cityArtworkFinish{from{opacity:.5;transform:translateY(7px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.city-lot.finished .landmark-built{animation:none}}
+
+.runner-town-deposit{padding:22px;margin:22px 0;border:2px solid #ffcf65;border-radius:18px;background:#20453e;color:#fff0b2}.runner-town-deposit small{font:900 10px var(--mono)}.runner-town-deposit h2{margin:10px 0}.runner-town-deposit p{line-height:1.6;font-size:14px}.runner-town-deposit strong{color:#ffdc7b}
+.runner-hud{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
+
+.runner-result-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}

@@ -2,7 +2,7 @@
 
 **Earn bread to run the city.** Career Mode now takes place in **Moneybread City**, an interactive illustrated city built through the original 32 lessons. Arcade Mode remains the existing standalone Financial Runner, with all 32 levels, six characters, intensity choices, temporary city rewards, and its device-local initials leaderboard.
 
-The landing uses the supplied full crew image, uncropped, with mode controls below it. Career Mode now shows the same original city-and-crew image with all six characters together. Controls stay below the image. The poster itself is static; building stages and choice feedback appear in the separate interface. Opening the site always shows the homepage, with Continue Career for saved players. No characters were renamed or redrawn.
+The landing uses the supplied full crew image, uncropped, with mode controls below it. Career Mode now shows the same original city-and-crew image with all six characters together. Controls stay below the image. The poster itself is static; building stages and choice feedback appear in the separate interface. Opening the site always shows the homepage, with Continue Career for saved players. Character names are unchanged; Everest uses his user-approved refinement while the other five crew retain their existing artwork.
 
 ## Run
 
@@ -93,3 +93,8 @@ Week 1 follows the supplied **Earning & Creating Value** terminology, including 
 The complete eight-card town construction list now uses individual building art
 and visible construction stages. Each stage retains its existing 100-coin price.
 See [construction artwork notes](career/README.md#complete-construction-list-artwork-455).
+
+Lesson 1 now targets **200 coins**, then lets students keep running while lives
+remain or finish to bank rewards. Collectible hearts replenish lives up to 5.
+Results show Paychecks and their City Bank contribution without counting the
+same token twice. Other lessons retain their existing goals.

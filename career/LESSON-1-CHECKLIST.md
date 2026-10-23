@@ -146,3 +146,12 @@ Focused browser verification for 45.4 passed: the actual Career pre-run uses
 Kanyon and the bonus run uses Maya; both enable the articulated renderer, advance
 the stride clock, and retain jump/pause controls. Build, unit checks, and TypeScript
 checks passed. This verifies the animation is connected, not visual acceptance.
+
+## Approved follow-up scope for 45.6
+
+- Apply the approved Everest reference consistently; preserve the other five crew.
+- Review the repaired rear-arm visibility and the shared-ground foot recovery.
+- Verify 200 coins meets the Lesson 1 goal without ending the run.
+- Verify hearts replenish lives up to 5, then finish and bank rewards manually.
+- Verify paycheck counts, their city-coin contribution, and no duplicate deposits.
+- Keep final visual acceptance open until normal-size gameplay is reviewed.

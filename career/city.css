@@ -77,3 +77,9 @@
 .mb-source-city .mb-city-scene[hidden]{display:none}.mb-city-art-fallback{padding:20px}
 
 .mb-progress-disclosure{margin-top:24px;border:1px solid #648875;border-radius:16px;padding:16px;background:#1d433c}.mb-progress-disclosure>summary{cursor:pointer;color:#ffe39b;font-weight:800;min-height:44px;align-content:center}.mb-progress-disclosure .mb-progress{margin-top:16px}
+
+/* Localized approved Everest edit preserves every other crew member in the
+   source poster. Natural aspect ratio matches the unchanged 1280×748 base. */
+.reference-crew-hero figure,.mb-source-city{position:relative}
+.everest-approved-patch{display:block;position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1280/748;pointer-events:none;overflow:hidden}
+.crew-base-missing .everest-approved-patch{display:none}

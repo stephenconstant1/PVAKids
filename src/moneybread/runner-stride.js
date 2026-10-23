@@ -59,8 +59,13 @@ function prepare(source, id) {
             const nx = x / w, ny = y / h, r = pixels.data[offset], g = pixels.data[offset + 1], b = pixels.data[offset + 2];
             // Hair behind the shoulders is retained independently of moving clothing.
             const warmHair = r > g * 1.08 && r > b * 1.08;
-            const head = inside(nx, ny, rig.head) && (ny < .27 || nx > .55 || warmHair);
-            let label = head ? 1 : inside(nx, ny, rig.torso) ? 2 : 0;
+            const nearHand = [rig.bones.leftArm[2], rig.bones.rightArm[2]].some(([hx, hy]) => ((nx - hx) / .04) ** 2 + ((ny - hy) / .05) ** 2 < 1);
+            const head = inside(nx, ny, rig.head) && (ny < .27 || nx > .55 || warmHair) && !nearHand;
+            const sourceArm = [rig.bones.leftArm, rig.bones.rightArm].some(([a, b]) => {
+                const dx = (b[0] - a[0]) * w / h, dy = b[1] - a[1], t = (((nx - a[0]) * w / h) * dx + (ny - a[1]) * dy) / (dx * dx + dy * dy);
+                return t > .15 && t < 1.1 && distance(nx, ny, a, b, w / h) < .065 ** 2;
+            });
+            let label = head ? 1 : inside(nx, ny, rig.torso) && !sourceArm ? 2 : 0;
             if (!label) {
                 let best = Infinity;
                 names.forEach((name, index) => { const [a, joint, end] = rig.bones[name]; const upper = distance(nx, ny, a, joint, w / h), lower = distance(nx, ny, joint, end, w / h); if (upper < best) {
@@ -148,11 +153,28 @@ export function strideJoints(id, w, h, ms) {
     const rig = runnerRigs[id];
     if (!rig)
         return undefined;
-    const pose = stridePose(ms);
+    const pose = stridePose(ms), phase = ms / 120;
+    const legs = [rig.bones.leftLeg, rig.bones.rightLeg];
+    // A shared ground and leg length prevent the unequal source poses from making
+    // one side limp. Each foot has a planted backward stroke and an arcing return.
+    const upperLength = legs.reduce((sum, [a, b]) => sum + length(a, b, w, h), 0) / 2;
+    const lowerLength = legs.reduce((sum, [, b, c]) => sum + length(b, c, w, h), 0) / 2;
+    const reach = upperLength + lowerLength;
+    const ground = ((legs[0][0][1] + legs[1][0][1]) / 2 - .5) * h + reach * .86;
     return Object.fromEntries(names.map(name => {
-        const [root, joint, end] = rig.bones[name], upper = Math.PI / 2 + pose[name];
-        const lower = name.endsWith('Leg') ? upper + (name === 'leftLeg' ? pose.leftKnee : pose.rightKnee) : upper - 1.8 + (name === 'leftArm' ? pose.leftElbow : pose.rightElbow);
-        const r = [(root[0] - .5) * w, (root[1] - .5) * h], a = length(root, joint, w, h), b = length(joint, end, w, h);
+        const [root, joint, end] = rig.bones[name];
+        const r = [(root[0] - .5) * w, (root[1] - .5) * h];
+        if (name.endsWith('Leg')) {
+            const legPhase = phase + (name === 'rightLeg' ? Math.PI : 0);
+            const foot = [r[0] - Math.sin(legPhase) * reach * .24, ground - Math.max(0, -Math.cos(legPhase)) * reach * .30];
+            const dx = foot[0] - r[0], dy = foot[1] - r[1], d = Math.max(.001, Math.hypot(dx, dy));
+            const along = (upperLength ** 2 - lowerLength ** 2 + d * d) / (2 * d);
+            const bend = Math.sqrt(Math.max(0, upperLength ** 2 - along ** 2));
+            const j = [r[0] + dx / d * along + dy / d * bend, r[1] + dy / d * along - dx / d * bend];
+            return [name, { root: r, joint: j, end: foot, upper: Math.atan2(j[1] - r[1], j[0] - r[0]), lower: Math.atan2(foot[1] - j[1], foot[0] - j[0]) }];
+        }
+        const upper = Math.PI / 2 + pose[name] * 1.6, lower = upper - 1.4 + (name === 'leftArm' ? pose.leftElbow : pose.rightElbow);
+        const a = length(root, joint, w, h), b = length(joint, end, w, h);
         const j = [r[0] + a * Math.cos(upper), r[1] + a * Math.sin(upper)];
         const e = [j[0] + b * Math.cos(lower), j[1] + b * Math.sin(lower)];
         return [name, { root: r, joint: j, end: e, upper, lower }];
@@ -175,18 +197,34 @@ export function drawStride(ctx, image, id, width, height, ms) {
     const draw = (label) => { const layer = prepared.layers.find(l => l.label === label); if (layer)
         drawLayer(ctx, layer, w, h); };
     const limb = (name, index) => {
-        const [root, joint, end] = rig.bones[name], a = joints[name], upperRotation = a.upper - angle(root, joint, w, h);
+        const [root, joint, end] = rig.bones[name], a = joints[name];
+        if (name.endsWith('Leg')) {
+            const segment = (label, from, to, start, finish) => {
+                const scale = Math.hypot(finish[0] - start[0], finish[1] - start[1]) / length(from, to, w, h);
+                ctx.save();
+                ctx.translate(start[0], start[1]);
+                ctx.rotate(Math.atan2(finish[1] - start[1], finish[0] - start[0]) - angle(from, to, w, h));
+                ctx.scale(scale, scale);
+                ctx.translate(-((from[0] - .5) * w), -((from[1] - .5) * h));
+                draw(label);
+                ctx.restore();
+            };
+            segment(3 + index * 2, root, joint, a.root, a.joint);
+            segment(4 + index * 2, joint, end, a.joint, a.end);
+            cap(ctx, image, [a.joint[0] / w + .5, a.joint[1] / h + .5], rig.pantsSample, w, h, .035);
+            return;
+        }
+        const upperRotation = a.upper - angle(root, joint, w, h);
         ctx.save();
         move(ctx, root, w, h, upperRotation);
-        cap(ctx, image, joint, name.endsWith('Leg') ? rig.pantsSample : rig.clothSample, w, h, name.endsWith('Leg') ? .045 : .03);
         draw(3 + index * 2);
         ctx.save();
         move(ctx, joint, w, h, a.lower - angle(joint, end, w, h) - upperRotation);
         draw(4 + index * 2);
         ctx.restore();
+        cap(ctx, image, joint, rig.clothSample, w, h, .025);
         ctx.restore();
     };
-    limb('leftArm', 2);
     limb('leftLeg', 0);
     limb('rightLeg', 1);
     const left = rig.bones.leftLeg[0], right = rig.bones.rightLeg[0];
@@ -194,6 +232,7 @@ export function drawStride(ctx, image, id, width, height, ms) {
     cap(ctx, image, rig.bones.leftArm[0], rig.clothSample, w, h, .045, .035);
     cap(ctx, image, rig.bones.rightArm[0], rig.clothSample, w, h, .04, .035);
     draw(2);
+    limb('leftArm', 2);
     limb('rightArm', 3);
     // Face and hair use the unchanged source-colored head layer, not a new drawing.
     draw(1);

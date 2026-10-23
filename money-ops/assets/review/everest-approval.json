@@ -1,0 +1,16 @@
+{
+  "approvedReference": "assets/review/everest-refinement-preview.png",
+  "approvedReferenceSha256": "c2333081a74ad7903ec7eba18c7cdbea44d591b0efe1c666296675973ab2e9f6",
+  "unchangedCrewAssets": {
+    "assets/cast/jordan.png": "58a37f90b60fbf5955ef9517a7b940c870d7c41a2c0aa6ff7006decf8f48d6e4",
+    "assets/runner/jordan-right.png": "b7b0e3e81abcfed63730551d16898752e8c8bae99913741698742bbb4ae8a4bb",
+    "assets/cast/maya.png": "09098b48ebf0bd871a30530bd81513d9d1194c045b8d70c4cb4f47b795180083",
+    "assets/runner/maya-right.png": "67c24acf81b33129dbc27d8e8593483eed41f90172194f89e64f0ab91162b7a4",
+    "assets/cast/sofia.png": "745bdf9318b672d025ac21ce2c6afa7ab9226c0dbc0a2e7a7921321a49ce1964",
+    "assets/runner/sofia-right.png": "bdc77deeda0f200179e682b6d10194076f036fee670af32c3af0bb0103ad63a4",
+    "assets/cast/eli.png": "0adeb3d3d2de1f8f9dc5f79d20654381d75b25d919381a41f2cc2a0a89a0b6ee",
+    "assets/runner/eli-right.png": "c6665617b978e1208d29b505ba50a4919f5cda4d7f58409852e9b3f9c151baf9",
+    "assets/cast/ruby.png": "be2da261231324001d318bc426ab0e4c388a987039518d5f255e4e644952bc1b",
+    "assets/runner/ruby-right.png": "d4de4f0b6f1ee251b58ff886e81cd02c9f54d4dce60caf1420ca65303b37b547"
+  }
+}

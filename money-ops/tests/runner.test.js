@@ -17,8 +17,8 @@ test('all 32 lessons have distinct runner hazards, rewards, and complete stage c
   assert.ok(lesson.obstacleSet.every(hazard=>hazard.art&&Number.isFinite(hazard.art.hue)),`week ${lesson.lessonId} needs distinct hazard art`);
   assert.ok(lesson.collectibleSet.length>=3,`week ${lesson.lessonId} needs rewards`);
   assert.ok(lesson.powerUp.name&&lesson.powerUp.effect,`week ${lesson.lessonId} needs a power-up`);
-  assert.equal(runnerConfig(lesson.lessonId,'pre').targetCoins,100);
-  assert.equal(runnerConfig(lesson.lessonId,'post').targetCoins,100);
+  assert.equal(runnerConfig(lesson.lessonId,'pre').targetCoins,lesson.lessonId===1?200:100);
+  assert.equal(runnerConfig(lesson.lessonId,'post').targetCoins,lesson.lessonId===1?200:100);
   assert.ok(lesson.vocabulary.length>=4,`week ${lesson.lessonId} needs runner vocabulary`);
   assert.ok(lesson.vocabulary.every(item=>item.term&&item.definition),`week ${lesson.lessonId} vocabulary needs definitions`);
   assert.equal(lesson.pre.maxLives,3);
@@ -55,4 +55,15 @@ test('bonus runner remains locked until its lesson is completed',()=>{
  assert.throws(()=>openRunner(newGame(),1,'post'),/locked/i);
  assert.doesNotThrow(()=>openRunner(markLessonCompleted(newGame(),1),1,'post'));
  assert.throws(()=>runnerConfig(33,'pre'),/unknown/i);
+});
+
+test('paychecks credit the town once, without double counting their base token',()=>{
+ let p=openRunner(newGame('Paycheck test','kai'),1,'pre');
+ const result={collected:10,paychecks:3,paycheckCoins:6,score:120,extraLivesCollected:2};
+ p=recordRunnerResult(p,1,'pre',result);
+ assert.equal(p.city.bank,13);assert.equal(p.runnerSession.result.cityCoins,13);
+ assert.equal(p.runnerSession.result.paychecks,3);assert.equal(p.runnerSession.result.paycheckCoins,6);
+ assert.equal(p.runnerSession.result.extraLivesCollected,2);
+ assert.equal(recordRunnerResult(p,1,'pre',result).city.bank,13,'a duplicate finish must not pay twice');
+ p=recordRunnerResult(openRunner(p,1,'pre'),1,'pre',result);assert.equal(p.city.bank,26,'a newly started replay is a separate run');
 });

@@ -128,3 +128,40 @@ exercises every card and all 32 actual purchases, including the bottom card by
 keyboard, save/reload, phone layouts, reduced motion, fallback text and both
 static entry paths. `tests/landmark-art.test.js` checks complete ID/tile coverage
 and purchase/stage rendering. No new dependencies were added.
+
+## Approved Everest and Lesson 1 runner update (45.6)
+
+The approved `assets/review/everest-refinement-preview.png` is used byte-for-byte
+as Everest’s standing portrait. His directional runner has the same 1374×1145
+canvas and pose with the approved face/hair adapted to running. The updated
+reference hash is in `runner-rigs.json`. Hash tests protect the other five crew
+members’ standing and running images. `crew-art.ts` places only the approved
+Everest head region over the unchanged original poster, preserving all other
+crew, city scenery, labels and text. The generated full retouch is never shown
+outside this region. All existing character IDs and lesson dialogue are retained.
+
+The run cycle now uses a shared planted-foot ground and leg lengths, with a
+raised recovery arc and bent knees. Separate limb textures follow the resulting
+joints. Both arms render over the jacket so the rear arm is not swallowed by the
+torso; source hand regions are kept out of the stationary head mask. Standing
+portrait and runner faces use approved source pixels, not drawn replacements.
+
+Only Lesson 1’s goal changes: 200 collected tokens instead of 100, then play
+continues until lives run out or the student finishes to bank rewards. There is
+no wall-clock limit. The player begins with 3 lives, can hold up to 5, and can
+collect heart pickups to replenish lost lives. The first heart is scheduled at
+10 active play seconds and subsequent hearts every 18 seconds. Other lessons
+retain their existing goals and endings; curriculum content is unchanged.
+
+Paycheck stats count the original Lesson 1 Paycheck collectible. Each is worth
+its existing 1 city coin, or 2 under the existing income multiplier. The City Bank
+deposit is `other collected tokens + paycheck coin value`, with paycheck tokens
+removed from the base token count before adding their value. This avoids double
+credit. Results show the count and deposit breakdown directly above the town
+construction list. Money Box bonus dollars stay separate. A duplicate finish
+notification cannot deposit the same run again; a newly started replay can earn
+new rewards. Arcade construction stays temporary and isolated from Career.
+
+Focused check: `node scripts/validate-browser.mjs tests/lesson-one-upgrades-browser.cjs`.
+It also records a short actual Everest gameplay clip under
+`/tmp/moneyops-everest-review/everest-run.webm` for motion review.

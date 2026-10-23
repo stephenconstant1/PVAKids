@@ -19,7 +19,7 @@ const rigs=JSON.parse(readFileSync('career/runner-rigs.json','utf8'));
 for(const id of ['jordan','maya','kai','sofia','eli','ruby']){const rig=rigs[id];if(!rig?.source||createHash('sha256').update(readFileSync(rig.source)).digest('hex')!==rig.sourceSha256)throw Error(`Original ${id} running reference changed; review identity and animation metadata before building.`);}
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','-p','tsconfig.json'],{stdio:'inherit'});
 // GitHub Pages serves both / and /money-ops/. Keep both entry points identical.
-if(existsSync('money-ops'))for(const file of ['README.md','assets/crew','career','scripts','tests','src/moneybread','index.html','src/app.js','src/engine.js','src/characters.js','src/runner.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
+if(existsSync('money-ops'))for(const file of ['README.md','assets/crew','assets/cast/kai.png','assets/runner/kai-right.png','assets/review','career','scripts','tests','src/moneybread','index.html','src/app.js','src/engine.js','src/characters.js','src/runner.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
  mkdirSync('money-ops/'+file.split('/').slice(0,-1).join('/'),{recursive:true});
  cpSync(file,'money-ops/'+file,{recursive:true});
 }
