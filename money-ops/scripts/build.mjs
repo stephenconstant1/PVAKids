@@ -16,10 +16,20 @@ for(let i=0;i<32;i++){const d=stops[i],original=cityStops.find(stop=>stop.lesson
 const art=JSON.parse(readFileSync('career/landmark-art.json','utf8'));
 if(art.length!==cityLandmarks.length||new Set(art.map(a=>a.tile)).size!==8||cityLandmarks.some(l=>!art.some(a=>a.id===l.id&&Number.isInteger(a.tile)&&a.tile>=0&&a.tile<8))||!existsSync('assets/crew/moneybread-landmarks.png'))throw Error('Every existing city landmark must have its own building artwork.');
 const rigs=JSON.parse(readFileSync('career/runner-rigs.json','utf8'));
+for(const kind of ['run','jump']){
+ const cycles=JSON.parse(readFileSync(`career/${kind}-cycles.json`,'utf8'));
+ for(const id of ['jordan','maya','kai','sofia','eli','ruby']){
+  const c=cycles[id],png=readFileSync(c.image);
+  if(c.frameCount!==16||c.frames.length!==16||c.frames.some((f,i)=>f.index!==i||f.groundY!==c.groundY)||
+   png.readUInt32BE(16)!==c.cellWidth*8||png.readUInt32BE(20)!==c.cellHeight*2||
+   createHash('sha256').update(readFileSync(c.source)).digest('hex')!==c.sourceSha256)
+   throw Error(`${id}: supplied ${kind} sheet or measured frame metadata changed.`);
+ }
+}
 for(const id of ['jordan','maya','kai','sofia','eli','ruby']){const rig=rigs[id];if(!rig?.source||createHash('sha256').update(readFileSync(rig.source)).digest('hex')!==rig.sourceSha256)throw Error(`Original ${id} running reference changed; review identity and animation metadata before building.`);}
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','-p','tsconfig.json'],{stdio:'inherit'});
 // GitHub Pages serves both / and /money-ops/. Keep both entry points identical.
-if(existsSync('money-ops'))for(const file of ['README.md','assets/crew','assets/cast/kai.png','assets/runner/kai-right.png','assets/review','career','scripts','tests','src/moneybread','index.html','src/app.js','src/engine.js','src/characters.js','src/runner.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
+if(existsSync('money-ops'))for(const file of ['README.md','RUNNER_ASSETS.md','assets/crew','assets/cast/kai.png','assets/runner','assets/review','career','scripts','tests','src/moneybread','index.html','src/app.js','src/engine.js','src/characters.js','src/runner.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
  mkdirSync('money-ops/'+file.split('/').slice(0,-1).join('/'),{recursive:true});
  cpSync(file,'money-ops/'+file,{recursive:true});
 }

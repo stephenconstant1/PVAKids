@@ -16,12 +16,12 @@ const assert=require('node:assert/strict');
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.reviewRunner?.imageReady&&window.reviewRunner?.strideTimeMs>0);
   const result=await page.evaluate(()=>{const r=window.reviewRunner;r.setPaused(true);return {enabled:r.animateStride,id:r.characterId,clock:r.strideTimeMs};});
-  assert(result.enabled&&result.clock>0,`${phase} must use the articulated stride in the actual app`);
-  assert.equal(result.id,phase==='pre'?'jordan':'maya');
+  assert(result.enabled&&result.clock>0,`${phase} must use the supplied run cycle in the actual app`);
+  assert.equal(result.id,'maya');
   await page.evaluate(()=>{const r=window.reviewRunner;r.setPaused(false);r.jump();});
   assert(await page.evaluate(()=>window.reviewRunner.player.vy<0));
   await page.locator('[data-action="runner-pause"]').click();
  }
- assert.deepEqual(errors,[]);console.log('PASS actual Lesson 1 Career pre-run and bonus-run instantiate articulated runners, advance the stride, preserve the expected crew, and retain jump/pause controls.');
+ assert.deepEqual(errors,[]);console.log('PASS actual Lesson 1 Career pre-run and bonus-run instantiate sheet-animated runners, advance the stride, preserve the selected crew, and retain jump/pause controls.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

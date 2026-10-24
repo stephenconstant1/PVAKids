@@ -18,6 +18,22 @@ function harness(lessonId=21,phase='pre',options={}){
  return {runner,listeners,get result(){return result;},updates};
 }
 
+test('jump sheet follows existing normal/boots physics and recovers once',()=>{
+ for(const phase of ['pre','post'])for(const boots of [false,true]){
+  const r=harness(2,phase,{ownedItems:boots?['boots']:[]}).runner;
+  r.start();r.spawnIn=r.rewardIn=r.powerIn=r.boxIn=r.lifeIn=999;
+  r.jump();assert.equal(r.player.vy,boots?-720:-620);
+  assert.equal(r.jumpMotion.flightMs,2*(boots?720:620)/1450*1000);
+  const first=r.jumpMotion;r.jump();assert.equal(r.jumpMotion,first,'no double jump');
+  let ticks=0;while(!r.player.grounded&&ticks++<200)r.update(.01,ticks*.01);
+  assert(r.player.grounded);assert.equal(r.player.y,r.ground-r.player.h);
+  assert(r.jumpMotion.landed);assert.equal(r.state,'landing');
+  for(let i=0;i<26;i++)r.update(.01,2+i*.01);
+  assert.equal(r.jumpMotion,null);assert.equal(r.state,'running');
+  r.jump();assert(r.jumpMotion&&!r.jumpMotion.landed,'next jump starts a fresh one-shot');r.destroy();
+ }
+});
+
 test('all six playable students have right-facing runner artwork',()=>{
  for(const id of ['jordan','maya','kai','sofia','eli','ruby'])assert.equal(existsSync(new URL(`../assets/runner/${id}-right.png`,import.meta.url)),true,`${id} needs a directional runner asset`);
 });
