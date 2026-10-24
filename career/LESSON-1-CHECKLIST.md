@@ -6,7 +6,7 @@ Reuse the finished structure, not Lesson 1's teaching content, for other lessons
 
 ## Source of truth
 
-- Lesson 1: **Earning & Creating Value**.
+- Lesson 1: **Earning and Creating Value**.
 - Core idea: **Money is earned by creating value through your time, skills,
   ideas, products, and services.**
 - Original vocabulary: **time, skills, ideas, products, services, employee,

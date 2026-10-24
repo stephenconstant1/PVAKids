@@ -2,6 +2,7 @@ import {missions} from './content.js';
 import {lessonVocabulary} from './runner-vocabulary.js';
 
 export const runnerEnvironments={
+ waterfront:{name:'City Waterfront',background:'assets/environments/city-waterfront.png',sky:'#71c6f2',far:'#9bbfd2',near:'#47866d',ground:'#dabd90',accent:'#ffe071'},
  school:{name:'Financial Freedom School',sky:'#79c9e8',far:'#cfe9d6',near:'#4d8c69',ground:'#294f45',accent:'#ffe071'},
  business:{name:'Downtown Business District',sky:'#83b5d5',far:'#8da5ad',near:'#486878',ground:'#243d49',accent:'#f7ca62'},
  shopping:{name:'Smart Shopping Center',sky:'#efb7aa',far:'#f8dfb6',near:'#b87875',ground:'#5d4a4c',accent:'#ffe879'},
@@ -14,7 +15,7 @@ export const runnerEnvironments={
 };
 
 const rows=[
- [1,'school',['Missed Opportunity','Wasted Time'],['Paycheck','Skill','Value Token'],['Value Boost','income']],
+ [1,'waterfront',['Missed Opportunity','Wasted Time'],['Paycheck','Skill','Value Token'],['Value Boost','income']],
  [2,'business',['Lost Job','Single-Income Risk'],['Side Hustle','Income Stream','Customer'],['Income Boost','income']],
  [3,'bank',['Impulse Purchase','Surprise Bill'],['Savings Jar','Emergency Fund','Pay Yourself First'],['Emergency Fund Shield','shield']],
  [4,'shopping',['Overspending','Unnecessary Purchase'],['Budget Envelope','Smart Purchase','Needs Token'],['Budget Magnet','magnet']],
@@ -58,7 +59,7 @@ const reflections={
 export const runnerLessons=rows.map(([id,environment,hazards,rewards,power])=>{
  const mission=missions[id-1],effect=power[1],vocabulary=lessonVocabulary(id),definitionFor=label=>vocabulary.find(item=>item.term.toLowerCase()===label.toLowerCase())?.definition||`Connect this runner word to ${mission.title}.`;
  return {
-  lessonId:id,title:mission.title,environment,vocabulary,
+  lessonId:id,title:mission.title,levelName:runnerEnvironments[environment].name,environment,vocabulary,
   obstacleSet:hazards.map((label,index)=>({id:`w${id}-hazard-${index+1}`,label,definition:definitionFor(label),icon:icons[(id+index)%icons.length],behavior:behaviors[(id+index)%behaviors.length],art:{hue:(id*47+index*131)%360,pattern:(id+index)%6,variant:(id*3+index)%9}})),
   collectibleSet:rewards.map((label,index)=>({id:`w${id}-reward-${index+1}`,label,definition:definitionFor(label),icon:rewardIcons[index],kind:index===0?'dollar':index===1?'gold':'lesson',value:index===0?1:index===1?5:10})),
   powerUp:{id:`w${id}-power`,name:power[0],label:power[0],definition:definitionFor(power[0]),effect,icon:effect==='shield'?'◇':effect==='magnet'?'◎':effect==='multiplier'?'×2':effect==='dash'?'↠':effect==='slow'?'◷':effect==='warning'?'!':effect==='clear'?'✦':effect==='income'?'$+':'★'},

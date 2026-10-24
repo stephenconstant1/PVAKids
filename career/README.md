@@ -71,7 +71,7 @@ own confirmation. Profile → Export career save creates a complete local backup
 ## Destinations and animation data
 
 `destinations.json` keeps all 32 original lesson titles, source locations and
-existing `src/city.js` stop names in order. Lesson 1 is **Earning & Creating Value**
+existing `src/city.js` stop names in order. Lesson 1 is **Earning and Creating Value**
 at **Value Village**. District controls and a brief next-stop pulse open the
 original lesson, with a static highlight under reduced motion. Coordinates are
 retained as editable metadata; the poster has no interactive overlays.

@@ -1,7 +1,7 @@
 // Canonical wording copied from the user-supplied 32-week curriculum prompt.
 // Keep these strings verbatim; gameplay may illustrate them but must not rename them.
 export const curriculumLanguage = {
- 1:{title:'Earning & Creating Value',coreIdea:'Money is earned by creating value through your time, skills, ideas, products, and services.',terms:['time','skills','ideas','products','services','employee','self-employed','business owner','creator']},
+ 1:{title:'Earning and Creating Value',coreIdea:'Money is earned by creating value through your time, skills, ideas, products, and services.',terms:['time','skills','ideas','products','services','employee','self-employed','business owner','creator']},
  2:{title:'Building Income Streams',coreIdea:'Learn the difference between earned, business, freelance, investment, rental, creative, and passive income.',terms:['earned income','business income','freelance income','investment income','rental income','creative income','passive income']},
  3:{title:'Saving & Paying Yourself First',coreIdea:'Save before spending and begin building financial security.',terms:['SAVE FIRST → SPEND SECOND','emergency savings','short-term goals','long-term goals','needs','wants']},
  4:{title:'Budgeting & Smart Spending',coreIdea:'Give every dollar a purpose; understand needs, wants, and the 50/30/20 concept.',terms:['budgeting','needs vs. wants','smart spending','financial tradeoffs','50/30/20']},

@@ -60,6 +60,29 @@ const {mkdirSync}=require('node:fs');
   });assert.deepEqual(jump.order,Array.from({length:16},(_,i)=>i));assert.equal(jump.unique,16);assert.equal(jump.last,15);assert(jump.recovered);
 
   assert(Math.max(...frames.bottoms)-Math.min(...frames.bottoms)<=2,`${id} feet moved off ground`);
+
+  await page.evaluate(()=>{const r=window.runner;r.player.grounded=true;r.player.y=r.ground-r.player.h;r.jumpMotion=null;r.state='running';r.stateTime=0;r.setPaused(false);});
+
+  const ducks=await page.evaluate(()=>{
+   const r=window.runner,random=Math.random,seen=[],hashes=[],tops=[],bottoms=[];Math.random=()=>0;
+   try{for(let i=0;i<6;i++){
+    r.holdDuck('test');r.ctx.clearRect(0,0,r.width,r.height);r.drawPlayer(0);seen.push(r.duckAnimation.variant);
+    const d=r.ctx.getImageData(0,0,r.canvas.width,r.canvas.height);let hash=0,top=99999,bottom=-1;
+    for(let y=0;y<d.height;y++)for(let x=0;x<d.width;x++){const k=(y*d.width+x)*4;if(d.data[k+3]){top=Math.min(top,y);bottom=y;hash=(Math.imul(hash,31)+d.data[k]+d.data[k+1]*3+d.data[k+2]*7)|0;}}
+    hashes.push(hash);tops.push(top);bottoms.push(bottom);
+    const lives=r.lives;r.entities=[{type:'obstacle',behavior:'overhead',x:r.player.x,y:r.ground-132,w:110,h:70,done:false,passed:false}];r.update(.01,0);if(r.lives!==lives)throw Error('duck collided with overhead');r.entities=[];
+    r.releaseDuck('test');r.update(.3,0);if(r.duckAnimation!==null)throw Error('duck recovery stuck');
+   }}finally{Math.random=random;}
+   return {unique:new Set(seen).size,poses:new Set(hashes).size,tops,bottoms};
+  });assert.equal(ducks.unique,6);assert.equal(ducks.poses,6);assert(ducks.tops.every(y=>y>=232));assert(ducks.bottoms.every(y=>y<=292&&y>=289));
+  await page.keyboard.down('ArrowDown');assert(await page.evaluate(()=>window.runner.player.duck));
+  await page.keyboard.up('ArrowDown');assert.equal(await page.evaluate(()=>window.runner.player.duck),false);
+  const duckButton=page.locator('[data-action="runner-duck"]'),rect=await duckButton.boundingBox();assert(rect.width>=44&&rect.height>=44);
+  const touch=await page.context().newCDPSession(page);
+  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:rect.x+rect.width/2,y:rect.y+rect.height/2}]});
+  await page.waitForTimeout(750);assert(await page.evaluate(()=>window.runner.player.duck),'touch hold must outlast the old tap timer');
+  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await page.evaluate(()=>window.runner.player.duck),false,'touch release stands immediately');
+  await touch.detach();await page.evaluate(()=>window.runner.setPaused(true));
   const actual=await page.evaluate(async()=>{
    const r=window.runner,seen=[],draw=r.jumpCycle.drawFrame.bind(r.jumpCycle);
    r.jumpCycle.drawFrame=(...args)=>{seen.push(args[2]);return draw(...args);};
@@ -89,6 +112,6 @@ const {mkdirSync}=require('node:fs');
   const r=new FinancialRunner(document.createElement('canvas'),runnerConfig(1,'post'),{characterId:'ruby'});
   await Promise.all([r.image.decode(),r.runCycle.image.decode(),r.jumpCycle.image.decode()]);r.runCycle.ready=true;r.jumpCycle.ready=true;r.imageReady=true;r.start();r.drawPlayer(0);r.jump();r.drawPlayer(0);const out={reduced:r.reduced,frame:r.runCycle.frame,jump:!r.player.grounded,jumpFrame:r.jumpCycle.frame};r.destroy();return out;
  });assert.deepEqual(alternative,{reduced:true,frame:0,jump:true,jumpFrame:5});
- assert.deepEqual(errors,[]);console.log('PASS all 6 characters × Arcade/Bonus × both static paths: 16 distinct ordered run/jump frames, one-shot landing recovery, loop, stable feet, selection, keyboard/touch, scoring, hits, responsive layout; reduced motion retains jumping.');
+ assert.deepEqual(errors,[]);console.log('PASS all 6 characters × Arcade/Bonus × both static paths: 16 distinct ordered run/jump frames, one-shot landing recovery, loop, stable feet, selection, six randomized duck variants, held keyboard/touch, overhead clearance, release recovery, scoring, hits, responsive layout; reduced motion retains jumping.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

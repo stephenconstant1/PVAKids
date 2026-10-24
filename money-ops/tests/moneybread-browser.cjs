@@ -18,7 +18,7 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
  assert.equal(await page.locator('.mb-building').count(),8);assert.equal(await page.locator('.mb-level').count(),32);
  assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true);
  await page.locator('[data-action="mb-view-school"]').first().focus();await page.keyboard.press('Enter');
- assert.match(await page.locator('.mb-school h2').textContent(),/Earning & Creating Value/);
+ assert.match(await page.locator('.mb-school h2').textContent(),/Earning and Creating Value/);
  await click('begin-1');await click('runner-skip');await click('runner-start-lesson');await click('next');await click('job-time');
  for(const [token,target] of [['yard-gloves','jordan-gear'],['yard-bag','bag-spot'],['yard-rake','jordan-gear'],['leaf-0','leaf-bag'],['leaf-1','leaf-bag'],['leaf-2','leaf-bag']]){
   await click(`select-${token}`);await click(`drop-${target}`);

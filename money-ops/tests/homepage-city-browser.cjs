@@ -28,7 +28,7 @@ const assert=require('node:assert/strict');
  assert.equal(await page.locator('.mb-destination-marker').evaluate(n=>getComputedStyle(n).animationName),'none');
  await page.locator('.mb-destination-marker').focus();await page.keyboard.press('Enter');
  await page.locator('[data-action="runner-skip"]').click();await page.locator('[data-action="runner-start-lesson"]').click();
- assert.match(await page.locator('.sequence-brief').textContent(),/Earning & Creating Value/);
+ assert.match(await page.locator('.sequence-brief').textContent(),/Earning and Creating Value/);
  await page.locator('[data-action="site-home"]').click();assert.equal(await page.locator('.title-screen').count(),1);
  await page.locator('[data-action="start-arcade"]').first().click();assert.equal(await page.locator('.arcade-level-card').count(),32);
  await page.locator('[data-action="site-home"]').click();assert.equal(await page.locator('.title-screen').count(),1);

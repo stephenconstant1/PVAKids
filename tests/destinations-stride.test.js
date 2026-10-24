@@ -14,7 +14,7 @@ test('all 32 destination mappings preserve the existing stop names and source le
   assert.equal(d.name,cityStops[id-1].name);assert.equal(d.sourceLocation,missions[id-1].location||missions[id-1].sector);
   assert(d.x>=0&&d.x<=100&&d.y>=0&&d.y<=100);
  }
- assert.equal(destination(1).title,'Earning & Creating Value');assert.equal(destination(1).name,'Value Village');
+ assert.equal(destination(1).title,'Earning and Creating Value');assert.equal(destination(1).name,'Value Village');
  assert.equal(destination(33),undefined);
 });
 test('both legs exchange the forward position, with opposite arm swings, for every crew member',()=>{

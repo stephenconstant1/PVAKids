@@ -1,7 +1,9 @@
 import data from './run-cycles.json' with { type: 'json' };
 import jumps from './jump-cycles.json' with { type: 'json' };
+import ducks from './duck-cycles.json' with { type: 'json' };
 export const runCycles = data;
 export const jumpCycles = jumps;
+export const duckCycles = ducks;
 /** Flight is driven by the existing physics; landing/recovery consumes .24s.
  * Frames clamp instead of wrapping. No input delay or physics changes. */
 export function jumpFrame(motion, reduced = false) {
@@ -21,12 +23,12 @@ export class CharacterRunCycle {
     failed = false;
     frame = 0;
     constructor(id, kind = 'run', onSettled = () => { }) {
-        this.cycle = (kind === 'jump' ? jumpCycles : runCycles)[id];
+        this.cycle = (kind === 'duck' ? duckCycles : kind === 'jump' ? jumpCycles : runCycles)[id];
         this.image = new Image();
         this.image.onload = () => { this.ready = true; onSettled(); };
         this.image.onerror = () => { this.failed = true; onSettled(); };
         if (this.cycle)
-            this.image.src = new URL('../../' + this.cycle.image + '?v=45.7', import.meta.url).href;
+            this.image.src = new URL('../../' + this.cycle.image + '?v=45.8', import.meta.url).href;
         else
             this.failed = true;
         this.ready = Boolean(this.image.complete && this.image.naturalWidth);

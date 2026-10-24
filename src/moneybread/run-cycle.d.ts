@@ -19,6 +19,7 @@ export interface RunCycle {
 }
 export declare const runCycles: Record<string, RunCycle>;
 export declare const jumpCycles: Record<string, RunCycle>;
+export declare const duckCycles: Record<string, RunCycle>;
 export interface JumpMotion {
     elapsedMs: number;
     flightMs: number;
@@ -36,7 +37,7 @@ export declare class CharacterRunCycle {
     ready: boolean;
     failed: boolean;
     frame: number;
-    constructor(id: string, kind?: 'run' | 'jump', onSettled?: () => void);
+    constructor(id: string, kind?: 'run' | 'jump' | 'duck', onSettled?: () => void);
     /** Uniform scale and measured anchors only. Never rotate/warp individual art. */
     draw(ctx: CanvasRenderingContext2D, height: number, elapsedMs: number, reduced?: boolean): boolean;
     drawFrame(ctx: CanvasRenderingContext2D, height: number, frame: number): boolean;

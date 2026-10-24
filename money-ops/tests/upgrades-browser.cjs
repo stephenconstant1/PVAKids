@@ -41,7 +41,7 @@ const url=process.env.MONEY_OPS_URL;
    const average=(performance.now()-begin)/24;
    const a=strideJoints(id,150,124,Math.PI/2*120),b=strideJoints(id,150,124,Math.PI*1.5*120);
    const stillBox=JSON.stringify(runner.playerBox())===box;
-   runner.jump();const jumped=runner.player.vy<0;runner.duck();const ducked=runner.player.duck;
+   runner.jump();const jumped=runner.player.vy<0;runner.duck();const airborneIgnored=!runner.player.duck;runner.player.grounded=true;runner.duck();const ducked=airborneIgnored&&runner.player.duck;
    runner.destroy();result.push({id,froze,clock,average,stillBox,jumped,ducked,leftChangesSide:a.leftLeg.end[0]<a.rightLeg.end[0]&&b.leftLeg.end[0]>b.rightLeg.end[0]});
   }return result;
  });

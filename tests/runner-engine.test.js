@@ -174,3 +174,21 @@ test('collectible hearts add up to two reserve lives and can replenish lost live
  assert.equal(game.lives,5);assert.equal(game.extraLivesCollected,3);
  assert.equal(game.snapshot().lifeCap,5);
 });
+
+
+test('all six runners hold/release duck, pass overhead hazards and reject airborne duck',()=>{
+ for(const phase of ['pre','post'])for(const characterId of ['jordan','maya','kai','sofia','eli','ruby']){
+  const r=harness(1,phase,{characterId}).runner;r.start();r.spawnIn=r.rewardIn=r.powerIn=r.boxIn=r.lifeIn=999;
+  r.keyDown({code:'ArrowDown',preventDefault(){}});assert(r.player.duck);assert.equal(r.state,'ducking');
+  r.holdDuck('pointer:1');r.keyUp({code:'ArrowDown'});assert(r.player.duck,'other held input remains active');
+  r.releaseDuck('pointer:1');assert(!r.player.duck);assert.equal(r.state,'running');
+  r.duck(.02);r.holdDuck('keyboard');r.update(.03,0);assert(r.player.duck,'expired swipe must not cancel held key');
+  const box=r.playerBox();assert.equal(box.y+box.h,r.ground);assert(box.y>=r.ground-62,'duck clears bottom of overhead obstacle');
+  r.entities=[{type:'obstacle',behavior:'overhead',x:r.player.x,y:r.ground-132,w:110,h:70,done:false,passed:false}];
+  r.update(.01,0);assert.equal(r.lives,3,'held duck avoids overhead collision');
+  r.releaseAllDuck();r.update(.01,0);assert.equal(r.lives,2,'standing still hits same overhead obstacle');r.entities=[];
+  r.jump();const vy=r.player.vy,motion=r.jumpMotion;r.holdDuck('keyboard');r.duck();assert(!r.player.duck);assert.equal(r.player.vy,vy);assert.equal(r.jumpMotion,motion);
+  r.player.grounded=true;r.holdDuck('keyboard');r.setPaused(true);assert(!r.player.duck);r.setPaused(false);assert(!r.player.duck,'pause clears stale held state');
+  r.holdDuck('keyboard');r.destroy();assert(!r.player.duck);
+ }
+});

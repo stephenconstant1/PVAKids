@@ -2336,3 +2336,6 @@ button.world-buddy.cheer:after{
 .runner-hud{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
 
 .runner-result-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+
+.runner-touch-controls [data-action="runner-duck"]{touch-action:none;user-select:none;-webkit-user-select:none}
+.runner-touch-controls [data-action="runner-duck"][aria-pressed="true"]{background:#ffe485;color:#17343e}

@@ -1,5 +1,6 @@
 import data from './run-cycles.json' with {type:'json'};
 import jumps from './jump-cycles.json' with {type:'json'};
+import ducks from './duck-cycles.json' with {type:'json'};
 
 export interface RunCycle {
  name:string; image:string; columns:number; frameCount:number; fps:number;
@@ -8,6 +9,7 @@ export interface RunCycle {
 }
 export const runCycles:Record<string,RunCycle>=data;
 export const jumpCycles:Record<string,RunCycle>=jumps;
+export const duckCycles:Record<string,RunCycle>=ducks;
 export interface JumpMotion {elapsedMs:number;flightMs:number;landed:boolean;landingMs:number}
 /** Flight is driven by the existing physics; landing/recovery consumes .24s.
  * Frames clamp instead of wrapping. No input delay or physics changes. */
@@ -26,10 +28,10 @@ export class CharacterRunCycle {
  ready=false;
  failed=false;
  frame=0;
- constructor(id:string,kind:'run'|'jump'='run',onSettled:()=>void=()=>{}){
-  this.cycle=(kind==='jump'?jumpCycles:runCycles)[id];this.image=new Image();
+ constructor(id:string,kind:'run'|'jump'|'duck'='run',onSettled:()=>void=()=>{}){
+  this.cycle=(kind==='duck'?duckCycles:kind==='jump'?jumpCycles:runCycles)[id];this.image=new Image();
   this.image.onload=()=>{this.ready=true;onSettled();};this.image.onerror=()=>{this.failed=true;onSettled();};
-  if(this.cycle)this.image.src=new URL('../../'+this.cycle.image+'?v=45.7',import.meta.url).href;
+  if(this.cycle)this.image.src=new URL('../../'+this.cycle.image+'?v=45.8',import.meta.url).href;
   else this.failed=true;
   this.ready=Boolean(this.image.complete&&this.image.naturalWidth);
  }
