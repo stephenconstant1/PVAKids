@@ -11,14 +11,14 @@ export function encounterGap(speed:number,random:()=>number=Math.random):number 
  return Math.max(300,speed*(jumpEnvelope(speed).flight+.24+.65))+random()*speed*.25;
 }
 export function coinGroup(random:()=>number=Math.random):{count:number;step:number;height:number} {
- // All rewards intersect the standing body; no compulsory jump through hazards.
- return {count:3+Math.floor(random()*2),step:96+random()*24,height:64+random()*12};
+ // A compact three-coin arc: even its lowest coin is above standing reach.
+ return {count:3,step:44+random()*6,height:164+random()*8};
 }
 export function obstacleGeometry(speed:number,desiredWidth:number,desiredHeight:number):{w:number;h:number} {
- const envelope=jumpEnvelope(speed),h=Math.min(desiredHeight,envelope.height*.18);
+ const envelope=jumpEnvelope(speed),h=Math.min(desiredHeight,envelope.height*.36);
  const gravity=GRAVITY*RUNNER_ZOOM,v=Math.sqrt(2*gravity*envelope.height);
  // Time BOTH feet are above the top, minus player width and timing tolerance.
- const clearance=2*Math.sqrt(Math.max(0,v*v-2*gravity*(h+8)))/gravity;
- const w=Math.min(desiredWidth,Math.max(12,speed*(clearance-.045)-BODY_WIDTH*RUNNER_ZOOM));
+ const clearance=2*Math.sqrt(Math.max(0,v*v-2*gravity*(h+4)))/gravity;
+ const w=Math.min(desiredWidth,Math.max(12,speed*(clearance-.015)-BODY_WIDTH*RUNNER_ZOOM));
  return {w:Math.floor(w),h:Math.floor(h)};
 }

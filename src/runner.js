@@ -82,7 +82,7 @@ export class FinancialRunner{
   const before=this.entities.length,slot=this.routeSlot++%4;
   if(slot===0||slot===2){
    const group=coinGroup();
-   for(let i=0;i<group.count;i++){this.spawnCollectible();const e=this.entities.at(-1);e.x=this.width+35+i*group.step;e.y=this.ground-group.height;}
+   for(let i=0;i<group.count;i++){this.spawnCollectible();const e=this.entities.at(-1);e.x=this.width+35+i*group.step;e.y=this.ground-group.height-(i===1?90:0);}
   }else if(slot===3){
    const due=[this.config.extraLifeInterval&&this.lifeIn<=0,this.config.phase==='post'&&this.powerIn<=0,this.boxIn<=0];
    let choice=-1;for(let n=0;n<3;n++){const i=(this.routeUtilityCursor+n)%3;if(due[i]){choice=i;break;}}

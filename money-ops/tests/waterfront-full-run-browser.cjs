@@ -36,11 +36,11 @@ const {mkdirSync}=require('node:fs');
    const key=(type,code)=>window.dispatchEvent(new KeyboardEvent(type,{code,bubbles:true,cancelable:true}));
    try{
     while(r.running&&r.collected<200&&ticks<40000){
-     const next=r.entities.filter(e=>!e.done&&['obstacle','moneybox'].includes(e.type)&&e.x+e.w>r.player.x).sort((a,b)=>a.x-b.x)[0];
+     const next=r.entities.filter(e=>!e.done&&['obstacle','moneybox','collectible'].includes(e.type)&&e.x+e.w>r.player.x).sort((a,b)=>a.x-b.x)[0];
      const overhead=next?.behavior==='overhead'&&next.x<r.player.x+310;
      if(overhead&&!ducking){key('keydown','ArrowDown');ducking=true;ducks++;}
      if(!overhead&&ducking){key('keyup','ArrowDown');ducking=false;}
-     if(next&&!overhead&&next.x<r.playerBox().x+r.playerBox().w+r.speed*(next.type==='moneybox'?.035:.11)&&r.player.grounded){key('keydown','ArrowUp');key('keyup','ArrowUp');jumps++;}
+     if(next&&!overhead&&next.x<r.playerBox().x+r.playerBox().w+(next.type==='collectible'?-20:r.speed*(next.type==='moneybox'?.035:.11))&&r.player.grounded){key('keydown','ArrowUp');key('keyup','ArrowUp');jumps++;}
      r.update(.02,ticks*.02);ticks++;
      for(const e of r.entities)if(e.encounter&&!seen.has(e.encounter)){
       seen.add(e.encounter);const items=r.entities.filter(v=>v.encounter===e.encounter),world=r.distance*18;
