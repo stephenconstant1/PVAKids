@@ -1,6 +1,6 @@
 import {stepBody,setCrouched,launchJump,WALK_SPEED,RUN_SPEED,GRAVITY,TILE,BODY_HEIGHT} from './moneybread/platform-physics.js';
 import {runnerBody,runnerMap,runnerTiles,RUNNER_ZOOM} from './moneybread/runner-physics.js';
-import {encounterGap,coinGroup} from './moneybread/waterfront-route.js';
+import {encounterGap,coinGroup,obstacleGeometry} from './moneybread/waterfront-route.js';
 import {WaterfrontScene} from './moneybread/waterfront.js';
 import {CharacterRunCycle,jumpFrame} from './moneybread/run-cycle.js';
 import {createDuck,duckFrame} from './moneybread/duck-animation.js';
@@ -66,8 +66,8 @@ export class FinancialRunner{
   if(!player.grounded){if(player.vy>80)this.state='falling';}
   else if(!wasGrounded){this.state='landing';this.stateTime=.24;if(this.jumpMotion){this.jumpMotion.landed=true;this.jumpMotion.landingMs=0;}}
   else if(this.stateTime<=0)this.state=player.duck?'ducking':'running';
-  if(this.config.lessonId===1)this.updateWaterfrontRoute(dt,speed);else {if(this.config.extraLifeInterval){this.lifeIn-=dt;if(this.lifeIn<=0){this.spawnLife();this.lifeIn=this.config.extraLifeInterval;}}this.spawnIn-=dt;this.rewardIn-=dt;this.powerIn-=dt;this.boxIn-=dt;if(this.spawnIn<=0){this.spawnObstacle();this.spawnIn=(Math.max(1.25,2.05-this.collected*.008)+(Math.random()*.8))/this.speedMultiplier;}if(this.rewardIn<=0){this.spawnCollectible();this.rewardIn=(.5+Math.random()*.55)/this.speedMultiplier;}if(this.boxIn<=0){this.spawnMoneyBox();this.boxIn=(7+Math.random()*6)/this.speedMultiplier;}if(this.config.phase==='post'&&this.powerIn<=0){this.spawnPower();this.powerIn=(13+Math.random()*8)/this.speedMultiplier;}}
-  for(const entity of this.entities){entity.x-=speed*dt;if(entity.behavior==='moving')entity.y=entity.baseY+Math.sin(time*(3.4+(entity.art?.variant||0)*.12)+entity.seed)*(16+(entity.art?.variant||0));if((this.activePower?.effect==='magnet'||this.ownedItems.has('magnet'))&&entity.type==='collectible'&&entity.x<460){entity.x+=(player.x-entity.x)*dt*4;entity.y+=(player.y-entity.y)*dt*4;}}
+  this.updateWaterfrontRoute(dt,speed);
+  for(const entity of this.entities){entity.x-=speed*dt;if(entity.behavior==='moving')entity.y=entity.baseY+Math.sin(time*(3.4+(entity.art?.variant||0)*.12)+entity.seed)*4;if((this.activePower?.effect==='magnet'||this.ownedItems.has('magnet'))&&entity.type==='collectible'&&entity.x<460){entity.x+=(player.x-entity.x)*dt*4;entity.y+=(player.y-entity.y)*dt*4;}}
   const hitbox=this.playerBox();
   for(const entity of this.entities){if(entity.done)continue;if(entity.type==='obstacle'&&entity.x+entity.w<player.x&&!entity.passed){entity.passed=true;this.avoided++;this.combo++;this.xp+=10*Math.max(1,Math.floor(this.combo/4)+1);this.score+=10*this.combo;this.rememberVocabulary(entity,'CLEARED');}
    if(!intersects(hitbox,entity))continue;
@@ -95,12 +95,12 @@ export class FinancialRunner{
   const created=this.entities.slice(before),group=++this.routeEncounterSerial;
   for(const e of created)e.encounter=group;
   const start=Math.min(...created.map(e=>e.x)),end=Math.max(...created.map(e=>e.x+e.w));
-  this.routeGapRemaining=end-start+encounterGap(speed);
+  this.routeGapRemaining=end-start+encounterGap(Math.max(speed,this.speed));
  }
  playerBox(){const p=this.player,h=this.physics.h*RUNNER_ZOOM,w=this.physics.w*RUNNER_ZOOM;return {x:p.x+p.w/2-w/2,y:p.y+p.h-h,w,h};}
  drawTileWalls(){const c=this.ctx,scale=RUNNER_ZOOM,start=Math.floor(this.cameraX/(TILE*scale)),end=Math.ceil((this.cameraX+this.width)/(TILE*scale));for(let y=0;y<runnerTiles.floorRow;y++)for(let x=start;x<=end;x++)if(this.tileMap.solid(x,y)){c.fillStyle=this.config.environmentData.near;c.fillRect(Math.round(x*TILE*scale-this.cameraX),Math.round(y*TILE*scale+this.physicsOriginY),TILE*scale,TILE*scale);c.strokeStyle='#ffe485';c.strokeRect(Math.round(x*TILE*scale-this.cameraX)+.5,Math.round(y*TILE*scale+this.physicsOriginY)+.5,TILE*scale-1,TILE*scale-1);}}
 
- spawnObstacle(){const set=this.config.obstacleSet,source=set[Math.floor(Math.random()*set.length)],behavior=source.behavior,variant=source.art?.variant||0;let w=(behavior==='wide'?132:110)+(variant%3)*4,h=(behavior==='overhead'?66:behavior==='wide'?78:88)+(variant%2)*4,y=this.ground-h;if(behavior==='overhead')y=this.ground-164-(variant%3)*4;if(behavior==='moving')y=this.ground-h-14;this.entities.push({...source,type:'obstacle',x:this.width+35,y,baseY:y,w,h,seed:Math.random()*6,passed:false,done:false});}
+ spawnObstacle(){const set=this.config.obstacleSet,source=set[Math.floor(Math.random()*set.length)],behavior=source.behavior,variant=source.art?.variant||0;let w=(behavior==='wide'?132:110)+(variant%3)*4,h=(behavior==='overhead'?66:behavior==='wide'?78:88)+(variant%2)*4,y=this.ground-h;if(behavior==='overhead')y=this.ground-164-(variant%3)*4;if(behavior!=='overhead'){const safeSpeed=WALK_SPEED*RUNNER_ZOOM*this.config.difficulty*this.speedMultiplier;const fit=obstacleGeometry(safeSpeed,w,h);w=fit.w;h=fit.h;y=this.ground-h;}this.entities.push({...source,type:'obstacle',x:this.width+35,y,baseY:y,w,h,seed:Math.random()*6,passed:false,done:false});}
  spawnCollectible(){const set=this.config.collectibleSet,source=set[Math.floor(Math.random()*set.length)],height=60+Math.random()*100;this.entities.push({...source,type:'collectible',x:this.width+30,y:this.ground-height,w:42,h:42,done:false});}
  spawnLife(){this.entities.push({type:'life',label:'Extra life',x:this.width+30,y:this.ground-100,w:42,h:42,done:false});}
  collectLife(entity){if(entity.done)return;entity.done=true;const cap=this.config.lifeCap||this.config.maxLives;if(this.lives<cap){this.lives++;this.extraLivesCollected++;this.popups.push({x:entity.x,y:entity.y,text:'+1 LIFE',life:1.2,color:'#ff9ea3'});}else this.popups.push({x:entity.x,y:entity.y,text:'LIVES FULL',life:1.2,color:'#ff9ea3'});this.burst(entity.x,entity.y,'#ff9ea3');}

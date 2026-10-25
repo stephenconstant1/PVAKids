@@ -195,3 +195,26 @@ test('all six runners hold/release duck, pass overhead hazards and reject airbor
   r.holdDuck('keyboard');r.destroy();assert(!r.player.duck);
  }
 });
+
+test('route boxes have a forgiving real jump window at every intensity and mode',()=>{
+ for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
+  const r=harness(1,phase,{intensityLevel}).runner;
+  r.config={...r.config,obstacleSet:[r.config.obstacleSet.find(e=>e.behavior!=='overhead')]};
+  r.spawnObstacle();const obstacle=r.entities[0],speed=r.speed;
+  // Measure actual trajectories rather than checking the formula against itself.
+  let safeStarts=0;
+  for(let lead=0;lead<180;lead+=2){
+   r.entities=[];r.player.y=r.ground-r.player.h;r.player.grounded=true;r.player.vy=0;
+   r.syncPhysicsFromPlayer();r.physics.vx=speed/RUNNER_ZOOM;r.running=true;r.jump();
+   let x=r.playerBox().x+r.playerBox().w+lead,hit=false;
+   for(let n=0;n<100;n++){
+    // Keep route generation out of this isolated maneuver test.
+    r.routeGapRemaining=1e9;r.update(1/240,n/240);x-=speed/240;
+    const b=r.playerBox();if(b.x<x+obstacle.w&&b.x+b.w>x&&b.y<obstacle.y+obstacle.h&&b.y+b.h>obstacle.y)hit=true;
+    if(x+obstacle.w<b.x)break;
+   }
+   if(!hit)safeStarts++;
+  }
+  assert(safeStarts>=4,`${phase}/${intensityLevel}: needs multiple successful jump timings, got ${safeStarts}`);r.destroy();
+ }
+});
