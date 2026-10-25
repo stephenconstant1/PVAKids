@@ -31,7 +31,7 @@ export class CharacterRunCycle {
  constructor(id:string,kind:'run'|'jump'|'duck'='run',onSettled:()=>void=()=>{}){
   this.cycle=(kind==='duck'?duckCycles:kind==='jump'?jumpCycles:runCycles)[id];this.image=new Image();
   this.image.onload=()=>{this.ready=true;onSettled();};this.image.onerror=()=>{this.failed=true;onSettled();};
-  if(this.cycle)this.image.src=new URL('../../'+this.cycle.image+'?v=45.8',import.meta.url).href;
+  if(this.cycle)this.image.src=new URL('../../'+this.cycle.image+'?v=46.0',import.meta.url).href;
   else this.failed=true;
   this.ready=Boolean(this.image.complete&&this.image.naturalWidth);
  }
@@ -46,7 +46,7 @@ export class CharacterRunCycle {
   const scale=height/c.designHeight;
   ctx.drawImage(this.image,(this.frame%c.columns)*c.cellWidth,
    Math.floor(this.frame/c.columns)*c.cellHeight,c.cellWidth,c.cellHeight,
-   -c.anchorX*scale,height/2-c.groundY*scale,c.cellWidth*scale,c.cellHeight*scale);
+   Math.round(-c.anchorX*scale),Math.round(height/2-c.frames[this.frame].groundY*scale),c.cellWidth*scale,c.cellHeight*scale);
   return true;
  }
 }

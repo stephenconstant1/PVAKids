@@ -20,9 +20,9 @@ for(const kind of ['run','jump','duck']){
  const cycles=JSON.parse(readFileSync(`career/${kind}-cycles.json`,'utf8'));
  for(const id of ['jordan','maya','kai','sofia','eli','ruby']){
   const c=cycles[id],png=readFileSync(c.image);
-  const count=kind==='duck'?18:16;
-  if(c.frameCount!==count||c.frames.length!==count||c.frames.some((f,i)=>f.index!==i||f.groundY!==c.groundY)||
-   png.readUInt32BE(16)!==c.cellWidth*c.columns||png.readUInt32BE(20)!==c.cellHeight*(kind==='duck'?3:2)||
+  const count=kind==='duck'?6:16;
+  if(c.frameCount!==count||c.frames.length!==count||c.frames.some((f,i)=>f.index!==i||f.groundY<c.groundY)||
+   png.readUInt32BE(16)!==c.cellWidth*c.columns||png.readUInt32BE(20)!==c.cellHeight*2||
    createHash('sha256').update(readFileSync(c.source)).digest('hex')!==c.sourceSha256)
    throw Error(`${id}: supplied ${kind} sheet or measured frame metadata changed.`);
  }

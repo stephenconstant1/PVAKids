@@ -93,8 +93,14 @@ for ident, name, number in characters:
                        'sourceSha256': hashlib.sha256(original.read_bytes()).hexdigest(),
                        'sourceSize': [width, height], 'image': f'assets/runner/cycles/{ident}-{kind}.png',
                        'cellWidth': cell_width, 'cellHeight': cell_height,
-                       'columns': 8, 'frameCount': 16, 'fps': 22,
+                       'columns': 8, 'frameCount': 16, 'fps': 12,
                        'anchorX': left, 'groundY': design_height,
                        'designHeight': standing_height, 'rowSplit': split, 'frames': records}
+if kind=='run':
+    for cycle in metadata.values():
+        for row in range(2):
+            fs=cycle['frames'][row*8:(row+1)*8]
+            baseline=max(f['sourceRect'][1]+f['sourceRect'][3] for f in fs)
+            for f in fs:f['groundY']=cycle['groundY']+baseline-f['sourceRect'][1]-f['sourceRect'][3]
 (root/f'career/{kind}-cycles.json').write_text(json.dumps(metadata, indent=2)+'\n')
 print(f'Imported 96 {kind} poses; source RGB pixels unchanged; measured frame/ground anchors saved.')

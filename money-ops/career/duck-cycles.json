@@ -2,2178 +2,816 @@
   "jordan": {
     "name": "Kanyon",
     "source": "assets/runner/cycles/jordan-duck-source.png",
-    "sourceSha256": "087ad936ffe8a105dff12ad603146fff73c9cfcd73c75951109c34857f3ed9b5",
+    "sourceSha256": "91d863e2e6ea4dba1211908e55cf574e571c05316aef65996d48badaa4da5052",
     "sourceSize": [
       1536,
       1024
     ],
     "image": "assets/runner/cycles/jordan-duck.png",
-    "cellWidth": 420,
-    "cellHeight": 271,
-    "columns": 6,
-    "frameCount": 18,
+    "cellWidth": 709,
+    "cellHeight": 342,
+    "columns": 3,
+    "frameCount": 6,
     "fps": 0,
-    "anchorX": 212,
-    "groundY": 265,
-    "designHeight": 567,
-    "maxDrawHeight": 58,
+    "anchorX": 441,
+    "groundY": 336,
+    "designHeight": 618.5106382978723,
+    "maxDrawHeight": 67.36181630546956,
+    "headReference": {
+      "metric": "face-width",
+      "runPixels": 25.56140350877193,
+      "duckSourcePixels": 127.5,
+      "duckPixels": 25.56140350877193,
+      "scale": 0.20048159614723082
+    },
     "frames": [
       {
         "index": 0,
         "variant": 0,
-        "phase": 0,
         "sourceRect": [
-          11,
-          136,
-          206,
-          265
+          95,
+          147,
+          313,
+          336
         ],
         "contentRect": [
-          57,
+          200,
           0,
-          206,
-          265
+          313,
+          336
         ],
-        "anchorX": 212,
-        "groundY": 265
+        "anchorX": 441,
+        "groundY": 336
       },
       {
         "index": 1,
         "variant": 1,
-        "phase": 0,
         "sourceRect": [
-          274,
-          144,
-          180,
-          259
+          524,
+          167,
+          488,
+          312
         ],
         "contentRect": [
-          78,
-          6,
-          180,
-          259
+          185,
+          24,
+          488,
+          312
         ],
-        "anchorX": 212,
-        "groundY": 265
+        "anchorX": 441,
+        "groundY": 336
       },
       {
         "index": 2,
         "variant": 2,
-        "phase": 0,
         "sourceRect": [
-          470,
-          192,
-          351,
-          205
+          1071,
+          158,
+          434,
+          317
         ],
         "contentRect": [
-          52,
-          60,
-          351,
-          205
+          125,
+          19,
+          434,
+          317
         ],
-        "anchorX": 212,
-        "groundY": 265
+        "anchorX": 441,
+        "groundY": 336
       },
       {
         "index": 3,
         "variant": 3,
-        "phase": 0,
         "sourceRect": [
-          808,
-          194,
-          268,
-          208
+          30,
+          583,
+          521,
+          302
         ],
         "contentRect": [
-          15,
-          57,
-          268,
-          208
+          3,
+          34,
+          521,
+          302
         ],
-        "anchorX": 212,
-        "groundY": 265
+        "anchorX": 441,
+        "groundY": 336
       },
       {
         "index": 4,
         "variant": 4,
-        "phase": 0,
         "sourceRect": [
-          1092,
-          166,
-          235,
-          238
+          616,
+          573,
+          516,
+          315
         ],
         "contentRect": [
-          72,
-          27,
-          235,
-          238
+          190,
+          21,
+          516,
+          315
         ],
-        "anchorX": 212,
-        "groundY": 265
+        "anchorX": 441,
+        "groundY": 336
       },
       {
         "index": 5,
         "variant": 5,
-        "phase": 0,
         "sourceRect": [
-          1344,
-          149,
-          178,
-          253
+          1165,
+          602,
+          320,
+          288
         ],
         "contentRect": [
-          99,
-          12,
-          178,
-          253
+          185,
+          48,
+          320,
+          288
         ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 6,
-        "variant": 0,
-        "phase": 1,
-        "sourceRect": [
-          14,
-          450,
-          204,
-          219
-        ],
-        "contentRect": [
-          53,
-          46,
-          204,
-          219
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 7,
-        "variant": 1,
-        "phase": 1,
-        "sourceRect": [
-          263,
-          445,
-          180,
-          226
-        ],
-        "contentRect": [
-          79,
-          39,
-          180,
-          226
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 8,
-        "variant": 2,
-        "phase": 1,
-        "sourceRect": [
-          459,
-          484,
-          350,
-          183
-        ],
-        "contentRect": [
-          67,
-          82,
-          350,
-          183
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 9,
-        "variant": 3,
-        "phase": 1,
-        "sourceRect": [
-          802,
-          481,
-          290,
-          190
-        ],
-        "contentRect": [
-          10,
-          75,
-          290,
-          190
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 10,
-        "variant": 4,
-        "phase": 1,
-        "sourceRect": [
-          1096,
-          466,
-          242,
-          210
-        ],
-        "contentRect": [
-          64,
-          55,
-          242,
-          210
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 11,
-        "variant": 5,
-        "phase": 1,
-        "sourceRect": [
-          1339,
-          450,
-          172,
-          227
-        ],
-        "contentRect": [
-          91,
-          38,
-          172,
-          227
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 12,
-        "variant": 0,
-        "phase": 2,
-        "sourceRect": [
-          13,
-          721,
-          214,
-          241
-        ],
-        "contentRect": [
-          56,
-          24,
-          214,
-          241
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 13,
-        "variant": 1,
-        "phase": 2,
-        "sourceRect": [
-          266,
-          724,
-          184,
-          242
-        ],
-        "contentRect": [
-          74,
-          23,
-          184,
-          242
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 14,
-        "variant": 2,
-        "phase": 2,
-        "sourceRect": [
-          453,
-          767,
-          355,
-          194
-        ],
-        "contentRect": [
-          53,
-          71,
-          355,
-          194
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 15,
-        "variant": 3,
-        "phase": 2,
-        "sourceRect": [
-          797,
-          767,
-          294,
-          200
-        ],
-        "contentRect": [
-          3,
-          65,
-          294,
-          200
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 16,
-        "variant": 4,
-        "phase": 2,
-        "sourceRect": [
-          1088,
-          742,
-          251,
-          228
-        ],
-        "contentRect": [
-          40,
-          37,
-          251,
-          228
-        ],
-        "anchorX": 212,
-        "groundY": 265
-      },
-      {
-        "index": 17,
-        "variant": 5,
-        "phase": 2,
-        "sourceRect": [
-          1345,
-          721,
-          183,
-          250
-        ],
-        "contentRect": [
-          86,
-          15,
-          183,
-          250
-        ],
-        "anchorX": 212,
-        "groundY": 265
+        "anchorX": 441,
+        "groundY": 336
       }
     ]
   },
   "maya": {
     "name": "Maya",
     "source": "assets/runner/cycles/maya-duck-source.png",
-    "sourceSha256": "06c60513b68f3d88f5869732facf8302b53847ddf3382b87bb4de04a614c1282",
+    "sourceSha256": "b62f49fb502bbf68b2d93ac5b173214e1505d30a75202ec14779eaae76283d97",
     "sourceSize": [
       1536,
       1024
     ],
     "image": "assets/runner/cycles/maya-duck.png",
-    "cellWidth": 418,
-    "cellHeight": 246,
-    "columns": 6,
-    "frameCount": 18,
+    "cellWidth": 693,
+    "cellHeight": 333,
+    "columns": 3,
+    "frameCount": 6,
     "fps": 0,
-    "anchorX": 205,
-    "groundY": 240,
-    "designHeight": 514,
-    "maxDrawHeight": 58,
+    "anchorX": 363,
+    "groundY": 327,
+    "designHeight": 609.9999999999999,
+    "maxDrawHeight": 66.47213114754099,
+    "headReference": {
+      "metric": "face-width",
+      "runPixels": 18.6,
+      "duckSourcePixels": 91.5,
+      "duckPixels": 18.6,
+      "scale": 0.2032786885245902
+    },
     "frames": [
       {
         "index": 0,
         "variant": 0,
-        "phase": 0,
         "sourceRect": [
-          20,
-          154,
-          213,
-          239
+          50,
+          201,
+          366,
+          327
         ],
         "contentRect": [
-          42,
-          1,
-          213,
-          239
+          75,
+          0,
+          366,
+          327
         ],
-        "anchorX": 205,
-        "groundY": 240
+        "anchorX": 363,
+        "groundY": 327
       },
       {
         "index": 1,
         "variant": 1,
-        "phase": 0,
         "sourceRect": [
-          265,
-          147,
-          202,
-          240
+          517,
+          207,
+          536,
+          313
         ],
         "contentRect": [
-          46,
-          0,
-          202,
-          240
+          73,
+          14,
+          536,
+          313
         ],
-        "anchorX": 205,
-        "groundY": 240
+        "anchorX": 363,
+        "groundY": 327
       },
       {
         "index": 2,
         "variant": 2,
-        "phase": 0,
         "sourceRect": [
-          503,
-          185,
-          278,
-          201
+          1095,
+          202,
+          416,
+          325
         ],
         "contentRect": [
-          55,
-          39,
-          278,
-          201
+          65,
+          2,
+          416,
+          325
         ],
-        "anchorX": 205,
-        "groundY": 240
+        "anchorX": 363,
+        "groundY": 327
       },
       {
         "index": 3,
         "variant": 3,
-        "phase": 0,
         "sourceRect": [
-          799,
-          183,
-          269,
-          204
+          45,
+          602,
+          505,
+          320
         ],
         "contentRect": [
-          146,
-          36,
-          269,
-          204
+          3,
+          7,
+          505,
+          320
         ],
-        "anchorX": 205,
-        "groundY": 240
+        "anchorX": 363,
+        "groundY": 327
       },
       {
         "index": 4,
         "variant": 4,
-        "phase": 0,
         "sourceRect": [
-          1087,
-          179,
-          229,
-          214
+          551,
+          610,
+          601,
+          309
         ],
         "contentRect": [
-          21,
-          26,
-          229,
-          214
+          89,
+          18,
+          601,
+          309
         ],
-        "anchorX": 205,
-        "groundY": 240
+        "anchorX": 363,
+        "groundY": 327
       },
       {
         "index": 5,
         "variant": 5,
-        "phase": 0,
         "sourceRect": [
-          1332,
-          164,
-          188,
-          227
+          1139,
+          606,
+          367,
+          318
         ],
         "contentRect": [
-          61,
-          13,
-          188,
-          227
+          91,
+          9,
+          367,
+          318
         ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 6,
-        "variant": 0,
-        "phase": 1,
-        "sourceRect": [
-          25,
-          464,
-          218,
-          188
-        ],
-        "contentRect": [
-          41,
-          52,
-          218,
-          188
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 7,
-        "variant": 1,
-        "phase": 1,
-        "sourceRect": [
-          274,
-          459,
-          194,
-          194
-        ],
-        "contentRect": [
-          51,
-          46,
-          194,
-          194
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 8,
-        "variant": 2,
-        "phase": 1,
-        "sourceRect": [
-          485,
-          486,
-          317,
-          162
-        ],
-        "contentRect": [
-          60,
-          78,
-          317,
-          162
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 9,
-        "variant": 3,
-        "phase": 1,
-        "sourceRect": [
-          809,
-          483,
-          257,
-          169
-        ],
-        "contentRect": [
-          54,
-          71,
-          257,
-          169
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 10,
-        "variant": 4,
-        "phase": 1,
-        "sourceRect": [
-          1084,
-          470,
-          250,
-          187
-        ],
-        "contentRect": [
-          3,
-          53,
-          250,
-          187
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 11,
-        "variant": 5,
-        "phase": 1,
-        "sourceRect": [
-          1333,
-          474,
-          187,
-          178
-        ],
-        "contentRect": [
-          59,
-          62,
-          187,
-          178
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 12,
-        "variant": 0,
-        "phase": 2,
-        "sourceRect": [
-          30,
-          718,
-          203,
-          233
-        ],
-        "contentRect": [
-          45,
-          7,
-          203,
-          233
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 13,
-        "variant": 1,
-        "phase": 2,
-        "sourceRect": [
-          272,
-          716,
-          202,
-          230
-        ],
-        "contentRect": [
-          46,
-          10,
-          202,
-          230
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 14,
-        "variant": 2,
-        "phase": 2,
-        "sourceRect": [
-          502,
-          749,
-          296,
-          198
-        ],
-        "contentRect": [
-          51,
-          42,
-          296,
-          198
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 15,
-        "variant": 3,
-        "phase": 2,
-        "sourceRect": [
-          806,
-          736,
-          263,
-          211
-        ],
-        "contentRect": [
-          57,
-          29,
-          263,
-          211
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 16,
-        "variant": 4,
-        "phase": 2,
-        "sourceRect": [
-          1091,
-          726,
-          230,
-          226
-        ],
-        "contentRect": [
-          25,
-          14,
-          230,
-          226
-        ],
-        "anchorX": 205,
-        "groundY": 240
-      },
-      {
-        "index": 17,
-        "variant": 5,
-        "phase": 2,
-        "sourceRect": [
-          1333,
-          734,
-          190,
-          217
-        ],
-        "contentRect": [
-          56,
-          23,
-          190,
-          217
-        ],
-        "anchorX": 205,
-        "groundY": 240
+        "anchorX": 363,
+        "groundY": 327
       }
     ]
   },
   "kai": {
     "name": "Everest",
     "source": "assets/runner/cycles/kai-duck-source.png",
-    "sourceSha256": "be3ef584be5c4ec9d43578ab9abeb2bcbb96539ebcebfd3fad887b26c721723b",
+    "sourceSha256": "5f6e6439b758ce3b0c3a23ce499ab37ed5bcc77d7e5a2415edbbf485865cfbe2",
     "sourceSize": [
       1536,
       1024
     ],
     "image": "assets/runner/cycles/kai-duck.png",
-    "cellWidth": 314,
-    "cellHeight": 270,
-    "columns": 6,
-    "frameCount": 18,
+    "cellWidth": 638,
+    "cellHeight": 366,
+    "columns": 3,
+    "frameCount": 6,
     "fps": 0,
-    "anchorX": 223,
-    "groundY": 264,
-    "designHeight": 565,
-    "maxDrawHeight": 58,
+    "anchorX": 419,
+    "groundY": 360,
+    "designHeight": 665.2946428571428,
+    "maxDrawHeight": 67.09809026612807,
+    "headReference": {
+      "metric": "face-width",
+      "runPixels": 25.814126394052046,
+      "duckSourcePixels": 138.5,
+      "duckPixels": 25.81412639405205,
+      "scale": 0.18638358407257796
+    },
     "frames": [
       {
         "index": 0,
         "variant": 0,
-        "phase": 0,
         "sourceRect": [
-          34,
-          97,
-          237,
-          264
+          78,
+          137,
+          321,
+          357
         ],
         "contentRect": [
-          44,
-          0,
-          237,
-          264
+          181,
+          3,
+          321,
+          357
         ],
-        "anchorX": 223,
-        "groundY": 264
+        "anchorX": 419,
+        "groundY": 360
       },
       {
         "index": 1,
         "variant": 1,
-        "phase": 0,
         "sourceRect": [
-          281,
-          100,
-          183,
-          261
+          533,
+          161,
+          503,
+          337
         ],
         "contentRect": [
-          92,
-          3,
-          183,
-          261
+          132,
+          23,
+          503,
+          337
         ],
-        "anchorX": 223,
-        "groundY": 264
+        "anchorX": 419,
+        "groundY": 360
       },
       {
         "index": 2,
         "variant": 2,
-        "phase": 0,
         "sourceRect": [
-          478,
-          142,
-          280,
-          219
+          1085,
+          139,
+          412,
+          360
         ],
         "contentRect": [
-          18,
-          45,
-          280,
-          219
+          133,
+          0,
+          412,
+          360
         ],
-        "anchorX": 223,
-        "groundY": 264
+        "anchorX": 419,
+        "groundY": 360
       },
       {
         "index": 3,
         "variant": 3,
-        "phase": 0,
         "sourceRect": [
-          770,
-          142,
-          273,
-          220
+          46,
+          616,
+          540,
+          307
         ],
         "contentRect": [
-          22,
-          44,
-          273,
-          220
+          3,
+          53,
+          540,
+          307
         ],
-        "anchorX": 223,
-        "groundY": 264
+        "anchorX": 419,
+        "groundY": 360
       },
       {
         "index": 4,
         "variant": 4,
-        "phase": 0,
         "sourceRect": [
-          1068,
-          123,
-          245,
-          242
+          605,
+          581,
+          551,
+          342
         ],
         "contentRect": [
-          53,
-          22,
-          245,
-          242
+          30,
+          18,
+          551,
+          342
         ],
-        "anchorX": 223,
-        "groundY": 264
+        "anchorX": 419,
+        "groundY": 360
       },
       {
         "index": 5,
         "variant": 5,
-        "phase": 0,
         "sourceRect": [
-          1331,
-          104,
-          183,
-          260
+          1193,
+          588,
+          312,
+          338
         ],
         "contentRect": [
-          88,
-          4,
-          183,
-          260
+          187,
+          22,
+          312,
+          338
         ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 6,
-        "variant": 0,
-        "phase": 1,
-        "sourceRect": [
-          20,
-          447,
-          233,
-          217
-        ],
-        "contentRect": [
-          42,
-          47,
-          233,
-          217
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 7,
-        "variant": 1,
-        "phase": 1,
-        "sourceRect": [
-          287,
-          436,
-          171,
-          225
-        ],
-        "contentRect": [
-          106,
-          39,
-          171,
-          225
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 8,
-        "variant": 2,
-        "phase": 1,
-        "sourceRect": [
-          479,
-          456,
-          277,
-          207
-        ],
-        "contentRect": [
-          16,
-          57,
-          277,
-          207
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 9,
-        "variant": 3,
-        "phase": 1,
-        "sourceRect": [
-          772,
-          461,
-          289,
-          201
-        ],
-        "contentRect": [
-          9,
-          63,
-          289,
-          201
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 10,
-        "variant": 4,
-        "phase": 1,
-        "sourceRect": [
-          1063,
-          454,
-          275,
-          213
-        ],
-        "contentRect": [
-          3,
-          51,
-          275,
-          213
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 11,
-        "variant": 5,
-        "phase": 1,
-        "sourceRect": [
-          1341,
-          437,
-          171,
-          227
-        ],
-        "contentRect": [
-          108,
-          37,
-          171,
-          227
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 12,
-        "variant": 0,
-        "phase": 2,
-        "sourceRect": [
-          32,
-          710,
-          231,
-          247
-        ],
-        "contentRect": [
-          60,
-          17,
-          231,
-          247
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 13,
-        "variant": 1,
-        "phase": 2,
-        "sourceRect": [
-          283,
-          708,
-          178,
-          250
-        ],
-        "contentRect": [
-          93,
-          14,
-          178,
-          250
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 14,
-        "variant": 2,
-        "phase": 2,
-        "sourceRect": [
-          472,
-          742,
-          281,
-          219
-        ],
-        "contentRect": [
-          30,
-          45,
-          281,
-          219
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 15,
-        "variant": 3,
-        "phase": 2,
-        "sourceRect": [
-          777,
-          740,
-          283,
-          221
-        ],
-        "contentRect": [
-          8,
-          43,
-          283,
-          221
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 16,
-        "variant": 4,
-        "phase": 2,
-        "sourceRect": [
-          1074,
-          717,
-          251,
-          249
-        ],
-        "contentRect": [
-          43,
-          15,
-          251,
-          249
-        ],
-        "anchorX": 223,
-        "groundY": 264
-      },
-      {
-        "index": 17,
-        "variant": 5,
-        "phase": 2,
-        "sourceRect": [
-          1342,
-          707,
-          172,
-          254
-        ],
-        "contentRect": [
-          99,
-          10,
-          172,
-          254
-        ],
-        "anchorX": 223,
-        "groundY": 264
+        "anchorX": 419,
+        "groundY": 360
       }
     ]
   },
   "sofia": {
     "name": "Sofia",
     "source": "assets/runner/cycles/sofia-duck-source.png",
-    "sourceSha256": "43755f0fe788e87ae6562703f50aaf81685650b5b33a64da819e43da76043ccd",
+    "sourceSha256": "bd0371d91a8981daaff51baff463535b156934daa6b04360fc3181c92a24ee65",
     "sourceSize": [
-      1774,
-      887
+      1536,
+      1024
     ],
     "image": "assets/runner/cycles/sofia-duck.png",
-    "cellWidth": 442,
-    "cellHeight": 264,
-    "columns": 6,
-    "frameCount": 18,
+    "cellWidth": 773,
+    "cellHeight": 322,
+    "columns": 3,
+    "frameCount": 6,
     "fps": 0,
-    "anchorX": 237,
-    "groundY": 258,
-    "designHeight": 552,
-    "maxDrawHeight": 58,
+    "anchorX": 513,
+    "groundY": 316,
+    "designHeight": 702.3157894736842,
+    "maxDrawHeight": 55.79256594724221,
+    "headReference": {
+      "metric": "face-width",
+      "runPixels": 16.949640287769785,
+      "duckSourcePixels": 96.0,
+      "duckPixels": 16.949640287769785,
+      "scale": 0.17655875299760193
+    },
     "frames": [
       {
         "index": 0,
         "variant": 0,
-        "phase": 0,
         "sourceRect": [
-          11,
-          103,
-          261,
-          253
+          99,
+          210,
+          356,
+          306
         ],
         "contentRect": [
-          38,
-          5,
-          261,
-          253
+          263,
+          10,
+          356,
+          306
         ],
-        "anchorX": 237,
-        "groundY": 258
+        "anchorX": 513,
+        "groundY": 316
       },
       {
         "index": 1,
         "variant": 1,
-        "phase": 0,
         "sourceRect": [
-          311,
-          94,
-          196,
-          258
+          532,
+          210,
+          507,
+          298
         ],
         "contentRect": [
-          92,
-          0,
-          196,
-          258
+          263,
+          18,
+          507,
+          298
         ],
-        "anchorX": 237,
-        "groundY": 258
+        "anchorX": 513,
+        "groundY": 316
       },
       {
         "index": 2,
         "variant": 2,
-        "phase": 0,
         "sourceRect": [
-          559,
-          136,
-          328,
-          218
+          1077,
+          210,
+          431,
+          304
         ],
         "contentRect": [
-          80,
-          40,
-          328,
-          218
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 3,
-        "variant": 3,
-        "phase": 0,
-        "sourceRect": [
-          903,
-          131,
-          244,
-          222
-        ],
-        "contentRect": [
-          44,
-          36,
-          244,
-          222
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 4,
-        "variant": 4,
-        "phase": 0,
-        "sourceRect": [
-          1200,
-          128,
-          306,
-          232
-        ],
-        "contentRect": [
-          7,
-          26,
-          306,
-          232
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 5,
-        "variant": 5,
-        "phase": 0,
-        "sourceRect": [
-          1564,
-          119,
-          188,
-          235
-        ],
-        "contentRect": [
-          102,
-          23,
-          188,
-          235
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 6,
-        "variant": 0,
-        "phase": 1,
-        "sourceRect": [
-          22,
-          389,
-          253,
-          210
-        ],
-        "contentRect": [
-          45,
-          48,
-          253,
-          210
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 7,
-        "variant": 1,
-        "phase": 1,
-        "sourceRect": [
-          307,
-          389,
-          207,
-          208
-        ],
-        "contentRect": [
-          84,
-          50,
-          207,
-          208
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 8,
-        "variant": 2,
-        "phase": 1,
-        "sourceRect": [
-          546,
-          408,
-          340,
-          186
-        ],
-        "contentRect": [
-          84,
-          72,
-          340,
-          186
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 9,
-        "variant": 3,
-        "phase": 1,
-        "sourceRect": [
-          899,
-          414,
-          295,
-          185
-        ],
-        "contentRect": [
-          144,
-          73,
-          295,
-          185
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 10,
-        "variant": 4,
-        "phase": 1,
-        "sourceRect": [
-          1212,
-          397,
-          302,
-          207
-        ],
-        "contentRect": [
-          3,
-          51,
-          302,
-          207
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 11,
-        "variant": 5,
-        "phase": 1,
-        "sourceRect": [
-          1549,
-          394,
-          203,
-          204
-        ],
-        "contentRect": [
-          90,
-          54,
-          203,
-          204
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 12,
-        "variant": 0,
-        "phase": 2,
-        "sourceRect": [
-          17,
-          621,
           246,
-          245
-        ],
-        "contentRect": [
-          52,
-          13,
-          246,
-          245
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 13,
-        "variant": 1,
-        "phase": 2,
-        "sourceRect": [
-          301,
-          624,
-          202,
-          239
-        ],
-        "contentRect": [
-          92,
-          19,
-          202,
-          239
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 14,
-        "variant": 2,
-        "phase": 2,
-        "sourceRect": [
-          554,
-          639,
-          289,
-          229
-        ],
-        "contentRect": [
-          25,
-          29,
-          289,
-          229
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 15,
-        "variant": 3,
-        "phase": 2,
-        "sourceRect": [
-          902,
-          648,
-          277,
-          220
-        ],
-        "contentRect": [
-          36,
-          38,
-          277,
-          220
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 16,
-        "variant": 4,
-        "phase": 2,
-        "sourceRect": [
-          1206,
-          644,
-          316,
-          224
-        ],
-        "contentRect": [
-          14,
-          34,
-          316,
-          224
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      },
-      {
-        "index": 17,
-        "variant": 5,
-        "phase": 2,
-        "sourceRect": [
-          1550,
-          627,
-          209,
-          236
-        ],
-        "contentRect": [
-          89,
-          22,
-          209,
-          236
-        ],
-        "anchorX": 237,
-        "groundY": 258
-      }
-    ]
-  },
-  "ruby": {
-    "name": "Ruby",
-    "source": "assets/runner/cycles/ruby-duck-source.png",
-    "sourceSha256": "14bfa27ed6f7f068b82118740ac232c52c94c51424fcaf3b4fb40058583f8b7d",
-    "sourceSize": [
-      1774,
-      887
-    ],
-    "image": "assets/runner/cycles/ruby-duck.png",
-    "cellWidth": 375,
-    "cellHeight": 255,
-    "columns": 6,
-    "frameCount": 18,
-    "fps": 0,
-    "anchorX": 213,
-    "groundY": 249,
-    "designHeight": 533,
-    "maxDrawHeight": 58,
-    "frames": [
-      {
-        "index": 0,
-        "variant": 0,
-        "phase": 0,
-        "sourceRect": [
-          30,
-          66,
-          248,
-          249
-        ],
-        "contentRect": [
-          28,
-          0,
-          248,
-          249
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 1,
-        "variant": 1,
-        "phase": 0,
-        "sourceRect": [
-          309,
-          77,
-          218,
-          243
-        ],
-        "contentRect": [
-          56,
-          6,
-          218,
-          243
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 2,
-        "variant": 2,
-        "phase": 0,
-        "sourceRect": [
-          573,
-          95,
-          329,
-          223
-        ],
-        "contentRect": [
-          35,
-          26,
-          329,
-          223
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 3,
-        "variant": 3,
-        "phase": 0,
-        "sourceRect": [
-          910,
-          92,
-          256,
-          227
-        ],
-        "contentRect": [
-          31,
-          22,
-          256,
-          227
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 4,
-        "variant": 4,
-        "phase": 0,
-        "sourceRect": [
-          1213,
-          81,
-          277,
-          245
-        ],
-        "contentRect": [
-          17,
-          4,
-          277,
-          245
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 5,
-        "variant": 5,
-        "phase": 0,
-        "sourceRect": [
-          1517,
-          83,
-          221,
-          241
-        ],
-        "contentRect": [
-          52,
-          8,
-          221,
-          241
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 6,
-        "variant": 0,
-        "phase": 1,
-        "sourceRect": [
-          38,
-          371,
-          237,
-          221
-        ],
-        "contentRect": [
-          41,
-          28,
-          237,
-          221
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 7,
-        "variant": 1,
-        "phase": 1,
-        "sourceRect": [
-          304,
-          373,
-          219,
-          219
-        ],
-        "contentRect": [
-          56,
-          30,
-          219,
-          219
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 8,
-        "variant": 2,
-        "phase": 1,
-        "sourceRect": [
-          560,
-          394,
-          348,
-          196
-        ],
-        "contentRect": [
-          24,
-          53,
-          348,
-          196
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 9,
-        "variant": 3,
-        "phase": 1,
-        "sourceRect": [
-          911,
-          395,
-          278,
-          199
-        ],
-        "contentRect": [
-          3,
-          50,
-          278,
-          199
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 10,
-        "variant": 4,
-        "phase": 1,
-        "sourceRect": [
-          1221,
-          385,
-          279,
-          213
-        ],
-        "contentRect": [
-          17,
-          36,
-          279,
-          213
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 11,
-        "variant": 5,
-        "phase": 1,
-        "sourceRect": [
-          1521,
-          388,
-          222,
-          207
-        ],
-        "contentRect": [
-          51,
-          42,
-          222,
-          207
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 12,
-        "variant": 0,
-        "phase": 2,
-        "sourceRect": [
-          36,
-          626,
-          245,
-          228
-        ],
-        "contentRect": [
-          46,
-          21,
-          245,
-          228
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 13,
-        "variant": 1,
-        "phase": 2,
-        "sourceRect": [
-          301,
-          638,
-          219,
-          222
-        ],
-        "contentRect": [
-          56,
-          27,
-          219,
-          222
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 14,
-        "variant": 2,
-        "phase": 2,
-        "sourceRect": [
-          576,
-          636,
-          318,
-          222
-        ],
-        "contentRect": [
-          27,
-          27,
-          318,
-          222
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 15,
-        "variant": 3,
-        "phase": 2,
-        "sourceRect": [
-          930,
-          633,
-          249,
-          225
-        ],
-        "contentRect": [
-          32,
-          24,
-          249,
-          225
-        ],
-        "anchorX": 213,
-        "groundY": 249
-      },
-      {
-        "index": 16,
-        "variant": 4,
-        "phase": 2,
-        "sourceRect": [
-          1225,
-          632,
-          256,
-          237
-        ],
-        "contentRect": [
-          32,
           12,
-          256,
-          237
+          431,
+          304
         ],
-        "anchorX": 213,
-        "groundY": 249
+        "anchorX": 513,
+        "groundY": 316
       },
       {
-        "index": 17,
-        "variant": 5,
-        "phase": 2,
+        "index": 3,
+        "variant": 3,
         "sourceRect": [
-          1510,
-          631,
-          231,
-          228
+          42,
+          594,
+          594,
+          315
         ],
         "contentRect": [
-          43,
-          21,
-          231,
-          228
+          3,
+          1,
+          594,
+          315
         ],
-        "anchorX": 213,
-        "groundY": 249
+        "anchorX": 513,
+        "groundY": 316
+      },
+      {
+        "index": 4,
+        "variant": 4,
+        "sourceRect": [
+          622,
+          582,
+          489,
+          313
+        ],
+        "contentRect": [
+          147,
+          3,
+          489,
+          313
+        ],
+        "anchorX": 513,
+        "groundY": 316
+      },
+      {
+        "index": 5,
+        "variant": 5,
+        "sourceRect": [
+          1181,
+          603,
+          305,
+          316
+        ],
+        "contentRect": [
+          283,
+          0,
+          305,
+          316
+        ],
+        "anchorX": 513,
+        "groundY": 316
       }
     ]
   },
   "eli": {
     "name": "Zion",
     "source": "assets/runner/cycles/eli-duck-source.png",
-    "sourceSha256": "32b8187dd3b439b341d4457ba117f1ced0310fd39c600a8b34aef5ea7027479f",
+    "sourceSha256": "83d21a6702f6413aa2d7582e2d9719c14a68eea00bf53580403a9ec288c88902",
     "sourceSize": [
       1536,
       1024
     ],
     "image": "assets/runner/cycles/eli-duck.png",
-    "cellWidth": 419,
-    "cellHeight": 264,
-    "columns": 6,
-    "frameCount": 18,
+    "cellWidth": 714,
+    "cellHeight": 369,
+    "columns": 3,
+    "frameCount": 6,
     "fps": 0,
-    "anchorX": 226,
-    "groundY": 258,
-    "designHeight": 552,
-    "maxDrawHeight": 58,
+    "anchorX": 432,
+    "groundY": 363,
+    "designHeight": 604.2137404580153,
+    "maxDrawHeight": 74.4968162522741,
+    "headReference": {
+      "metric": "glasses-width",
+      "runPixels": 29.860294117647058,
+      "duckSourcePixels": 145.5,
+      "duckPixels": 29.860294117647058,
+      "scale": 0.20522538912472205
+    },
     "frames": [
       {
         "index": 0,
         "variant": 0,
-        "phase": 0,
         "sourceRect": [
-          19,
-          130,
-          216,
-          248
+          69,
+          124,
+          309,
+          363
         ],
         "contentRect": [
-          64,
-          10,
-          216,
-          248
+          195,
+          0,
+          309,
+          363
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 432,
+        "groundY": 363
       },
       {
         "index": 1,
         "variant": 1,
-        "phase": 0,
         "sourceRect": [
-          267,
-          122,
-          172,
-          254
+          485,
+          142,
+          522,
+          339
         ],
         "contentRect": [
-          102,
-          4,
-          172,
-          254
+          168,
+          24,
+          522,
+          339
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 432,
+        "groundY": 363
       },
       {
         "index": 2,
         "variant": 2,
-        "phase": 0,
         "sourceRect": [
-          449,
-          166,
-          320,
-          207
+          1038,
+          133,
+          451,
+          349
         ],
         "contentRect": [
-          71,
-          51,
-          320,
-          207
+          139,
+          14,
+          451,
+          349
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 432,
+        "groundY": 363
       },
       {
         "index": 3,
         "variant": 3,
-        "phase": 0,
         "sourceRect": [
-          776,
-          169,
-          290,
-          201
+          26,
+          578,
+          497,
+          329
         ],
         "contentRect": [
-          13,
-          57,
-          290,
-          201
+          3,
+          34,
+          497,
+          329
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 432,
+        "groundY": 363
       },
       {
         "index": 4,
         "variant": 4,
-        "phase": 0,
         "sourceRect": [
-          1078,
-          147,
-          264,
-          232
+          547,
+          579,
+          561,
+          321
         ],
         "contentRect": [
-          81,
-          26,
-          264,
-          232
+          150,
+          42,
+          561,
+          321
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 432,
+        "groundY": 363
       },
       {
         "index": 5,
         "variant": 5,
-        "phase": 0,
         "sourceRect": [
-          1343,
-          128,
-          165,
-          251
+          1139,
+          577,
+          373,
+          327
         ],
         "contentRect": [
-          110,
-          7,
-          165,
-          251
+          184,
+          36,
+          373,
+          327
         ],
-        "anchorX": 226,
-        "groundY": 258
-      },
+        "anchorX": 432,
+        "groundY": 363
+      }
+    ]
+  },
+  "ruby": {
+    "name": "Ruby",
+    "source": "assets/runner/cycles/ruby-duck-source.png",
+    "sourceSha256": "ed998edd3b35d840f2061bbaea5cd880edac81c6ee78c5665bf71d12c015fa54",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "image": "assets/runner/cycles/ruby-duck.png",
+    "cellWidth": 613,
+    "cellHeight": 353,
+    "columns": 3,
+    "frameCount": 6,
+    "fps": 0,
+    "anchorX": 366,
+    "groundY": 347,
+    "designHeight": 627.0,
+    "maxDrawHeight": 68.62519936204146,
+    "headReference": {
+      "metric": "face-width",
+      "runPixels": 22.842105263157894,
+      "duckSourcePixels": 115.5,
+      "duckPixels": 22.842105263157894,
+      "scale": 0.19776714513556617
+    },
+    "frames": [
       {
-        "index": 6,
+        "index": 0,
         "variant": 0,
-        "phase": 1,
         "sourceRect": [
-          24,
-          445,
-          224,
-          215
+          74,
+          193,
+          348,
+          340
         ],
         "contentRect": [
-          64,
-          43,
-          224,
-          215
+          115,
+          7,
+          348,
+          340
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 366,
+        "groundY": 347
       },
       {
-        "index": 7,
+        "index": 1,
         "variant": 1,
-        "phase": 1,
         "sourceRect": [
-          264,
-          443,
-          184,
-          214
+          507,
+          202,
+          543,
+          331
         ],
         "contentRect": [
-          87,
-          44,
-          184,
-          214
+          67,
+          16,
+          543,
+          331
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 366,
+        "groundY": 347
       },
       {
-        "index": 8,
+        "index": 2,
         "variant": 2,
-        "phase": 1,
         "sourceRect": [
-          453,
-          465,
-          321,
-          188
+          1066,
+          199,
+          410,
+          347
         ],
         "contentRect": [
-          95,
-          70,
-          321,
-          188
+          51,
+          0,
+          410,
+          347
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 366,
+        "groundY": 347
       },
       {
-        "index": 9,
+        "index": 3,
         "variant": 3,
-        "phase": 1,
         "sourceRect": [
-          780,
-          465,
-          291,
-          186
+          41,
+          608,
+          479,
+          308
+        ],
+        "contentRect": [
+          21,
+          39,
+          479,
+          308
+        ],
+        "anchorX": 366,
+        "groundY": 347
+      },
+      {
+        "index": 4,
+        "variant": 4,
+        "sourceRect": [
+          537,
+          585,
+          483,
+          336
         ],
         "contentRect": [
           3,
-          72,
-          291,
-          186
+          11,
+          483,
+          336
         ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 366,
+        "groundY": 347
       },
       {
-        "index": 10,
-        "variant": 4,
-        "phase": 1,
-        "sourceRect": [
-          1086,
-          453,
-          265,
-          207
-        ],
-        "contentRect": [
-          56,
-          51,
-          265,
-          207
-        ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 11,
+        "index": 5,
         "variant": 5,
-        "phase": 1,
         "sourceRect": [
-          1343,
-          446,
-          161,
-          212
+          1127,
+          614,
+          369,
+          298
         ],
         "contentRect": [
-          108,
-          46,
-          161,
-          212
+          148,
+          49,
+          369,
+          298
         ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 12,
-        "variant": 0,
-        "phase": 2,
-        "sourceRect": [
-          20,
-          710,
-          223,
-          257
-        ],
-        "contentRect": [
-          72,
-          1,
-          223,
-          257
-        ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 13,
-        "variant": 1,
-        "phase": 2,
-        "sourceRect": [
-          269,
-          707,
-          168,
-          256
-        ],
-        "contentRect": [
-          105,
-          2,
-          168,
-          256
-        ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 14,
-        "variant": 2,
-        "phase": 2,
-        "sourceRect": [
-          465,
-          741,
-          312,
-          216
-        ],
-        "contentRect": [
-          81,
-          42,
-          312,
-          216
-        ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 15,
-        "variant": 3,
-        "phase": 2,
-        "sourceRect": [
-          782,
-          724,
-          287,
-          237
-        ],
-        "contentRect": [
-          17,
-          21,
-          287,
-          237
-        ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 16,
-        "variant": 4,
-        "phase": 2,
-        "sourceRect": [
-          1087,
-          726,
-          262,
-          242
-        ],
-        "contentRect": [
-          76,
-          16,
-          262,
-          242
-        ],
-        "anchorX": 226,
-        "groundY": 258
-      },
-      {
-        "index": 17,
-        "variant": 5,
-        "phase": 2,
-        "sourceRect": [
-          1348,
-          707,
-          159,
-          258
-        ],
-        "contentRect": [
-          114,
-          0,
-          159,
-          258
-        ],
-        "anchorX": 226,
-        "groundY": 258
+        "anchorX": 366,
+        "groundY": 347
       }
     ]
   }

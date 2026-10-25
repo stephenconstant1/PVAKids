@@ -2339,3 +2339,6 @@ button.world-buddy.cheer:after{
 
 .runner-touch-controls [data-action="runner-duck"]{touch-action:none;user-select:none;-webkit-user-select:none}
 .runner-touch-controls [data-action="runner-duck"][aria-pressed="true"]{background:#ffe485;color:#17343e}
+
+/* Keep the complete game viewport visible on phones; never crop the runner. */
+.runner-play canvas{display:block;width:100%;height:auto;min-height:0;object-fit:contain}

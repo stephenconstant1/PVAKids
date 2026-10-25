@@ -16,7 +16,7 @@ test('all six measured atlases include 16 ordered poses and verified originals',
   const source=JSON.parse(readFileSync('career/run-cycles.json'))[id];
   assert.equal(createHash('sha256').update(readFileSync(source.source)).digest('hex'),source.sourceSha256);
   for(const f of c.frames){
-   assert.equal(f.anchorX,c.anchorX);assert.equal(f.groundY,c.groundY);
+   assert.equal(f.anchorX,c.anchorX);assert(f.groundY>=c.groundY);
    const [x,y,w,h]=f.contentRect;
    assert(x>=0&&y>=0&&x+w<=c.cellWidth&&y+h<=c.cellHeight);
    assert.equal(y+h,c.groundY,'all poses share the measured foot baseline');
@@ -46,4 +46,14 @@ test('jump sheets preserve all six identities and one-shot phase order',()=>{
  assert.deepEqual(observed,Array.from({length:16},(_,i)=>i));
  motion.landingMs=100000;assert.equal(jumpFrame(motion),15,'one-shot must never wrap');
  assert.equal(jumpFrame(motion,true),15);motion.landed=false;assert.equal(jumpFrame(motion,true),5);
+});
+
+
+test('running uses a calm cadence and a stable body height instead of snapping airborne feet down',()=>{
+ for(const [id,c] of Object.entries(runCycles)){
+  assert.equal(c.fps,12);
+  const tops=c.frames.map(f=>(f.contentRect[1]-f.groundY)*124/c.designHeight);
+  assert(Math.max(...tops)-Math.min(...tops)<8,`${id} body must not jump between poses`);
+  assert(c.frames.some(f=>f.groundY>c.groundY),'supplied airborne running poses retain their flight offset');
+ }
 });

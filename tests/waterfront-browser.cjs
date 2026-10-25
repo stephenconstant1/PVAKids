@@ -20,7 +20,7 @@ const {mkdirSync}=require('node:fs');
   await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.runner?.waterfront?.tile&&window.runner.running);
-  const scene=await page.evaluate(()=>{const r=window.runner;r.setPaused(true);r.spawnIn=r.rewardIn=r.boxIn=r.powerIn=r.lifeIn=999;r.entities=[];
+  const scene=await page.evaluate(()=>{const r=window.runner;r.setPaused(true);r.spawnIn=r.rewardIn=r.boxIn=r.powerIn=r.lifeIn=999;r.routeGapRemaining=1e9;r.entities=[];
    const old=r.waterfront.offset;r.update(.02,1);r.draw();return {title:r.config.title,name:r.config.levelName,changed:r.waterfront.offset!==old,path:r.ground,source:r.waterfront.image.currentSrc};});
   assert.equal(scene.title,'Earning and Creating Value');assert.equal(scene.name,'City Waterfront');assert(scene.changed);assert.equal(scene.path,292);assert(scene.source.includes('city-waterfront.png'));
   const paused=await page.evaluate(()=>({offset:window.runner.waterfront.offset,time:window.runner.sceneryTime}));await page.waitForTimeout(120);

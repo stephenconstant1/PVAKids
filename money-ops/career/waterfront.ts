@@ -5,10 +5,16 @@ export class WaterfrontScene {
  ready=false;failed=false;
  tile:HTMLCanvasElement|undefined;
  offset=0;
+ readonly nearImage:HTMLImageElement;
+ nearReady=false;
+ nearGlow:HTMLCanvasElement|undefined;
+ layerOffsets={far:0,near:0,trees:0,water:0,railing:0,path:0};
  constructor(){
   this.image=new Image();
   this.image.onload=()=>{this.ready=true;};this.image.onerror=()=>{this.failed=true;};
   this.image.src=new URL('../../assets/environments/city-waterfront.png?v=45.8',import.meta.url).href;
+  this.nearImage=new Image();this.nearImage.onload=()=>{this.nearReady=true;};
+  this.nearImage.src=new URL('../../assets/environments/waterfront-near.png?v=45.9',import.meta.url).href;
  }
  private prepare(height:number):HTMLCanvasElement|undefined {
   if(!this.ready||!this.image.naturalWidth)return;
@@ -26,8 +32,40 @@ export class WaterfrontScene {
  }
  draw(ctx:CanvasRenderingContext2D,width:number,height:number,distance:number,time:number,reduced:boolean):boolean {
   const tile=this.prepare(height);if(!tile)return false;
-  this.offset=reduced?0:(distance*1.6)%tile.width;
+  const rates={far:.7,near:3.5,trees:5,water:1.6,railing:9,path:18};
+  for(const key of Object.keys(rates) as (keyof typeof rates)[])this.layerOffsets[key]=reduced?0:distance*rates[key];
+  this.offset=this.layerOffsets.far%tile.width;
   for(let x=-this.offset;x<width;x+=tile.width)ctx.drawImage(tile,x,0);
+  if(this.nearReady){
+   const scale=height*.56/this.nearImage.naturalHeight,w=this.nearImage.naturalWidth*scale,h=this.nearImage.naturalHeight*scale;
+   const y=height*.551-722*scale,offset=this.layerOffsets.near%w;
+   if(!this.nearGlow){
+    const glow=document.createElement('canvas');glow.width=this.nearImage.naturalWidth;glow.height=this.nearImage.naturalHeight;
+    const g=glow.getContext('2d');if(g){
+     g.strokeStyle='#fff0c0';g.lineWidth=3;g.fillStyle='#ffe9a9';
+     for(let i=0;i<6;i++){const x=i*glow.width/6+glow.width/12;
+      g.strokeRect(x-45,310,90,330);
+      for(let yy=340;yy<620;yy+=28)for(let xx=x-35;xx<x+36;xx+=22)g.fillRect(xx,yy,5,8);
+     }
+     g.globalCompositeOperation='destination-in';g.drawImage(this.nearImage,0,0);this.nearGlow=glow;
+    }
+   }
+   for(let x=-offset-w;x<width;x+=w){
+    ctx.drawImage(this.nearImage,x,y,w,h);
+    if(!reduced&&this.nearGlow)for(let i=0;i<6;i++){
+     const center=x+(i+.5)*w/6,proximity=Math.max(0,1-Math.abs(center-width*.25)/180);
+     if(proximity>0){ctx.save();ctx.beginPath();ctx.rect(x+i*w/6,y,w/6,h);ctx.clip();ctx.globalAlpha=.10*Math.sin(proximity*Math.PI/2)**2;ctx.drawImage(this.nearGlow,x,y,w,h);ctx.restore();}
+    }
+   }
+  }
+  // Horizontal waterfront bands have level edges. Keep the promenade's ground
+  // line fixed while each depth moves independently; nothing enters the lane.
+  const band=(top:number,bottom:number,travel:number)=>{
+   ctx.save();ctx.beginPath();ctx.rect(0,height*top,width,height*(bottom-top));ctx.clip();
+   for(let x=-(travel%tile.width);x<width;x+=tile.width)ctx.drawImage(tile,x,0);ctx.restore();
+  };
+  band(.52,.551,this.layerOffsets.trees);band(.551,.62,this.layerOffsets.water);
+  band(.62,292/360,this.layerOffsets.railing);band(292/360,1,this.layerOffsets.path);
   // Calm wind above the runner lane only; gameplay never depends on it.
   if(!reduced){
    ctx.save();ctx.lineWidth=1;ctx.strokeStyle='#ffffff38';

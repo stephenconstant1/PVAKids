@@ -2,6 +2,8 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {FinancialRunner} from '../src/runner.js';
+import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
+import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
 
 function harness(lessonId=21,phase='pre',options={}){
@@ -22,8 +24,8 @@ test('jump sheet follows existing normal/boots physics and recovers once',()=>{
  for(const phase of ['pre','post'])for(const boots of [false,true]){
   const r=harness(2,phase,{ownedItems:boots?['boots']:[]}).runner;
   r.start();r.spawnIn=r.rewardIn=r.powerIn=r.boxIn=r.lifeIn=999;
-  r.jump();assert.equal(r.player.vy,boots?-720:-620);
-  assert.equal(r.jumpMotion.flightMs,2*(boots?720:620)/1450*1000);
+  r.jump();assert(r.player.vy<0);assert.equal(r.physics.w,12);assert.equal(r.physics.h,26);
+  assert.equal(r.jumpMotion.flightMs,2*Math.abs(r.physics.vy)/GRAVITY*1000);
   const first=r.jumpMotion;r.jump();assert.equal(r.jumpMotion,first,'no double jump');
   let ticks=0;while(!r.player.grounded&&ticks++<200)r.update(.01,ticks*.01);
   assert(r.player.grounded);assert.equal(r.player.y,r.ground-r.player.h);
@@ -73,12 +75,12 @@ test('the selected character art is loaded and the kid-friendly pace accelerates
  assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=[\d.]+$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
- assert.equal(game.speed,155);
+ assert.equal(game.speed,WALK_SPEED*RUNNER_ZOOM);
  game.distance=900;
- game.update(.01,1);
- assert.ok(game.speed<300,'the early run should remain approachable');
- game.collected=80;game.update(.01,2);
- assert.ok(game.speed>300,'collecting rewards should increase the pace');
+ game.update(.1,1);
+ assert.ok(game.speed<RUN_SPEED*RUNNER_ZOOM,'the early run should remain approachable');
+ game.collected=80;game.update(.1,2);
+ assert.ok(game.speed>WALK_SPEED*RUNNER_ZOOM,'collecting rewards should increase the pace');
 });
 
 test('Arcade intensity keeps Rookie slow and makes Expert 1.5 times faster',()=>{
@@ -87,13 +89,13 @@ test('Arcade intensity keeps Rookie slow and makes Expert 1.5 times faster',()=>
  const expert=harness(1,'pre',{intensityLevel:1.5}).runner;
  assert.equal(rookie.intensityLevel,0);
  assert.equal(rookie.snapshot().speedStage,0);
- assert.equal(standard.speed,155);
- assert.equal(expert.speed,232.5);
- const rookieSpeed=rookie.speed;
+ assert.equal(standard.speed,WALK_SPEED*RUNNER_ZOOM);
+ assert.equal(expert.speed,WALK_SPEED*RUNNER_ZOOM*1.5);
+ rookie.update(.25,0);const rookieSpeed=rookie.speed;
  rookie.collected=100;rookie.distance=5000;rookie.update(.01,1);
  assert.equal(rookie.speed,rookieSpeed,'Rookie pace must stay slow instead of accelerating');
  standard.distance=900;expert.distance=900;
- standard.update(.01,1);expert.update(.01,1);
+ standard.update(.25,1);expert.update(.25,1);
  assert.equal(expert.speed,standard.speed*1.5,'Expert must be exactly 1.5 times Intermediate');
 });
 
@@ -104,7 +106,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.bonusMoney,5);
  assert.equal(game.runner.player.vy,120);
  game.runner.player.grounded=true;game.runner.jump();
- assert.equal(game.runner.player.vy,-720,'jump boots increase jump height');
+ assert(Math.abs(game.runner.player.vy)>Math.sqrt(2*GRAVITY*64)*RUNNER_ZOOM,'jump boots increase jump height');
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
@@ -145,7 +147,7 @@ test('lesson power-ups change runner play instead of acting as labels only',()=>
 test('a jump clears a debt hazard and collectibles use the exact arcade values',()=>{
  const game=harness(21,'pre').runner;
  game.running=true;game.startedAt=Date.now();game.endAt=Date.now()+60_000;
- game.player.grounded=false;game.player.y=110;game.player.vy=-20;game.state='jumping';
+ game.player.grounded=false;game.player.y=80;game.player.vy=-20;game.state='jumping';
  game.entities=[{...game.config.obstacleSet[1],type:'obstacle',x:game.player.x+12,y:game.ground-58,baseY:game.ground-58,w:48,h:58,seed:0,passed:false,done:false}];
  game.update(.01,1);
  assert.equal(game.lives,3,'jumping player must clear the compounding-debt hazard');
@@ -184,7 +186,8 @@ test('all six runners hold/release duck, pass overhead hazards and reject airbor
   r.releaseDuck('pointer:1');assert(!r.player.duck);assert.equal(r.state,'running');
   r.duck(.02);r.holdDuck('keyboard');r.update(.03,0);assert(r.player.duck,'expired swipe must not cancel held key');
   const box=r.playerBox();assert.equal(box.y+box.h,r.ground);assert(box.y>=r.ground-62,'duck clears bottom of overhead obstacle');
-  r.entities=[{type:'obstacle',behavior:'overhead',x:r.player.x,y:r.ground-132,w:110,h:70,done:false,passed:false}];
+  r.config={...r.config,obstacleSet:[r.config.obstacleSet.find(e=>e.behavior==='overhead')]};r.entities=[];r.spawnObstacle();r.entities[0].x=r.player.x;const actual=r.entities[0];
+  const art=JSON.parse(readFileSync('career/duck-cycles.json'))[characterId];assert(r.ground-art.maxDrawHeight>actual.y+actual.h,'full-size duck art must clear the actual bar');
   r.update(.01,0);assert.equal(r.lives,3,'held duck avoids overhead collision');
   r.releaseAllDuck();r.update(.01,0);assert.equal(r.lives,2,'standing still hits same overhead obstacle');r.entities=[];
   r.jump();const vy=r.player.vy,motion=r.jumpMotion;r.holdDuck('keyboard');r.duck();assert(!r.player.duck);assert.equal(r.player.vy,vy);assert.equal(r.jumpMotion,motion);

@@ -6,6 +6,17 @@ export declare class WaterfrontScene {
     failed: boolean;
     tile: HTMLCanvasElement | undefined;
     offset: number;
+    readonly nearImage: HTMLImageElement;
+    nearReady: boolean;
+    nearGlow: HTMLCanvasElement | undefined;
+    layerOffsets: {
+        far: number;
+        near: number;
+        trees: number;
+        water: number;
+        railing: number;
+        path: number;
+    };
     constructor();
     private prepare;
     draw(ctx: CanvasRenderingContext2D, width: number, height: number, distance: number, time: number, reduced: boolean): boolean;

@@ -7,6 +7,7 @@ export function createDuck(previous=-1,random:()=>number=Math.random):DuckMotion
  return {variant,elapsedMs:0,onsetMs:65+variant*5,releasing:false,recoveryMs:0,recoveryDurationMs:110+variant*6};
 }
 export function duckFrame(motion:DuckMotion,reduced=false):number {
- const phase=motion.releasing?2:!reduced&&motion.elapsedMs<motion.onsetMs?0:1;
- return phase*6+motion.variant;
+ // Each variation is held as one full-size compact pose. Recovery is a
+ // short renderer transition; it never cycles through mismatched body sizes.
+ return motion.variant;
 }
