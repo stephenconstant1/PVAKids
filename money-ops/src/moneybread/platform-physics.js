@@ -34,13 +34,17 @@ export function overlapsSolid(body, map) {
                 return true;
     return false;
 }
-export function setCrouched(body, map, crouched) {
+/** Dynamic overhead hazards supplement solid tiles when restoring standing height. */
+export function setCrouched(body, map, crouched, obstacles = []) {
     const h = crouched ? DUCK_HEIGHT : BODY_HEIGHT;
     if (body.h === h)
         return true;
     const y = body.y + body.h - h;
-    if (!crouched && overlapsSolid({ ...body, y, h }, map))
-        return false;
+    if (!crouched) {
+        const standing = { ...body, y, h };
+        if (overlapsSolid(standing, map) || obstacles.some(o => standing.x < o.x + o.w - EPS && standing.x + standing.w > o.x + EPS && standing.y < o.y + o.h - EPS && standing.y + standing.h > o.y + EPS))
+            return false;
+    }
     body.y = y;
     body.h = h;
     return true;

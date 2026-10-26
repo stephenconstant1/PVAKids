@@ -46,7 +46,14 @@ export declare function overlapsSolid(body: {
     w: number;
     h: number;
 }, map: TileMap): boolean;
-export declare function setCrouched(body: Body, map: TileMap, crouched: boolean): boolean;
+export interface CollisionBounds {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}
+/** Dynamic overhead hazards supplement solid tiles when restoring standing height. */
+export declare function setCrouched(body: Body, map: TileMap, crouched: boolean, obstacles?: readonly CollisionBounds[]): boolean;
 export declare function jumpHeight(speed: number): number;
 export declare function launchJump(body: Body, boots?: boolean): boolean;
 /** Delta-driven integration with bounded steps. Horizontal and vertical

@@ -5,6 +5,7 @@ import {FinancialRunner} from '../src/runner.js';
 import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
 import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
+import {ROUTE_METRICS,overheadClearance} from '../src/moneybread/waterfront-route.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
@@ -189,7 +190,7 @@ test('all six runners hold/release duck, pass overhead hazards and reject airbor
   r.config={...r.config,obstacleSet:[r.config.obstacleSet.find(e=>e.behavior==='overhead')]};r.entities=[];r.spawnObstacle();r.entities[0].x=r.player.x;const actual=r.entities[0];
   const art=JSON.parse(readFileSync('career/duck-cycles.json'))[characterId];assert(r.ground-art.maxDrawHeight>actual.y+actual.h,'full-size duck art must clear the actual bar');
   r.update(.01,0);assert.equal(r.lives,3,'held duck avoids overhead collision');
-  r.releaseAllDuck();r.update(.01,0);assert.equal(r.lives,2,'standing still hits same overhead obstacle');r.entities=[];
+  r.releaseAllDuck();r.update(.01,0);assert(r.player.duck,'release beneath a bar must retain low hitbox');assert.equal(r.lives,3);r.entities=[];r.update(.01,0);assert(!r.player.duck,'stand automatically once the bar clears');
   r.jump();const vy=r.player.vy,motion=r.jumpMotion;r.holdDuck('keyboard');r.duck();assert(!r.player.duck);assert.equal(r.player.vy,vy);assert.equal(r.jumpMotion,motion);
   r.player.grounded=true;r.holdDuck('keyboard');r.setPaused(true);assert(!r.player.duck);r.setPaused(false);assert(!r.player.duck,'pause clears stale held state');
   r.holdDuck('keyboard');r.destroy();assert(!r.player.duck);
@@ -234,3 +235,22 @@ test('raised reward arcs require jumping and are collectible in one jump',()=>{
   assert(best>=3,`${phase}/${intensityLevel}: one jump should collect all three coins, got ${best}`);
  }
 });
+
+test('duck release checks moving overhead hazards and blocks concurrent jump in both modes',()=>{
+ for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
+  const r=harness(1,phase,{intensityLevel}).runner;r.running=true;r.routeGapRemaining=1e9;
+  r.holdDuck('keyboard');const feet=r.physics.y+r.physics.h;
+  r.jump();assert(r.player.duck&&r.player.grounded);assert.equal(r.jumpMotion,null);
+  r.entities=[{type:'obstacle',behavior:'overhead',x:r.playerBox().x-10,y:r.ground-160,w:110,h:66,done:false}];
+  r.releaseDuck('keyboard');assert(r.player.duck);assert.equal(r.physics.y+r.physics.h,feet);
+  r.jump();assert.equal(r.jumpMotion,null,'blocked standing cannot become a jump');
+  r.entities[0].x=-200;r.update(.01,0);assert(!r.player.duck);assert.equal(r.physics.h,26);
+  r.jump();assert(!r.player.grounded);assert.equal(r.physics.h,26,'jump keeps standing hitbox');
+  r.holdDuck('keyboard');assert(!r.player.duck,'airborne duck rejected');r.destroy();
+ }
+});
+
+ test('overhead metric clears duck artwork and hitbox but requires standing players to duck',()=>{
+ const m=ROUTE_METRICS,gap=overheadClearance();
+ assert(gap>=m.duckHeight+m.ceilingBuffer);assert(gap>=m.duckArtHeight+m.ceilingBuffer);assert(gap<m.standingHeight);
+ });

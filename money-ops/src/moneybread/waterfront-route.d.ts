@@ -1,3 +1,16 @@
+export declare const ROUTE_METRICS: {
+    standingHeight: number;
+    duckHeight: number;
+    duckArtHeight: number;
+    ceilingBuffer: number;
+    jumpTopBuffer: number;
+    jumpTimingBuffer: number;
+    landingRecovery: number;
+    reactionTime: number;
+};
+/** The underside clears both the low hitbox and every canonical duck pose,
+ * yet remains below standing height so walking through is impossible. */
+export declare function overheadClearance(): number;
 /** Shared encounter geometry, in screen pixels, derived from the real physics.
  * Use the slowest normal pace so later acceleration cannot make a box too wide. */
 export declare function jumpEnvelope(speed: number): {
