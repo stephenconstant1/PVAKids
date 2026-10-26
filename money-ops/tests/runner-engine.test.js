@@ -5,7 +5,7 @@ import {FinancialRunner} from '../src/runner.js';
 import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
 import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
-import {ROUTE_METRICS,overheadClearance} from '../src/moneybread/waterfront-route.js';
+import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto} from '../src/moneybread/waterfront-route.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
@@ -97,7 +97,7 @@ test('Arcade intensity keeps Rookie slow and makes Expert 1.5 times faster',()=>
  assert.equal(rookie.speed,rookieSpeed,'Rookie pace must stay slow instead of accelerating');
  standard.distance=900;expert.distance=900;
  standard.update(.25,1);expert.update(.25,1);
- assert.equal(expert.speed,standard.speed*1.5,'Expert must be exactly 1.5 times Intermediate');
+ assert.equal(expert.speedMultiplier,1.5);assert(Math.abs(expert.speed/standard.speed-1.5)<.001,'Expert retains its multiplier as distance-driven pace advances');
 });
 
 test('Money Boxes add bonus dollars and owned items change play',()=>{
@@ -220,7 +220,7 @@ test('route boxes have a forgiving real jump window at every intensity and mode'
  }
 });
 
-test('separated airborne rewards require jumping and are reachable',()=>{
+test('spaced coin arcs require jumping and are reachable',()=>{
  for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
   const make=()=>{const r=harness(1,phase,{intensityLevel}).runner;r.routeGapRemaining=0;r.updateWaterfrontRoute(0,r.speed);r.routeGapRemaining=1e9;return r;};
   const sample=make();assert(sample.entities.every(e=>e.y+e.h<sample.playerBox().y),'standing must miss every coin');sample.destroy();
@@ -232,7 +232,7 @@ test('separated airborne rewards require jumping and are reachable',()=>{
    r.jump();for(let t=0;t<150;t++){r.routeGapRemaining=1e9;r.update(1/240,t/240);}
    best=Math.max(best,r.collected);r.destroy();
   }
-  assert(best>=1,`${phase}/${intensityLevel}: one jump should collect the airborne reward, got ${best}`);
+  assert(best>=3,`${phase}/${intensityLevel}: one jump should collect the airborne reward, got ${best}`);
  }
 });
 
@@ -254,3 +254,48 @@ test('duck release checks moving overhead hazards and blocks concurrent jump in 
  const m=ROUTE_METRICS,gap=overheadClearance();
  assert(gap>=m.duckHeight+m.ceilingBuffer);assert(gap>=m.duckArtHeight+m.ceilingBuffer);assert(gap<m.standingHeight);
  });
+
+test('recovery gaps allow a full flight, landing and one safe second even at maximum speed',()=>{
+ for(const intensity of [.68,1,1.5])for(const difficulty of [1,1.08]){
+ const speed=RUN_SPEED*RUNNER_ZOOM*intensity*difficulty;
+ const safe=encounterGap(speed,()=>0)/speed-48/speed-jumpEnvelope(speed).flight*Math.sqrt(1.35)-.24;
+ assert(safe>=1-1e-9);
+ }
+});
+test('jump and duck introductions are isolated before mixed hazards',()=>{
+ const r=harness(1).runner;const kinds=[];for(let i=0;i<4;i++){r.spawnObstacle();kinds.push(r.entities.at(-1).behavior==='overhead'?'duck':'jump');}
+ assert.deepEqual(kinds,['jump','jump','duck','duck']);r.destroy();
+});
+test('stomp requires downward top crossing; side and rising contacts do damage',()=>{
+ const obstacle={x:100,y:200,w:50,h:80};
+ assert(fallingOnto({x:110,y:140,w:20,h:40},{x:110,y:170,w:20,h:40},obstacle,200));
+ assert(!fallingOnto({x:70,y:190,w:20,h:40},{x:110,y:190,w:20,h:40},obstacle,200));
+ assert(!fallingOnto({x:110,y:180,w:20,h:40},{x:110,y:160,w:20,h:40},obstacle,-200));
+ const r=harness().runner;r.stompObstacle({...obstacle});assert(r.player.vy<0);assert.equal(r.lives,3);assert.equal(r.avoided,1);r.destroy();
+});
+test('all 32 Arcade and Bonus routes complete at all three intensities without unavoidable encounters',()=>{
+ for(let lesson=1;lesson<=32;lesson++)for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
+ const r=harness(lesson,phase,{intensityLevel}).runner;r.running=true;r.startedAt=Date.now();
+ let ticks=0;
+ while(!r.completed&&r.collected<r.config.targetCoins&&ticks<90000){
+ const b=r.playerBox(),next=r.entities.filter(e=>!e.done&&['obstacle','moneybox','collectible'].includes(e.type)&&e.x+e.w>b.x).sort((a,b)=>a.x-b.x)[0];
+ const duck=next?.behavior==='overhead'&&next.x<b.x+310;
+ if(duck)r.holdDuck('bot');else r.releaseDuck('bot');
+ if(next&&!duck&&next.x<b.x+b.w+(next.type==='collectible'?-20:r.speed*(next.type==='moneybox'?.035:.11))&&r.player.grounded)r.jump();
+ r.update(.02,ticks*.02);ticks++;
+ }
+ assert(r.collected>=r.config.targetCoins&&r.lives>0,`Lesson ${lesson}/${phase}/${intensityLevel}: ${r.collected} coins, ${r.lives} lives at ${ticks*.02}s`);r.destroy();
+ }
+});
+
+test('slow frames cannot skip through a ground hazard at Expert speed',()=>{
+ const r=harness(1,'pre',{intensityLevel:1.5}).runner;r.running=true;r.routeGapRemaining=1e9;r.physics.vx=RUN_SPEED*1.5;
+ r.entities=[{type:'obstacle',behavior:'ground',x:220,y:r.ground-88,baseY:r.ground-88,w:20,h:88,done:false,passed:false}];
+ r.update(.25,1);assert.equal(r.lives,2);assert(r.entities.every(e=>e.done||e.type!=='obstacle'));r.destroy();
+});
+
+test('readable action cues distinguish clear running, jumps, and ducks',()=>{
+ const r=harness(1).runner;assert.match(r.snapshot().actionCue,/CLEAR PATH/);
+ r.entities=[{type:'obstacle',behavior:'overhead',x:500,w:110,done:false}];assert.match(r.snapshot().actionCue,/DUCK/);
+ r.entities[0].behavior='ground';assert.match(r.snapshot().actionCue,/JUMP/);r.destroy();
+});

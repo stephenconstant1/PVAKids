@@ -5,12 +5,10 @@ const {mkdirSync}=require('node:fs');
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
  try{
  const base=process.env.MONEY_OPS_URL;
- for(const scenario of [
-  {width:1440,mode:'arcade',intensity:'intermediate',prefix:'/'},
-  {width:390,mode:'arcade',intensity:'expert',prefix:'/'},
-  {width:390,mode:'bonus',prefix:'/'},
-  {width:390,mode:'arcade',intensity:'rookie',prefix:'/money-ops/'}
- ]){
+ const scenarios=[];
+ for(const mode of ['arcade','bonus'])for(const intensity of ['rookie','intermediate','expert'])scenarios.push({width:390,mode,intensity,prefix:'/'});
+ scenarios.push({width:1440,mode:'arcade',intensity:'intermediate',prefix:'/'},{width:1440,mode:'bonus',intensity:'intermediate',prefix:'/money-ops/'});
+ for(const scenario of scenarios){
   const page=await browser.newPage({viewport:{width:scenario.width,height:950},hasTouch:true}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));await page.goto(base+scenario.prefix);
   if(scenario.mode==='arcade'){
@@ -21,7 +19,7 @@ const {mkdirSync}=require('node:fs');
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Waterfront route','maya'),1),1,'post')));});
    await page.goto(base+scenario.prefix);await page.locator('[data-action="continue-career"]').first().click();
   }
-  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
+  await page.evaluate(async level=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;if(level!==null){this.intensityLevel=level;this.speedMultiplier=level===0?.68:level;this.accelerates=level!==0;}return start.apply(this,args);};},scenario.mode==='bonus'?({rookie:0,intermediate:1,expert:1.5})[scenario.intensity]:null);
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.runner?.running&&window.runner.waterfront?.nearReady&&window.runner.waterfront?.tile);
   const layers=await page.evaluate(()=>{
@@ -35,7 +33,7 @@ const {mkdirSync}=require('node:fs');
    const encounters=[],seen=new Set();let ducking=false,ticks=0,jumps=0,ducks=0;
    const key=(type,code)=>window.dispatchEvent(new KeyboardEvent(type,{code,bubbles:true,cancelable:true}));
    try{
-    while(r.running&&r.collected<200&&ticks<40000){
+    while(r.running&&r.collected<200&&ticks<65000){
      const next=r.entities.filter(e=>!e.done&&['obstacle','moneybox','collectible'].includes(e.type)&&e.x+e.w>r.player.x).sort((a,b)=>a.x-b.x)[0];
      const overhead=next?.behavior==='overhead'&&next.x<r.player.x+310;
      if(overhead&&!ducking){key('keydown','ArrowDown');ducking=true;ducks++;}
@@ -44,7 +42,7 @@ const {mkdirSync}=require('node:fs');
      r.update(.02,ticks*.02);ticks++;
      for(const e of r.entities)if(e.encounter&&!seen.has(e.encounter)){
       seen.add(e.encounter);const items=r.entities.filter(v=>v.encounter===e.encounter),world=r.distance*18;
-      encounters.push({start:Math.min(...items.map(v=>v.x))+world,end:Math.max(...items.map(v=>v.x+v.w))+world,type:e.type,speed:r.speed,count:items.length});
+      encounters.push({start:Math.min(...items.map(v=>v.x))+world,end:Math.max(...items.map(v=>v.x+v.w))+world,type:e.type,speed:r.speed,count:items.length,behavior:e.behavior});
      }
      if(ticks%200===0)r.draw();
     }
@@ -55,10 +53,12 @@ const {mkdirSync}=require('node:fs');
   });
   assert.equal(result.target,200);assert(result.coins>=200&&result.goal&&result.lives>0,JSON.stringify(result));assert.equal(result.x,112);assert(result.jumps>0&&result.ducks>0);
   const gaps=result.encounters.slice(1).map((e,i)=>e.start-result.encounters[i].end);
-  assert(gaps.every(g=>g>=269),'all different encounters need room after the last item');
+  assert(gaps.every(g=>g>=300),'all different encounters need room after the last item');
+  assert(gaps.every((g,i)=>g/result.encounters[i+1].speed>1.24),'a full safe second plus recovery must fit even at the later speed');
+  assert.deepEqual(result.encounters.filter(e=>e.type==='obstacle').slice(0,4).map(e=>e.behavior==='overhead'?'duck':'jump'),['jump','jump','duck','duck']);
   assert(new Set(gaps.map(g=>Math.round(g/10))).size>5,'route must vary its gaps');
   assert(result.encounters.some(e=>e.type==='moneybox'));assert(result.encounters.some(e=>e.type==='life'));if(scenario.mode==='bonus')assert(result.encounters.some(e=>e.type==='power'));
-  assert(result.encounters.filter(e=>e.type==='collectible').every(e=>e.count===1));
+  assert(result.encounters.filter(e=>e.type==='collectible').every(e=>e.count===3));
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   mkdirSync('/tmp/waterfront-route-review',{recursive:true});
   await page.evaluate(()=>{const r=window.runner;r.paused=false;r.draw();r.paused=true;});

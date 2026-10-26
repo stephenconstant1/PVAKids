@@ -26,8 +26,10 @@ Its maximum width additionally depends on speed and time spent ABOVE the hurdle:
     obstacleWidth ≤ speed × (clearanceTime − timingBuffer) − standingHitboxWidth
 
 These equations use rendered units consistently. The route reserves a full flight,
-0.24 s landing recovery, and 0.65 s reaction time after the previous encounter,
-plus a randomized gap. Airborne coins appear individually, separate from hazards and other rewards.
+0.24 s landing recovery, and at least 1 s safe running after the previous encounter.
+It uses the maximum pace for that intensity, includes the boots flight margin and
+player width, then adds a varied gap. Three-coin arcs have 66–70px center spacing
+(24–28px between coin edges) and stay separate from hazards.
 
 Tests simulate trajectories and collisions, not just these formulas. They cover
 all difficulty settings, overhead release, single-jump coin arcs, wall/floor/ceiling
@@ -35,8 +37,8 @@ collisions and phone controls. Source artwork and jump/duck clips are unchanged.
 
 Running (1).fbx supplies one 19-interval loop at 30 FPS (633.33 ms). The offline
 Blender extractor scripts/inspect-running-fbx.py writes career/run-motion.json.
-Browser playback uses the measured cadence and a monotonic phase curve weighted
-by hip-relative foot and hand travel. All 16 updated, approved 2D poses remain in row-major order;
+The extracted reference includes hip-relative foot and hand travel. Source poses
+remain stored in row-major order; runtime playback is described below.
 no new character art, mesh import, root travel or limb deformation is used.
 Baked sprite art limits exact joint-level correspondence to the FBX. Jump and duck
 animation timing is independent and unchanged.
@@ -52,3 +54,18 @@ Editable playbackOrder arrays visit all approved poses once in a loop, selected
 by deterministic wrap-inclusive visual transition minimization. Reproduce with
 python3 scripts/tune-run-playback.py after importing source sheets. No character
 pixels, jump/duck clips, physics, scoring or coin objective changed.
+
+Version 46.7 pacing: The first two configured jump hazards are introduced alone,
+then two configured duck hazards, then the existing randomized hazard set.
+Lessons without a configured duck hazard retain their source hazard set.
+Action cues mark jump/duck hazards. No lesson vocabulary or hazard identity changed.
+Stomps require a downward crossing of the obstacle top from above; side contacts
+retain existing damage. Existing bounce, score and XP values are unchanged.
+Entity collisions run in <=1/120 s steps, supplementing the existing 16px tile
+physics substeps, so slow display frames cannot skip narrow hazards.
+
+Validation: 192 full simulated routes (all 32 × both modes × all intensities);
+eight complete browser routes (six phone mode/intensity pairs plus two desktops);
+30/60/120/144 FPS tile/jump/wall checks with keyboard/touch. Bonus normally uses
+standard pace in the UI; its other intensities are exercised through the harness.
+No physical-phone or human playtest was performed.

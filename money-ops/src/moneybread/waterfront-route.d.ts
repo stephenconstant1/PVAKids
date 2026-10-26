@@ -27,3 +27,19 @@ export declare function obstacleGeometry(speed: number, desiredWidth: number, de
     w: number;
     h: number;
 };
+export declare function fallingOnto(previous: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}, current: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}, obstacle: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}, verticalSpeed: number): boolean;

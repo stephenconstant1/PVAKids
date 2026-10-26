@@ -1,6 +1,6 @@
 import {stepBody,setCrouched,launchJump,WALK_SPEED,RUN_SPEED,GRAVITY,TILE,BODY_HEIGHT} from './moneybread/platform-physics.js';
 import {runnerBody,runnerMap,runnerTiles,RUNNER_ZOOM} from './moneybread/runner-physics.js';
-import {encounterGap,coinGroup,obstacleGeometry,overheadClearance} from './moneybread/waterfront-route.js';
+import {encounterGap,coinGroup,obstacleGeometry,overheadClearance,fallingOnto} from './moneybread/waterfront-route.js';
 import {WaterfrontScene} from './moneybread/waterfront.js';
 import {CharacterRunCycle,jumpFrame} from './moneybread/run-cycle.js';
 import {createDuck,duckFrame} from './moneybread/duck-animation.js';
@@ -50,9 +50,14 @@ export class FinancialRunner{
   const survivalSeconds=Math.max(0,(Date.now()-this.startedAt)/1000);
   this.onComplete({completed:true,skipped:reason==='skipped',reason,characterId:this.characterId,score:Math.round(this.score),coins:this.coins,collected:this.collected,bonusMoney:this.bonusMoney,xp:this.xp,distance:Math.round(this.distance),avoided:this.avoided,survivalSeconds:Math.round(survivalSeconds),powerUpsUsed:this.powerUpsUsed,paychecks:this.paychecks,paycheckCoins:this.paycheckCoins,extraLivesCollected:this.extraLivesCollected,targetCoins:this.config.targetCoins,goalReached:this.goalReached,vocabularySeen:this.vocabularySeen});
  }
- snapshot(){return {lives:this.lives,lifeCap:this.config.lifeCap||this.config.maxLives,paychecks:this.paychecks,paycheckCoins:this.paycheckCoins,goalReached:this.goalReached,coins:this.coins,collected:this.collected,targetCoins:this.config.targetCoins,bonusMoney:this.bonusMoney,xp:this.xp,distance:Math.round(this.distance),score:Math.round(this.score),combo:this.combo,paused:this.paused,powerUp:this.activePower?.name||'',speedStage:this.intensityLevel===0?0:Math.min(5,1+Math.floor(this.collected/20)),intensityLevel:this.intensityLevel,speedMultiplier:this.speedMultiplier,vocabEvent:this.vocabEvent};}
+ nextActionCue(){const next=this.entities.filter(e=>!e.done&&e.x<this.width&&e.x+e.w>this.playerBox().x).sort((a,b)=>a.x-b.x)[0];if(!next)return 'CLEAR PATH · KEEP RUNNING';if(next.type==='obstacle')return next.behavior==='overhead'?'HOLD DOWN TO DUCK · RELEASE AFTER THE BAR':'JUMP OVER THE BOX';return next.type==='collectible'?'JUMP FOR THE COIN ARC':next.type==='moneybox'?'JUMP + HIT THE MONEY BOX':'REWARD AHEAD';}
+ snapshot(){return {actionCue:this.nextActionCue(),lives:this.lives,lifeCap:this.config.lifeCap||this.config.maxLives,paychecks:this.paychecks,paycheckCoins:this.paycheckCoins,goalReached:this.goalReached,coins:this.coins,collected:this.collected,targetCoins:this.config.targetCoins,bonusMoney:this.bonusMoney,xp:this.xp,distance:Math.round(this.distance),score:Math.round(this.score),combo:this.combo,paused:this.paused,powerUp:this.activePower?.name||'',speedStage:this.intensityLevel===0?0:Math.min(5,1+Math.floor(this.collected/20)),intensityLevel:this.intensityLevel,speedMultiplier:this.speedMultiplier,vocabEvent:this.vocabEvent};}
  frame(time){if(!this.running)return;const dt=Math.min(.25,Math.max(0,(time-this.last)/1000));this.last=time;if(!this.paused){if(this.animateStride&&!this.reduced&&this.player.grounded&&!this.player.duck)this.strideTimeMs+=dt*1000;this.update(dt,time/1000);}this.draw(time/1000);if(time-this.lastHud>100){this.lastHud=time;this.onUpdate(this.snapshot());}this.raf=requestAnimationFrame(this.boundFrame);}
  update(dt,time){
+  if(!Number.isFinite(dt)||dt<=0)return;const duration=Math.min(dt,.25),steps=Math.ceil(duration*120),step=duration/steps;
+  for(let i=0;i<steps;i++){this.updateStep(step,time-duration+(i+1)*step);if(this.completed)break;}
+ }
+ updateStep(dt,time){
   this.sceneryTime+=dt;
   if(this.duckAnimation){if(this.duckAnimation.releasing){this.duckAnimation.recoveryMs+=dt*1000;if(this.duckAnimation.recoveryMs>=this.duckAnimation.recoveryDurationMs)this.duckAnimation=null;}else this.duckAnimation.elapsedMs+=dt*1000;}
   if(this.duckRemaining>0){this.duckRemaining=Math.max(0,this.duckRemaining-dt);this.syncDuck();}
@@ -60,7 +65,7 @@ export class FinancialRunner{
   const player=this.player,progress=this.accelerates?this.collected*2.35+this.distance*.012:0;
   const base=WALK_SPEED+(RUN_SPEED-WALK_SPEED)*Math.min(1,progress/250),target=base*this.config.difficulty*this.speedMultiplier*(this.activePower?.effect==='slow'?.68:1);
   this.syncPhysicsFromPlayer();if(this.physics.h<BODY_HEIGHT&&!this.duckSources?.size&&!(this.duckRemaining>0))this.syncDuck();
-  const oldX=this.physics.x,wasGrounded=this.physics.grounded;stepBody(this.physics,this.tileMap,target,dt);this.projectPlayer();
+  const previousHitbox=this.playerBox();const oldX=this.physics.x,wasGrounded=this.physics.grounded;stepBody(this.physics,this.tileMap,target,dt);this.projectPlayer();
   this.speed=this.physics.vx*RUNNER_ZOOM;const speed=dt>0?(this.physics.x-oldX)*RUNNER_ZOOM/dt:0;
   this.cameraY=Math.min(0,Math.round(player.y-16));
   this.distance+=speed*dt/18;this.score+=dt*(12+this.combo);this.invulnerable=Math.max(0,this.invulnerable-dt);this.stateTime=Math.max(0,this.stateTime-dt);
@@ -72,7 +77,7 @@ export class FinancialRunner{
   const hitbox=this.playerBox();
   for(const entity of this.entities){if(entity.done)continue;if(entity.type==='obstacle'&&entity.x+entity.w<player.x&&!entity.passed){entity.passed=true;this.avoided++;this.combo++;this.xp+=10*Math.max(1,Math.floor(this.combo/4)+1);this.score+=10*this.combo;this.rememberVocabulary(entity,'CLEARED');}
    if(!intersects(hitbox,entity))continue;
-   if(entity.type==='obstacle'){const feet=hitbox.y+hitbox.h;if(player.vy>80&&feet<entity.y+30)this.stompObstacle(entity);else this.hitObstacle(entity);}else if(entity.type==='collectible')this.collect(entity);else if(entity.type==='life')this.collectLife(entity);else if(entity.type==='moneybox'){if(player.vy<0)this.openMoneyBox(entity);}else this.activatePower(entity);
+   if(entity.type==='obstacle'){if(entity.behavior!=='overhead'&&fallingOnto(previousHitbox,hitbox,entity,player.vy))this.stompObstacle(entity);else this.hitObstacle(entity);}else if(entity.type==='collectible')this.collect(entity);else if(entity.type==='life')this.collectLife(entity);else if(entity.type==='moneybox'){if(player.vy<0)this.openMoneyBox(entity);}else this.activatePower(entity);
   }
   this.entities=this.entities.filter(entity=>!entity.done&&entity.x>-180);this.activePower&&=this.activePower.until>Date.now()?this.activePower:null;
   for(const particle of this.particles){particle.life-=dt;particle.x+=particle.vx*dt;particle.y+=particle.vy*dt;particle.vy+=300*dt;}this.particles=this.particles.filter(particle=>particle.life>0);for(const popup of this.popups){popup.life-=dt;popup.y-=45*dt;}this.popups=this.popups.filter(popup=>popup.life>0);
@@ -96,12 +101,12 @@ export class FinancialRunner{
   const created=this.entities.slice(before),group=++this.routeEncounterSerial;
   for(const e of created)e.encounter=group;
   const start=Math.min(...created.map(e=>e.x)),end=Math.max(...created.map(e=>e.x+e.w));
-  this.routeGapRemaining=end-start+encounterGap(Math.max(speed,this.speed));
+  this.routeGapRemaining=end-start+encounterGap(Math.max(speed,this.speed,(this.accelerates?RUN_SPEED:WALK_SPEED)*RUNNER_ZOOM*this.config.difficulty*this.speedMultiplier));
  }
  playerBox(){const p=this.player,h=this.physics.h*RUNNER_ZOOM,w=this.physics.w*RUNNER_ZOOM;return {x:p.x+p.w/2-w/2,y:p.y+p.h-h,w,h};}
  drawTileWalls(){const c=this.ctx,scale=RUNNER_ZOOM,start=Math.floor(this.cameraX/(TILE*scale)),end=Math.ceil((this.cameraX+this.width)/(TILE*scale));for(let y=0;y<runnerTiles.floorRow;y++)for(let x=start;x<=end;x++)if(this.tileMap.solid(x,y)){c.fillStyle=this.config.environmentData.near;c.fillRect(Math.round(x*TILE*scale-this.cameraX),Math.round(y*TILE*scale+this.physicsOriginY),TILE*scale,TILE*scale);c.strokeStyle='#ffe485';c.strokeRect(Math.round(x*TILE*scale-this.cameraX)+.5,Math.round(y*TILE*scale+this.physicsOriginY)+.5,TILE*scale-1,TILE*scale-1);}}
 
- spawnObstacle(){const set=this.config.obstacleSet,source=set[Math.floor(Math.random()*set.length)],behavior=source.behavior,variant=source.art?.variant||0;let w=(behavior==='wide'?132:110)+(variant%3)*4,h=(behavior==='overhead'?66:behavior==='wide'?78:88)+(variant%2)*4,y=this.ground-h;if(behavior==='overhead')y=this.ground-overheadClearance()-h;if(behavior!=='overhead'){const safeSpeed=WALK_SPEED*RUNNER_ZOOM*this.config.difficulty*this.speedMultiplier;const fit=obstacleGeometry(safeSpeed,w,h);w=fit.w;h=fit.h;y=this.ground-h;}this.entities.push({...source,type:'obstacle',x:this.width+35,y,baseY:y,w,h,seed:Math.random()*6,passed:false,done:false});}
+ spawnObstacle(){const introduction=['jump','jump','duck','duck'][this.routeHazardCount||0];this.routeHazardCount=(this.routeHazardCount||0)+1;const available=this.config.obstacleSet,matching=available.filter(e=>introduction==='duck'?e.behavior==='overhead':e.behavior!=='overhead'),set=introduction&&matching.length?matching:available,source=set[Math.floor(Math.random()*set.length)],behavior=source.behavior,variant=source.art?.variant||0;let w=(behavior==='wide'?132:110)+(variant%3)*4,h=(behavior==='overhead'?66:behavior==='wide'?78:88)+(variant%2)*4,y=this.ground-h;if(behavior==='overhead')y=this.ground-overheadClearance()-h;if(behavior!=='overhead'){const safeSpeed=WALK_SPEED*RUNNER_ZOOM*this.config.difficulty*this.speedMultiplier;const fit=obstacleGeometry(safeSpeed,w,h);w=fit.w;h=fit.h;y=this.ground-h;}this.entities.push({...source,type:'obstacle',x:this.width+35,y,baseY:y,w,h,seed:Math.random()*6,passed:false,done:false});}
  spawnCollectible(){const set=this.config.collectibleSet,source=set[Math.floor(Math.random()*set.length)],height=60+Math.random()*100;this.entities.push({...source,type:'collectible',x:this.width+30,y:this.ground-height,w:42,h:42,done:false});}
  spawnLife(){this.entities.push({type:'life',label:'Extra life',x:this.width+30,y:this.ground-100,w:42,h:42,done:false});}
  collectLife(entity){if(entity.done)return;entity.done=true;const cap=this.config.lifeCap||this.config.maxLives;if(this.lives<cap){this.lives++;this.extraLivesCollected++;this.popups.push({x:entity.x,y:entity.y,text:'+1 LIFE',life:1.2,color:'#ff9ea3'});}else this.popups.push({x:entity.x,y:entity.y,text:'LIVES FULL',life:1.2,color:'#ff9ea3'});this.burst(entity.x,entity.y,'#ff9ea3');}
@@ -125,6 +130,7 @@ export class FinancialRunner{
    c.fillStyle=`hsl(${(hue+48)%360} 82% 68%)`;if(pattern%3===0)c.fillRect(entity.x+9,entity.y+7,entity.w-18,7);else if(pattern%3===1){c.beginPath();c.arc(entity.x+entity.w/2,entity.y+13,7,0,Math.PI*2);c.fill();}else for(let x=entity.x+9;x<entity.x+entity.w-6;x+=15)c.fillRect(x,entity.y+7,7,9);
    c.fillStyle='#fff3a4';c.font='900 28px Arial';c.textAlign='center';c.fillText(entity.icon,entity.x+entity.w/2,entity.y+36);
    c.fillStyle='#102a35ee';c.beginPath();c.roundRect(entity.x+4,entity.y+entity.h-35,entity.w-8,31,7);c.fill();c.fillStyle='#fff';c.font='900 10px Arial';this.wrapLabel(entity.label,entity.x+entity.w/2,entity.y+entity.h-10,entity.w-16);
+   c.fillStyle='#102a35ee';c.fillRect(entity.x+entity.w/2-58,entity.y-36,116,22);c.fillStyle='#fff5af';c.font='900 12px Arial';c.textAlign='center';c.fillText(entity.behavior==='overhead'?'HOLD ↓ TO DUCK':'JUMP ↑',entity.x+entity.w/2,entity.y-20);
    if(this.activePower?.effect==='warning'){c.beginPath();c.roundRect(entity.x-4,entity.y-4,entity.w+8,entity.h+8,15);c.strokeStyle='#fff36f';c.lineWidth=6;c.stroke();c.fillStyle='#fff36f';c.font='900 22px Arial';c.fillText('!',entity.x+entity.w/2,entity.y-11);}
   }else if(entity.type==='life'){c.fillStyle='#ff778a';this.roundRect(entity.x,entity.y,42,42,12);c.fillStyle='#fff';c.font='900 27px Arial';c.textAlign='center';c.fillText('♥',entity.x+21,entity.y+30);c.font='900 10px Arial';c.fillText('+1 LIFE',entity.x+21,entity.y-8);
   }else if(entity.type==='collectible'){

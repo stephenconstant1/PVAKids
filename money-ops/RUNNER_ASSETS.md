@@ -79,3 +79,13 @@ Coins now appear singly at jump height, separated by full recovery gaps.
 The underside of duck bars is raised to 100px, above all duck art/hitboxes and
 below the 104px standing collision height. Grounded duck and safe-release checks
 remain enforced in Arcade and Bonus.
+
+## Version 46.7 spacious 2D pacing
+
+Jump/jump then duck/duck introductions use each lesson's existing hazard set.
+There are no simultaneous hazard combinations. Gaps reserve flight, recovery,
+at least one safe second, boots clearance and character width at maximum pace.
+Three spaced coins follow a reachable jump arc. Jump/duck action cues accompany
+the source financial labels. Entity collision substeps prevent skipped impacts;
+falling top crossings produce the existing stomp bounce, while side hits do not.
+The 16px grid, floating physics, horizontal follow camera, art and controls remain.
