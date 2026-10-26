@@ -55,7 +55,7 @@ const {mkdirSync}=require('node:fs');
   const gaps=result.encounters.slice(1).map((e,i)=>e.start-result.encounters[i].end);
   assert(gaps.every(g=>g>=300),'all different encounters need room after the last item');
   assert(gaps.every((g,i)=>g/result.encounters[i+1].speed>1.24),'a full safe second plus recovery must fit even at the later speed');
-  assert.deepEqual(result.encounters.filter(e=>e.type==='obstacle').slice(0,4).map(e=>e.behavior==='overhead'?'duck':'jump'),['jump','jump','duck','duck']);
+  assert.deepEqual(result.encounters.filter(e=>e.type==='obstacle').slice(0,2).map(e=>e.behavior==='overhead'?'duck':'jump'),['jump','duck']);
   assert(new Set(gaps.map(g=>Math.round(g/10))).size>5,'route must vary its gaps');
   assert(result.encounters.some(e=>e.type==='moneybox'));assert(result.encounters.some(e=>e.type==='life'));if(scenario.mode==='bonus')assert(result.encounters.some(e=>e.type==='power'));
   assert(result.encounters.filter(e=>e.type==='collectible').every(e=>e.count===3));

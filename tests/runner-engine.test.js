@@ -5,7 +5,7 @@ import {FinancialRunner} from '../src/runner.js';
 import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
 import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
-import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto} from '../src/moneybread/waterfront-route.js';
+import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto,encounterBag} from '../src/moneybread/waterfront-route.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
@@ -222,7 +222,7 @@ test('route boxes have a forgiving real jump window at every intensity and mode'
 
 test('spaced coin arcs require jumping and are reachable',()=>{
  for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
-  const make=()=>{const r=harness(1,phase,{intensityLevel}).runner;r.routeGapRemaining=0;r.updateWaterfrontRoute(0,r.speed);r.routeGapRemaining=1e9;return r;};
+  const make=()=>{const r=harness(1,phase,{intensityLevel}).runner;r.routeBag=[0];r.routeGapRemaining=0;r.updateWaterfrontRoute(0,r.speed);r.routeGapRemaining=1e9;return r;};
   const sample=make();assert(sample.entities.every(e=>e.y+e.h<sample.playerBox().y),'standing must miss every coin');sample.destroy();
   let best=0;
   for(let lead=-60;lead<180;lead+=3){
@@ -264,7 +264,7 @@ test('recovery gaps allow a full flight, landing and one safe second even at max
 });
 test('jump and duck introductions are isolated before mixed hazards',()=>{
  const r=harness(1).runner;const kinds=[];for(let i=0;i<4;i++){r.spawnObstacle();kinds.push(r.entities.at(-1).behavior==='overhead'?'duck':'jump');}
- assert.deepEqual(kinds,['jump','jump','duck','duck']);r.destroy();
+ assert.deepEqual(kinds.slice(0,2),['jump','duck']);r.destroy();
 });
 test('stomp requires downward top crossing; side and rising contacts do damage',()=>{
  const obstacle={x:100,y:200,w:50,h:80};
@@ -298,4 +298,19 @@ test('readable action cues distinguish clear running, jumps, and ducks',()=>{
  const r=harness(1).runner;assert.match(r.snapshot().actionCue,/CLEAR PATH/);
  r.entities=[{type:'obstacle',behavior:'overhead',x:500,w:110,done:false}];assert.match(r.snapshot().actionCue,/DUCK/);
  r.entities[0].behavior='ground';assert.match(r.snapshot().actionCue,/JUMP/);r.destroy();
+});
+
+test('slide crushes ground boxes without losing life and never activates in the air',()=>{
+ for(const phase of ['pre','post'])for(const characterId of ['jordan','maya','kai','sofia','eli','ruby']){
+ const r=harness(1,phase,{characterId}).runner;r.running=true;r.routeGapRemaining=1e9;
+ r.keyDown({code:'KeyS',preventDefault(){}});assert(r.slideRemaining>0&&r.player.duck);assert.equal(r.duckAnimation.variant,2);
+ const b=r.playerBox();r.entities=[{type:'obstacle',behavior:'ground',x:b.x,y:r.ground-88,baseY:r.ground-88,w:32,h:88,done:false,passed:false}];
+ r.update(.01,0);assert.equal(r.lives,3);assert.equal(r.avoided,1);assert.equal(r.entities.length,0);
+ r.update(.25,0);r.update(.25,0);assert(!r.player.duck);r.jump();r.slide();assert.equal(r.slideRemaining,0);r.destroy();
+ }
+});
+
+test('encounter bags retain balance without a fixed repeating order',()=>{
+ assert.deepEqual([...encounterBag(()=>.3)].sort(),[0,1,2,3]);
+ assert.notDeepEqual(encounterBag(()=>0),encounterBag(()=>.99));
 });

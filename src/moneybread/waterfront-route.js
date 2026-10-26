@@ -37,3 +37,12 @@ export function obstacleGeometry(speed, desiredWidth, desiredHeight) {
 export function fallingOnto(previous, current, obstacle, verticalSpeed) {
     return verticalSpeed > 0 && previous.y + previous.h <= obstacle.y + 2 && current.y + current.h >= obstacle.y && current.x + current.w > obstacle.x && current.x < obstacle.x + obstacle.w;
 }
+/** Balanced content, shuffled without a repeating coin/hazard/coin/utility order. */
+export function encounterBag(random = Math.random) {
+    const bag = [0, 1, 2, 3];
+    for (let i = bag.length - 1; i > 0; i--) {
+        const j = Math.floor(random() * (i + 1));
+        [bag[i], bag[j]] = [bag[j], bag[i]];
+    }
+    return bag;
+}

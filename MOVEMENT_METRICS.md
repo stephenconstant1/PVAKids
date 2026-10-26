@@ -69,3 +69,23 @@ eight complete browser routes (six phone mode/intensity pairs plus two desktops)
 30/60/120/144 FPS tile/jump/wall checks with keyboard/touch. Bonus normally uses
 standard pace in the UI; its other intensities are exercised through the harness.
 No physical-phone or human playtest was performed.
+
+Version 46.8 gameplay clarification:
+- A shuffled bag preserves reward/hazard balance without repeating a four-slot
+  sequence. Each run introduces one jump hazard then one duck hazard when the
+  source lesson has both.
+- Gap planning follows current normal pace with an 8% acceleration margin,
+  capped at the difficulty maximum; slow-power expiration is accounted for.
+  Existing one-second safe-running/recovery metrics remain.
+- Overhead obstacles are now thin suspended beams, not ground-shaped boxes.
+  Their underside remains at the calculated duck clearance.
+- S or the dedicated Slide button triggers a 0.5 s grounded slide using the
+  existing forward-slide pose. Ground boxes break during the active slide
+  without losing a life. Down remains the held duck action. Airborne slide is
+  rejected; pause/blur clears it. No new character artwork is invented.
+
+Running art limitation: The supplied replacement 16-pose sheets repeat many
+extended-leg positions and do not supply a reliable full contact/passing/
+recovery sequence for opposing legs. Reordering and retiming cannot manufacture
+missing knee-bend poses. The run art is NOT claimed fixed in 46.8; corrected
+canonical artwork is needed for complete leg turnover.

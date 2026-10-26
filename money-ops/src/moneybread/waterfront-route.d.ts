@@ -43,3 +43,5 @@ export declare function fallingOnto(previous: {
     w: number;
     h: number;
 }, verticalSpeed: number): boolean;
+/** Balanced content, shuffled without a repeating coin/hazard/coin/utility order. */
+export declare function encounterBag(random?: () => number): number[];

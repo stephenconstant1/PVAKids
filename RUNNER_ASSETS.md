@@ -89,3 +89,11 @@ Three spaced coins follow a reachable jump arc. Jump/duck action cues accompany
 the source financial labels. Entity collision substeps prevent skipped impacts;
 falling top crossings produce the existing stomp bounce, while side hits do not.
 The 16px grid, floating physics, horizontal follow camera, art and controls remain.
+
+## Version 46.8
+
+Grounded Slide (S / touch Slide) uses existing duck atlas frame 2 for every
+character. It safely breaks ground boxes during its 0.5 s active window; Down
+continues to hold duck below suspended beams. No new art or props were added.
+The run sheets still lack sufficient clear passing/recovery poses for full
+leg turnover. Timing/order changes alone cannot fix that source-art limitation.
