@@ -55,3 +55,15 @@ Baseline tuning: walk 93.6 world px/s (1.56 px/frame at 60 FPS), run 153.6 (2.56
 The solid-tile physics layer supports walls, floors, ceilings, corners and signed horizontal velocity. Existing financial hazards retain their damage/stomp rules as separate game entities rather than being silently converted into solid platforms. Gameplay displacement is taken from resolved movement, so hitting a solid wall stops the scrolling world. Existing score and lesson flow remain in the shared runner.
 
 Tests cover 30/60/120/144 FPS benchmarks, 15 FPS and high-speed wall contacts, landing without overlap, ceilings, negative tile coordinates, safe crouch/stand and bounded tile lookup work. Integrated browser checks cover Arcade and Bonus at desktop/phone sizes, keyboard/touch, jump visibility, rendering alignment and actual tile walls. Run the physics browser check with `node scripts/validate-browser.mjs tests/platformer-browser.cjs`.
+
+## Version 46.5 run reference
+
+The six latest 4×4 source sheets replace only the running atlases. Their measured
+components are repacked into the existing 8×2 runtime format. Whole poses scale
+uniformly to the existing display height; faces, clothing and backpacks are not
+repainted or deformed. Jump and duck sheets are unchanged.
+
+Running (1).fbx has one Mixamo action, frames 1–20 at 30 FPS: 19 intervals,
+633.333 ms per cycle. The offline Blender extractor writes run-motion.json with
+source hash and hip-relative hand/foot samples. The browser uses these motion
+beats to retime the ordered sprite poses. It never loads the FBX mesh.

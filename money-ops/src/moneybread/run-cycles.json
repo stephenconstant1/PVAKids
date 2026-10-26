@@ -2,292 +2,297 @@
     "maya": {
         "name": "Maya",
         "source": "assets/runner/cycles/maya-run-source.jpg",
-        "sourceSha256": "8a8c3a4c8c0c94e94ad648a5fbbb23919c867e9472ae73fe207002d7f313d28c",
+        "sourceSha256": "7134a39f3d6e1e1cdd0a0302f9e320fe6e518f08ea642b7e782b9b2ab13422a5",
         "sourceSize": [
-            1280,
-            640
+            1237,
+            1272
         ],
         "image": "assets/runner/cycles/maya-run.png",
-        "cellWidth": 172,
-        "cellHeight": 276,
+        "cellWidth": 506,
+        "cellHeight": 520,
         "columns": 8,
         "frameCount": 16,
-        "fps": 12,
-        "anchorX": 110,
-        "groundY": 270,
-        "designHeight": 270,
-        "rowSplit": 310,
+        "fps": 25.26315789473684,
+        "anchorX": 298,
+        "groundY": 512,
+        "designHeight": 512,
+        "displayFaceReference": 22.044444444444444,
+        "sourceLayout": [
+            4,
+            4
+        ],
+        "motionReference": "run-motion.json",
         "frames": [
             {
                 "index": 0,
                 "sourceRect": [
-                    20,
-                    20,
-                    139,
-                    267
+                    32,
+                    12,
+                    244,
+                    327
                 ],
-                "anchorX": 110,
-                "groundY": 272,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    15,
-                    3,
-                    139,
-                    267
+                    65,
+                    0,
+                    382,
+                    512
                 ]
             },
             {
                 "index": 1,
                 "sourceRect": [
-                    184,
-                    19,
-                    136,
-                    269
+                    322,
+                    12,
+                    251,
+                    326
                 ],
-                "anchorX": 110,
-                "groundY": 271,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    15,
-                    1,
-                    136,
-                    269
+                    64,
+                    0,
+                    394,
+                    512
                 ]
             },
             {
                 "index": 2,
                 "sourceRect": [
-                    341,
-                    19,
-                    150,
-                    269
+                    624,
+                    12,
+                    250,
+                    324
                 ],
-                "anchorX": 110,
-                "groundY": 271,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    7,
-                    1,
-                    150,
-                    269
+                    64,
+                    0,
+                    395,
+                    512
                 ]
             },
             {
                 "index": 3,
                 "sourceRect": [
-                    503,
-                    19,
-                    138,
-                    243
+                    933,
+                    12,
+                    266,
+                    326
                 ],
-                "anchorX": 110,
-                "groundY": 297,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    5,
-                    27,
-                    138,
-                    243
+                    56,
+                    0,
+                    418,
+                    512
                 ]
             },
             {
                 "index": 4,
                 "sourceRect": [
-                    664,
-                    19,
-                    160,
-                    251
+                    48,
+                    345,
+                    247,
+                    330
                 ],
-                "anchorX": 110,
-                "groundY": 289,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    3,
-                    19,
-                    160,
-                    251
+                    54,
+                    0,
+                    383,
+                    512
                 ]
             },
             {
                 "index": 5,
                 "sourceRect": [
-                    833,
-                    19,
-                    146,
-                    270
+                    342,
+                    343,
+                    243,
+                    331
                 ],
-                "anchorX": 110,
-                "groundY": 270,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    10,
+                    63,
                     0,
-                    146,
-                    270
+                    376,
+                    512
                 ]
             },
             {
                 "index": 6,
                 "sourceRect": [
-                    986,
-                    19,
-                    144,
-                    269
+                    634,
+                    345,
+                    257,
+                    323
                 ],
-                "anchorX": 110,
-                "groundY": 271,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    9,
-                    1,
-                    144,
-                    269
+                    59,
+                    0,
+                    407,
+                    512
                 ]
             },
             {
                 "index": 7,
                 "sourceRect": [
-                    1141,
-                    20,
-                    130,
-                    267
+                    938,
+                    342,
+                    262,
+                    333
                 ],
-                "anchorX": 110,
-                "groundY": 272,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    17,
-                    3,
-                    130,
-                    267
+                    50,
+                    0,
+                    403,
+                    512
                 ]
             },
             {
                 "index": 8,
                 "sourceRect": [
-                    16,
-                    334,
-                    154,
-                    255
+                    28,
+                    673,
+                    256,
+                    319
                 ],
-                "anchorX": 110,
-                "groundY": 277,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    7,
-                    15,
-                    154,
-                    255
+                    40,
+                    0,
+                    411,
+                    512
                 ]
             },
             {
                 "index": 9,
                 "sourceRect": [
-                    174,
-                    333,
-                    143,
-                    262
+                    330,
+                    677,
+                    281,
+                    312
                 ],
-                "anchorX": 110,
-                "groundY": 271,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    13,
-                    8,
-                    143,
-                    262
+                    24,
+                    0,
+                    461,
+                    512
                 ]
             },
             {
                 "index": 10,
                 "sourceRect": [
-                    324,
-                    335,
-                    140,
-                    250
+                    635,
+                    677,
+                    288,
+                    311
                 ],
-                "anchorX": 110,
-                "groundY": 281,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    10,
-                    20,
-                    140,
-                    250
+                    28,
+                    0,
+                    474,
+                    512
                 ]
             },
             {
                 "index": 11,
                 "sourceRect": [
-                    476,
-                    334,
-                    142,
-                    257
+                    943,
+                    677,
+                    275,
+                    314
                 ],
-                "anchorX": 110,
-                "groundY": 275,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    7,
-                    13,
-                    142,
-                    257
+                    26,
+                    0,
+                    448,
+                    512
                 ]
             },
             {
                 "index": 12,
                 "sourceRect": [
-                    630,
-                    334,
-                    160,
-                    258
+                    35,
+                    989,
+                    256,
+                    279
                 ],
-                "anchorX": 110,
-                "groundY": 274,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    9,
-                    12,
-                    160,
-                    258
+                    4,
+                    0,
+                    470,
+                    512
                 ]
             },
             {
                 "index": 13,
                 "sourceRect": [
-                    788,
-                    333,
-                    155,
-                    260
+                    343,
+                    985,
+                    235,
+                    283
                 ],
-                "anchorX": 110,
-                "groundY": 273,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    8,
                     10,
-                    155,
-                    260
+                    0,
+                    425,
+                    512
                 ]
             },
             {
                 "index": 14,
                 "sourceRect": [
-                    953,
-                    332,
-                    160,
-                    264
+                    651,
+                    986,
+                    238,
+                    279
                 ],
-                "anchorX": 110,
-                "groundY": 270,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    9,
-                    6,
-                    160,
-                    264
+                    7,
+                    0,
+                    437,
+                    512
                 ]
             },
             {
                 "index": 15,
                 "sourceRect": [
-                    1121,
-                    332,
-                    138,
-                    262
+                    949,
+                    988,
+                    242,
+                    280
                 ],
-                "anchorX": 110,
-                "groundY": 272,
+                "anchorX": 298,
+                "groundY": 512,
                 "contentRect": [
-                    18,
-                    8,
-                    138,
-                    262
+                    16,
+                    0,
+                    443,
+                    512
                 ]
             }
         ]
@@ -295,1171 +300,297 @@
     "kai": {
         "name": "Everest",
         "source": "assets/runner/cycles/kai-run-source.jpg",
-        "sourceSha256": "8b6230f841908494bf5757fd089dfcd029547a8dd633979f76d6dda830037c58",
+        "sourceSha256": "01d3d5f96326f0b37e54d89f5d139fd157e77a04d71f293d5e2047e53f04d0d1",
         "sourceSize": [
-            1280,
-            640
+            1230,
+            1278
         ],
         "image": "assets/runner/cycles/kai-run.png",
-        "cellWidth": 184,
-        "cellHeight": 275,
+        "cellWidth": 488,
+        "cellHeight": 520,
         "columns": 8,
         "frameCount": 16,
-        "fps": 12,
-        "anchorX": 115,
-        "groundY": 269,
-        "designHeight": 269,
-        "rowSplit": 316,
+        "fps": 25.26315789473684,
+        "anchorX": 317,
+        "groundY": 512,
+        "designHeight": 512,
+        "displayFaceReference": 25.814126394052046,
+        "sourceLayout": [
+            4,
+            4
+        ],
+        "motionReference": "run-motion.json",
         "frames": [
             {
                 "index": 0,
                 "sourceRect": [
-                    21,
-                    28,
-                    131,
-                    269
+                    27,
+                    7,
+                    228,
+                    327
                 ],
-                "anchorX": 115,
-                "groundY": 270,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    26,
+                    76,
                     0,
-                    131,
-                    269
+                    357,
+                    512
                 ]
             },
             {
                 "index": 1,
                 "sourceRect": [
-                    190,
-                    31,
-                    133,
-                    267
-                ],
-                "anchorX": 115,
-                "groundY": 269,
-                "contentRect": [
-                    25,
-                    2,
-                    133,
-                    267
-                ]
-            },
-            {
-                "index": 2,
-                "sourceRect": [
-                    339,
-                    34,
-                    145,
-                    259
-                ],
-                "anchorX": 115,
-                "groundY": 274,
-                "contentRect": [
-                    13,
-                    10,
-                    145,
-                    259
-                ]
-            },
-            {
-                "index": 3,
-                "sourceRect": [
-                    489,
-                    34,
-                    155,
-                    257
-                ],
-                "anchorX": 115,
-                "groundY": 276,
-                "contentRect": [
-                    3,
-                    12,
-                    155,
-                    257
-                ]
-            },
-            {
-                "index": 4,
-                "sourceRect": [
-                    655,
-                    32,
-                    166,
-                    259
-                ],
-                "anchorX": 115,
-                "groundY": 276,
-                "contentRect": [
-                    15,
-                    10,
-                    166,
-                    259
-                ]
-            },
-            {
-                "index": 5,
-                "sourceRect": [
-                    823,
-                    30,
-                    131,
-                    231
-                ],
-                "anchorX": 115,
-                "groundY": 306,
-                "contentRect": [
-                    28,
-                    38,
-                    131,
-                    231
-                ]
-            },
-            {
-                "index": 6,
-                "sourceRect": [
-                    967,
-                    37,
-                    153,
-                    258
-                ],
-                "anchorX": 115,
-                "groundY": 272,
-                "contentRect": [
-                    12,
-                    11,
-                    153,
-                    258
-                ]
-            },
-            {
-                "index": 7,
-                "sourceRect": [
-                    1119,
-                    36,
-                    144,
-                    262
-                ],
-                "anchorX": 115,
-                "groundY": 269,
-                "contentRect": [
-                    7,
-                    7,
-                    144,
-                    262
-                ]
-            },
-            {
-                "index": 8,
-                "sourceRect": [
-                    15,
-                    336,
-                    146,
-                    261
-                ],
-                "anchorX": 115,
-                "groundY": 272,
-                "contentRect": [
-                    21,
+                    317,
                     8,
-                    146,
-                    261
-                ]
-            },
-            {
-                "index": 9,
-                "sourceRect": [
-                    168,
-                    339,
-                    154,
-                    258
+                    244,
+                    324
                 ],
-                "anchorX": 115,
-                "groundY": 272,
-                "contentRect": [
-                    11,
-                    11,
-                    154,
-                    258
-                ]
-            },
-            {
-                "index": 10,
-                "sourceRect": [
-                    333,
-                    342,
-                    146,
-                    255
-                ],
-                "anchorX": 115,
-                "groundY": 272,
-                "contentRect": [
-                    13,
-                    14,
-                    146,
-                    255
-                ]
-            },
-            {
-                "index": 11,
-                "sourceRect": [
-                    484,
-                    342,
-                    153,
-                    248
-                ],
-                "anchorX": 115,
-                "groundY": 279,
-                "contentRect": [
-                    6,
-                    21,
-                    153,
-                    248
-                ]
-            },
-            {
-                "index": 12,
-                "sourceRect": [
-                    647,
-                    338,
-                    150,
-                    234
-                ],
-                "anchorX": 115,
-                "groundY": 297,
-                "contentRect": [
-                    10,
-                    35,
-                    150,
-                    234
-                ]
-            },
-            {
-                "index": 13,
-                "sourceRect": [
-                    814,
-                    335,
-                    157,
-                    234
-                ],
-                "anchorX": 115,
-                "groundY": 300,
-                "contentRect": [
-                    19,
-                    35,
-                    157,
-                    234
-                ]
-            },
-            {
-                "index": 14,
-                "sourceRect": [
-                    979,
-                    343,
-                    135,
-                    256
-                ],
-                "anchorX": 115,
-                "groundY": 270,
-                "contentRect": [
-                    26,
-                    13,
-                    135,
-                    256
-                ]
-            },
-            {
-                "index": 15,
-                "sourceRect": [
-                    1130,
-                    339,
-                    130,
-                    261
-                ],
-                "anchorX": 115,
-                "groundY": 269,
-                "contentRect": [
-                    27,
-                    8,
-                    130,
-                    261
-                ]
-            }
-        ]
-    },
-    "ruby": {
-        "name": "Ruby",
-        "source": "assets/runner/cycles/ruby-run-source.jpg",
-        "sourceSha256": "fbcd0733b2baf0f5fbb68b5c00a91f11bc5bf0e7d16745cc673a93aab76444fb",
-        "sourceSize": [
-            1280,
-            640
-        ],
-        "image": "assets/runner/cycles/ruby-run.png",
-        "cellWidth": 198,
-        "cellHeight": 272,
-        "columns": 8,
-        "frameCount": 16,
-        "fps": 12,
-        "anchorX": 126,
-        "groundY": 266,
-        "designHeight": 266,
-        "rowSplit": 315,
-        "frames": [
-            {
-                "index": 0,
-                "sourceRect": [
-                    15,
-                    27,
-                    129,
-                    266
-                ],
-                "anchorX": 126,
-                "groundY": 266,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
                     36,
                     0,
-                    129,
-                    266
-                ]
-            },
-            {
-                "index": 1,
-                "sourceRect": [
-                    169,
-                    27,
-                    140,
-                    265
-                ],
-                "anchorX": 126,
-                "groundY": 267,
-                "contentRect": [
-                    32,
-                    1,
-                    140,
-                    265
+                    386,
+                    512
                 ]
             },
             {
                 "index": 2,
                 "sourceRect": [
-                    329,
-                    27,
-                    136,
-                    266
-                ],
-                "anchorX": 126,
-                "groundY": 266,
-                "contentRect": [
-                    30,
-                    0,
-                    136,
-                    266
-                ]
-            },
-            {
-                "index": 3,
-                "sourceRect": [
-                    477,
-                    26,
-                    163,
-                    258
-                ],
-                "anchorX": 126,
-                "groundY": 275,
-                "contentRect": [
-                    11,
-                    8,
-                    163,
-                    258
-                ]
-            },
-            {
-                "index": 4,
-                "sourceRect": [
-                    631,
-                    26,
-                    159,
-                    258
-                ],
-                "anchorX": 126,
-                "groundY": 275,
-                "contentRect": [
-                    6,
-                    8,
-                    159,
-                    258
-                ]
-            },
-            {
-                "index": 5,
-                "sourceRect": [
-                    802,
-                    27,
-                    159,
-                    266
-                ],
-                "anchorX": 126,
-                "groundY": 266,
-                "contentRect": [
-                    17,
-                    0,
-                    159,
-                    266
-                ]
-            },
-            {
-                "index": 6,
-                "sourceRect": [
-                    959,
-                    28,
-                    150,
-                    257
-                ],
-                "anchorX": 126,
-                "groundY": 274,
-                "contentRect": [
-                    17,
-                    9,
-                    150,
-                    257
-                ]
-            },
-            {
-                "index": 7,
-                "sourceRect": [
-                    1127,
-                    29,
-                    134,
-                    264
-                ],
-                "anchorX": 126,
-                "groundY": 266,
-                "contentRect": [
-                    32,
-                    2,
-                    134,
-                    264
-                ]
-            },
-            {
-                "index": 8,
-                "sourceRect": [
-                    8,
-                    341,
-                    137,
-                    239
-                ],
-                "anchorX": 126,
-                "groundY": 285,
-                "contentRect": [
-                    33,
-                    27,
-                    137,
-                    239
-                ]
-            },
-            {
-                "index": 9,
-                "sourceRect": [
-                    164,
-                    341,
-                    137,
-                    256
-                ],
-                "anchorX": 126,
-                "groundY": 268,
-                "contentRect": [
-                    28,
-                    10,
-                    137,
-                    256
-                ]
-            },
-            {
-                "index": 10,
-                "sourceRect": [
-                    312,
-                    339,
-                    157,
-                    260
-                ],
-                "anchorX": 126,
-                "groundY": 266,
-                "contentRect": [
-                    22,
-                    6,
-                    157,
-                    260
-                ]
-            },
-            {
-                "index": 11,
-                "sourceRect": [
-                    475,
-                    338,
-                    141,
-                    258
-                ],
-                "anchorX": 126,
-                "groundY": 269,
-                "contentRect": [
-                    34,
-                    8,
-                    141,
-                    258
-                ]
-            },
-            {
-                "index": 12,
-                "sourceRect": [
-                    615,
-                    337,
-                    153,
-                    254
-                ],
-                "anchorX": 126,
-                "groundY": 274,
-                "contentRect": [
-                    12,
-                    12,
-                    153,
-                    254
-                ]
-            },
-            {
-                "index": 13,
-                "sourceRect": [
-                    768,
-                    338,
-                    192,
-                    258
-                ],
-                "anchorX": 126,
-                "groundY": 269,
-                "contentRect": [
-                    3,
-                    8,
-                    192,
-                    258
-                ]
-            },
-            {
-                "index": 14,
-                "sourceRect": [
-                    959,
-                    340,
-                    154,
-                    259
-                ],
-                "anchorX": 126,
-                "groundY": 266,
-                "contentRect": [
-                    30,
+                    617,
                     7,
-                    154,
-                    259
-                ]
-            },
-            {
-                "index": 15,
-                "sourceRect": [
-                    1119,
-                    338,
-                    133,
-                    261
+                    288,
+                    320
                 ],
-                "anchorX": 126,
-                "groundY": 266,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    34,
-                    5,
-                    133,
-                    261
-                ]
-            }
-        ]
-    },
-    "jordan": {
-        "name": "Kanyon",
-        "source": "assets/runner/cycles/jordan-run-source.jpg",
-        "sourceSha256": "17c86efeccfec4195b7d2ce87fa54e013432cfcb7d95b9f96d34ec31dbd99612",
-        "sourceSize": [
-            1280,
-            511
-        ],
-        "image": "assets/runner/cycles/jordan-run.png",
-        "cellWidth": 191,
-        "cellHeight": 234,
-        "columns": 8,
-        "frameCount": 16,
-        "fps": 12,
-        "anchorX": 123,
-        "groundY": 228,
-        "designHeight": 228,
-        "rowSplit": 252,
-        "frames": [
-            {
-                "index": 0,
-                "sourceRect": [
-                    22,
-                    11,
-                    110,
-                    228
-                ],
-                "anchorX": 123,
-                "groundY": 229,
-                "contentRect": [
-                    42,
-                    0,
-                    110,
-                    228
-                ]
-            },
-            {
-                "index": 1,
-                "sourceRect": [
-                    176,
-                    11,
-                    127,
-                    228
-                ],
-                "anchorX": 123,
-                "groundY": 229,
-                "contentRect": [
-                    27,
-                    0,
-                    127,
-                    228
-                ]
-            },
-            {
-                "index": 2,
-                "sourceRect": [
-                    333,
-                    11,
-                    135,
-                    224
-                ],
-                "anchorX": 123,
-                "groundY": 233,
-                "contentRect": [
-                    18,
-                    4,
-                    135,
-                    224
-                ]
-            },
-            {
-                "index": 3,
-                "sourceRect": [
-                    487,
-                    11,
-                    159,
-                    209
-                ],
-                "anchorX": 123,
-                "groundY": 248,
-                "contentRect": [
-                    5,
-                    19,
-                    159,
-                    209
-                ]
-            },
-            {
-                "index": 4,
-                "sourceRect": [
-                    649,
-                    11,
-                    172,
-                    220
-                ],
-                "anchorX": 123,
-                "groundY": 237,
-                "contentRect": [
-                    3,
-                    8,
-                    172,
-                    220
-                ]
-            },
-            {
-                "index": 5,
-                "sourceRect": [
-                    839,
-                    12,
-                    129,
-                    227
-                ],
-                "anchorX": 123,
-                "groundY": 229,
-                "contentRect": [
-                    25,
-                    1,
-                    129,
-                    227
-                ]
-            },
-            {
-                "index": 6,
-                "sourceRect": [
-                    982,
-                    13,
-                    139,
-                    227
-                ],
-                "anchorX": 123,
-                "groundY": 228,
-                "contentRect": [
-                    13,
-                    1,
-                    139,
-                    227
-                ]
-            },
-            {
-                "index": 7,
-                "sourceRect": [
-                    1144,
-                    11,
-                    118,
-                    228
-                ],
-                "anchorX": 123,
-                "groundY": 229,
-                "contentRect": [
-                    34,
-                    0,
-                    118,
-                    228
-                ]
-            },
-            {
-                "index": 8,
-                "sourceRect": [
-                    18,
-                    266,
-                    104,
-                    220
-                ],
-                "anchorX": 123,
-                "groundY": 230,
-                "contentRect": [
-                    58,
-                    8,
-                    104,
-                    220
-                ]
-            },
-            {
-                "index": 9,
-                "sourceRect": [
-                    165,
-                    266,
-                    118,
-                    221
-                ],
-                "anchorX": 123,
-                "groundY": 229,
-                "contentRect": [
-                    48,
-                    7,
-                    118,
-                    221
-                ]
-            },
-            {
-                "index": 10,
-                "sourceRect": [
-                    310,
-                    267,
-                    131,
-                    218
-                ],
-                "anchorX": 123,
-                "groundY": 231,
-                "contentRect": [
-                    27,
-                    10,
-                    131,
-                    218
-                ]
-            },
-            {
-                "index": 11,
-                "sourceRect": [
-                    474,
-                    267,
-                    168,
-                    213
-                ],
-                "anchorX": 123,
-                "groundY": 236,
-                "contentRect": [
-                    20,
-                    15,
-                    168,
-                    213
-                ]
-            },
-            {
-                "index": 12,
-                "sourceRect": [
-                    652,
-                    265,
-                    129,
-                    217
-                ],
-                "anchorX": 123,
-                "groundY": 234,
-                "contentRect": [
-                    31,
-                    11,
-                    129,
-                    217
-                ]
-            },
-            {
-                "index": 13,
-                "sourceRect": [
-                    810,
-                    266,
-                    139,
-                    219
-                ],
-                "anchorX": 123,
-                "groundY": 231,
-                "contentRect": [
-                    21,
-                    9,
-                    139,
-                    219
-                ]
-            },
-            {
-                "index": 14,
-                "sourceRect": [
-                    986,
-                    266,
-                    113,
-                    221
-                ],
-                "anchorX": 123,
-                "groundY": 229,
-                "contentRect": [
-                    38,
-                    7,
-                    113,
-                    221
-                ]
-            },
-            {
-                "index": 15,
-                "sourceRect": [
-                    1144,
-                    266,
-                    91,
-                    222
-                ],
-                "anchorX": 123,
-                "groundY": 228,
-                "contentRect": [
-                    61,
-                    6,
-                    91,
-                    222
-                ]
-            }
-        ]
-    },
-    "sofia": {
-        "name": "Sofia",
-        "source": "assets/runner/cycles/sofia-run-source.jpg",
-        "sourceSha256": "7355c33641bd97657013be6c0632f87cd4ee99a02cf8d690f638ccaa6de78021",
-        "sourceSize": [
-            1280,
-            640
-        ],
-        "image": "assets/runner/cycles/sofia-run.png",
-        "cellWidth": 167,
-        "cellHeight": 284,
-        "columns": 8,
-        "frameCount": 16,
-        "fps": 12,
-        "anchorX": 117,
-        "groundY": 278,
-        "designHeight": 278,
-        "rowSplit": 318,
-        "frames": [
-            {
-                "index": 0,
-                "sourceRect": [
-                    12,
-                    27,
-                    122,
-                    275
-                ],
-                "anchorX": 117,
-                "groundY": 279,
-                "contentRect": [
-                    25,
-                    3,
-                    122,
-                    275
-                ]
-            },
-            {
-                "index": 1,
-                "sourceRect": [
-                    169,
-                    27,
-                    127,
-                    274
-                ],
-                "anchorX": 117,
-                "groundY": 280,
-                "contentRect": [
-                    21,
-                    4,
-                    127,
-                    274
-                ]
-            },
-            {
-                "index": 2,
-                "sourceRect": [
-                    327,
-                    25,
-                    138,
-                    276
-                ],
-                "anchorX": 117,
-                "groundY": 280,
-                "contentRect": [
-                    18,
-                    2,
-                    138,
-                    276
-                ]
-            },
-            {
-                "index": 3,
-                "sourceRect": [
-                    475,
                     23,
-                    143,
-                    245
+                    0,
+                    461,
+                    512
+                ]
+            },
+            {
+                "index": 3,
+                "sourceRect": [
+                    951,
+                    8,
+                    263,
+                    324
                 ],
-                "anchorX": 117,
-                "groundY": 313,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    5,
-                    33,
-                    143,
-                    245
+                    29,
+                    0,
+                    416,
+                    512
                 ]
             },
             {
                 "index": 4,
+                "sourceRect": [
+                    18,
+                    339,
+                    270,
+                    312
+                ],
+                "anchorX": 317,
+                "groundY": 512,
+                "contentRect": [
+                    36,
+                    0,
+                    443,
+                    512
+                ]
+            },
+            {
+                "index": 5,
+                "sourceRect": [
+                    325,
+                    339,
+                    269,
+                    313
+                ],
+                "anchorX": 317,
+                "groundY": 512,
+                "contentRect": [
+                    23,
+                    0,
+                    440,
+                    512
+                ]
+            },
+            {
+                "index": 6,
                 "sourceRect": [
                     635,
-                    24,
-                    147,
-                    271
+                    338,
+                    283,
+                    316
                 ],
-                "anchorX": 117,
-                "groundY": 286,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    6,
-                    7,
-                    147,
-                    271
-                ]
-            },
-            {
-                "index": 5,
-                "sourceRect": [
-                    795,
-                    26,
-                    154,
-                    275
-                ],
-                "anchorX": 117,
-                "groundY": 280,
-                "contentRect": [
-                    3,
-                    3,
-                    154,
-                    275
-                ]
-            },
-            {
-                "index": 6,
-                "sourceRect": [
-                    970,
-                    28,
-                    129,
-                    275
-                ],
-                "anchorX": 117,
-                "groundY": 278,
-                "contentRect": [
-                    17,
-                    3,
-                    129,
-                    275
+                    4,
+                    0,
+                    459,
+                    512
                 ]
             },
             {
                 "index": 7,
                 "sourceRect": [
-                    1116,
-                    28,
-                    158,
-                    275
+                    956,
+                    339,
+                    254,
+                    312
                 ],
-                "anchorX": 117,
-                "groundY": 278,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    4,
-                    3,
-                    158,
-                    275
+                    20,
+                    0,
+                    417,
+                    512
                 ]
             },
             {
                 "index": 8,
                 "sourceRect": [
-                    8,
-                    335,
-                    128,
-                    273
+                    32,
+                    652,
+                    230,
+                    310
                 ],
-                "anchorX": 117,
-                "groundY": 286,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    20,
-                    5,
-                    128,
-                    273
+                    59,
+                    0,
+                    380,
+                    512
                 ]
             },
             {
                 "index": 9,
                 "sourceRect": [
-                    154,
-                    335,
-                    142,
-                    275
+                    320,
+                    650,
+                    269,
+                    311
                 ],
-                "anchorX": 117,
-                "groundY": 284,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    5,
-                    3,
-                    142,
-                    275
+                    27,
+                    0,
+                    443,
+                    512
                 ]
             },
             {
                 "index": 10,
                 "sourceRect": [
-                    326,
-                    335,
-                    139,
-                    274
+                    649,
+                    653,
+                    246,
+                    309
                 ],
-                "anchorX": 117,
-                "groundY": 285,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    17,
-                    4,
-                    139,
-                    274
+                    59,
+                    0,
+                    408,
+                    512
                 ]
             },
             {
                 "index": 11,
                 "sourceRect": [
-                    475,
-                    333,
-                    145,
-                    243
+                    948,
+                    652,
+                    250,
+                    304
                 ],
-                "anchorX": 117,
-                "groundY": 318,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    5,
-                    35,
-                    145,
-                    243
+                    31,
+                    0,
+                    421,
+                    512
                 ]
             },
             {
                 "index": 12,
                 "sourceRect": [
-                    636,
-                    336,
-                    151,
-                    278
+                    21,
+                    964,
+                    235,
+                    306
                 ],
-                "anchorX": 117,
-                "groundY": 280,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    6,
+                    53,
                     0,
-                    151,
-                    278
+                    393,
+                    512
                 ]
             },
             {
                 "index": 13,
                 "sourceRect": [
-                    807,
-                    337,
-                    132,
-                    275
+                    328,
+                    962,
+                    258,
+                    310
                 ],
-                "anchorX": 117,
-                "groundY": 282,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    16,
-                    3,
-                    132,
-                    275
+                    35,
+                    0,
+                    426,
+                    512
                 ]
             },
             {
                 "index": 14,
                 "sourceRect": [
-                    958,
-                    339,
-                    158,
-                    276
+                    644,
+                    963,
+                    237,
+                    308
                 ],
-                "anchorX": 117,
-                "groundY": 279,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    6,
-                    2,
-                    158,
-                    276
+                    38,
+                    0,
+                    394,
+                    512
                 ]
             },
             {
                 "index": 15,
                 "sourceRect": [
-                    1123,
-                    342,
-                    133,
-                    274
+                    970,
+                    963,
+                    224,
+                    309
                 ],
-                "anchorX": 117,
-                "groundY": 278,
+                "anchorX": 317,
+                "groundY": 512,
                 "contentRect": [
-                    16,
-                    4,
-                    133,
-                    274
+                    67,
+                    0,
+                    371,
+                    512
                 ]
             }
         ]
@@ -1467,292 +598,1191 @@
     "eli": {
         "name": "Zion",
         "source": "assets/runner/cycles/eli-run-source.jpg",
-        "sourceSha256": "404611e56b5bc57452307b8b89b9ad3addb2e122444049cc472bbe2f0b80e68f",
+        "sourceSha256": "bbe01ac38621363896950d3ff27847b4cb8a479e0892f4c8ead9346de9b8a29f",
         "sourceSize": [
-            1280,
-            640
+            1263,
+            1246
         ],
         "image": "assets/runner/cycles/eli-run.png",
-        "cellWidth": 171,
-        "cellHeight": 278,
+        "cellWidth": 498,
+        "cellHeight": 520,
         "columns": 8,
         "frameCount": 16,
-        "fps": 12,
-        "anchorX": 113,
-        "groundY": 272,
-        "designHeight": 272,
-        "rowSplit": 318,
+        "fps": 25.26315789473684,
+        "anchorX": 347,
+        "groundY": 512,
+        "designHeight": 512,
+        "displayFaceReference": 29.63235294117647,
+        "sourceLayout": [
+            4,
+            4
+        ],
+        "motionReference": "run-motion.json",
         "frames": [
             {
                 "index": 0,
                 "sourceRect": [
-                    7,
-                    28,
-                    132,
-                    272
+                    45,
+                    12,
+                    220,
+                    315
                 ],
-                "anchorX": 113,
-                "groundY": 272,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    24,
+                    103,
                     0,
-                    132,
-                    272
+                    358,
+                    512
                 ]
             },
             {
                 "index": 1,
                 "sourceRect": [
-                    166,
-                    27,
-                    134,
-                    271
+                    367,
+                    11,
+                    186,
+                    317
                 ],
-                "anchorX": 113,
-                "groundY": 274,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    21,
-                    1,
-                    134,
-                    271
+                    131,
+                    0,
+                    300,
+                    512
                 ]
             },
             {
                 "index": 2,
                 "sourceRect": [
-                    323,
-                    31,
-                    143,
-                    268
+                    655,
+                    10,
+                    244,
+                    312
                 ],
-                "anchorX": 113,
-                "groundY": 273,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    13,
-                    4,
-                    143,
-                    268
+                    63,
+                    0,
+                    400,
+                    512
                 ]
             },
             {
                 "index": 3,
                 "sourceRect": [
-                    485,
-                    30,
-                    142,
-                    261
+                    973,
+                    9,
+                    249,
+                    318
                 ],
-                "anchorX": 113,
-                "groundY": 281,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    15,
-                    11,
-                    142,
-                    261
+                    57,
+                    0,
+                    401,
+                    512
                 ]
             },
             {
                 "index": 4,
                 "sourceRect": [
-                    650,
-                    28,
-                    152,
-                    254
+                    45,
+                    334,
+                    204,
+                    314
                 ],
-                "anchorX": 113,
-                "groundY": 290,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    15,
-                    18,
-                    152,
-                    254
+                    104,
+                    0,
+                    333,
+                    512
                 ]
             },
             {
                 "index": 5,
                 "sourceRect": [
-                    822,
-                    34,
-                    128,
-                    266
+                    338,
+                    335,
+                    244,
+                    307
                 ],
-                "anchorX": 113,
-                "groundY": 272,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    27,
-                    6,
-                    128,
-                    266
+                    70,
+                    0,
+                    407,
+                    512
                 ]
             },
             {
                 "index": 6,
                 "sourceRect": [
-                    979,
-                    35,
-                    124,
-                    265
+                    645,
+                    338,
+                    274,
+                    288
                 ],
-                "anchorX": 113,
-                "groundY": 272,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    20,
-                    7,
-                    124,
-                    265
+                    4,
+                    0,
+                    487,
+                    512
                 ]
             },
             {
                 "index": 7,
                 "sourceRect": [
-                    1123,
-                    34,
-                    153,
-                    265
+                    1011,
+                    334,
+                    197,
+                    317
                 ],
-                "anchorX": 113,
-                "groundY": 273,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    3,
-                    7,
-                    153,
-                    265
+                    118,
+                    0,
+                    318,
+                    512
                 ]
             },
             {
                 "index": 8,
                 "sourceRect": [
-                    5,
-                    339,
-                    150,
-                    266
+                    46,
+                    647,
+                    219,
+                    304
                 ],
-                "anchorX": 113,
-                "groundY": 275,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    8,
-                    6,
-                    150,
-                    266
+                    93,
+                    0,
+                    369,
+                    512
                 ]
             },
             {
                 "index": 9,
                 "sourceRect": [
-                    155,
-                    341,
-                    145,
-                    263
+                    331,
+                    647,
+                    251,
+                    297
                 ],
-                "anchorX": 113,
-                "groundY": 276,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    7,
-                    9,
-                    145,
-                    263
+                    28,
+                    0,
+                    433,
+                    512
                 ]
             },
             {
                 "index": 10,
                 "sourceRect": [
-                    319,
-                    338,
-                    149,
-                    238
+                    662,
+                    646,
+                    244,
+                    295
                 ],
-                "anchorX": 113,
-                "groundY": 304,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    11,
-                    34,
-                    149,
-                    238
+                    47,
+                    0,
+                    423,
+                    512
                 ]
             },
             {
                 "index": 11,
                 "sourceRect": [
-                    496,
-                    337,
-                    148,
-                    242
+                    984,
+                    648,
+                    240,
+                    301
                 ],
-                "anchorX": 113,
-                "groundY": 301,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    17,
-                    30,
-                    148,
-                    242
+                    58,
+                    0,
+                    408,
+                    512
                 ]
             },
             {
                 "index": 12,
                 "sourceRect": [
-                    660,
-                    340,
-                    137,
-                    266
+                    44,
+                    951,
+                    237,
+                    283
                 ],
-                "anchorX": 113,
-                "groundY": 274,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    18,
-                    6,
-                    137,
-                    266
+                    65,
+                    0,
+                    429,
+                    512
                 ]
             },
             {
                 "index": 13,
                 "sourceRect": [
-                    822,
-                    345,
-                    137,
-                    263
+                    372,
+                    951,
+                    206,
+                    285
                 ],
-                "anchorX": 113,
-                "groundY": 272,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    17,
-                    9,
-                    137,
-                    263
+                    115,
+                    0,
+                    370,
+                    512
                 ]
             },
             {
                 "index": 14,
                 "sourceRect": [
-                    972,
-                    345,
-                    150,
-                    260
+                    654,
+                    949,
+                    254,
+                    284
                 ],
-                "anchorX": 113,
-                "groundY": 275,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    18,
-                    12,
-                    150,
-                    260
+                    22,
+                    0,
+                    458,
+                    512
                 ]
             },
             {
                 "index": 15,
                 "sourceRect": [
-                    1130,
-                    340,
-                    131,
-                    267
+                    1004,
+                    950,
+                    192,
+                    286
                 ],
-                "anchorX": 113,
-                "groundY": 273,
+                "anchorX": 347,
+                "groundY": 512,
                 "contentRect": [
-                    23,
+                    105,
+                    0,
+                    344,
+                    512
+                ]
+            }
+        ]
+    },
+    "ruby": {
+        "name": "Ruby",
+        "source": "assets/runner/cycles/ruby-run-source.jpg",
+        "sourceSha256": "a0f69374f01f9aed48f1129111110105d359c1eeabc9702d4a0028d91bb3d784",
+        "sourceSize": [
+            1280,
+            853
+        ],
+        "image": "assets/runner/cycles/ruby-run.png",
+        "cellWidth": 541,
+        "cellHeight": 520,
+        "columns": 8,
+        "frameCount": 16,
+        "fps": 25.26315789473684,
+        "anchorX": 306,
+        "groundY": 512,
+        "designHeight": 512,
+        "displayFaceReference": 22.37593984962406,
+        "sourceLayout": [
+            4,
+            4
+        ],
+        "motionReference": "run-motion.json",
+        "frames": [
+            {
+                "index": 0,
+                "sourceRect": [
+                    64,
+                    9,
+                    179,
+                    212
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    48,
+                    0,
+                    432,
+                    512
+                ]
+            },
+            {
+                "index": 1,
+                "sourceRect": [
+                    377,
+                    9,
+                    175,
+                    212
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    40,
+                    0,
+                    423,
+                    512
+                ]
+            },
+            {
+                "index": 2,
+                "sourceRect": [
+                    681,
+                    10,
+                    177,
+                    212
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    50,
+                    0,
+                    427,
+                    512
+                ]
+            },
+            {
+                "index": 3,
+                "sourceRect": [
+                    1003,
+                    9,
+                    185,
+                    212
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    50,
+                    0,
+                    447,
+                    512
+                ]
+            },
+            {
+                "index": 4,
+                "sourceRect": [
+                    65,
+                    222,
+                    185,
+                    225
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    49,
+                    0,
+                    421,
+                    512
+                ]
+            },
+            {
+                "index": 5,
+                "sourceRect": [
+                    379,
+                    223,
+                    215,
+                    209
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
                     5,
-                    131,
-                    267
+                    0,
+                    527,
+                    512
+                ]
+            },
+            {
+                "index": 6,
+                "sourceRect": [
+                    693,
+                    225,
+                    198,
+                    211
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    12,
+                    0,
+                    480,
+                    512
+                ]
+            },
+            {
+                "index": 7,
+                "sourceRect": [
+                    1002,
+                    222,
+                    207,
+                    212
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    4,
+                    0,
+                    500,
+                    512
+                ]
+            },
+            {
+                "index": 8,
+                "sourceRect": [
+                    70,
+                    440,
+                    186,
+                    203
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    11,
+                    0,
+                    469,
+                    512
+                ]
+            },
+            {
+                "index": 9,
+                "sourceRect": [
+                    399,
+                    438,
+                    183,
+                    204
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    20,
+                    0,
+                    459,
+                    512
+                ]
+            },
+            {
+                "index": 10,
+                "sourceRect": [
+                    703,
+                    438,
+                    206,
+                    204
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    20,
+                    0,
+                    517,
+                    512
+                ]
+            },
+            {
+                "index": 11,
+                "sourceRect": [
+                    1026,
+                    438,
+                    175,
+                    205
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    24,
+                    0,
+                    437,
+                    512
+                ]
+            },
+            {
+                "index": 12,
+                "sourceRect": [
+                    76,
+                    642,
+                    186,
+                    205
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    29,
+                    0,
+                    465,
+                    512
+                ]
+            },
+            {
+                "index": 13,
+                "sourceRect": [
+                    387,
+                    640,
+                    202,
+                    207
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    4,
+                    0,
+                    500,
+                    512
+                ]
+            },
+            {
+                "index": 14,
+                "sourceRect": [
+                    699,
+                    640,
+                    162,
+                    208
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    20,
+                    0,
+                    399,
+                    512
+                ]
+            },
+            {
+                "index": 15,
+                "sourceRect": [
+                    1017,
+                    641,
+                    182,
+                    206
+                ],
+                "anchorX": 306,
+                "groundY": 512,
+                "contentRect": [
+                    13,
+                    0,
+                    452,
+                    512
+                ]
+            }
+        ]
+    },
+    "sofia": {
+        "name": "Sofia",
+        "source": "assets/runner/cycles/sofia-run-source.jpg",
+        "sourceSha256": "92e3f56b7730a6ba162258d9d10d1fc8e73a06ef72a41d10d8ebcda166b7621b",
+        "sourceSize": [
+            1267,
+            1241
+        ],
+        "image": "assets/runner/cycles/sofia-run.png",
+        "cellWidth": 482,
+        "cellHeight": 520,
+        "columns": 8,
+        "frameCount": 16,
+        "fps": 25.26315789473684,
+        "anchorX": 303,
+        "groundY": 512,
+        "designHeight": 512,
+        "displayFaceReference": 16.949640287769785,
+        "sourceLayout": [
+            4,
+            4
+        ],
+        "motionReference": "run-motion.json",
+        "frames": [
+            {
+                "index": 0,
+                "sourceRect": [
+                    61,
+                    8,
+                    213,
+                    299
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    67,
+                    0,
+                    365,
+                    512
+                ]
+            },
+            {
+                "index": 1,
+                "sourceRect": [
+                    376,
+                    8,
+                    214,
+                    298
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    69,
+                    0,
+                    368,
+                    512
+                ]
+            },
+            {
+                "index": 2,
+                "sourceRect": [
+                    682,
+                    10,
+                    208,
+                    297
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    60,
+                    0,
+                    359,
+                    512
+                ]
+            },
+            {
+                "index": 3,
+                "sourceRect": [
+                    1000,
+                    8,
+                    224,
+                    298
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    54,
+                    0,
+                    385,
+                    512
+                ]
+            },
+            {
+                "index": 4,
+                "sourceRect": [
+                    47,
+                    320,
+                    262,
+                    289
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    4,
+                    0,
+                    464,
+                    512
+                ]
+            },
+            {
+                "index": 5,
+                "sourceRect": [
+                    378,
+                    317,
+                    237,
+                    293
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    41,
+                    0,
+                    414,
+                    512
+                ]
+            },
+            {
+                "index": 6,
+                "sourceRect": [
+                    685,
+                    319,
+                    251,
+                    290
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    35,
+                    0,
+                    443,
+                    512
+                ]
+            },
+            {
+                "index": 7,
+                "sourceRect": [
+                    1004,
+                    319,
+                    233,
+                    290
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    35,
+                    0,
+                    411,
+                    512
+                ]
+            },
+            {
+                "index": 8,
+                "sourceRect": [
+                    67,
+                    620,
+                    221,
+                    299
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    32,
+                    0,
+                    378,
+                    512
+                ]
+            },
+            {
+                "index": 9,
+                "sourceRect": [
+                    368,
+                    620,
+                    223,
+                    300
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    40,
+                    0,
+                    381,
+                    512
+                ]
+            },
+            {
+                "index": 10,
+                "sourceRect": [
+                    685,
+                    621,
+                    247,
+                    297
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    50,
+                    0,
+                    426,
+                    512
+                ]
+            },
+            {
+                "index": 11,
+                "sourceRect": [
+                    995,
+                    620,
+                    236,
+                    298
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    56,
+                    0,
+                    405,
+                    512
+                ]
+            },
+            {
+                "index": 12,
+                "sourceRect": [
+                    55,
+                    926,
+                    233,
+                    300
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    59,
+                    0,
+                    398,
+                    512
+                ]
+            },
+            {
+                "index": 13,
+                "sourceRect": [
+                    372,
+                    922,
+                    236,
+                    301
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    61,
+                    0,
+                    401,
+                    512
+                ]
+            },
+            {
+                "index": 14,
+                "sourceRect": [
+                    690,
+                    925,
+                    240,
+                    291
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    36,
+                    0,
+                    422,
+                    512
+                ]
+            },
+            {
+                "index": 15,
+                "sourceRect": [
+                    1010,
+                    924,
+                    223,
+                    296
+                ],
+                "anchorX": 303,
+                "groundY": 512,
+                "contentRect": [
+                    56,
+                    0,
+                    386,
+                    512
+                ]
+            }
+        ]
+    },
+    "jordan": {
+        "name": "Kanyon",
+        "source": "assets/runner/cycles/jordan-run-source.jpg",
+        "sourceSha256": "59c315e95dcdf8918ae9adc5986a3915f1e3503ac0dc03360c599ff7693edca5",
+        "sourceSize": [
+            1280,
+            1169
+        ],
+        "image": "assets/runner/cycles/jordan-run.png",
+        "cellWidth": 494,
+        "cellHeight": 520,
+        "columns": 8,
+        "frameCount": 16,
+        "fps": 25.26315789473684,
+        "anchorX": 295,
+        "groundY": 512,
+        "designHeight": 512,
+        "displayFaceReference": 25.56140350877193,
+        "sourceLayout": [
+            4,
+            4
+        ],
+        "motionReference": "run-motion.json",
+        "frames": [
+            {
+                "index": 0,
+                "sourceRect": [
+                    52,
+                    10,
+                    212,
+                    289
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    61,
+                    0,
+                    376,
+                    512
+                ]
+            },
+            {
+                "index": 1,
+                "sourceRect": [
+                    373,
+                    11,
+                    211,
+                    288
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    62,
+                    0,
+                    375,
+                    512
+                ]
+            },
+            {
+                "index": 2,
+                "sourceRect": [
+                    700,
+                    11,
+                    182,
+                    286
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    78,
+                    0,
+                    326,
+                    512
+                ]
+            },
+            {
+                "index": 3,
+                "sourceRect": [
+                    1008,
+                    11,
+                    224,
+                    288
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    60,
+                    0,
+                    398,
+                    512
+                ]
+            },
+            {
+                "index": 4,
+                "sourceRect": [
+                    49,
+                    298,
+                    252,
+                    283
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    34,
+                    0,
+                    456,
+                    512
+                ]
+            },
+            {
+                "index": 5,
+                "sourceRect": [
+                    373,
+                    297,
+                    247,
+                    283
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    36,
+                    0,
+                    447,
+                    512
+                ]
+            },
+            {
+                "index": 6,
+                "sourceRect": [
+                    672,
+                    298,
+                    258,
+                    283
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    7,
+                    0,
+                    467,
+                    512
+                ]
+            },
+            {
+                "index": 7,
+                "sourceRect": [
+                    1011,
+                    298,
+                    217,
+                    291
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    50,
+                    0,
+                    382,
+                    512
+                ]
+            },
+            {
+                "index": 8,
+                "sourceRect": [
+                    43,
+                    589,
+                    250,
+                    282
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    12,
+                    0,
+                    454,
+                    512
+                ]
+            },
+            {
+                "index": 9,
+                "sourceRect": [
+                    376,
+                    589,
+                    209,
+                    288
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    57,
+                    0,
+                    372,
+                    512
+                ]
+            },
+            {
+                "index": 10,
+                "sourceRect": [
+                    683,
+                    591,
+                    218,
+                    286
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    35,
+                    0,
+                    390,
+                    512
+                ]
+            },
+            {
+                "index": 11,
+                "sourceRect": [
+                    1009,
+                    590,
+                    221,
+                    287
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    38,
+                    0,
+                    394,
+                    512
+                ]
+            },
+            {
+                "index": 12,
+                "sourceRect": [
+                    46,
+                    877,
+                    243,
+                    281
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    24,
+                    0,
+                    443,
+                    512
+                ]
+            },
+            {
+                "index": 13,
+                "sourceRect": [
+                    355,
+                    877,
+                    245,
+                    285
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    4,
+                    0,
+                    440,
+                    512
+                ]
+            },
+            {
+                "index": 14,
+                "sourceRect": [
+                    683,
+                    878,
+                    233,
+                    284
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    37,
+                    0,
+                    420,
+                    512
+                ]
+            },
+            {
+                "index": 15,
+                "sourceRect": [
+                    1017,
+                    878,
+                    219,
+                    287
+                ],
+                "anchorX": 295,
+                "groundY": 512,
+                "contentRect": [
+                    58,
+                    0,
+                    391,
+                    512
                 ]
             }
         ]

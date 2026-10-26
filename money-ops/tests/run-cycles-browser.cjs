@@ -29,11 +29,12 @@ const {mkdirSync}=require('node:fs');
   await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');if(!FinancialRunner.prototype._review){const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return original.apply(this,args);};FinancialRunner.prototype._review=true;}});
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.runner?.runCycle.ready&&window.runner?.strideTimeMs>0);
-  const frames=await page.evaluate(()=>{
+  const frames=await page.evaluate(async()=>{
+   const {runFrame,runMotion}=await import('./src/moneybread/run-cycle.js');
    const r=window.runner;r.spawnIn=r.rewardIn=r.boxIn=r.powerIn=r.lifeIn=999;r.routeGapRemaining=1e9;r.entities=[];r.setPaused(true);
    const c=r.runCycle.cycle, hashes=[],bottoms=[],tops=[],order=[];
    for(let i=0;i<16;i++){
-    r.ctx.clearRect(0,0,r.width,r.height);r.strideTimeMs=(i+.05)*1000/c.fps;r.state='running';r.drawPlayer(0);
+    r.ctx.clearRect(0,0,r.width,r.height);let ms=0;while(runFrame(c,ms)!==i&&ms<runMotion.durationMs)ms+=.5;r.strideTimeMs=ms;r.state='running';r.drawPlayer(0);
     order.push(r.runCycle.frame);
     const pixels=r.ctx.getImageData(0,0,r.canvas.width,r.canvas.height);let bottom=-1,top=9999,hash=0;
     for(let y=0;y<pixels.height;y++)for(let x=0;x<pixels.width;x++){const k=(y*pixels.width+x)*4;if(pixels.data[k+3]){bottom=y;top=Math.min(top,y);hash=(Math.imul(hash,31)+pixels.data[k]+pixels.data[k+1]*3+pixels.data[k+2]*7)|0;}}
@@ -92,7 +93,7 @@ const {mkdirSync}=require('node:fs');
   const actual=await page.evaluate(async()=>{
    const r=window.runner,seen=[],draw=r.jumpCycle.drawFrame.bind(r.jumpCycle);
    r.jumpCycle.drawFrame=(...args)=>{seen.push(args[2]);return draw(...args);};
-   r.setPaused(false);r.jump();await new Promise(resolve=>setTimeout(resolve,1350));r.setPaused(true);
+   r.setPaused(false);r.jump();r.drawPlayer(0);await new Promise(resolve=>setTimeout(resolve,1350));r.setPaused(true);
    r.jumpCycle.drawFrame=draw;
    return {seen:[...new Set(seen)],grounded:r.player.grounded,recovered:r.jumpMotion===null,state:r.state};
   });assert.deepEqual(actual.seen,Array.from({length:16},(_,i)=>i),`${mode}/${id}: real input must show the complete one-shot`);assert(actual.grounded&&actual.recovered);

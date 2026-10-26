@@ -33,5 +33,15 @@ Tests simulate trajectories and collisions, not just these formulas. They cover
 all difficulty settings, overhead release, single-jump coin arcs, wall/floor/ceiling
 collisions and phone controls. Source artwork and jump/duck clips are unchanged.
 
-Running.fbx was not found in the repository or accessible attachments. No FBX
-motion timing has been inferred or claimed; supply the file before retiming runs.
+Running (1).fbx supplies one 19-interval loop at 30 FPS (633.33 ms). The offline
+Blender extractor scripts/inspect-running-fbx.py writes career/run-motion.json.
+Browser playback uses the measured cadence and a monotonic phase curve weighted
+by hip-relative foot and hand travel. All 16 updated, approved 2D poses remain in row-major order;
+no new character art, mesh import, root travel or limb deformation is used.
+Baked sprite art limits exact joint-level correspondence to the FBX. Jump and duck
+animation timing is independent and unchanged.
+
+The approved replacement source sheets are 4×4, measured as 16 disconnected
+components each. scripts/import-updated-run-sheets.py removes exterior white and
+uniformly scales each complete pose to the existing 124px visual height.
+All poses share a face-based horizontal anchor and fixed floor baseline.

@@ -1,9 +1,31 @@
+export declare const runMotion: {
+    source: string;
+    sourceSha256: string;
+    action: string;
+    fps: number;
+    startFrame: number;
+    endFrame: number;
+    durationMs: number;
+    phase: number[];
+    samples: {
+        timeMs: number;
+        root: number[];
+        limbs: {
+            LeftFoot: number[];
+            RightFoot: number[];
+            LeftHand: number[];
+            RightHand: number[];
+        };
+    }[];
+    adaptation: string;
+};
 export interface RunCycle {
     name: string;
     image: string;
     columns: number;
     frameCount: number;
     fps: number;
+    motionReference?: string;
     cellWidth: number;
     cellHeight: number;
     anchorX: number;
