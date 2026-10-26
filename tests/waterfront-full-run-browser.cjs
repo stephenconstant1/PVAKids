@@ -58,7 +58,7 @@ const {mkdirSync}=require('node:fs');
   assert(gaps.every(g=>g>=269),'all different encounters need room after the last item');
   assert(new Set(gaps.map(g=>Math.round(g/10))).size>5,'route must vary its gaps');
   assert(result.encounters.some(e=>e.type==='moneybox'));assert(result.encounters.some(e=>e.type==='life'));if(scenario.mode==='bonus')assert(result.encounters.some(e=>e.type==='power'));
-  assert(result.encounters.filter(e=>e.type==='collectible').every(e=>e.count===3||e.count===4));
+  assert(result.encounters.filter(e=>e.type==='collectible').every(e=>e.count===1));
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   mkdirSync('/tmp/waterfront-route-review',{recursive:true});
   await page.evaluate(()=>{const r=window.runner;r.paused=false;r.draw();r.paused=true;});

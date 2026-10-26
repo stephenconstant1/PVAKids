@@ -12,7 +12,7 @@
     "cellHeight": 520,
     "columns": 8,
     "frameCount": 16,
-    "fps": 25.26315789473684,
+    "fps": 20.0,
     "anchorX": 298,
     "groundY": 512,
     "designHeight": 512,
@@ -295,7 +295,31 @@
           512
         ]
       }
-    ]
+    ],
+    "playbackOrder": [
+      0,
+      8,
+      13,
+      14,
+      15,
+      12,
+      9,
+      10,
+      11,
+      3,
+      2,
+      6,
+      7,
+      4,
+      5,
+      1
+    ],
+    "playbackDurationMs": 800,
+    "transitionAudit": {
+      "rowMajorCost": 1.1106108252635205,
+      "loopCost": 0.9863309033785083,
+      "method": "whole-pose alpha/color transition cost, deterministic 2-opt including wrap seam"
+    }
   },
   "kai": {
     "name": "Everest",
@@ -310,7 +334,7 @@
     "cellHeight": 520,
     "columns": 8,
     "frameCount": 16,
-    "fps": 25.26315789473684,
+    "fps": 20.0,
     "anchorX": 317,
     "groundY": 512,
     "designHeight": 512,
@@ -593,7 +617,31 @@
           512
         ]
       }
-    ]
+    ],
+    "playbackOrder": [
+      0,
+      15,
+      12,
+      14,
+      3,
+      2,
+      4,
+      10,
+      11,
+      13,
+      6,
+      7,
+      9,
+      5,
+      1,
+      8
+    ],
+    "playbackDurationMs": 800,
+    "transitionAudit": {
+      "rowMajorCost": 1.4490685248261888,
+      "loopCost": 1.170634078539504,
+      "method": "whole-pose alpha/color transition cost, deterministic 2-opt including wrap seam"
+    }
   },
   "eli": {
     "name": "Zion",
@@ -608,7 +656,7 @@
     "cellHeight": 520,
     "columns": 8,
     "frameCount": 16,
-    "fps": 25.26315789473684,
+    "fps": 20.0,
     "anchorX": 347,
     "groundY": 512,
     "designHeight": 512,
@@ -891,7 +939,31 @@
           512
         ]
       }
-    ]
+    ],
+    "playbackOrder": [
+      0,
+      8,
+      2,
+      10,
+      14,
+      6,
+      9,
+      11,
+      3,
+      15,
+      1,
+      7,
+      4,
+      5,
+      12,
+      13
+    ],
+    "playbackDurationMs": 800,
+    "transitionAudit": {
+      "rowMajorCost": 1.6024894546768869,
+      "loopCost": 1.117370875484589,
+      "method": "whole-pose alpha/color transition cost, deterministic 2-opt including wrap seam"
+    }
   },
   "ruby": {
     "name": "Ruby",
@@ -906,7 +978,7 @@
     "cellHeight": 520,
     "columns": 8,
     "frameCount": 16,
-    "fps": 25.26315789473684,
+    "fps": 20.0,
     "anchorX": 306,
     "groundY": 512,
     "designHeight": 512,
@@ -1189,7 +1261,31 @@
           512
         ]
       }
-    ]
+    ],
+    "playbackOrder": [
+      0,
+      14,
+      12,
+      13,
+      10,
+      5,
+      7,
+      6,
+      9,
+      11,
+      15,
+      8,
+      1,
+      2,
+      3,
+      4
+    ],
+    "playbackDurationMs": 800,
+    "transitionAudit": {
+      "rowMajorCost": 1.6015028624807768,
+      "loopCost": 1.3199962904892348,
+      "method": "whole-pose alpha/color transition cost, deterministic 2-opt including wrap seam"
+    }
   },
   "sofia": {
     "name": "Sofia",
@@ -1204,7 +1300,7 @@
     "cellHeight": 520,
     "columns": 8,
     "frameCount": 16,
-    "fps": 25.26315789473684,
+    "fps": 20.0,
     "anchorX": 303,
     "groundY": 512,
     "designHeight": 512,
@@ -1487,7 +1583,31 @@
           512
         ]
       }
-    ]
+    ],
+    "playbackOrder": [
+      0,
+      1,
+      2,
+      9,
+      8,
+      5,
+      4,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      7,
+      3,
+      15
+    ],
+    "playbackDurationMs": 800,
+    "transitionAudit": {
+      "rowMajorCost": 1.4641534731233181,
+      "loopCost": 1.3112818662493593,
+      "method": "whole-pose alpha/color transition cost, deterministic 2-opt including wrap seam"
+    }
   },
   "jordan": {
     "name": "Kanyon",
@@ -1502,7 +1622,7 @@
     "cellHeight": 520,
     "columns": 8,
     "frameCount": 16,
-    "fps": 25.26315789473684,
+    "fps": 20.0,
     "anchorX": 295,
     "groundY": 512,
     "designHeight": 512,
@@ -1785,6 +1905,30 @@
           512
         ]
       }
-    ]
+    ],
+    "playbackOrder": [
+      0,
+      1,
+      9,
+      7,
+      11,
+      13,
+      14,
+      5,
+      4,
+      12,
+      8,
+      6,
+      10,
+      3,
+      2,
+      15
+    ],
+    "playbackDurationMs": 800,
+    "transitionAudit": {
+      "rowMajorCost": 1.1487122541009867,
+      "loopCost": 0.8740117733163526,
+      "method": "whole-pose alpha/color transition cost, deterministic 2-opt including wrap seam"
+    }
   }
 }

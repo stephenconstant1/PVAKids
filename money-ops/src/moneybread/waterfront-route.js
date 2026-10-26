@@ -10,7 +10,7 @@ export const ROUTE_METRICS = {
  * yet remains below standing height so walking through is impossible. */
 export function overheadClearance() {
     const m = ROUTE_METRICS;
-    return Math.ceil(Math.max(m.duckHeight, m.duckArtHeight) + m.ceilingBuffer);
+    return Math.ceil(Math.max(m.standingHeight - 4, Math.max(m.duckHeight, m.duckArtHeight) + m.ceilingBuffer));
 }
 /** Shared encounter geometry, in screen pixels, derived from the real physics.
  * Use the slowest normal pace so later acceleration cannot make a box too wide. */
@@ -23,8 +23,8 @@ export function encounterGap(speed, random = Math.random) {
     return Math.max(300, speed * (jumpEnvelope(speed).flight + ROUTE_METRICS.landingRecovery + ROUTE_METRICS.reactionTime)) + random() * speed * .25;
 }
 export function coinGroup(random = Math.random) {
-    // A compact three-coin arc: even its lowest coin is above standing reach.
-    return { count: 3, step: 44 + random() * 6, height: 164 + random() * 8 };
+    // One readable airborne reward per encounter, with a full recovery gap.
+    return { count: 1, step: 96 + random() * 24, height: 164 + random() * 8 };
 }
 export function obstacleGeometry(speed, desiredWidth, desiredHeight) {
     const envelope = jumpEnvelope(speed), h = Math.min(desiredHeight, envelope.height * .36);

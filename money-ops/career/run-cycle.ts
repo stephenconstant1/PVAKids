@@ -6,7 +6,7 @@ export const runMotion=motion;
 
 export interface RunCycle {
  name:string; image:string; columns:number; frameCount:number; fps:number;
- motionReference?:string; cellWidth:number; cellHeight:number; anchorX:number; groundY:number; designHeight:number;
+ playbackOrder?:readonly number[]; playbackDurationMs?:number; motionReference?:string; cellWidth:number; cellHeight:number; anchorX:number; groundY:number; designHeight:number;
  frames:readonly {index:number;sourceRect:readonly number[];anchorX:number;groundY:number;contentRect:readonly number[]}[];
 }
 export const runCycles:Record<string,RunCycle>=data;
@@ -24,10 +24,9 @@ export function jumpFrame(motion:JumpMotion,reduced=false):number {
 export function runFrame(cycle:RunCycle,elapsedMs:number,reduced=false):number {
  if(reduced)return 0;
  if(!cycle.motionReference)return Math.floor(Math.max(0,elapsedMs)*cycle.fps/1000)%cycle.frameCount;
- const t=(Math.max(0,elapsedMs)%motion.durationMs)/motion.durationMs*(motion.phase.length-1);
- const i=Math.min(motion.phase.length-2,Math.floor(t)),blend=t-i;
- const phase=motion.phase[i]+(motion.phase[i+1]-motion.phase[i])*blend;
- return Math.min(cycle.frameCount-1,Math.floor(phase*cycle.frameCount));
+ const duration=cycle.playbackDurationMs||motion.durationMs;
+ const slot=Math.min(cycle.frameCount-1,Math.floor(((Math.round(Math.max(0,elapsedMs)*1e6)/1e6)%duration)/duration*cycle.frameCount));
+ return cycle.playbackOrder?.[slot]??slot;
 }
 export class CharacterRunCycle {
  readonly cycle:RunCycle|undefined;
@@ -38,7 +37,7 @@ export class CharacterRunCycle {
  constructor(id:string,kind:'run'|'jump'|'duck'='run',onSettled:()=>void=()=>{}){
   this.cycle=(kind==='duck'?duckCycles:kind==='jump'?jumpCycles:runCycles)[id];this.image=new Image();
   this.image.onload=()=>{this.ready=true;onSettled();};this.image.onerror=()=>{this.failed=true;onSettled();};
-  if(this.cycle)this.image.src=new URL('../../'+this.cycle.image+'?v=46.5',import.meta.url).href;
+  if(this.cycle)this.image.src=new URL('../../'+this.cycle.image+'?v=46.6',import.meta.url).href;
   else this.failed=true;
   this.ready=Boolean(this.image.complete&&this.image.naturalWidth);
  }

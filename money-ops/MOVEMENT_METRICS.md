@@ -15,7 +15,7 @@ Jump rise is launchSpeed² / (2 × gravity); flight time is 2 × launchSpeed / g
 Owned boots and existing speed settings still apply. No double jump exists.
 
 Editable route metrics live in career/waterfront-route.ts. Overhead underside height
-is max(duck hitbox height, tallest measured duck artwork) + 12 rendered pixels.
+is max(standing height − 4px, max(duck hitbox height, tallest measured duck artwork) + 12px).
 It must remain below the standing hitbox height. This protects both the collision
 box and all six full-size duck poses without scaling the artwork.
 
@@ -27,7 +27,7 @@ Its maximum width additionally depends on speed and time spent ABOVE the hurdle:
 
 These equations use rendered units consistently. The route reserves a full flight,
 0.24 s landing recovery, and 0.65 s reaction time after the previous encounter,
-plus a randomized gap. Raised coin arcs are separate from hazards.
+plus a randomized gap. Airborne coins appear individually, separate from hazards and other rewards.
 
 Tests simulate trajectories and collisions, not just these formulas. They cover
 all difficulty settings, overhead release, single-jump coin arcs, wall/floor/ceiling
@@ -45,3 +45,10 @@ The approved replacement source sheets are 4×4, measured as 16 disconnected
 components each. scripts/import-updated-run-sheets.py removes exterior white and
 uniformly scales each complete pose to the existing 124px visual height.
 All poses share a face-based horizontal anchor and fixed floor baseline.
+
+Version 46.6: The FBX remains the motion reference; comfortable sprite playback
+is now 800 ms with 16 equal 50 ms holds to avoid rapid uneven frame changes.
+Editable playbackOrder arrays visit all approved poses once in a loop, selected
+by deterministic wrap-inclusive visual transition minimization. Reproduce with
+python3 scripts/tune-run-playback.py after importing source sheets. No character
+pixels, jump/duck clips, physics, scoring or coin objective changed.

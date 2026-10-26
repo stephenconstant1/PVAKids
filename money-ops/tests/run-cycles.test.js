@@ -23,7 +23,7 @@ test('all six measured atlases include 16 ordered poses and verified originals',
    const [sx,sy,sw,sh]=f.sourceRect;
    assert(sx>=0&&sy>=0&&sx+sw<=source.sourceSize[0]&&sy+sh<=source.sourceSize[1]);
   }
-  const seen=new Set();for(let ms=0;ms<runMotion.durationMs;ms+=2)seen.add(runFrame(c,ms));assert.equal(seen.size,16);assert.equal(runFrame(c,runMotion.durationMs),0);
+  const seen=new Set();for(let ms=0;ms<(c.playbackDurationMs||runMotion.durationMs);ms+=2)seen.add(runFrame(c,ms));assert.equal(seen.size,16);assert.equal(runFrame(c,c.playbackDurationMs||runMotion.durationMs),0);
   assert.equal(runFrame(c,100000,true),0);
  }
 });
@@ -51,7 +51,7 @@ test('jump sheets preserve all six identities and one-shot phase order',()=>{
 
 test('running uses the measured FBX cadence and a stable body height instead of snapping airborne feet down',()=>{
  for(const [id,c] of Object.entries(runCycles)){
-  assert.equal(c.fps,16*1000/runMotion.durationMs);
+  assert.equal(c.fps,16*1000/(c.playbackDurationMs||runMotion.durationMs));
   const tops=c.frames.map(f=>(f.contentRect[1]-f.groundY)*124/c.designHeight);
   assert(Math.max(...tops)-Math.min(...tops)<8,`${id} body must not jump between poses`);
   assert(c.frames.every(f=>f.groundY===c.groundY),'updated sheets keep a consistent ground contact line');
@@ -71,5 +71,12 @@ test('running phase is delta-independent at phone and desktop refresh rates',()=
  let time=0;for(let i=0;i<fps*10;i++)time+=1000/fps;
  assert.equal(runFrame(c,time),runFrame(c,10000));
  assert.equal(runFrame(c,time,true),0);
+ }
+});
+
+test('run order covers all poses once and reduces wrap-inclusive visual discontinuity',()=>{
+ for(const c of Object.values(runCycles)){
+ assert.deepEqual([...c.playbackOrder].sort((a,b)=>a-b),Array.from({length:16},(_,i)=>i));
+ assert.equal(c.playbackDurationMs,800);assert.equal(c.fps,20);
  }
 });

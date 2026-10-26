@@ -220,7 +220,7 @@ test('route boxes have a forgiving real jump window at every intensity and mode'
  }
 });
 
-test('raised reward arcs require jumping and are collectible in one jump',()=>{
+test('separated airborne rewards require jumping and are reachable',()=>{
  for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
   const make=()=>{const r=harness(1,phase,{intensityLevel}).runner;r.routeGapRemaining=0;r.updateWaterfrontRoute(0,r.speed);r.routeGapRemaining=1e9;return r;};
   const sample=make();assert(sample.entities.every(e=>e.y+e.h<sample.playerBox().y),'standing must miss every coin');sample.destroy();
@@ -232,7 +232,7 @@ test('raised reward arcs require jumping and are collectible in one jump',()=>{
    r.jump();for(let t=0;t<150;t++){r.routeGapRemaining=1e9;r.update(1/240,t/240);}
    best=Math.max(best,r.collected);r.destroy();
   }
-  assert(best>=3,`${phase}/${intensityLevel}: one jump should collect all three coins, got ${best}`);
+  assert(best>=1,`${phase}/${intensityLevel}: one jump should collect the airborne reward, got ${best}`);
  }
 });
 

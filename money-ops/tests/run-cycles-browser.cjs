@@ -34,13 +34,13 @@ const {mkdirSync}=require('node:fs');
    const r=window.runner;r.spawnIn=r.rewardIn=r.boxIn=r.powerIn=r.lifeIn=999;r.routeGapRemaining=1e9;r.entities=[];r.setPaused(true);
    const c=r.runCycle.cycle, hashes=[],bottoms=[],tops=[],order=[];
    for(let i=0;i<16;i++){
-    r.ctx.clearRect(0,0,r.width,r.height);let ms=0;while(runFrame(c,ms)!==i&&ms<runMotion.durationMs)ms+=.5;r.strideTimeMs=ms;r.state='running';r.drawPlayer(0);
-    order.push(r.runCycle.frame);
+    r.ctx.clearRect(0,0,r.width,r.height);let ms=0;while(runFrame(c,ms)!==(c.playbackOrder?.[i]??i)&&ms<(c.playbackDurationMs||runMotion.durationMs))ms+=.5;r.strideTimeMs=ms;r.state='running';r.drawPlayer(0);
+    order.push(c.playbackOrder?c.playbackOrder.indexOf(r.runCycle.frame):r.runCycle.frame);
     const pixels=r.ctx.getImageData(0,0,r.canvas.width,r.canvas.height);let bottom=-1,top=9999,hash=0;
     for(let y=0;y<pixels.height;y++)for(let x=0;x<pixels.width;x++){const k=(y*pixels.width+x)*4;if(pixels.data[k+3]){bottom=y;top=Math.min(top,y);hash=(Math.imul(hash,31)+pixels.data[k]+pixels.data[k+1]*3+pixels.data[k+2]*7)|0;}}
     bottoms.push(bottom);tops.push(top);hashes.push(hash);
    }
-   r.strideTimeMs=16*1000/c.fps;r.drawPlayer(0);
+   r.strideTimeMs=c.playbackDurationMs||16*1000/c.fps;r.drawPlayer(0);
    return {order,bottoms,tops,unique:new Set(hashes).size,loop:r.runCycle.frame,id:r.characterId,x:r.player.x};
   });
   assert.equal(frames.id,id);assert.equal(frames.x,112);assert.deepEqual(frames.order,Array.from({length:16},(_,i)=>i));

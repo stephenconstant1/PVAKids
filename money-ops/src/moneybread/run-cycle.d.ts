@@ -25,6 +25,8 @@ export interface RunCycle {
     columns: number;
     frameCount: number;
     fps: number;
+    playbackOrder?: readonly number[];
+    playbackDurationMs?: number;
     motionReference?: string;
     cellWidth: number;
     cellHeight: number;

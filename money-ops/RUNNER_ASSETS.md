@@ -33,7 +33,7 @@ Running still uses all 16 supplied poses, now at 12 fps rather than 22. Per-fram
 
 Each character has six compact duck poses in `assets/runner/cycles/*-duck.png`, created from canonical Money Ops identities and low-dodge pose guidance. Source layouts are measured by `scripts/import-duck-sheets.py`. Duck sizing is calibrated to the normal run sprite's face width (glasses width for Zion); no shrink-to-58px or body distortion remains. `career/duck-cycles.json` records matching rendered head measurements. Feet stay grounded, one variation is held until release, and recovery blends back to the same run art. Overhead barriers are raised 32 logical pixels so full-size crouches fit; standing still collides and ducking clears them. Collision damage, ground hazards, jump physics and scoring remain unchanged.
 
-Down Arrow/touch hold and release work in Arcade, Bonus, and pre-lesson Money Run. Pointer cancellation/capture loss, pause, blur, disposal and simultaneous inputs release safely. The downward swipe remains a timed duck in active gameplay time. Airborne duck input is ignored; Up Arrow/Space jumps immediately out of duck. Reduced motion holds a static run/duck pose and retains the physical jump. No gamepad support previously existed.
+Down Arrow/touch hold and release work in Arcade, Bonus, and pre-lesson Money Run. Pointer cancellation/capture loss, pause, blur, disposal and simultaneous inputs release safely. The downward swipe remains a timed duck in active gameplay time. Airborne duck input is ignored; Up Arrow/Space cannot jump while duck is active; release duck and wait for standing clearance first. Reduced motion holds a static run/duck pose and retains the physical jump. No gamepad support previously existed.
 
 Level 1 is **City Waterfront**, teaching **Earning and Creating Value**. The supplied JPEG is preserved; the active PNG is the requested illustrated adaptation matching the crew. Separate nearby building art adds depth. Skyline, nearby buildings, trees, river, railing and path move at different speeds while the player stays at x=112. The path remains unobstructed. Nearby windows/edges receive a soft bounded pass-by glow. Wind stays above the lane. Pause freezes scenery; reduced motion disables wind/highlights and scenery scrolling. A failed background falls back to the existing renderer.
 
@@ -67,3 +67,15 @@ Running (1).fbx has one Mixamo action, frames 1–20 at 30 FPS: 19 intervals,
 633.333 ms per cycle. The offline Blender extractor writes run-motion.json with
 source hash and hip-relative hand/foot samples. The browser uses these motion
 beats to retime the ordered sprite poses. It never loads the FBX mesh.
+
+## Version 46.6 playback and route adjustment
+
+The supplied poses have discontinuities when treated as a row-major filmstrip.
+Per-character playbackOrder now minimizes whole-pose visual changes, including
+the loop seam, without changing source pixels. Equal 50 ms holds produce an
+800 ms cycle; the original 633.333 ms FBX remains the reference rather than
+forcing its cadence onto uneven drawings. All 16 approved poses remain available.
+Coins now appear singly at jump height, separated by full recovery gaps.
+The underside of duck bars is raised to 100px, above all duck art/hitboxes and
+below the 104px standing collision height. Grounded duck and safe-release checks
+remain enforced in Arcade and Bonus.
