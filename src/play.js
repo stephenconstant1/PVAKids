@@ -1,3 +1,4 @@
+import {withLessonComic,lessonComicOpen,lessonComicRead,comicEscape} from './lesson-comic.js';
 import {lessonOneComic} from './lesson-one-comic.js';
 import {missions} from './content.js';
 import {choose,netWorth,rank,resolve,missionScore,passingScore} from './engine.js';
@@ -135,12 +136,13 @@ const missionGuide=id=>castIds[(id-1)%castIds.length];
 const lessonMode=id=>id<=4?'starter':[5,9,11,12,13,14,15,16].includes(id)?'portfolio':[7,20,21].includes(id)?'path':[8,24,25,26,28].includes(id)?'build':[6,18,22].includes(id)?'protect':[10,30,31,32].includes(id)?'goal':'route';
 function scriptureSpeaker(m,p){const lead=castIds.includes(p?.avatar)?p.avatar:missionGuide(m.id);let speaker=castIds[(m.id+1)%castIds.length];if(speaker===lead)speaker=castIds[(m.id+2)%castIds.length];return speaker;}
 function scriptureCard(m,speakerId){const s=m.scripture||m.principle,c=character(speakerId);return `<aside class="scripture-card scripture-character-card" data-scripture-speaker="${speakerId}">${portrait(speakerId,'scripture-character')}<div class="scripture-bubble"><span>${c.name.toUpperCase()} SHARES TODAY’S SCRIPTURE</span><blockquote>“${s.text}”</blockquote><cite>${s.reference}</cite></div></aside>`;}
-function lessonLanguageCard(m){return `<aside class="lesson-language-card vocabulary-only"><div><small>LESSON ${m.id} · WORDS TO KNOW</small><p>${m.title}</p></div><div class="lesson-term-strip" aria-label="Lesson ${m.id} terminology">${m.terms.map(term=>`<span>${term}</span>`).join('')}</div></aside>`;}
+function lessonLanguageCard(m){return `<aside class="lesson-language-card vocabulary-only"><div><small>LESSON ${m.id} · WORDS TO KNOW</small><p>${m.title}</p></div><div class="lesson-term-strip" aria-label="Lesson ${m.id} terminology">${m.terms.map((term,index)=>`<button data-action="lesson-word-${index}" aria-pressed="false" aria-controls="lesson-word-definition">${comicEscape(term)}</button>`).join('')}</div><div id="lesson-word-definition" class="lesson-word-definition" role="status" aria-live="polite"><b>Explore a word</b><p>Tap or focus a word, then activate it to read its existing lesson definition.</p><p class="lesson-word-example" hidden></p></div></aside>`;}
+
 function characterHeader(m,step,p){
  const lead=castIds.includes(p?.avatar)?p.avatar:missionGuide(m.id),c=character(lead);
  const cues={brief:'Here is the big idea.',choice:'Read the choices. Then choose!',event:'A surprise! Adjust the plan.',debrief:'Tell what you learned.'};
  const bigIdea=`<p class="big-idea-description"><strong>LESSON ${String(m.id).padStart(2,'0')} · BIG IDEA:</strong> ${m.coreIdea}</p>`;
- return `<header class="lesson-character-header sequence-${step}" data-character="${lead}" data-lesson-speaker="${lead}" data-career-player="true">${portrait(lead,'header-character lead-character')}<div class="direction-bubble"><small>${c.name.toUpperCase()} · YOUR CAREER HERO EXPLAINS THE LESSON</small><b>${cues[step]||cues.brief}</b>${bigIdea}<span>${m.title}</span></div><div class="lesson-number-badge" aria-label="Lesson ${m.id}"><small>LESSON</small><b>${String(m.id).padStart(2,'0')}</b><i aria-hidden="true">${m.icon}</i></div></header>`;
+ return `<header class="lesson-character-header sequence-${step}" data-character="${lead}" data-lesson-speaker="${lead}" data-career-player="true">${portrait(lead,'header-character lead-character')}<div class="direction-bubble"><small>${c.name.toUpperCase()} · YOUR CAREER HERO EXPLAINS THE LESSON</small><b>${lessonComicOpen(p.active)?'Explore the lesson, one panel at a time.':cues[step]||cues.brief}</b>${bigIdea}<span>${m.title}</span></div><div class="lesson-number-badge" aria-label="Lesson ${m.id}"><small>LESSON</small><b>${String(m.id).padStart(2,'0')}</b><i aria-hidden="true">${m.icon}</i></div></header>`;
 }
 function characterFooter(m,step){
  const cue=step==='debrief'?'Carry this skill to the next lesson.':'Read the challenge, complete the activity, and make your choice.';
@@ -169,8 +171,9 @@ function advancedVisual(p,a,m,button){
  const guideId=missionGuide(m.id),guide=character(guideId);
  if(a.step==='brief')body=body.replace('<div class="mission-number">',`<div class="mission-guide">${portrait(guideId,'mission-guide-character')}<span><b>${guide.name}</b>Your mission guide</span></div><div class="mission-number">`);
  if(a.step==='choice')body=body.replace('<span class="eyebrow">',`<div class="mission-guide compact">${portrait(guideId,'mission-guide-character')}<span><b>${guide.name}</b>Choose with me!</span></div><span class="eyebrow">`);
+ body=withLessonComic(m,a,p.avatar,body,button);
  const verseSpeaker=scriptureSpeaker(m,p);
- return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ${phase} · MISSION ${String(m.id).padStart(2,'0')}</span></div>${scriptureCard(m,verseSpeaker)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${phaseRail}<section class="mission-body visual-play advanced-play interaction-${mode}" data-read="${m.coreIdea.replaceAll('"','&quot;')}">${body}</section>${characterFooter(m,a.step)}`;
+ return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ${phase} · MISSION ${String(m.id).padStart(2,'0')}</span></div>${scriptureCard(m,verseSpeaker)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${phaseRail}<section class="mission-body visual-play advanced-play interaction-${mode}" data-read="${comicEscape(lessonComicOpen(a)?lessonComicRead(m,a):m.coreIdea)}">${body}</section>${characterFooter(m,a.step)}`;
 }
 function taskActor(type,progress){
  const id=type==='time'||type==='repair'?'jordan':type==='skill'||type==='saving'?'maya':type==='income'||type==='planning'?'kai':'sofia';
@@ -259,8 +262,9 @@ export function visualMission(p,button,escape){
  if(a.id===3&&a.step==='event')body=`${garageRepairScene((a.repairDone||[]).length)}${body.replace('<div class="repair-scene">',`<div class="repair-scene actor-stage">${taskActor('repair',(a.repairDone||[]).length)}`)}`;
  if(a.id===4&&a.step==='choice')body=body.replace('<div class="income-stage budget-map">',`<div class="income-stage budget-map actor-stage">${taskActor('planning',(a.mapDone||[]).length)}`);
  const read=frameRead(a);
+ body=withLessonComic(m,a,p.avatar,body,button);
  const verseSpeaker=scriptureSpeaker(m,p);
- return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ONE MONEY ADVENTURE${a.practice?' · PRACTICE':''}</span></div>${scriptureCard(m,verseSpeaker)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${storyRail(a)}<section class="mission-body visual-play" data-read="${escape(m.coreIdea)}">${body}</section>${characterFooter(m,a.step)}`;
+ return `<div class="mission-toolbar">${button('← My city','home','text-button')}<span>CAREER MODE · ONE MONEY ADVENTURE${a.practice?' · PRACTICE':''}</span></div>${scriptureCard(m,verseSpeaker)}${characterHeader(m,a.step,p)}${lessonLanguageCard(m)}${storyRail(a)}<section class="mission-body visual-play" data-read="${escape(lessonComicOpen(a)?lessonComicRead(m,a):m.coreIdea)}">${body}</section>${characterFooter(m,a.step)}`;
 }
 export function dropAction(p,token,target){
  const a=p.active;if(!a)return null;

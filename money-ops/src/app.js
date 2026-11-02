@@ -1,10 +1,12 @@
+import {lessonComicPanels} from './lesson-comic.js';
+import {lessonVocabulary} from './runner-vocabulary.js';
 import {renderCity} from './moneybread/ui.js?v=46.9';
 import {newJobPractice,jobTotals} from './moneybread/job-practice.js';
 import {lessonOneBeats} from './lesson-one-comic.js';
 import {destination} from './moneybread/destinations.js';
 import {attachCity,applyCity,canOpen,currentLevel,noteLesson,validCity,freshCity} from './moneybread/index.js';
 import {installDrag} from './drag.js';
-import {visualMission,playAction,dropAction,littleBase} from './play.js';
+import {visualMission,playAction,dropAction,littleBase} from './play.js?v=46.10';
 import {missions,badges} from './content.js';
 import {newGame,begin,choose,resolve,finish,rank,nextRank,netWorth,ranks} from './engine.js';
 import {load,save,clear,storageWarning} from './persistence.js';
@@ -23,7 +25,7 @@ const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',ma
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const button=(text,action,cls='',extra='')=>`<button class="${cls}" data-action="${action}" ${extra}>${text}</button>`;
 function progress(){const next=nextRank(p.xp);const current=ranks.filter(r=>p.xp>=r[1]).at(-1);const pct=next?Math.min(100,(p.xp-current[1])/(next[1]-current[1])*100):100;return `<div class="xp-row"><span>${p.xp} XP</span><span>${next?`${next[1]-p.xp} TO ${next[0].toUpperCase()}`:'TOP RANK'}</span></div><div class="bar" role="progressbar" aria-label="Rank progress" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>`;}
-function header(){const arcade=p.mode==='arcade';return `<header><a class="brand" href="./" aria-label="Money Ops home"><span class="brand-mark">M<span>↗</span></span><span><small>FINANCIAL FREEDOM</small><b>MONEY OPS<span class="version"> / 46.9</span></b></span></a><div class="header-right"><span class="system ${arcade?'arcade-unsaved':''}"><i></i> ${p.jobPracticeOnly?'PRACTICE · NOT SAVED':arcade?'ARCADE MODE · NOT SAVED':'CAREER SAVED'}</span>${button('HOME','site-home','home-nav-button')}${button(arcade?'ARCADE LEVELS':'PLAY ARCADE','arcade-open-header','arcade-nav-button')}${button(p.muted?'SOUND OFF':'SOUND ON','mute','utility',`aria-pressed="${!p.muted}" aria-label="${p.muted?'Enable':'Mute'} sound"`)}</div></header>`;}
+function header(){const arcade=p.mode==='arcade';return `<header><a class="brand" href="./" aria-label="Money Ops home"><span class="brand-mark">M<span>↗</span></span><span><small>FINANCIAL FREEDOM</small><b>MONEY OPS<span class="version"> / 46.10</span></b></span></a><div class="header-right"><span class="system ${arcade?'arcade-unsaved':''}"><i></i> ${p.jobPracticeOnly?'PRACTICE · NOT SAVED':arcade?'ARCADE MODE · NOT SAVED':'CAREER SAVED'}</span>${button('HOME','site-home','home-nav-button')}${button(arcade?'ARCADE LEVELS':'PLAY ARCADE','arcade-open-header','arcade-nav-button')}${button(p.muted?'SOUND OFF':'SOUND ON','mute','utility',`aria-pressed="${!p.muted}" aria-label="${p.muted?'Enable':'Mute'} sound"`)}</div></header>`;}
 function playerPortrait(className='',id=p.avatar){return characters[id]?portrait(id,className):`<span class="avatar">${escape(id)}</span>`;}
 function runnerCharacterId(){return castIds.includes(p?.avatar)?p.avatar:'maya';}
 const bonusItems=[{id:'boots',name:'BOOST BOOTS',price:5,icon:'⇧',detail:'Jump higher.'},{id:'magnet',name:'COIN MAGNET',price:10,icon:'◎',detail:'Pull coins closer.'},{id:'companion',name:'PENNY THE MONEY DRAGON',price:15,icon:'🐲',detail:'Your original Money Ops sidekick blocks one hit.'}];
@@ -175,8 +177,19 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b
  if(action==='profile'){tab='profile';render(true);return;}
  if(action.startsWith('begin-')){const id=Number(action.slice(6));if(p.moneybread&&!canOpen(p.moneybread,id)){document.querySelector('#announcer').textContent='Complete the current lesson and weekly city reflection to unlock this level.';return;}if(p.active&&p.active.id===id){commit({...p,screen:'mission'},'start');return;}if(p.active){document.querySelector('#announcer').textContent='Finish your current mission before starting another.';return;}if(p.completed.includes(id)||runnerProgress(p,id).pre.completed){commit(startCareerLesson(p,id),'start');return;}commit(openRunner(p,id,'pre'),'start');return;}
  if(action==='home'){commit({...p,screen:'base'});return;}
+ if(action.startsWith('lesson-word-')&&p.active){const m=missions.find(m=>m.id===p.active.id),index=Number(action.slice(12)),entry=lessonVocabulary(m.id)[index];if(!entry)return;const panel=document.querySelector('#lesson-word-definition');panel.querySelector('b').textContent=entry.term;panel.querySelector('p').textContent=entry.definition;const inline=document.querySelector('#active-comic-word-definition');if(inline){inline.hidden=!b.classList.contains('comic-cue-word');inline.querySelector('b').textContent=entry.term;inline.querySelector('p').textContent=entry.definition;document.querySelector('.comic-cue-word')?.setAttribute('aria-expanded',String(!inline.hidden));}const example=panel.querySelector('.lesson-word-example'),beat=lessonComicPanels(m).find(panel=>panel.term===entry.term);if(example){example.hidden=!beat;example.textContent=beat?`From this lesson: ${beat.text}`:'';}for(const node of document.querySelectorAll('[data-action^="lesson-word-"]'))node.setAttribute('aria-pressed',String(node.dataset.action===action));return;}
+ if(action.startsWith('active-comic-')&&p.active?.step==='choice'){
+  const a=p.active,m=missions.find(m=>m.id===a.id),count=lessonComicPanels(m).length,index=Math.max(0,Math.min(count-1,Number(a.lessonPanel)||0));let next={...a};
+  if(action==='active-comic-replay')next={...a,lessonPanel:0,lessonComicDone:false};
+  else if(action==='active-comic-back')next.lessonPanel=Math.max(0,index-1);
+  else if(action==='active-comic-skip')next.lessonComicDone=true;
+  else if(action==='active-comic-next'){if(index===count-1)next.lessonComicDone=true;else next.lessonPanel=index+1;}
+  else return;
+  commit({...p,active:next},'click',false);
+  const target=document.querySelector('[data-comic-panel]')||document.querySelector('.mission-body h1');if(target){target.setAttribute('tabindex','-1');target.focus();}return;
+ }
  if(action==='comic-back'&&p.active?.id===1){commit({...p,active:{...p.active,comicBeat:Math.max(0,(p.active.comicBeat||0)-1)}},'click',false);document.querySelector('.comic-panel')?.focus();return;}
- if(action==='next'){const a=p.active;if(a?.id===1&&['brief','learn'].includes(a.step)&&(a.comicBeat||0)<lessonOneBeats().length-1){commit({...p,active:{...a,comicBeat:(a.comicBeat||0)+1}},'click',false);document.querySelector('.comic-panel')?.focus();return;}if(a&&['brief','learn'].includes(a.step))commit({...p,active:{...a,step:'choice'}});return;}
+ if(action==='next'){const a=p.active;if(a?.id===1&&['brief','learn'].includes(a.step)&&(a.comicBeat||0)<lessonOneBeats().length-1){commit({...p,active:{...a,comicBeat:(a.comicBeat||0)+1}},'click',false);document.querySelector('.comic-panel')?.focus();return;}if(a&&['brief','learn'].includes(a.step))commit({...p,active:{...a,step:'choice',...(a.id===1?{lessonComicDone:true}:{})}});return;}
  if(action.startsWith('choose-')){commit(choose(p,action.slice(7)),p.active.id===1?'earn':'warning');return;}
  if(action==='resolve'){commit(resolve(p),'loss');return;}
  if(action==='finish-to-plan'&&p.active?.id===1&&p.active.step==='debrief'){completeCurrentLesson();return;}
@@ -272,3 +285,5 @@ app.addEventListener('input',event=>{
  root.querySelector('.job-guide').classList.remove('job-checked');
  const panel=root.querySelector('.job-totals');panel.classList.remove('totals-updated');void panel.offsetWidth;panel.classList.add('totals-updated');
 });
+
+app.addEventListener('keydown',event=>{if(!event.target.matches('[data-comic-panel]'))return;const action=event.key==='ArrowRight'?'active-comic-next':event.key==='ArrowLeft'?'active-comic-back':null;if(action){event.preventDefault();document.querySelector(`[data-action="${action}"]`)?.click();}});

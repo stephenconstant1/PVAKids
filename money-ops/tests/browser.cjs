@@ -20,11 +20,16 @@ const assert=require('node:assert/strict');
  const click=(p,a)=>p.locator(`[data-action="${a}"]`).first().click();
  const state=p=>p.evaluate(()=>JSON.parse(localStorage.getItem('money-ops-v02')));
  const moneyState=p=>({cash:p.cash,savings:p.savings,debt:p.debt,xp:p.xp,completed:p.completed});
+ async function pairBounds(p,source,destination){
+  await destination.scrollIntoViewIfNeeded();let a=await source.boundingBox(),b=await destination.boundingBox();
+  // Center both interaction points, including tall lesson layouts.
+  const offset=(a.y+a.height/2+b.y+b.height/2)/2-p.viewportSize().height/2;
+  await p.evaluate(delta=>window.scrollBy(0,delta),offset);
+  return [await source.boundingBox(),await destination.boundingBox()];
+ }
  async function drag(p,token,target){
   const source=p.locator(`[data-drag="${token}"]:not(:disabled)`).filter({visible:true}).first(),destination=p.locator(`[data-drop="${target}"]`);
-  await destination.scrollIntoViewIfNeeded();
-  const a=await source.boundingBox();
-  const b=await destination.boundingBox();
+  const [a,b]=await pairBounds(p,source,destination);
   await p.mouse.move(a.x+a.width/2,a.y+a.height/2);
   await p.mouse.down();
   await p.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:15});
@@ -34,9 +39,7 @@ const assert=require('node:assert/strict');
  async function touchDrag(p,token,target){
   const client=await p.context().newCDPSession(p);
   const source=p.locator(`[data-drag="${token}"]:not(:disabled)`).first(),destination=p.locator(`[data-drop="${target}"]`);
-  await destination.scrollIntoViewIfNeeded();
-  const a=await source.boundingBox();
-  const b=await destination.boundingBox();
+  const [a,b]=await pairBounds(p,source,destination);
   const from={x:a.x+a.width/2,y:a.y+a.height/2},to={x:b.x+b.width/2,y:b.y+b.height/2};
   await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[from]});
   for(let i=1;i<=12;i++)await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:from.x+(to.x-from.x)*i/12,y:from.y+(to.y-from.y)*i/12}]});
@@ -136,6 +139,7 @@ const assert=require('node:assert/strict');
    await p.setViewportSize({width:1280,height:950});
   }
   do {await click(p,'next');} while(id===1&&await p.locator('.lesson-comic').count());
+  if(await p.locator('.active-lesson-comic').count())await click(p,'active-comic-skip');
   await assertCharacterLessonPattern(p,id);
  }
  async function finishLesson(p,action='finish',exerciseBonus=false){
@@ -381,6 +385,7 @@ const assert=require('node:assert/strict');
   assert.equal(await p.locator('.character-dialogue .dialogue-card').count(),2);
   await click(p,'next');
   await assertCharacterLessonPattern(p,id);
+  if(await p.locator('.active-lesson-comic').count())await click(p,'active-comic-skip');
   assert.ok(await p.locator('.advanced-decision .decision-card').count()>=2);
   assert.equal(await p.locator('.advanced-decision .lesson-action-demo,.advanced-decision .typing-computer,.advanced-decision .animated-arm,.advanced-decision .teacher-pointer,.advanced-decision .student-desk').count(),0,`mission ${id} must not contain an automated character demonstration`);
   assert.match(await p.locator('.advanced-decision>.play-prompt').textContent(),/complete the activity yourself/i);
