@@ -5,7 +5,7 @@ import {FinancialRunner} from '../src/runner.js';
 import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
 import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
-import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto,encounterBag} from '../src/moneybread/waterfront-route.js';
+import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto,encounterBag,coinGroup,obstacleGeometry} from '../src/moneybread/waterfront-route.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
@@ -222,7 +222,7 @@ test('route boxes have a forgiving real jump window at every intensity and mode'
 
 test('spaced coin arcs require jumping and are reachable',()=>{
  for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
-  const make=()=>{const r=harness(1,phase,{intensityLevel}).runner;r.routeBag=[0];r.routeGapRemaining=0;r.updateWaterfrontRoute(0,r.speed);r.routeGapRemaining=1e9;return r;};
+  const make=()=>{const r=harness(1,phase,{intensityLevel}).runner;r.climb.introduced=true;r.routeBag=[0];r.routeGapRemaining=0;r.updateWaterfrontRoute(0,r.speed);r.routeGapRemaining=1e9;return r;};
   const sample=make();assert(sample.entities.every(e=>e.y+e.h<sample.playerBox().y),'standing must miss every coin');sample.destroy();
   let best=0;
   for(let lead=-60;lead<180;lead+=3){
@@ -313,4 +313,83 @@ test('slide crushes ground boxes without losing life and never activates in the 
 test('encounter bags retain balance without a fixed repeating order',()=>{
  assert.deepEqual([...encounterBag(()=>.3)].sort(),[0,1,2,3]);
  assert.notDeepEqual(encounterBag(()=>0),encounterBag(()=>.99));
+});
+
+
+test('one jump reaches all three arc coins at every pace in Arcade and Bonus',()=>{
+ for(const phase of ['pre','post'])for(const multiplier of [.68,1,1.5])for(const pace of [WALK_SPEED,RUN_SPEED]){
+  const r=harness(1,phase,{intensityLevel:multiplier===.68?0:multiplier}).runner;
+  r.running=true;r.routeGapRemaining=1e9;
+  // Hold a measured pace without distance/coin acceleration during this jump.
+  r.accelerates=false;r.speedMultiplier=pace/WALK_SPEED*multiplier;
+  const speed=pace*RUNNER_ZOOM*r.config.difficulty*multiplier;
+  r.physics.vx=speed/RUNNER_ZOOM;r.speed=speed;
+  const group=coinGroup(speed,()=>0),flight=jumpEnvelope(speed).flight,b=r.playerBox();
+  const center=b.x+b.w/2+speed*flight/2;
+  r.entities=Array.from({length:3},(_,i)=>({...r.config.collectibleSet[0],type:'collectible',
+   x:center+(i-1)*group.step-21,y:r.ground-group.height-(i===1?group.rise:0),w:42,h:42,done:false}));
+  r.jump();for(let t=0;t<flight+.05;t+=1/120)r.update(1/120,t);
+  assert.equal(r.collected,3,`${phase}/${multiplier}/${pace}: one arc must fit one jump`);r.destroy();
+ }
+});
+
+test('ground boxes allow a broad jump timing window without a stomp or slide',()=>{
+ for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5])for(const offset of [-.035,0,.035]){
+  const r=harness(1,phase,{intensityLevel}).runner;r.running=true;r.routeGapRemaining=1e9;
+  const speed=r.speed;r.physics.vx=speed/RUNNER_ZOOM;r.accelerates=false;
+  const fit=obstacleGeometry(speed,132,88),b=r.playerBox(),flight=jumpEnvelope(speed).flight;
+  r.entities=[{type:'obstacle',behavior:'ground',x:b.x+b.w/2+speed*(flight/2+offset)-fit.w/2,
+   y:r.ground-fit.h,baseY:r.ground-fit.h,...fit,done:false,passed:false}];
+  r.jump();for(let t=0;t<flight+.25;t+=1/120)r.update(1/120,t);
+  assert.equal(r.lives,3,`${phase}/${intensityLevel}/${offset}`);
+  assert.equal(r.vocabEvent?.action,'CLEARED','a clean jump must not depend on stomp forgiveness');r.destroy();
+ }
+});
+
+test('Money Ladder climbs, rests, descends and exits safely at every difficulty and mode',()=>{
+ for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5])for(const characterId of ['jordan','maya','kai','sofia','eli','ruby']){
+  const r=harness(1,phase,{intensityLevel,characterId}).runner;r.running=true;r.routeGapRemaining=1e9;
+  r.climb.spawn();const b=r.playerBox();r.climb.pole.x=b.x;r.entities=[r.climb.pole];
+  const before={score:r.score,coins:r.coins,bonus:r.bonusMoney,distance:r.distance,lives:r.lives};
+  r.keyDown({code:'ArrowUp',preventDefault(){}});assert(r.climb.attached);assert(!r.jumpMotion);
+  r.update(.25,0);const y=r.player.y;r.keyUp({code:'ArrowUp'});r.update(.25,0);assert.equal(r.player.y,y,'release must hold position');
+  r.keyDown({code:'ArrowDown',preventDefault(){}});r.update(.1,0);assert(r.player.y>y,'Down descends instead of ducking');assert(!r.player.duck);r.keyUp({code:'ArrowDown'});
+  assert(!r.climb.allocate('needs'),'allocation starts at the top');
+  r.climb.hold('test',1);for(let i=0;i<10;i++)r.update(.25,0);r.climb.release('test');assert(r.climb.reachedTop);
+  assert.equal(r.player.y+r.player.h,r.climb.pole.y);
+  for(const name of ['needs','wants','savings'])assert(r.climb.allocate(name));
+  assert(!r.climb.allocate('needs'),'no duplicate allocation');assert(!r.climb.allocate('unknown'));assert(!r.climb.allocate('constructor'));
+  r.climb.hold('down',-1);r.update(.1,0);r.climb.release('down');assert(!r.climb.allocate('needs'));r.climb.hold('up',1);r.update(.1,0);r.climb.release('up');
+  assert.equal(r.climb.remaining,0);assert.deepEqual({score:r.score,coins:r.coins,bonus:r.bonusMoney,distance:r.distance,lives:r.lives},before);
+  r.keyDown({code:'Space',preventDefault(){}});assert(!r.climb.attached);assert(r.player.vy<0);
+  for(let i=0;i<150;i++)r.update(.01,i*.01);assert(r.player.grounded);assert.equal(r.lives,3);r.destroy();
+ }
+});
+
+test('climb controls are contextual, pause releases held directions, and the ground route stays optional',()=>{
+ const r=harness(1).runner;r.running=true;r.routeGapRemaining=1e9;
+ r.keyDown({code:'ArrowUp',preventDefault(){}});assert(r.player.vy<0&&!r.climb.attached);
+ for(let i=0;i<100;i++)r.update(.01,0);
+ r.keyDown({code:'ArrowDown',preventDefault(){}});assert(r.player.duck);r.keyUp({code:'ArrowDown'});
+ r.climb.spawn();r.climb.pole.x=r.playerBox().x;r.climb.hold('touch',1);r.update(.2,0);r.setPaused(true);assert.equal(r.climb.inputs.size,0);r.setPaused(false);
+ const y=r.player.y;r.update(.2,0);assert.equal(r.player.y,y);r.jump();assert(!r.climb.attached);r.destroy();
+ const skip=harness(1).runner;skip.running=true;for(let i=0;i<600;i++)skip.update(.02,i*.02);
+ assert(!skip.climb.attached&&!skip.climb.visited);assert(skip.distance>0);assert(skip.routeSlot>0,'normal encounters resume after the skipped ladder');skip.destroy();
+});
+
+test('actual Level 1 ground boxes cannot be bypassed by sliding',()=>{
+ for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
+  const r=harness(1,phase,{intensityLevel}).runner;r.running=true;r.routeGapRemaining=1e9;r.spawnObstacle();
+  const box=r.entities.at(-1);assert(box.jumpRequired);const b=r.playerBox();box.x=b.x;box.w=80;
+  r.slide();r.update(.01,0);assert.equal(r.lives,2);assert.equal(r.avoided,0);r.destroy();
+ }
+});
+
+
+test('phone climb hold can start before contact and cancellation prevents unwanted attachment',()=>{
+ const r=harness(1).runner;r.running=true;r.routeGapRemaining=1e9;r.climb.spawn();r.climb.pole.x=r.playerBox().x+200;
+ r.climb.queue('phone',1);assert(!r.climb.attached);r.climb.release('phone');
+ for(let i=0;i<80;i++)r.update(.01,0);assert(!r.climb.attached);r.destroy();
+ const held=harness(1).runner;held.running=true;held.routeGapRemaining=1e9;held.climb.spawn();held.climb.pole.x=held.playerBox().x+200;held.climb.queue('phone',1);
+ for(let i=0;i<80;i++)held.update(.01,0);assert(held.climb.attached);held.climb.release('phone');const y=held.player.y;held.update(.2,0);assert.equal(held.player.y,y);held.destroy();
 });

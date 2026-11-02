@@ -3,7 +3,7 @@
 export declare const TILE = 16;
 export declare const BODY_WIDTH = 12, BODY_HEIGHT = 26, DUCK_HEIGHT = 14;
 export declare const WALK_SPEED: number, RUN_SPEED: number;
-export declare const GRAVITY = 4800, ACCELERATION = 1200, DECELERATION = 1800;
+export declare const GRAVITY = 2400, ACCELERATION = 1200, DECELERATION = 1800;
 export interface TileMap {
     solid(x: number, y: number): boolean;
 }

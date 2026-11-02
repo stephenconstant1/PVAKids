@@ -3,7 +3,9 @@
 export const TILE = 16;
 export const BODY_WIDTH = 12, BODY_HEIGHT = 26, DUCK_HEIGHT = 14;
 export const WALK_SPEED = 1.56 * 60, RUN_SPEED = 2.56 * 60;
-export const GRAVITY = 4800, ACCELERATION = 1200, DECELERATION = 1800;
+// Keep the 4–5 tile apex while giving players a readable 0.46–0.52s flight.
+// launchJump derives its impulse from this gravity and the requested height.
+export const GRAVITY = 2400, ACCELERATION = 1200, DECELERATION = 1800;
 const EPS = 1e-7;
 export class ArrayTileMap {
     level;

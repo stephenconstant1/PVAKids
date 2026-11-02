@@ -83,3 +83,53 @@
 .reference-crew-hero figure,.mb-source-city{position:relative}
 .everest-approved-patch{display:block;position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:1280/748;pointer-events:none;overflow:hidden}
 .crew-base-missing .everest-approved-patch{display:none}
+
+/* Building selection uses independent cards rather than the compact task rows. */
+.mb-projects {grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;align-items:start;}
+.mb-projects>article[data-building-card] {display:grid;grid-template-columns:1fr;align-items:start;gap:12px;padding:18px;}
+.mb-projects>article[data-building-card]>.project-building-art {width:120px;max-width:100%;justify-self:center;}
+.mb-projects>article[data-building-card]>div {width:100%;min-width:0;}
+.mb-projects>article[data-building-card] h3 {font-size:20px;line-height:1.3;}
+.mb-projects>article[data-building-card] p {font-size:14px;line-height:1.55;}
+.mb-projects>article[data-building-card] .mb-button {margin-left:0;max-width:none;min-height:48px;white-space:normal;}
+.mb-projects>article[data-building-card]>.mb-button {width:100%;}
+.mb-projects>article[data-building-card] [data-building-detail] {box-sizing:border-box;width:100%;color:#143b39;}
+.mb-projects>article[data-building-card] [data-building-detail] p {color:#143b39;}
+
+.job-practice {color:#f6f0d6;}.job-practice h2 {font-size:clamp(30px,5vw,48px);margin:10px 0 18px;color:#ffdf86;}.job-practice p {font-size:16px;line-height:1.6;}
+.job-city-scene {margin:0 0 20px;}.job-city-scene img {display:block;width:100%;height:auto;border-radius:18px;border:3px solid #f2ce71;}
+.job-plan-choices {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0;}.job-plan-choices .mb-button {display:flex;flex-direction:column;gap:8px;white-space:normal;min-height:100px;animation:job-arrive .2s ease-out;}.job-plan-choices .selected {border:3px solid #ffdf86;background:#356253;}
+.job-customer,.job-guide {padding:16px;border:2px solid #8ab991;border-radius:16px;background:#234b43;margin:18px 0;}.job-guide {display:flex;align-items:center;gap:18px;}.job-guide .mb-portrait {height:140px;flex:0 0 80px;}.job-checked .mb-portrait {animation:job-cheer .3s ease-out;}
+.job-cost-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}.job-cost-card {padding:16px;border:2px solid #d7bc73;background:#fff1cb;border-radius:16px;color:#173f37;}.job-cost-card label,.job-cost-card p {color:#173f37;}.job-cost-card label {font-size:20px;font-weight:800;}.job-cost-card p {font-size:15px;}.job-cost-card input {box-sizing:border-box;width:100%;min-height:48px;padding:12px;border:2px solid #456d60;border-radius:10px;font-size:20px;color:#173f37;background:white;}
+.job-totals {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0;}.job-totals span {padding:16px;border:2px solid #94bd87;border-radius:14px;background:#d9edb0;color:#173f37;font-size:15px;}.job-totals output {display:block;font-size:30px;font-weight:900;overflow-wrap:anywhere;}.job-plan-feedback {padding:18px;background:#fff1cb;color:#173f37;border-radius:14px;margin:18px 0;}.job-plan-feedback p {color:#173f37;}.job-practice>label {font-size:18px;font-weight:800;}.job-practice textarea {box-sizing:border-box;width:100%;font-size:18px;padding:12px;margin-top:12px;background:#fffdf3;color:#173f37;}.job-city-actions {margin-top:28px;padding:16px;border:2px solid #8ab991;border-radius:16px;}.job-city-actions summary {cursor:pointer;min-height:48px;font-size:18px;font-weight:800;}
+.job-practice button:focus-visible,.job-practice input:focus-visible,.job-practice textarea:focus-visible,.job-city-actions summary:focus-visible {outline:4px solid #ffcd67;outline-offset:4px;}.totals-updated {animation:job-arrive .2s ease-out;}
+@keyframes job-arrive {from {transform:translateY(5px)}to {transform:none}}@keyframes job-cheer {50% {transform:translateY(-5px)}100% {transform:none}}
+@media(max-width:700px){.job-plan-choices,.job-cost-grid,.job-totals {grid-template-columns:1fr;}.job-guide {align-items:center;}.job-practice p {font-size:16px;}.job-city-actions {padding:10px;}}
+@media(prefers-reduced-motion:reduce){.job-plan-choices .mb-button,.job-checked .mb-portrait,.totals-updated {animation:none!important;transition:none!important;}}
+
+/* Use the supplied board itself; HTML controls replace the painted controls. */
+.job-picture-board {position:relative;width:100%;overflow:hidden;border-radius:18px;border:3px solid #f2ce71;box-sizing:border-box;}
+.job-picture-board>img {display:block;width:100%;height:auto;}
+.picture-tools>* {position:absolute;box-sizing:border-box;font-family:Arial,sans-serif;color:#173f37;}
+.picture-step {width:3.2%;height:5.7%;min-width:36px;min-height:36px;transform:translate(-1px,-1px);padding:0;border:2px solid white;border-radius:8px;background:#087bc2;color:white;font-size:24px;font-weight:900;cursor:pointer;}
+.picture-cost-input {width:4.8%;height:5.8%;padding:0 2px;border:2px solid #d7a74f;border-radius:6px;background:#fffdf1;text-align:center;font-size:18px;appearance:textfield;}
+.picture-cost-input::-webkit-inner-spin-button {appearance:none;}
+.picture-cost-value {width:10%;height:6.2%;border-radius:5px;background:#fff2c9;font-size:clamp(18px,2.5vw,35px);font-weight:900;text-align:center;}
+.picture-payment {left:85.1%;top:43.5%;width:11%;height:6.7%;background:#dff7bb;color:#134d28;text-align:center;font-size:clamp(20px,3.5vw,48px);font-weight:900;line-height:1;}
+.picture-job-name {left:64.7%;top:40%;width:16%;height:7%;display:grid;place-items:center;background:#fffdf0;color:#143755;font-size:clamp(16px,2vw,26px);font-weight:900;text-align:center;line-height:1.05;}
+.picture-total {left:59%;top:89.7%;width:11%;height:7%;background:#fff2c9;text-align:center;font-size:clamp(24px,3vw,44px);font-weight:900;line-height:1;}
+.picture-remaining {left:85.5%;top:72.3%;width:11.2%;height:8.6%;background:#e7f7b9;text-align:center;font-size:clamp(24px,4vw,54px);font-weight:900;line-height:1.1;}
+.picture-check {left:80%;top:86.8%;width:17.8%;height:9%;border:3px solid white;border-radius:18px;background:#158b3c;color:white;font-size:clamp(16px,1.9vw,26px);font-weight:900;cursor:pointer;}
+.job-cost-tools {display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:8px;align-items:center;}.job-cost-tools .mb-button {min-width:48px;min-height:48px;padding:4px;font-size:26px;color:white;background:#087bc2;}.job-cost-tools input {min-width:0;text-align:center;}
+.job-check-primary {min-height:52px;font-size:20px;padding:12px 24px!important;}.picture-caption {font-size:14px!important;}
+.job-city-actions .mb-panel {padding:10px;}.job-city-actions .mb-projects {grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));}
+@media(max-width:999px){.picture-tools {display:none;}}
+@media(min-width:1000px){.picture-step {min-width:44px;min-height:44px;}}
+.picture-mobile-tools {display:none;}
+@media(max-width:999px){.picture-mobile-tools{display:flex;position:absolute;left:44%;top:55%;width:54%;height:42%;min-height:48px;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:2px solid #b88b43;border-radius:12px;background:#fff4d9f2;color:#173f37;font-size:clamp(12px,2.4vw,22px);font-weight:900;cursor:pointer}.picture-mobile-tools small{font-size:.75em}}
+.job-city-actions .mb-panel {padding:0;border:0;box-shadow:none;background:transparent;}
+.job-city-actions .mb-projects>article[data-building-card] {padding:12px;}
+.job-picture-board input.picture-cost-input {box-sizing:border-box;width:4.8%;min-width:0;max-width:none;height:5.8%;min-height:0;max-height:none;padding:0 2px;margin:0;background:#fffdf1;color:#173f37;border:2px solid #d7a74f;border-radius:6px;text-align:center;font-size:18px;}
+.job-picture-board button.picture-check {font-size:clamp(16px,1.9vw,26px);font-weight:900;padding:0;}
+.job-picture-board button.picture-step {font-size:24px;font-weight:900;padding:0;}
+.job-practice button.job-check-primary {font-size:20px;min-height:52px;}

@@ -1,0 +1,30 @@
+const {chromium}=require('playwright');const assert=require('node:assert/strict');const {mkdirSync}=require('node:fs');
+(async()=>{const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});try{
+ for(const width of [320,390,768,1440])for(const job of ['service','tutor','creator']){
+ const reduced=width===320||width===768,page=await browser.newPage({viewport:{width,height:1000},hasTouch:width<500,reducedMotion:reduced?'reduce':'no-preference'}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(process.env.MONEY_OPS_URL+(width===768?'/money-ops/':'/'));
+ await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {attachCity,noteLesson,applyCity}=await import('./src/moneybread/simulation.js');let p=attachCity(newGame('Customer planner','maya'));p.completed=[1];p=noteLesson(p,1);p.moneybread=applyCity(p.moneybread,{type:'work',job:'service'},[1]);p.moneybread=applyCity(p.moneybread,{type:'allocate',plan:'save'},[1]);localStorage.setItem('money-ops-v02',JSON.stringify(p));});
+ await page.reload();await page.locator('[data-action="continue-career"]').first().click();await page.locator('[data-action="mb-view-work"]').first().click();
+ const choice=page.locator(`[data-action="job-plan-${job}"]`);if(width<500)await choice.tap();else{await choice.focus();await page.keyboard.press('Enter');}
+ assert.equal(await choice.getAttribute('aria-pressed'),'true');const original=await page.evaluate(()=>localStorage.getItem('money-ops-v02'));
+ const payments={service:100,tutor:130,creator:155},supplies={service:0,tutor:10,creator:25};assert.equal(await page.locator('.job-totals [data-job-payment]').textContent(),String(payments[job]));assert.equal(await page.locator('#job-materials').inputValue(),String(supplies[job]));
+ if(width<500){await page.locator('.picture-mobile-tools').tap();assert.equal(await page.locator('#job-materials').evaluate(n=>n===document.activeElement),true);}
+ const plus=width===1440?page.locator('.picture-tools [data-job-step="materials"][data-direction="1"]'):page.locator('.job-cost-tools [data-job-step="materials"][data-direction="1"]');
+ await plus.click();assert.equal(await page.locator('#job-materials').inputValue(),String(supplies[job]+1));
+ if(width===1440){const field=page.locator('.picture-tools [data-job-cost="materials"]');const box=await field.boundingBox();assert(box.width>40&&box.width<90,'image inputs must stay inside their illustrated field');await field.fill(String(supplies[job]+1));assert.equal(await page.locator('#job-materials').inputValue(),String(supplies[job]+1));assert.equal(await page.locator('.picture-tools [data-job-total]').textContent(),String(supplies[job]+1));await page.locator('.picture-tools [data-job-step="materials"][data-direction="-1"]').click();assert.equal(await page.locator('#job-materials').inputValue(),String(supplies[job]));}
+ for(const [category,value] of [['materials','10'],['labor','40'],['overhead','15']])await page.locator(`#job-${category}`).fill(value);
+ assert.equal(await page.locator('.job-totals [data-job-total]').textContent(),'65');assert.equal(await page.locator('.job-totals [data-job-remaining]').textContent(),String(payments[job]-65));
+ const check=page.locator('.job-check-primary');await (width===1440?page.locator('.picture-check'):check).focus();await page.keyboard.press('Enter');assert.match(await page.locator('.job-plan-feedback').textContent(),/not guaranteed profit/);assert(await page.locator('.job-guide.job-checked').isVisible());
+ if(reduced)assert.equal(await page.locator('.job-guide .mb-portrait').evaluate(n=>getComputedStyle(n).animationName),'none');
+ await page.locator('[data-job-reflection]').fill('Our service creates value by helping the customer with useful work.');
+ await page.locator('#job-labor').fill('200');assert.match(await page.locator('.job-plan-feedback').textContent(),/changed/);await check.click();assert.match(await page.locator('.job-plan-feedback').textContent(),/exceed the payment/);
+ await page.locator('#job-labor').fill('');assert(await check.isDisabled());assert.equal(await page.locator('.job-totals [data-job-total]').textContent(),'—');await page.locator('#job-labor').fill('-1');assert(await check.isDisabled());await page.locator('#job-labor').fill('40');
+ await page.locator('#job-materials').focus();await page.keyboard.press('ArrowUp');assert.equal(await page.locator('.job-totals [data-job-total]').textContent(),'66');assert.equal(await page.locator('[data-job-reflection]').inputValue(),'Our service creates value by helping the customer with useful work.');
+ assert.equal(await page.evaluate(()=>localStorage.getItem('money-ops-v02')),original,'practice cannot change any financial or scoring state');
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);assert((await page.locator('#job-overhead').boundingBox()).height>=44);assert(await page.locator('.job-picture-board>img').evaluate(img=>img.complete&&img.naturalWidth>0));
+ mkdirSync('/tmp/job-practice-review',{recursive:true});if(job==='tutor')await page.screenshot({path:`/tmp/job-practice-review/${width}.png`,fullPage:true});
+ await page.locator('.job-city-actions summary').click();await page.locator('[data-action="mb-build-park"]').click();assert.equal(await page.locator('#mb-reflection').inputValue(),'Our service creates value by helping the customer with useful work.');await page.locator('#mb-reflection').fill('My time created value for our customer and helped the city.');await page.locator('#mb-reflect-form button[type="submit"]').click();
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('money-ops-v02')));assert(saved.moneybread.weeks[1].reflection);assert.equal(saved.moneybread.wallet.income,100);assert.equal(saved.moneybread.wallet.available,20);assert.equal(saved.moneybread.buildings.park,1);assert.deepEqual(errors,[]);
+ console.log('PASS customer job plan',JSON.stringify({width,job,reduced}));await page.close();
+ }
+ }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

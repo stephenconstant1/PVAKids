@@ -18,10 +18,11 @@ export declare function jumpEnvelope(speed: number): {
     flight: number;
 };
 export declare function encounterGap(speed: number, random?: () => number): number;
-export declare function coinGroup(random?: () => number): {
+export declare function coinGroup(speed: number, random?: () => number): {
     count: number;
     step: number;
     height: number;
+    rise: number;
 };
 export declare function obstacleGeometry(speed: number, desiredWidth: number, desiredHeight: number): {
     w: number;

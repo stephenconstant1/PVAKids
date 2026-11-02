@@ -4,7 +4,7 @@ import ducks from './duck-cycles.json' with {type:'json'};
 export const ROUTE_METRICS={
  standingHeight:BODY_HEIGHT*RUNNER_ZOOM,duckHeight:DUCK_HEIGHT*RUNNER_ZOOM,
  duckArtHeight:Math.max(...Object.values(ducks).map(c=>c.maxDrawHeight)),
- ceilingBuffer:12,jumpTopBuffer:4,jumpTimingBuffer:.015,landingRecovery:.24,reactionTime:1
+ ceilingBuffer:12,jumpTopBuffer:4,jumpTimingBuffer:.09,landingRecovery:.32,reactionTime:1.25
 };
 /** The underside clears both the low hitbox and every canonical duck pose,
  * yet remains below standing height so walking through is impossible. */
@@ -21,9 +21,12 @@ export function encounterGap(speed:number,random:()=>number=Math.random):number 
  // Full jump, landing recovery, and a new reaction window AFTER the last item.
  return Math.max(300,speed*(jumpEnvelope(speed).flight*Math.sqrt(1.35)+ROUTE_METRICS.landingRecovery+ROUTE_METRICS.reactionTime)+BODY_WIDTH*RUNNER_ZOOM)+random()*speed*.25;
 }
-export function coinGroup(random:()=>number=Math.random):{count:number;step:number;height:number} {
- // Spaced airborne arc; the center coin follows the apex of one jump.
- return {count:3,step:66+random()*4,height:176+random()*8};
+export function coinGroup(speed:number,random:()=>number=Math.random):{count:number;step:number;height:number;rise:number} {
+ // Sample the same jump at quarter-flight intervals. Keep low-speed coins
+ // visually separate; the player/coin widths provide collection tolerance.
+ const envelope=jumpEnvelope(speed);
+ return {count:3,step:Math.max(46,speed*envelope.flight*.25),
+  height:envelope.height*.65+12+random()*4,rise:envelope.height*.3};
 }
 export function obstacleGeometry(speed:number,desiredWidth:number,desiredHeight:number):{w:number;h:number} {
  const envelope=jumpEnvelope(speed),h=Math.min(desiredHeight,envelope.height*.36);

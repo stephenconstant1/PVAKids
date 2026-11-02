@@ -19,7 +19,7 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
  assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true);
  await page.locator('[data-action="mb-view-school"]').first().focus();await page.keyboard.press('Enter');
  assert.match(await page.locator('.mb-school h2').textContent(),/Earning and Creating Value/);
- await click('begin-1');await click('runner-skip');await click('runner-start-lesson');await click('next');await click('job-time');
+ await click('begin-1');await click('runner-skip');await click('runner-start-lesson');while(await page.locator('.lesson-comic').count())await click('next');await click('job-time');
  for(const [token,target] of [['yard-gloves','jordan-gear'],['yard-bag','bag-spot'],['yard-rake','jordan-gear'],['leaf-0','leaf-bag'],['leaf-1','leaf-bag'],['leaf-2','leaf-bag']]){
   await click(`select-${token}`);await click(`drop-${target}`);
  }
@@ -28,7 +28,7 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
  assert.equal((await snapshot()).moneybread.wallet.income,100);
  await page.reload();await click('continue-career');assert.equal((await snapshot()).moneybread.wallet.income,100);
  await click('mb-view-work');assert.equal(await page.locator('[data-action="mb-work-service"]').count(),0,'work cannot be paid twice after reload');
- assert.equal(await page.locator('[data-action="mb-allocate-mix"]').isDisabled(),true);await click('mb-allocate-save');await click('mb-build-park');
+ assert.equal(await page.locator('[data-action="mb-allocate-mix"]').isDisabled(),true);await click('mb-allocate-save');await page.locator('.job-city-actions summary').click();await click('mb-build-park');
  assert.equal((await snapshot()).moneybread.buildings.park,1);
  assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true,'activity alone cannot unlock next level');
  await page.locator('#mb-reflection').fill('I used my time to create value and kept bread for services.');

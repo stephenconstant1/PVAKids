@@ -135,7 +135,7 @@ const assert=require('node:assert/strict');
    }
    await p.setViewportSize({width:1280,height:950});
   }
-  await click(p,'next');
+  do {await click(p,'next');} while(id===1&&await p.locator('.lesson-comic').count());
   await assertCharacterLessonPattern(p,id);
  }
  async function finishLesson(p,action='finish',exerciseBonus=false){
@@ -153,7 +153,7 @@ const assert=require('node:assert/strict');
   const snapshot=await state(p),level=Object.keys(snapshot.moneybread?.weeks||{}).map(Number).find(id=>snapshot.moneybread.weeks[id].lessonDone&&!snapshot.moneybread.weeks[id].reflection);
   if(level){
    await click(p,'mb-work-service');await click(p,'mb-allocate-save');
-   const sources=require('../career/lessons.json');await click(p,`mb-build-${sources[level-1].district}`);
+   if(level===1)await p.locator('.job-city-actions summary').click();const sources=require('../career/lessons.json');await click(p,`mb-build-${sources[level-1].district}`);
    await p.locator('#mb-reflection').fill(`I used ${sources[level-1].terms[0]} to help our city and kept bread for services.`);
    await p.locator('#mb-reflect-form button[type="submit"]').click();
   }
@@ -186,17 +186,9 @@ const assert=require('node:assert/strict');
  }
 
  async function assertWeekOneCrewLayout(p,width){
-  const layout=await p.locator('.week-one-hero').evaluate(hero=>{const rect=e=>{const r=e.getBoundingClientRect();return {left:r.left,top:r.top,right:r.right,bottom:r.bottom,height:r.height};},frame=rect(hero),banner=rect(hero.querySelector('.week-one-slogan')),people=[...hero.querySelectorAll('.cast-member')].map(member=>({image:rect(member.querySelector('img')),label:rect(member.querySelector('b'))}));return {frame,banner,people,bannerOverflow:hero.querySelector('.week-one-slogan').scrollWidth>hero.querySelector('.week-one-slogan').clientWidth+1};});
-  assert.equal(layout.people.length,6,`week one must show all six students at ${width}px`);
-  const heights=layout.people.map(person=>Math.round(person.image.height));
-  assert.ok(Math.max(...heights)-Math.min(...heights)<=2,`week one students must have one visual height at ${width}px: ${heights.join(', ')}`);
-  for(let index=1;index<layout.people.length;index++)assert.ok(layout.people[index-1].image.right+3<=layout.people[index].image.left,`week one students ${index} and ${index+1} need their own visible space at ${width}px (${Math.round(layout.people[index-1].image.right)} → ${Math.round(layout.people[index].image.left)})`);
-  for(const person of layout.people){
-   assert.ok(person.image.left>=layout.frame.left-1&&person.image.right<=layout.frame.right+1&&person.image.bottom<=layout.frame.bottom+1,`week one character must stay inside the poster border at ${width}px`);
-   assert.ok(person.label.left>=layout.frame.left-1&&person.label.right<=layout.frame.right+1&&person.label.bottom<=layout.frame.bottom+1,`week one name must stay inside the poster border at ${width}px`);
-   assert.ok(person.image.top>=layout.banner.bottom+8,`week one character must not cover the banner at ${width}px`);
-  }
-  assert.equal(layout.bannerOverflow,false,`week one banner text must stay inside its border at ${width}px`);
+  assert.equal(await p.locator('.comic-character').count(),1);
+  const box=await p.locator('.comic-caption').boundingBox();assert(box.width>100&&box.x>=0&&box.x+box.width<=width);
+  assert.match(await p.locator('.comic-progress').textContent(),/Panel 1 of 4/);
  }
 
  const arcadeContext=await browser.newContext({viewport:{width:1280,height:950}});

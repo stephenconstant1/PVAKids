@@ -16,7 +16,7 @@ test('walk/run speeds and jump benchmarks remain consistent at 30/60/120/144 FPS
   while(!b.grounded&&ticks++<fps*2){previous={x:b.x,y:b.y};stepBody(b,map,speed,1/fps);min=Math.min(min,b.y);landingX=b.x;}
   assert(b.grounded);assert.equal(b.y,12*16-26);assert(!overlapsSolid(b,map));
   const height=y-min,target=speed===WALK_SPEED?64:80;assert(Math.abs(height-target)<.8,`${fps} FPS height ${height}`);
-  if(speed===RUN_SPEED){assert(landingX-x>=48&&landingX-x<=64,`${fps} FPS running distance ${landingX-x}`);}
+  if(speed===RUN_SPEED){assert(landingX-x>=78&&landingX-x<=86,`${fps} FPS running distance ${landingX-x}`);}
  }
 });
 test('walls, ceilings, corners, negative coordinates and fast motion never tunnel',()=>{
@@ -28,7 +28,7 @@ test('walls, ceilings, corners, negative coordinates and fast motion never tunne
   b.vx=5000;stepBody(b,map,5000,.1);assert.equal(b.x,7*16-12);assert(!overlapsSolid(b,map));
  }
  const ceiling=new ArrayTileMap([[0,1,1,1],[0,0,0,0],[0,0,0,0],[1,1,1,1]]);
- const b=createBody(18,48-26);b.grounded=true;launchJump(b);stepBody(b,ceiling,0,.03);assert(b.ceiling);assert(b.y>=16);assert(b.vy>=0);
+ const b=createBody(18,48-26);b.grounded=true;launchJump(b);stepBody(b,ceiling,0,.05);assert(b.ceiling);assert(b.y>=16);assert(b.vy>=0);
  assert.deepEqual(overlappedTiles({x:-12,y:-16,w:12,h:16}),{left:-1,right:-1,top:-1,bottom:-1});
  const leftLevel=Array.from({length:9},(_,y)=>Array.from({length:12},(_,x)=>y===8||x===3?1:0));
  const leftMap=new ArrayTileMap(leftLevel),left=createBody(90,8*16-26);left.grounded=true;
