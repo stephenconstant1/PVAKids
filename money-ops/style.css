@@ -2369,3 +2369,11 @@ button.world-buddy.cheer:after{
 @media(max-width:600px){.comic-panel{grid-template-columns:1fr;gap:12px;padding:16px;min-height:0}.comic-character{height:150px}.comic-caption{padding:16px}.comic-controls button{flex:1 1 130px}.mb-projects article{display:flex;flex-wrap:wrap}.mb-projects article>div{min-width:0}.city-lot{min-width:0}}
 @media(prefers-reduced-motion:reduce){.comic-panel,.comic-character,.comic-caption,.building-reaction{animation:none!important;transition:none!important}}
 .lesson-comic .comic-caption p,.lesson-comic .comic-caption small {color:#143b39;}
+.title-nav {height:auto;min-height:72px;flex-wrap:wrap;padding-block:12px;}
+@media(max-width:600px){.title-nav>.primary,.title-nav>.arcade-nav-button{flex:1 1 200px;max-width:100%;white-space:normal;}.title-nav>.edition{white-space:normal;}.job-direct-nav button{max-width:100%;white-space:normal;}}
+.title-home-main {grid-template-columns:minmax(0,1fr);}
+.title-home-main>.title-content,.title-home-main>.home-crew-hero {min-width:0;max-width:100%;}
+@media(max-width:360px){.title-screen .title-content h1{font-size:clamp(60px,22vw,80px);}}
+.title-screen>footer .arcade-nav-button {grid-column:1/-1;max-width:100%;white-space:normal;justify-self:end;}
+.title-screen>footer {flex-wrap:wrap;gap:8px;}
+.title-screen>footer>.arcade-nav-button {margin-left:0;min-width:0;flex:0 1 auto;}

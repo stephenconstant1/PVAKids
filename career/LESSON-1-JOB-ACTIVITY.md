@@ -61,3 +61,12 @@ Checks: build/typecheck; 128 Node tests; 12 job-planning Chromium scenarios acro
 320/390/768/1440px and all three jobs, including reduced motion, live arithmetic,
 invalid inputs, shortfalls, unchanged saved financial data, reflection and onward
 city progression; existing Career city and Lesson 1 comic browser regressions.
+
+## Direct access
+
+The home screen now has a Run the Job — Lesson 1 button. The city navigation
+also opens the same image-backed activity directly, including for learners who
+already completed Lesson 1. New visitors can practice without creating or
+overwriting a saved career. The original paid work and city responsibilities
+flow remains available. Release 46.9 refreshes the entry script, styles and city
+UI module so an older cached entry does not hide the new access point.

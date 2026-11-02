@@ -78,7 +78,7 @@ export interface CareerProfile {
 }
 export interface CityUI {
     jobPractice?: import('./job-practice.js').JobPractice;
-    view: 'city' | 'school' | 'work' | 'wallet' | 'progress';
+    view: 'city' | 'school' | 'work' | 'wallet' | 'progress' | 'job';
     district: DistrictId;
     preview?: number;
     reset: boolean;

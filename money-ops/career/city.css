@@ -133,3 +133,4 @@
 .job-picture-board button.picture-check {font-size:clamp(16px,1.9vw,26px);font-weight:900;padding:0;}
 .job-picture-board button.picture-step {font-size:24px;font-weight:900;padding:0;}
 .job-practice button.job-check-primary {font-size:20px;min-height:52px;}
+.job-direct {padding-top:16px;}.job-direct-nav {display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;}.job-direct .job-practice {padding:clamp(12px,2vw,24px);border:2px solid #f2ce71;border-radius:20px;background:#193d3c;}.job-direct .job-practice>h2 {margin-top:8px;}.job-direct button {min-height:48px;}
