@@ -2394,3 +2394,8 @@ button.world-buddy.cheer:after{
 .active-lesson-comic .active-comic-controls button {font-size:16px;line-height:1.4;padding:12px 16px;}
 .active-lesson-comic .active-comic-controls .text-button {border:1px solid #86a88f;border-radius:12px;background:#244f4b;color:#fff3cf;}
 .comic-inline-definition {padding:14px;margin:8px 0 14px;border:2px solid #517660;border-radius:12px;background:#e3efc6;color:#173e3d;}.comic-inline-definition[hidden]{display:none}.comic-inline-definition p,.comic-inline-definition b {color:#173e3d;font-size:16px;line-height:1.5;}
+
+.runner-trick-controls {display:flex;gap:12px;flex-wrap:wrap;margin:12px 0;}
+.runner-trick-controls button {min-height:44px;}
+.runner-combo-help,[data-word-progress] {line-height:1.5;overflow-wrap:anywhere;}
+.runner-word-illustration {display:block;width:72px;height:50px;margin:6px 0;}

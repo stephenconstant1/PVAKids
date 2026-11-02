@@ -97,3 +97,12 @@ character. It safely breaks ground boxes during its 0.5 s active window; Down
 continues to hold duck below suspended beams. No new art or props were added.
 The run sheets still lack sufficient clear passing/recovery poses for full
 leg turnover. Timing/order changes alone cannot fix that source-art limitation.
+
+## Arcade follow-up: recurring ladders and optional tricks
+
+Arcade schedules multiple safe optional ladders throughout every level. Illustrated
+lesson-word cards have their own collection progress and no monetary/scoring
+reward. F / Flip then K / Air Kick makes an optional mirrored combo using existing
+jump and extended-leg duck poses. Kicks are non-contact. Source sheets, identities,
+normal movement physics and financial reward rules are retained. See
+`docs/RUN_THE_JOB_AND_ARCADE.md` for controls, scheduling and validation.
