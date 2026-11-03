@@ -89,3 +89,13 @@ redrawn; the original downloadable PNG is needed before inserting that asset.
 - `tests/motion-comic.test.js`, `tests/motion-comic-browser.cjs`, and the existing
   comic flow/browser tests: math, route, accessibility and regression checks.
 - Generated TypeScript output in `src/moneybread/` and the `/money-ops/` mirror.
+
+## Face-detail refinement · 46.19
+
+All eight standalone panels were retouched to give the children's small noses
+clearer warm-brown contours and subtle shading. The faint light-only marks were
+hard to see when the scene was reduced to phone width. Each panel was reviewed
+for the six established character identities/outfit colors, facial expressions,
+lettering and practice-example arithmetic. Source dimensions remain 1448×1086.
+A side-by-side browser preview at 320px confirmed the improved contour visibility.
+The panel URLs and module entry versions were refreshed to load the corrected art.

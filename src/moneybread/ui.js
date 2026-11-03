@@ -1,5 +1,5 @@
-import { renderJobComic } from './job-comic.js?v=46.18';
-import { renderJobPractice, newJobPractice } from './job-practice.js?v=46.18';
+import { renderJobComic } from './job-comic.js?v=46.19';
+import { renderJobPractice, newJobPractice } from './job-practice.js?v=46.19';
 import { buildingArt } from './art.js';
 import { everestPatchLayer, everestPatchOverlay } from './crew-art.js';
 import { destination } from './destinations.js';
