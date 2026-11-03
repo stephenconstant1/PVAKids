@@ -5,6 +5,8 @@ export interface JobPractice {
     overhead: number;
     checked: boolean;
     reflection: string;
+    allocation?: Record<MoneyBucket, number>;
+    completed?: boolean;
 }
 export declare const customerNeeds: Record<string, {
     customer: string;
@@ -38,5 +40,13 @@ export declare function jobTotals(plan: JobPractice): {
 export declare function jobPlanError(plan: JobPractice): string;
 export declare function jobStepDisabled(plan: JobPractice, category: JobCostCategory, direction: number): boolean;
 export declare function stepJobCost(plan: JobPractice, category: JobCostCategory, direction: number): number;
-export declare function renderJobPractice(plan: JobPractice, guide: string, e: (v: unknown) => string): string;
+export type MoneyBucket = 'needs' | 'wants' | 'invest';
+export declare const moneyBuckets: MoneyBucket[];
+export declare function allocationTotals(plan: JobPractice): {
+    assigned: number;
+    unassigned: number;
+} | null;
+export declare function allocationReady(plan: JobPractice): boolean;
+export declare function jobBoardAsset(job: string): string;
+export declare function renderJobPractice(plan: JobPractice, _guide: string, e: (v: unknown) => string): string;
 export declare function jobFeedback(plan: JobPractice, e: (v: unknown) => string): string;

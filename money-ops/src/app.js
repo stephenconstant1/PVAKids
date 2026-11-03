@@ -1,7 +1,7 @@
 import {lessonComicPanels} from './lesson-comic.js';
 import {lessonVocabulary} from './runner-vocabulary.js';
-import {renderCity} from './moneybread/ui.js?v=46.14';
-import {newJobPractice,jobTotals,jobPlanError,jobStepDisabled,stepJobCost,MINIMUM_JOB_COSTS,minimumCosts,practiceBudget} from './moneybread/job-practice.js?v=46.14';
+import {renderCity} from './moneybread/ui.js?v=46.15';
+import {newJobPractice,jobTotals,jobPlanError,jobStepDisabled,stepJobCost,MINIMUM_JOB_COSTS,minimumCosts,practiceBudget,allocationTotals,allocationReady,moneyBuckets} from './moneybread/job-practice.js?v=46.15';
 import {lessonOneBeats} from './lesson-one-comic.js';
 import {destination} from './moneybread/destinations.js';
 import {attachCity,applyCity,canOpen,currentLevel,noteLesson,validCity,freshCity} from './moneybread/index.js';
@@ -25,7 +25,7 @@ const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',ma
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const button=(text,action,cls='',extra='')=>`<button class="${cls}" data-action="${action}" ${extra}>${text}</button>`;
 function progress(){const next=nextRank(p.xp);const current=ranks.filter(r=>p.xp>=r[1]).at(-1);const pct=next?Math.min(100,(p.xp-current[1])/(next[1]-current[1])*100):100;return `<div class="xp-row"><span>${p.xp} XP</span><span>${next?`${next[1]-p.xp} TO ${next[0].toUpperCase()}`:'TOP RANK'}</span></div><div class="bar" role="progressbar" aria-label="Rank progress" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>`;}
-function header(){const arcade=p.mode==='arcade';return `<header><a class="brand" href="./" aria-label="Money Ops home"><span class="brand-mark">M<span>↗</span></span><span><small>FINANCIAL FREEDOM</small><b>MONEY OPS<span class="version"> / 46.14</span></b></span></a><div class="header-right"><span class="system ${arcade?'arcade-unsaved':''}"><i></i> ${p.jobPracticeOnly?'PRACTICE · NOT SAVED':arcade?'ARCADE MODE · NOT SAVED':'CAREER SAVED'}</span>${button('HOME','site-home','home-nav-button')}${button(arcade?'ARCADE LEVELS':'PLAY ARCADE','arcade-open-header','arcade-nav-button')}${button(p.muted?'SOUND OFF':'SOUND ON','mute','utility',`aria-pressed="${!p.muted}" aria-label="${p.muted?'Enable':'Mute'} sound"`)}</div></header>`;}
+function header(){const arcade=p.mode==='arcade';return `<header><a class="brand" href="./" aria-label="Money Ops home"><span class="brand-mark">M<span>↗</span></span><span><small>FINANCIAL FREEDOM</small><b>MONEY OPS<span class="version"> / 46.15</span></b></span></a><div class="header-right"><span class="system ${arcade?'arcade-unsaved':''}"><i></i> ${p.jobPracticeOnly?'PRACTICE · NOT SAVED':arcade?'ARCADE MODE · NOT SAVED':'CAREER SAVED'}</span>${button('HOME','site-home','home-nav-button')}${button(arcade?'ARCADE LEVELS':'PLAY ARCADE','arcade-open-header','arcade-nav-button')}${button(p.muted?'SOUND OFF':'SOUND ON','mute','utility',`aria-pressed="${!p.muted}" aria-label="${p.muted?'Enable':'Mute'} sound"`)}</div></header>`;}
 function playerPortrait(className='',id=p.avatar){return characters[id]?portrait(id,className):`<span class="avatar">${escape(id)}</span>`;}
 function runnerCharacterId(){return castIds.includes(p?.avatar)?p.avatar:'maya';}
 const bonusItems=[{id:'boots',name:'BOOST BOOTS',price:5,icon:'⇧',detail:'Jump higher.'},{id:'magnet',name:'COIN MAGNET',price:10,icon:'◎',detail:'Pull coins closer.'},{id:'companion',name:'PENNY THE MONEY DRAGON',price:15,icon:'🐲',detail:'Your original Money Ops sidekick blocks one hit.'}];
@@ -51,9 +51,10 @@ function history(){const worth=netWorth(p),totals=[['Cash + checking',p.cash+p.c
 function teacherView(){const summary=studentSummary(p);return `<section class="panel teacher-view"><div class="section-title"><h2>TEACHER PROGRESS VIEW</h2><span>LOCAL STUDENT PROFILE</span></div><p>This view reports participation and lesson completion. Arcade scores are not financial literacy grades.</p><div class="teacher-summary"><span>LESSONS COMPLETE<b>${summary.missionsCompleted}/32</b></span><span>PRE-RUNS PLAYED<b>${summary.preRunsCompleted}</b></span><span>BONUS RUNS PLAYED<b>${summary.bonusRunsCompleted}</b></span><span>LESSON XP<b>${summary.xp}</b></span><span>ARCADE XP<b>${summary.arcadeXp}</b></span><span>ACTIVITY RESULTS<b>${Object.keys(p.missionMedals||{}).length}</b></span></div><div class="teacher-week-table"><div><b>WEEK</b><b>LESSON</b><b>PRE-RUN</b><b>LESSON</b><b>BONUS</b><b>ACTIVITY</b></div>${missions.map(m=>{const run=runnerProgress(p,m.id),done=p.completed.includes(m.id);return `<div><span>${m.id}</span><span>${escape(m.title)}</span><span>${run.pre.completed?(run.pre.skipped?'SKIPPED':'PLAYED'):'—'}</span><span>${done?'COMPLETE':run.lessonStarted?'STARTED':'—'}</span><span>${run.post.completed?(run.post.skipped?'SKIPPED':'PLAYED'):'—'}</span><span>${escape(p.missionMedals?.[m.id]||'—')}</span></div>`;}).join('')}</div><p class="muted">Student information stays in this local profile and is not placed on a public leaderboard.</p></section>`;}
 function settings(){return `<section class="panel settings"><div class="eyebrow">SAVED CAREER PROFILE</div><h1>YOUR CAREER.</h1><p>Your hero, current lesson, scores, savings, investments, and decisions save after every action in this browser. Use CONTINUE CAREER to resume an unfinished lesson.</p><form id="rename-form"><label for="rename">PLAYER NAME</label><input id="rename" name="name" maxlength="24" required value="${escape(p.name)}"><button class="primary">UPDATE NAME</button></form><div class="audio-settings"><label for="music-volume">MUSIC VOLUME <output>${Math.round(p.musicVolume*100)}%</output></label><input id="music-volume" data-setting="musicVolume" type="range" min="0" max="1" step="0.05" value="${p.musicVolume}"><label for="sfx-volume">SFX VOLUME <output>${Math.round(p.sfxVolume*100)}%</output></label><input id="sfx-volume" data-setting="sfxVolume" type="range" min="0" max="1" step="0.05" value="${p.sfxVolume}"></div>${button(p.muted?'ENABLE AUDIO':'MUTE AUDIO','mute','secondary')}${button('Export career save ↓','export','secondary')}<p class="muted">Export creates a local backup of the complete Career Mode profile.</p><hr><h2>NEW CAREER / RESET PROFILE</h2><p>Reset removes this device's current hero, choices, lessons, and financial portfolio.</p>${resetting?`<div class="warning">This clears your complete career.${button('Keep my career','cancel-reset','secondary')}${button('Start a new financial life','confirm-reset','danger')}</div>`:button('Reset career','reset','secondary')}</section>`;}
 function base(){
+ if(tab==='operations'&&cityUI.view==='job'&&!p.cityLoadError)return renderCity(p,cityUI);
  if(tab==='operations')return `${header()}${p.cityLoadError?`<main id="main" class="mb-shell" tabindex="-1"><h1>Your city save needs review</h1><p role="alert">${escape(p.cityLoadError)}</p>${button('Export complete Career backup','export','secondary')}${button('Reset city only · preserve lessons','mb-repair-request','secondary')}${cityUI.reset?button('Confirm city reset','mb-repair-confirm','danger'):''}</main>`:renderCity(p,cityUI)}${storageWarning?`<p role="alert" class="warning">${storageWarning}</p>`:''}${arcadeFooter()}`;
  const content=tab==='map'?map():tab==='honors'?badgePanel():tab==='ledger'?history():tab==='teacher'?teacherView():settings();
- return `${header()}<div class="layout">${profile()}<main id="main" tabindex="-1"><nav class="tabs" aria-label="Career sections">${[['operations','CAREER HOME'],['map','CAREER MAP'],['honors','ACHIEVEMENTS'],['ledger','MY PORTFOLIO'],['teacher','TEACHER VIEW']].map(([id,label])=>button(label,`tab-${id}`,tab===id?'active':'',`aria-current="${tab===id?'page':'false'}"`)).join('')}</nav>${p.lastReward?`<div class="reward" role="status">${p.lastReward.rankUp?`◆ RANK UP: ${p.lastReward.rankUp.toUpperCase()} · `:'✓ LESSON SAVED · '}${p.lastReward.xp?`+${p.lastReward.xp} XP`:'Practice complete — career finances preserved'}${button('Dismiss','dismiss','text-button')}</div>`:''}${p.active?`<div class="reward">CAREER LESSON ${String(p.active.id).padStart(2,'0')} IN PROGRESS${button('CONTINUE CAREER →',`begin-${p.active.id}`,'text-button')}</div>`:''}${content}${storageWarning?`<p role="alert" class="warning">${storageWarning}</p>`:''}</main></div>${arcadeFooter()}`;
+ return `${header()}<div class="layout">${profile()}<main id="main" tabindex="-1"><nav class="tabs" aria-label="Career sections">${[['operations','CAREER HOME'],['honors','ACHIEVEMENTS'],['ledger','MY PORTFOLIO'],['teacher','TEACHER VIEW']].map(([id,label])=>button(label,`tab-${id}`,tab===id?'active':'',`aria-current="${tab===id?'page':'false'}"`)).join('')}</nav>${p.lastReward?`<div class="reward" role="status">${p.lastReward.rankUp?`◆ RANK UP: ${p.lastReward.rankUp.toUpperCase()} · `:'✓ LESSON SAVED · '}${p.lastReward.xp?`+${p.lastReward.xp} XP`:'Practice complete — career finances preserved'}${button('Dismiss','dismiss','text-button')}</div>`:''}${p.active?`<div class="reward">CAREER LESSON ${String(p.active.id).padStart(2,'0')} IN PROGRESS${button('CONTINUE CAREER →',`begin-${p.active.id}`,'text-button')}</div>`:''}${content}${storageWarning?`<p role="alert" class="warning">${storageWarning}</p>`:''}</main></div>${arcadeFooter()}`;
 }
 function mission(){return `${header()}<div class="reader-control">${button('🔊 READ THIS SCREEN','read-aloud','secondary')}</div><main id="main" class="mission-main" tabindex="-1">${visualMission(p,button,escape)}</main>${arcadeFooter()}`;}
 function runnerIntro(config){
@@ -116,6 +117,12 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b
   render(false);document.querySelector('[data-job-comic-panel],#job-practice-title')?.focus();return;
  }
  if(action==='job-practice-close'){p=careerProfile;showingHome=!p;cityUI.view='city';render(true);return;}
+ if(action.startsWith('job-money-')&&p?.moneybread){
+  const plan=cityUI.jobPractice;if(!plan?.checked)return;
+  if(action==='job-money-back'){plan.checked=false;plan.completed=false;render(false);document.querySelector('#job-materials')?.focus({preventScroll:true});return;}
+  if(action==='job-money-finish'){if(!allocationReady(plan))return;plan.completed=true;render(false);document.querySelector('#job-money-status')?.focus();return;}
+  if(action==='job-money-step'){const key=b.dataset.bucket,direction=Number(b.dataset.direction);if(!moneyBuckets.includes(key)||![-1,1].includes(direction))return;const a=plan.allocation||{needs:0,wants:0,invest:0},unassigned=allocationTotals(plan)?.unassigned??0;if(direction<0&&a[key]<=0||direction>0&&unassigned<=0)return;plan.allocation={...a,[key]:a[key]+direction};plan.completed=false;render(false);document.querySelector(`#job-money-${key}`)?.focus({preventScroll:true});return;}
+ }
  if(action==='job-tools-open'){const input=app.querySelector('#job-materials');input?.focus({preventScroll:true});input?.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return;}
  if(action==='job-cost-step'){
   const category=b.dataset.jobStep,direction=Number(b.dataset.direction),input=app.querySelector(`#job-${category}`);
@@ -123,10 +130,10 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b
  }
  if(action.startsWith('job-plan-')&&p?.moneybread&&p.mode!=='arcade'){
   const job=action.slice(9);
-  if(job==='check'){const plan=cityUI.jobPractice||newJobPractice(p.moneybread.weeks[1]?.job);if(jobPlanError(plan))return;cityUI.jobPractice={...plan,checked:true};render(false);const feedback=document.querySelector('.job-plan-feedback');feedback?.focus({preventScroll:true});feedback?.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return;}
+  if(job==='check'){const plan=cityUI.jobPractice||newJobPractice(p.moneybread.weeks[1]?.job);if(jobPlanError(plan))return;cityUI.jobPractice={...plan,checked:true,completed:false,allocation:{needs:0,wants:0,invest:0}};render(false);const feedback=document.querySelector('.job-leftover');feedback?.focus({preventScroll:true});feedback?.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return;}
   if(['service','tutor','creator'].includes(job)){cityUI.jobPractice=newJobPractice(job);render(false);document.querySelector(`[data-action="job-plan-${job}"]`)?.focus({preventScroll:true});}return;
  }
- if(action==='site-home'){showingHome=true;render(true);return;}
+ if(action==='site-home'){cityUI.view='city';showingHome=true;render(true);return;}
  if(action==='continue-career'&&careerProfile){showingHome=false;p=careerProfile;tab='operations';render(true);return;}
  if(action==='start-arcade'){showingHome=false;p=newArcadeProfile(careerProfile?.avatar);sound('start',p.muted,p.sfxVolume);render(true);return;}
  if(!p)return;
@@ -282,20 +289,28 @@ app.addEventListener('focusin',event=>revealBuilding(event.target.closest('[data
 app.addEventListener('click',event=>{const card=event.target.closest('[data-building-card]');if(card&&app.contains(card))revealBuilding(card);});
 
 app.addEventListener('input',event=>{
- const input=event.target;if(!input.matches('[data-job-cost],[data-job-reflection]')||!p?.moneybread||(currentLevel(p.moneybread)!==1&&cityUI.view!=='job'))return;
+ const input=event.target;if(!input.matches('[data-job-cost],[data-job-money],[data-job-reflection]')||!p?.moneybread||(currentLevel(p.moneybread)!==1&&cityUI.view!=='job'))return;
  const plan=cityUI.jobPractice||newJobPractice(p.moneybread.weeks[1]?.job);cityUI.jobPractice=plan;
  if(input.matches('[data-job-reflection]')){plan.reflection=input.value.slice(0,600);return;}
- const category=input.dataset.jobCost;let value=input.value.trim()===''?NaN:Number(input.value);if(Number.isFinite(value)&&value<minimumCosts[category]){value=minimumCosts[category];input.value=String(value);}plan[category]=value;plan.checked=false;
- const totals=jobTotals(plan),root=input.closest('.job-practice');
- for(const [name,value] of Object.entries({payment:practiceBudget,total:totals?.total,remaining:totals?.remaining})){for(const output of root.querySelectorAll(`[data-job-${name}]`))output.textContent=value??'—';}
- for(const other of root.querySelectorAll(`[data-job-cost="${input.dataset.jobCost}"]`))if(other!==input)other.value=input.value;
- for(const output of root.querySelectorAll(`[data-picture-cost="${input.dataset.jobCost}"]`))output.textContent=input.value===''?'—':input.value;
+ if(input.matches('[data-job-money]')){
+  if(!plan.checked)return;const key=input.dataset.jobMoney;if(!moneyBuckets.includes(key))return;
+  plan.allocation={...(plan.allocation||{needs:0,wants:0,invest:0}),[key]:input.value.trim()===''?NaN:Number(input.value)};plan.completed=false;
+  const totals=allocationTotals(plan),status=document.querySelector('#job-money-status');status.textContent=!totals?'Use whole dollars, zero or more.':totals.unassigned<0?`Your plan assigns $${-totals.unassigned} too much. Reduce an amount.`:`$${totals.unassigned} still to plan.`;
+  document.querySelector('[data-action="job-money-finish"]').disabled=!allocationReady(plan);
+  for(const field of document.querySelectorAll('[data-job-money]'))field.setAttribute('aria-invalid',String(!Number.isSafeInteger(plan.allocation[field.dataset.jobMoney])||plan.allocation[field.dataset.jobMoney]<0||(totals?.unassigned??0)<0));
+  for(const button of document.querySelectorAll('[data-action="job-money-step"]'))button.disabled=Number(button.dataset.direction)>0?!totals||totals.unassigned<=0:!(plan.allocation[button.dataset.bucket]>0);
+  return;
+ }
+ const category=input.dataset.jobCost;let value=input.value.trim()===''?NaN:Number(input.value);if(Number.isFinite(value)&&value<minimumCosts[category]){value=minimumCosts[category];input.value=String(value);}plan[category]=value;plan.checked=false;plan.completed=false;plan.allocation={needs:0,wants:0,invest:0};
+ const totals=jobTotals(plan),root=input.closest('.job-practice'),dollars=value=>value===undefined||!Number.isFinite(value)?'—':value<0?`-$${-value}`:`$${value}`;
+ for(const [name,value] of Object.entries({payment:practiceBudget,total:totals?.total,remaining:totals?.remaining}))for(const output of root.querySelectorAll(`[data-job-${name}]`))output.textContent=dollars(value);
+ for(const output of root.querySelectorAll(`[data-picture-cost="${category}"]`))output.textContent=dollars(value);
  root.querySelector('#job-cost-error').textContent=jobPlanError(plan);
  for(const button of root.querySelectorAll('[data-action="job-plan-check"]'))button.disabled=!!jobPlanError(plan);
  for(const button of root.querySelectorAll('[data-action="job-cost-step"]'))button.disabled=jobStepDisabled(plan,button.dataset.jobStep,Number(button.dataset.direction));
  for(const field of root.querySelectorAll('[data-job-cost]')){const amount=plan[field.dataset.jobCost];field.setAttribute('aria-invalid',String(!Number.isSafeInteger(amount)||amount<MINIMUM_JOB_COSTS[field.dataset.jobCost]||amount>100));}
- root.querySelector('.job-plan-feedback').textContent=jobPlanError(plan)||'Plan changed. Check the job again to review these estimates.';
- root.querySelector('.job-guide').classList.remove('job-checked');
+ root.querySelector('.job-plan-feedback').textContent=jobPlanError(plan)||'Costs updated.';
+ root.querySelector('.job-leftover')?.remove();
  const panel=root.querySelector('.job-totals');panel.classList.remove('totals-updated');void panel.offsetWidth;panel.classList.add('totals-updated');
 });
 

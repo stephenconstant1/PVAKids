@@ -15,7 +15,7 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
   assert.equal(art.natural,1280);assert(Math.abs(art.width/art.height-1280/748)<.01,'the full source image must preserve its aspect ratio');assert(art.width<=width);
  }
  await page.setViewportSize({width:1440,height:1000});await page.locator('#name').fill('City Builder');await page.locator('#profile-form button[type=submit]').click();
- assert.equal(await page.locator('.mb-building').count(),8);assert.equal(await page.locator('.mb-level').count(),32);
+ assert.equal(await page.locator('.mb-building').count(),0,'city map is temporarily hidden');assert.equal(await page.locator('.mb-level').count(),32);
  assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true);
  await page.locator('[data-action="mb-view-school"]').first().focus();await page.keyboard.press('Enter');
  assert.match(await page.locator('.mb-school h2').textContent(),/Earning and Creating Value/);
@@ -46,18 +46,14 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
   await page.setViewportSize({width,height:1000});await page.emulateMedia({reducedMotion:'reduce'});
   await page.screenshot({path:`/tmp/moneybread-validation/city-${width}.png`,fullPage:true});
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`city should fit ${width}px`);
-  for(const view of ['school','work','wallet','progress','city']){
+  for(const view of ['school','work','wallet','progress']){
    await click(`mb-view-${view}`);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`${view} should fit ${width}px`);
   }
   assert.ok((await page.locator('.mb-shell *').evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).animationName==='none'))),'reduced motion disables decorative animations');
  }
- await click('mb-reset-request');const saved=await snapshot();await click('mb-reset-confirm');const rebuilt=await snapshot();
- assert.deepEqual(rebuilt.moneybread.wallet,saved.moneybread.wallet);assert.deepEqual(rebuilt.completed,saved.completed);assert.deepEqual(rebuilt.moneybread.weeks,saved.moneybread.weeks);
- // Missing crew art has a text alternative rather than a broken portrait.
- await page.route('**/assets/crew/**',route=>route.abort());await page.reload();await click('continue-career');
- await page.waitForTimeout(200);assert.equal(await page.locator('.mb-source-city img').count(),1);
+ assert.equal(await page.locator('[data-action="mb-reset-request"],[data-action="mb-view-city"]').count(),0,'map and rebuild controls are hidden');
  // Both GitHub Pages paths serve the same new city modules and lesson data.
- await page.unroute('**/assets/crew/**');await page.goto(url+'/money-ops/');await click('continue-career');assert.equal(await page.locator('.mb-building').count(),8);
+ await page.goto(url+'/money-ops/');await click('continue-career');assert.equal(await page.locator('.mb-building').count(),0,'city map is temporarily hidden');
  assert.deepEqual(errors,[]);await browser.close();
- console.log('PASS Moneybread City: actual lesson → keyboard work → allocation → city action → reflection → save/reload; Arcade isolation; five responsive sizes; reduced motion; safe rebuild; missing asset fallback; both entry points.');
+ console.log('PASS Moneybread City: actual lesson → keyboard work → allocation → city action → reflection → save/reload; Arcade isolation; five responsive sizes; reduced motion; hidden map controls; both entry points.');
 })().catch(e=>{console.error(e);process.exit(1);});

@@ -1,71 +1,53 @@
-# Lesson 1 customer job practice
+# Run the Job · Lesson 1 (46.15)
 
-“Run the job” uses the supplied image at
-`assets/crew/lesson-one-run-the-job.jpg`. Desktop image tools and larger phone
-controls share one calculator. The home button and city navigation open it
-without prerequisites; the original lesson and city-responsibility flow remain.
+Home → Lesson 1 → eight-panel comic → one illustrated job board.
 
-## Required practice budget
+The comic now uses eight separate 1448×1086 redraws under
+`assets/crew/job-comic/`, guided by the user's supplied original sheet (retained at
+`assets/crew/lesson-one-job-comic.jpg`). Every panel has accessible text,
+Next/Back, progress, skip and replay. Reduced motion removes the entrance motion.
 
-Every practice job now uses a fixed **$100 customer payment** (100 bread in game
-money) and the image's required minimum costs:
+The board fills the page; Home, three job choices and replay are the only outer
+controls. No duplicate calculator, pricing disclaimer or reflection form appears
+under it. All cost controls are inside the illustration. Phone layouts stack the
+same controls with matching illustrations, without creating a second calculator.
 
-| Category | Minimum |
-| --- | ---: |
-| Materials | $25 |
-| Labor | $40 |
-| Overhead | $15 |
-| Total minimum cost | $80 |
-| Remaining at minimums | $20 |
+Each choice switches the entire board artwork, customer need and cost details:
 
-The existing Neighborhood helper, School tutor and Studio creator choices keep
-their customer needs and purposes. The $100 budget and these floors are classroom
-practice rules for each choice, not permanent real-world prices or changes to
-saved city-job rewards. The original city transactions remain unchanged:
-Neighborhood helper earns 100 bread with 0 supplies; School tutor earns 130 with
-10 supplies; Studio creator earns 155 with 25 supplies.
+- Neighborhood Helper: gloves/seeds/bags, yard-work time, shared tools/transport.
+- School Tutor: pencils/learning cards, preparing/explaining, shared books/equipment.
+- Studio Creator: paper/art supplies, designing/making, shared tools/workspace.
 
-Students identify a need, choose useful work, consider materials, labor and
-shared overhead, allocate the remaining $20, check their plan and explain the
-value created for the customer. Remaining money means payment minus listed
-costs, not guaranteed profit.
+The tutor and creator board variants preserve the original waterfront layout and
+crew artwork style. They are original generated illustrations, not reference SVGs.
 
-## Controls and validation
+## One $100 planning task
 
-- Each category starts at its minimum. Minus buttons and native number-input
-  steps cannot take a valid value below that floor.
-- Plus buttons stop when the $100 budget is fully allocated.
-- Typed amounts below minimum, incomplete values, fractions and values above
-  $100 are invalid. Clear inline messages explain the problem.
-- A manually entered total over $100 shows the shortfall and disables both
-  Check buttons. The action handler independently rejects the plan even if a
-  disabled button is bypassed. Exact $100 totals are valid and leave $0.
-- Image and large controls update together, with live totals and keyboard/touch
-  support. Reduced motion is respected.
+Every job has a $100 payment. Required classroom minimums remain materials $25,
+labor $40, overhead $15: $80 committed, $20 left. Plus/minus and typed values
+update totals immediately. Below-minimum entries clamp to the floor; blanks,
+fractions and invalid costs cannot pass. Over-budget totals show the shortfall
+and cannot pass even if a disabled Check control is bypassed.
 
-Practice estimates and notes are presentation state, outside financial/scoring
-saves. They survive rerender and ordinary in-app navigation but reset on reload.
-The note prefills the existing final city reflection, which is saved through its
-usual submit action. No new rewards or wallet transactions are generated.
+Check the Job opens the remaining-money step inside the same illustrated board.
+Students assign the remaining dollars among Needs, Wants and Invest / Future.
+All buckets may be zero; the combined allocation must equal the amount remaining.
+No negative, fractional, incomplete or over-assigned plan can finish. Exact $100
+job costs leave $0 and require no extra spending. Revising costs resets the
+allocation. Money remaining means payment less listed costs, not guaranteed profit.
+No investment outcome or return is simulated.
 
-The original paid work, allocation, city project, service cost, scripture,
-character designs and other lessons are preserved. Version 46.13 refreshes the
-entry assets, city renderer and practice rules together.
+This is transient classroom UI state. It does not award XP, change scoring,
+transfer wallet money or alter the original saved job prices. Original paid work,
+allocation, city responsibilities and lesson progression remain in Career Mode.
+The city map, map buttons and rebuild buttons are temporarily hidden; their
+saved data is preserved. The Arcade mode and other lesson content remain intact.
 
 ## Validation
 
-Unit checks cover all three job choices, each minimum, invalid values, exact and
-over-budget totals, step-button bounds and unchanged saved city-job data.
-Chromium checks cover all jobs at 320/390/768/1440px, including image and touch
-controls, keyboard input, reduced motion, disabled-button bypass rejection,
-reflection and onward city progression with unchanged financial saves.
-
-## Supplied illustrated comic (46.14)
-
-The direct Run the Job entry opens `assets/crew/lesson-one-job-comic.jpg`, the
-user's original eight-panel sheet. SVG viewports reveal the original panel
-boundaries without redrawing, slicing or changing the image. Next/Back, skip,
-replay, panel progress, accessible panel descriptions and optional text transcripts
-work with touch and keyboard. Reduced motion disables the gentle entrance.
-Finishing or skipping reveals the restored picture-based activity unchanged.
-The comic uses transient UI state and never changes saved progress or money.
+Unit tests cover original financial rules and conservation of remaining dollars.
+Browser checks cover all three jobs at 320/390/768/1440px, illustrated asset
+switching, minimums, exact/over budgets, allocation validation including bypass,
+keyboard/touch interaction, page overflow, comic navigation and reduced motion.
+The Career workflow regression covers actual lesson → paid work → allocation →
+project → reflection, save/reload, Arcade isolation and both static entry points.

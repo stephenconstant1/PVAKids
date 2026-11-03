@@ -28,3 +28,13 @@ test('plus/minus buttons cannot bypass a minimum or spend beyond the remaining b
 test('feedback describes remaining money without guaranteeing profit or modifying the plan',()=>{
  const p=newJobPractice('creator'),copy=structuredClone(p);assert.match(jobFeedback(p,String),/not guaranteed profit/);assert.match(jobFeedback(p,String),/25 materials \+ 40 labor \+ 15 overhead/);assert.deepEqual(p,copy);
 });
+
+test('remaining dollars must all be assigned once, with no negative, fractional or over-budget allocation',async()=>{
+ const {allocationTotals,allocationReady,jobBoardAsset}=await import('../src/moneybread/job-practice.js');
+ const plan={...newJobPractice('tutor'),checked:true,allocation:{needs:10,wants:5,invest:5}};
+ assert.deepEqual(allocationTotals(plan),{assigned:20,unassigned:0});assert(allocationReady(plan));assert(!allocationReady({...plan,checked:false}));
+ for(const value of [-1,NaN,Infinity,1.5]){assert.equal(allocationTotals({...plan,allocation:{...plan.allocation,invest:value}}),null);}
+ assert(!allocationReady({...plan,allocation:{needs:10,wants:5,invest:6}}));assert(!allocationReady({...plan,allocation:{needs:0,wants:0,invest:0}}));
+ assert(allocationReady({...plan,materials:45,allocation:{needs:0,wants:0,invest:0}}));assert(!allocationReady({...plan,materials:46}));
+ assert.equal(new Set(['service','tutor','creator'].map(jobBoardAsset)).size,3);
+});

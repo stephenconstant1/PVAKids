@@ -33,7 +33,7 @@ for(const id of ['jordan','maya','kai','sofia','eli','ruby']){const rig=rigs[id]
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','-p','tsconfig.json'],{stdio:'inherit'});
 // Version the updated practice renderer together with its authoritative budget rules.
 const uiOutput='src/moneybread/ui.js';
-writeFileSync(uiOutput,readFileSync(uiOutput,'utf8').replace("from './job-practice.js'","from './job-practice.js?v=46.14'"));
+writeFileSync(uiOutput,readFileSync(uiOutput,'utf8').replace("from './job-practice.js'","from './job-practice.js?v=46.15'"));
 // GitHub Pages serves both / and /money-ops/. Keep both entry points identical.
 if(existsSync('money-ops'))for(const file of ['README.md','docs','Running (1).fbx','MOVEMENT_METRICS.md','RUNNER_ASSETS.md','assets/crew','assets/environments','assets/cast/kai.png','assets/runner','assets/review','career','scripts','tests','src/moneybread','index.html','src/app.js','src/play.js','src/lesson-one-comic.js','src/lesson-comic.js','src/waterfront-climb.js','src/engine.js','src/content.js','src/curriculum-language.js','src/characters.js','src/runner.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
  mkdirSync('money-ops/'+file.split('/').slice(0,-1).join('/'),{recursive:true});
