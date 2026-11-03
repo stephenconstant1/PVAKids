@@ -7,7 +7,7 @@ const assert=require('node:assert/strict');
  page.on('pageerror',error=>errors.push(error.message));
  const url=process.env.MONEY_OPS_URL;
  await page.goto(url);
- await page.locator('#name').fill('Scene Review');await page.locator('#profile-form button[type=submit]').click();
+ await page.locator('[data-action=\"home-career-setup\"]').click();await page.locator('#name').fill('Scene Review');await page.locator('#profile-form button[type=submit]').click();
  const saved=await page.evaluate(()=>localStorage.getItem('money-ops-v02'));
  await page.reload();assert.equal(await page.locator('.title-screen').count(),1,'saved players land on homepage');
  assert.equal(await page.evaluate(()=>localStorage.getItem('money-ops-v02')),saved);

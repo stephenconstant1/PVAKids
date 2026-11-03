@@ -14,7 +14,7 @@ const url=process.env.MONEY_OPS_URL||'http://127.0.0.1:8082';
   const art=await page.locator('.money-ops-reference').evaluate(async img=>{await img.decode();const r=img.getBoundingClientRect();return {width:r.width,height:r.height,natural:img.naturalWidth};});
   assert.equal(art.natural,1280);assert(Math.abs(art.width/art.height-1280/748)<.01,'the full source image must preserve its aspect ratio');assert(art.width<=width);
  }
- await page.setViewportSize({width:1440,height:1000});await page.locator('#name').fill('City Builder');await page.locator('#profile-form button[type=submit]').click();
+ await page.setViewportSize({width:1440,height:1000});await page.locator('[data-action=\"home-career-setup\"]').click();await page.locator('#name').fill('City Builder');await page.locator('#profile-form button[type=submit]').click();
  assert.equal(await page.locator('.mb-building').count(),0,'city map is temporarily hidden');assert.equal(await page.locator('.mb-level').count(),32);
  assert.equal(await page.locator('[data-action="begin-2"]').first().isDisabled(),true);
  await page.locator('[data-action="mb-view-school"]').first().focus();await page.keyboard.press('Enter');

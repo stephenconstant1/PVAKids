@@ -57,7 +57,7 @@ const url=process.env.MONEY_OPS_URL;
  // A missing canonical location must be reported, never replaced with a guess.
  const missing=await browser.newContext(),m=await missing.newPage();
  await m.route('**/src/moneybread/destinations.json',route=>{const bad=structuredClone(sources);bad[0].sourceLocation='source lesson needed';return route.fulfill({contentType:'application/json',body:JSON.stringify(bad)});});
- await m.goto(url);await m.locator('#name').fill('Missing Source Test');await m.locator('#profile-form button[type=submit]').click();
+ await m.goto(url);await m.locator('[data-action=\"home-career-setup\"]').click();await m.locator('#name').fill('Missing Source Test');await m.locator('#profile-form button[type=submit]').click();
  assert.equal(await m.locator('.mb-destination-marker').count(),0);assert.match(await m.locator('.mb-map-panel [role=alert]').textContent(),/Level 1: source lesson needed/);
  await missing.close();assert.deepEqual(errors,[]);await browser.close();
  console.log('PASS static reduced-motion destination and runner feedback; explicit missing-location state; no browser runtime errors');

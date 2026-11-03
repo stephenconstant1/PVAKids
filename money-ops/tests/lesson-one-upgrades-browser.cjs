@@ -11,7 +11,7 @@ const {mkdirSync,writeFileSync}=require('node:fs');
  const edited=await page.evaluate(async()=>{const img=new Image();img.src='assets/crew/moneybread-city-everest-approved.png';await img.decode();return img.naturalWidth>0;});assert(edited);
  mkdirSync('/tmp/moneyops-everest-review',{recursive:true});
  await page.locator('.reference-crew-hero').screenshot({path:'/tmp/moneyops-everest-review/home-crew.png'});
- await page.locator('#name').fill('Everest Review');await page.locator('#profile-form button[type=submit]').click();
+ await page.locator('[data-action=\"home-career-setup\"]').click();await page.locator('#name').fill('Everest Review');await page.locator('#profile-form button[type=submit]').click();
  const career=await page.evaluate(()=>localStorage.getItem('money-ops-v02'));
  await page.locator('[data-action="arcade-open"]').first().click();
  await page.locator('[data-action="arcade-character-kai"]').click();await page.locator('[data-action="arcade-level-1"]').click();

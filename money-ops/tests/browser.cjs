@@ -13,7 +13,7 @@ const assert=require('node:assert/strict');
   await page.goto(url);
   assert.equal(await page.locator('#main').evaluate(main=>main.firstElementChild?.classList.contains('home-crew-hero')),true,'the complete crew must be the first homepage section');
   assert.equal(await page.locator('.home-crew-hero .money-ops-reference').count(),1,'the homepage must show the uncropped original crew image');
-  await page.locator('#name').fill('Maya');
+  await page.locator('[data-action=\"home-career-setup\"]').click();await page.locator('#name').fill('Maya');
   await page.locator('button[type="submit"]').click();
   return page;
  }
@@ -202,7 +202,7 @@ const assert=require('node:assert/strict');
  await arcadePage.goto(url);
  assert.equal(await arcadePage.locator('#main').evaluate(main=>main.firstElementChild?.classList.contains('home-crew-hero')),true,'the fresh landing page must open with the crew');
  assert.equal(await arcadePage.locator('.home-crew-hero .money-ops-reference').count(),1);
- assert.match(await arcadePage.locator('.mode-entry-grid').textContent(),/NO SAVE FILE[\s\S]+ARCADE MODE/i);
+ assert.equal(await arcadePage.locator('.home-image-stage>img').count(),1);assert(await arcadePage.locator('[data-action="start-arcade"]').isVisible());
  assert.ok(await arcadePage.locator('[data-action="start-arcade"]').count()>=3,'Arcade Mode must appear in the opening navigation, card, and footer');
  assert.equal(await arcadePage.evaluate(()=>localStorage.getItem('money-ops-v02')),null);
  await click(arcadePage,'start-arcade');

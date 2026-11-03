@@ -155,3 +155,5 @@
 .job-leftover small,.job-leftover label,.job-caption-min{font-family:Arial,sans-serif!important;letter-spacing:normal!important}.job-picture-only .job-live-value small{color:#173f37;font-family:Arial,sans-serif;letter-spacing:normal}.job-caption-min{color:#173f37}.job-art-comic .job-comic-hd{max-height:calc(100svh - 320px)}
 @media(max-width:600px){.job-art-comic .job-comic-hd{max-height:none}}
 @media(min-width:1000px){.job-picture-only .job-live-heading h2{left:64.5%;width:17.4%}.job-picture-only .job-live-heading>div>p{left:64.5%;width:17.4%}.job-picture-only .job-cost-tools{background:#fff1cb;border-radius:8px}.job-picture-only .job-live-labor .job-cost-tools{background:#dff5ff}.job-picture-only .job-live-overhead .job-cost-tools{background:#ede4fa}.job-picture-only .job-cost-tools button:disabled{opacity:1;background:#9ac4d3;color:#345b65;border-color:#fff}.job-picture-only .job-cost-tools input{box-shadow:none}}
+/* Native pixels remain sufficient on high-density desktop/tablet screens. */
+@media(min-resolution:1.5dppx){.job-art-comic{max-width:724px}}
