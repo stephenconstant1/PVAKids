@@ -1,7 +1,7 @@
 import {lessonComicPanels} from './lesson-comic.js';
 import {lessonVocabulary} from './runner-vocabulary.js';
-import {renderCity} from './moneybread/ui.js?v=46.13';
-import {newJobPractice,jobTotals,jobPlanError,jobStepDisabled,stepJobCost,MINIMUM_JOB_COSTS,minimumCosts,practiceBudget} from './moneybread/job-practice.js?v=46.13';
+import {renderCity} from './moneybread/ui.js?v=46.14';
+import {newJobPractice,jobTotals,jobPlanError,jobStepDisabled,stepJobCost,MINIMUM_JOB_COSTS,minimumCosts,practiceBudget} from './moneybread/job-practice.js?v=46.14';
 import {lessonOneBeats} from './lesson-one-comic.js';
 import {destination} from './moneybread/destinations.js';
 import {attachCity,applyCity,canOpen,currentLevel,noteLesson,validCity,freshCity} from './moneybread/index.js';
@@ -25,7 +25,7 @@ const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',ma
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const button=(text,action,cls='',extra='')=>`<button class="${cls}" data-action="${action}" ${extra}>${text}</button>`;
 function progress(){const next=nextRank(p.xp);const current=ranks.filter(r=>p.xp>=r[1]).at(-1);const pct=next?Math.min(100,(p.xp-current[1])/(next[1]-current[1])*100):100;return `<div class="xp-row"><span>${p.xp} XP</span><span>${next?`${next[1]-p.xp} TO ${next[0].toUpperCase()}`:'TOP RANK'}</span></div><div class="bar" role="progressbar" aria-label="Rank progress" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>`;}
-function header(){const arcade=p.mode==='arcade';return `<header><a class="brand" href="./" aria-label="Money Ops home"><span class="brand-mark">M<span>↗</span></span><span><small>FINANCIAL FREEDOM</small><b>MONEY OPS<span class="version"> / 46.13</span></b></span></a><div class="header-right"><span class="system ${arcade?'arcade-unsaved':''}"><i></i> ${p.jobPracticeOnly?'PRACTICE · NOT SAVED':arcade?'ARCADE MODE · NOT SAVED':'CAREER SAVED'}</span>${button('HOME','site-home','home-nav-button')}${button(arcade?'ARCADE LEVELS':'PLAY ARCADE','arcade-open-header','arcade-nav-button')}${button(p.muted?'SOUND OFF':'SOUND ON','mute','utility',`aria-pressed="${!p.muted}" aria-label="${p.muted?'Enable':'Mute'} sound"`)}</div></header>`;}
+function header(){const arcade=p.mode==='arcade';return `<header><a class="brand" href="./" aria-label="Money Ops home"><span class="brand-mark">M<span>↗</span></span><span><small>FINANCIAL FREEDOM</small><b>MONEY OPS<span class="version"> / 46.14</span></b></span></a><div class="header-right"><span class="system ${arcade?'arcade-unsaved':''}"><i></i> ${p.jobPracticeOnly?'PRACTICE · NOT SAVED':arcade?'ARCADE MODE · NOT SAVED':'CAREER SAVED'}</span>${button('HOME','site-home','home-nav-button')}${button(arcade?'ARCADE LEVELS':'PLAY ARCADE','arcade-open-header','arcade-nav-button')}${button(p.muted?'SOUND OFF':'SOUND ON','mute','utility',`aria-pressed="${!p.muted}" aria-label="${p.muted?'Enable':'Mute'} sound"`)}</div></header>`;}
 function playerPortrait(className='',id=p.avatar){return characters[id]?portrait(id,className):`<span class="avatar">${escape(id)}</span>`;}
 function runnerCharacterId(){return castIds.includes(p?.avatar)?p.avatar:'maya';}
 const bonusItems=[{id:'boots',name:'BOOST BOOTS',price:5,icon:'⇧',detail:'Jump higher.'},{id:'magnet',name:'COIN MAGNET',price:10,icon:'◎',detail:'Pull coins closer.'},{id:'companion',name:'PENNY THE MONEY DRAGON',price:15,icon:'🐲',detail:'Your original Money Ops sidekick blocks one hit.'}];
@@ -106,7 +106,15 @@ function startCareerLesson(profile,id){const marked=markLessonStarted({...profil
 function completeCurrentLesson(){const id=p.active?.id,practice=p.active?.practice;if(!id)return;const completed=noteLesson(finish(p),id);if(completed===p||completed.active)return;if(practice){tab='operations';commit(completed,'achievement');return;}const marked=markLessonCompleted(completed,id);commit(openRunner(marked,id,'post'),'achievement');}
 app.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(e.target);if(e.target.id==='mb-reflect-form'){try{const city=applyCity(p.moneybread,{type:'reflect',text:String(data.get('reflection')||''),term:String(data.get('term')||'')},p.completed);cityUI.error='';cityUI.view='city';commit({...p,moneybread:city},'achievement');}catch(error){cityUI.error=error.message;render(false);document.querySelector('#mb-status')?.focus();}return;}if(e.target.id==='arcade-score-form'){const initials=String(data.get('initials')||'').trim(),result=p.runnerSession?.result;if(!result)return;try{arcadeScores=recordArcadeScore(arcadeScores,{initials,score:result.score,lessonId:p.runnerSession.lessonId,coins:result.collected});p={...p,runnerSession:{...p.runnerSession,scoreRecorded:true,scoreInitials:initials.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,3)}};sound('achievement',p.muted,p.sfxVolume);render(true);}catch{e.target.querySelector('input')?.setCustomValidity('Enter two or three initials.');e.target.reportValidity();}return;}const name=String(data.get('name')||'').trim();if(!name)return;if(e.target.id==='profile-form')commit(newGame(name,String(data.get('avatar')), {accent:String(data.get('accent')),emblem:String(data.get('emblem'))}),'start');if(e.target.id==='rename-form')commit({...p,name});});
 app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b||b.disabled)return;const action=b.dataset.action;
- if(action==='job-practice-open'){p=careerProfile?{...careerProfile,screen:'base'}:{...ensureCareer(newGame('Practice learner','jordan')),jobPracticeOnly:true};showingHome=false;cityUI.view='job';render(true);return;}
+ if(action==='job-practice-open'){p=careerProfile?{...careerProfile,screen:'base'}:{...ensureCareer(newGame('Practice learner','jordan')),jobPracticeOnly:true};showingHome=false;cityUI.view='job';cityUI.jobComicStep=0;cityUI.jobComicDone=false;render(true);return;}
+ if(action.startsWith('job-comic-')){
+  const step=cityUI.jobComicStep||0;
+  if(action==='job-comic-replay'){cityUI.jobComicStep=0;cityUI.jobComicDone=false;}
+  else if(action==='job-comic-back')cityUI.jobComicStep=Math.max(0,step-1);
+  else if(action==='job-comic-skip'||(action==='job-comic-next'&&step===7))cityUI.jobComicDone=true;
+  else if(action==='job-comic-next')cityUI.jobComicStep=Math.min(7,step+1);
+  render(false);document.querySelector('[data-job-comic-panel],#job-practice-title')?.focus();return;
+ }
  if(action==='job-practice-close'){p=careerProfile;showingHome=!p;cityUI.view='city';render(true);return;}
  if(action==='job-tools-open'){const input=app.querySelector('#job-materials');input?.focus({preventScroll:true});input?.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return;}
  if(action==='job-cost-step'){
@@ -127,7 +135,7 @@ app.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b
   if(p.mode==='arcade')return;
   if(action==='mb-repair-request'){cityUI.reset=true;render(true);return;}
   if(action==='mb-repair-confirm'){cityUI.reset=false;commit({...p,moneybread:freshCity(p.completed),cityLoadError:null});return;}
-  if(action.startsWith('mb-view-')){cityUI.view=action.slice(8);cityUI.preview=undefined;cityUI.error='';tab='operations';commit({...p,screen:'base'});return;}
+  if(action.startsWith('mb-view-')){if(action==='mb-view-job'){cityUI.jobComicStep=0;cityUI.jobComicDone=false;}cityUI.view=action.slice(8);cityUI.preview=undefined;cityUI.error='';tab='operations';commit({...p,screen:'base'});return;}
   if(action.startsWith('mb-district-')){cityUI.district=action.slice(12);cityUI.preview=undefined;render(false);return;}
   if(action.startsWith('mb-preview-')){const id=Number(action.slice(11));if(canOpen(p.moneybread,id)){cityUI.preview=id;cityUI.district=destination(id)?.district||cityUI.district;cityUI.view='city';render(true);document.querySelector('#mb-next-stop-cue')?.focus();}return;}
   if(action==='mb-reset-request'||action==='mb-reset-cancel'){cityUI.reset=action==='mb-reset-request';render(false);document.querySelector('.mb-reset-confirm')?.scrollIntoView({block:'center'});return;}

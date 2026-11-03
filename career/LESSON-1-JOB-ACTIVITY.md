@@ -59,3 +59,13 @@ over-budget totals, step-button bounds and unchanged saved city-job data.
 Chromium checks cover all jobs at 320/390/768/1440px, including image and touch
 controls, keyboard input, reduced motion, disabled-button bypass rejection,
 reflection and onward city progression with unchanged financial saves.
+
+## Supplied illustrated comic (46.14)
+
+The direct Run the Job entry opens `assets/crew/lesson-one-job-comic.jpg`, the
+user's original eight-panel sheet. SVG viewports reveal the original panel
+boundaries without redrawing, slicing or changing the image. Next/Back, skip,
+replay, panel progress, accessible panel descriptions and optional text transcripts
+work with touch and keyboard. Reduced motion disables the gentle entrance.
+Finishing or skipping reveals the restored picture-based activity unchanged.
+The comic uses transient UI state and never changes saved progress or money.
