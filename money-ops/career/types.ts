@@ -24,7 +24,7 @@ export interface CareerProfile {
  active?:{id:number;practice?:boolean}|null;
  [key:string]:unknown;
 }
-export interface CityUI {jobComicPaused?:boolean;jobComicContext?:import('./job-comic.js').JobComicContext;jobComicStep?:number;jobComicDone?:boolean;jobPractice?:import('./job-practice.js').JobPractice;view:'city'|'school'|'work'|'wallet'|'progress'|'job';district:DistrictId;preview?:number;reset:boolean;error?:string}
+export interface CityUI {projectPage?:number;progressPage?:number;jobComicPaused?:boolean;jobComicContext?:import('./job-comic.js').JobComicContext;jobComicStep?:number;jobComicDone?:boolean;jobPractice?:import('./job-practice.js').JobPractice;view:'city'|'school'|'work'|'wallet'|'progress'|'job';district:DistrictId;preview?:number;reset:boolean;error?:string}
 export type CityAction =
  | {type:'work';job:string} | {type:'allocate';plan:string}
  | {type:'build';district:DistrictId} | {type:'withdraw'}
