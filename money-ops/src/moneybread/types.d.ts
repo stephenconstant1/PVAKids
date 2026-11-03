@@ -77,6 +77,8 @@ export interface CareerProfile {
     [key: string]: unknown;
 }
 export interface CityUI {
+    jobComicPaused?: boolean;
+    jobComicContext?: import('./job-comic.js').JobComicContext;
     jobComicStep?: number;
     jobComicDone?: boolean;
     jobPractice?: import('./job-practice.js').JobPractice;

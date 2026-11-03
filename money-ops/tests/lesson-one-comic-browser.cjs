@@ -10,9 +10,9 @@ const {mkdirSync}=require('node:fs');
  const click=action=>page.locator(`[data-action="${action}"]`).first().click();
  const saved=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('money-ops-v02')));
  const original=await saved(),beats=await page.evaluate(async()=>{const {lessonOneBeats}=await import('./src/lesson-one-comic.js');return lessonOneBeats();});
- assert.equal(beats.length,4);assert(await page.locator('[data-action="comic-back"]').isDisabled());
- for(let i=0;i<4;i++){
-  assert.equal((await page.locator('.comic-caption p').textContent()).trim(),beats[i]);assert.equal(await page.locator('.comic-caption p').evaluate(n=>getComputedStyle(n).color),'rgb(20, 59, 57)');
+ assert.equal(beats.length,8);assert(await page.locator('[data-action="comic-back"]').isDisabled());
+ for(let i=0;i<8;i++){
+  assert.equal((await page.locator('.motion-line').textContent()).trim(),beats[i]);assert.equal(await page.locator('.motion-line').evaluate(n=>getComputedStyle(n).color),'rgb(20, 59, 57)');
   if(reduced)assert.equal(await page.locator('.comic-panel').evaluate(n=>getComputedStyle(n).animationName),'none');
   if(i===0&&!reduced){await page.evaluate(()=>Promise.all(document.getAnimations().filter(a=>a.effect.getComputedTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{}))));mkdirSync('/tmp/comic-building-review',{recursive:true});await page.screenshot({path:`/tmp/comic-building-review/comic-${width}.png`,fullPage:true});}
   if(i===1){await click('comic-back');assert.match(await page.locator('.comic-progress').textContent(),/Panel 1/);await click('next');}
