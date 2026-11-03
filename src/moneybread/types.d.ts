@@ -77,8 +77,6 @@ export interface CareerProfile {
     [key: string]: unknown;
 }
 export interface CityUI {
-    jobIntroStep?: number;
-    jobIntroDone?: boolean;
     jobPractice?: import('./job-practice.js').JobPractice;
     view: 'city' | 'school' | 'work' | 'wallet' | 'progress' | 'job';
     district: DistrictId;

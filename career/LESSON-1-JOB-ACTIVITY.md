@@ -1,12 +1,14 @@
 # Lesson 1 customer job practice
 
 “Run the job” uses the supplied image at
-`assets/crew/lesson-one-run-the-job.jpg`. A four-panel comic opens first, explaining the purpose of creating value and planning the job. Next, Back, skip and replay controls stay on the same page. One responsive picture board contains all job choices, tools and totals. The home button and city navigation open it
+`assets/crew/lesson-one-run-the-job.jpg`. Desktop image tools and larger phone
+controls share one calculator. The home button and city navigation open it
 without prerequisites; the original lesson and city-responsibility flow remain.
 
 ## Required practice budget
 
-Every practice job now uses a fixed **$100 classroom customer payment** and the image's required minimum costs:
+Every practice job now uses a fixed **$100 customer payment** (100 bread in game
+money) and the image's required minimum costs:
 
 | Category | Minimum |
 | --- | ---: |
@@ -33,12 +35,13 @@ costs, not guaranteed profit.
 - Each category starts at its minimum. Minus buttons and native number-input
   steps cannot take a valid value below that floor.
 - Plus buttons stop when the $100 budget is fully allocated.
-- Typed amounts below minimum clamp to the minimum. Incomplete values, fractions and values above $100 are invalid. Clear inline messages explain the problem.
-- A manually entered total over $100 shows the shortfall and disables the
-  Check button. The action handler independently rejects the plan even if a
+- Typed amounts below minimum, incomplete values, fractions and values above
+  $100 are invalid. Clear inline messages explain the problem.
+- A manually entered total over $100 shows the shortfall and disables both
+  Check buttons. The action handler independently rejects the plan even if a
   disabled button is bypassed. Exact $100 totals are valid and leave $0.
-- Students pack materials, labor and shared overhead before checking. Each selection explains its role through the active character guide.
-- Each job changes the customer need, original object illustrations, required items and canonical guide. Live totals and keyboard/touch support use one set of controls. Reduced motion is respected.
+- Image and large controls update together, with live totals and keyboard/touch
+  support. Reduced motion is respected.
 
 Practice estimates and notes are presentation state, outside financial/scoring
 saves. They survive rerender and ordinary in-app navigation but reset on reload.
@@ -46,7 +49,7 @@ The note prefills the existing final city reflection, which is saved through its
 usual submit action. No new rewards or wallet transactions are generated.
 
 The original paid work, allocation, city project, service cost, scripture,
-character designs and other lessons are preserved. Version 46.12 refreshes the
+character designs and other lessons are preserved. Version 46.13 refreshes the
 entry assets, city renderer and practice rules together.
 
 ## Validation

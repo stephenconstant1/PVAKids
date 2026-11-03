@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {newJobPractice,jobTotals,jobFeedback,jobPlanError,jobStepDisabled,stepJobCost,MINIMUM_JOB_COSTS,jobReady} from '../src/moneybread/job-practice.js';
+import {newJobPractice,jobTotals,jobFeedback,jobPlanError,jobStepDisabled,stepJobCost,MINIMUM_JOB_COSTS} from '../src/moneybread/job-practice.js';
 import {jobs} from '../src/moneybread/simulation.js';
 test('every practice job starts at the required $80 cost within the same $100 budget',()=>{
  for(const job of jobs){const p=newJobPractice(job.id);assert.deepEqual(jobTotals(p),{payment:100,total:80,remaining:20});for(const [key,value] of Object.entries(MINIMUM_JOB_COSTS))assert.equal(p[key],value);assert.equal(jobPlanError(p),'');}
@@ -26,10 +26,5 @@ test('plus/minus buttons cannot bypass a minimum or spend beyond the remaining b
  }
 });
 test('feedback describes remaining money without guaranteeing profit or modifying the plan',()=>{
- const p=newJobPractice('creator'),copy=structuredClone(p);assert.match(jobFeedback(p,String),/not guaranteed profit/);assert.match(jobFeedback(p,String),/\$80 listed costs/);assert.deepEqual(p,copy);
-});
-
-test('checking the job requires planning materials, labor and overhead, without charging extra money',()=>{
- const plan=newJobPractice('tutor');assert(!jobReady(plan));for(const category of ['materials','labor','overhead']){plan.packed=[...(plan.packed||[]),category];if(plan.packed.length<3)assert(!jobReady(plan));}
- assert(jobReady(plan));assert.deepEqual(jobTotals(plan),{payment:100,total:80,remaining:20});assert(!jobReady({...plan,materials:46}));assert(!jobReady({...plan,packed:['materials','labor']}));
+ const p=newJobPractice('creator'),copy=structuredClone(p);assert.match(jobFeedback(p,String),/not guaranteed profit/);assert.match(jobFeedback(p,String),/25 materials \+ 40 labor \+ 15 overhead/);assert.deepEqual(p,copy);
 });

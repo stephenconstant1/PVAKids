@@ -5,8 +5,6 @@ export interface JobPractice {
     overhead: number;
     checked: boolean;
     reflection: string;
-    packed?: JobCostCategory[];
-    lastPacked?: JobCostCategory;
 }
 export declare const customerNeeds: Record<string, {
     customer: string;
@@ -40,8 +38,5 @@ export declare function jobTotals(plan: JobPractice): {
 export declare function jobPlanError(plan: JobPractice): string;
 export declare function jobStepDisabled(plan: JobPractice, category: JobCostCategory, direction: number): boolean;
 export declare function stepJobCost(plan: JobPractice, category: JobCostCategory, direction: number): number;
-export declare function jobMoney(value: number | undefined): string;
-export declare function jobReady(plan: JobPractice): boolean;
-export declare function renderJobIntro(step: number, e: (v: unknown) => string): string;
-export declare function renderJobPractice(plan: JobPractice, _guide: string, e: (v: unknown) => string): string;
+export declare function renderJobPractice(plan: JobPractice, guide: string, e: (v: unknown) => string): string;
 export declare function jobFeedback(plan: JobPractice, e: (v: unknown) => string): string;
