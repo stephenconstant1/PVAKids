@@ -1,0 +1,16 @@
+export const jobScenes = {
+    service: { title: 'Neighborhood Helper', mentor: 'jordan', name: 'Kanyon', need: 'A neighbor needs help with yard work.', value: 'Your time helps finish useful outdoor work.', items: ['Gloves & leaf bags', 'Raking time & effort', 'Shared rake & transport'], tasks: ['Pack the yard kit', 'Plan the yard work', 'Plan shared tools'] },
+    tutor: { title: 'School Tutor', mentor: 'maya', name: 'Maya', need: 'A student needs schoolwork explained.', value: 'Your skills help a student learn and understand.', items: ['Learning materials', 'Preparing & explaining', 'Shared books & equipment'], tasks: ['Pack learning materials', 'Plan teaching time', 'Plan shared equipment'] },
+    creator: { title: 'Studio Creator', mentor: 'sofia', name: 'Sofia', need: 'A customer needs a useful product made.', value: 'Your ideas become something useful for a customer.', items: ['Paper & art supplies', 'Designing & making', 'Shared tools & workspace'], tasks: ['Pack art supplies', 'Plan making time', 'Plan shared tools'] }
+};
+/** Original object illustrations; character pixels come only from canonical assets. */
+export function jobSceneArt(job, category) {
+    const scene = jobScenes[job] || jobScenes.service;
+    const objects = job === 'tutor'
+        ? '<rect x="30" y="20" width="260" height="115" rx="12" fill="#245e58"/><path d="M65 62h65m-65 24h100m45-36v44m-22-22h44" stroke="#fff6bd" stroke-width="7"/><path d="M65 145q48-20 95 0q47-20 95 0v53q-47-20-95 0q-47-20-95 0z" fill="#fff7de" stroke="#376e78" stroke-width="5"/><path d="M160 145v53" stroke="#376e78" stroke-width="4"/><circle cx="272" cy="161" r="18" fill="#f4b943"/>'
+        : job === 'creator'
+            ? '<path d="M75 205 160 20l85 185m-136-62h102" fill="none" stroke="#9c6b38" stroke-width="10"/><rect x="95" y="44" width="134" height="122" rx="8" fill="#fff8de" stroke="#7b5bb1" stroke-width="6"/><circle cx="190" cy="78" r="19" fill="#ffd54b"/><path d="m104 150 40-42 30 25 20-18 25 35" fill="#7bb866"/><path d="M37 84 65 161m-18-82 27 80" stroke="#ef7a93" stroke-width="10"/><rect x="22" y="157" width="62" height="43" rx="8" fill="#7b5bb1"/>'
+            : '<path d="M10 180q150-42 300 0v40H10" fill="#6ca65c"/><path d="M78 169V73m-25 96h50M203 185l44-127m-58 115 42 14m-38-25 42 14" stroke="#9b703e" stroke-width="9"/><path d="M67 110q-40-54 13-70q50 23 6 70" fill="#65a64e"/><path d="M120 195v-55m-15 5q16-30 34-10m-19 25q-34-28-48-5" stroke="#48833c" stroke-width="8" fill="none"/><path d="M151 184q26-28 45 0q-8 29-45 0" fill="#c5d37e"/>';
+    const symbol = category === 1 ? '<circle cx="267" cy="49" r="29" fill="#fff5cf" stroke="#2d665c" stroke-width="5"/><path d="M267 29v22l15 9" stroke="#2d665c" stroke-width="5" fill="none"/>' : category === 2 ? '<path d="m233 170 19-18 35 34-19 18z" fill="#f8c867" stroke="#385d54" stroke-width="4"/><path d="M230 190h57" stroke="#385d54" stroke-width="5"/>' : '';
+    return `<svg class="job-scene-art" data-job-scene="${job}" data-job-category="${category ?? 'scene'}" viewBox="0 0 320 220" role="img" aria-label="${scene.title}: ${category === undefined ? scene.need : scene.items[category]}"><rect width="320" height="220" rx="18" fill="${job === 'tutor' ? '#d4edf0' : job === 'creator' ? '#efe1f5' : '#e3f0c8'}"/>${objects}${symbol}</svg>`;
+}
