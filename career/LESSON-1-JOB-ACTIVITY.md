@@ -1,72 +1,61 @@
 # Lesson 1 customer job practice
 
-The original TypeScript/ES-module Moneybread City interface now presents “Run the
-job” in place of the Lesson 1 city-building selection as the main activity.
-The original city-project transaction remains in a separate City responsibilities
-disclosure so existing choices, financial rules and progression remain usable.
-Other lessons retain their project interface. The earlier lesson comic, work
-activities, Arcade and Bonus controls are unchanged.
+“Run the job” uses the supplied image at
+`assets/crew/lesson-one-run-the-job.jpg`. Desktop image tools and larger phone
+controls share one calculator. The home button and city navigation open it
+without prerequisites; the original lesson and city-responsibility flow remain.
 
-## Existing data and learning sequence
+## Required practice budget
 
-The practice jobs reuse `jobs` from `career/simulation.ts`:
+Every practice job now uses a fixed **$100 customer payment** (100 bread in game
+money) and the image's required minimum costs:
 
-| City job | Customer payment | Original supplies |
-| --- | ---: | ---: |
-| Neighborhood helper | 100 bread | 0 bread |
-| School tutor | 130 bread | 10 bread |
-| Studio creator | 155 bread | 25 bread |
+| Category | Minimum |
+| --- | ---: |
+| Materials | $25 |
+| Labor | $40 |
+| Overhead | $15 |
+| Total minimum cost | $80 |
+| Remaining at minimums | $20 |
 
-Bread is the existing city's game money. No $100/$25/$40/$15 fallback scenario
-was needed because payment and supplies already exist. Yard care, study help and
-creating a product connect these jobs to the existing Lesson 1 activities.
+The existing Neighborhood helper, School tutor and Studio creator choices keep
+their customer needs and purposes. The $100 budget and these floors are classroom
+practice rules for each choice, not permanent real-world prices or changes to
+saved city-job rewards. The original city transactions remain unchanged:
+Neighborhood helper earns 100 bread with 0 supplies; School tutor earns 130 with
+10 supplies; Studio creator earns 155 with 25 supplies.
 
-Students identify a customer need, choose the work, consider materials, labor
-and overhead, adjust estimates, compare payment against all three costs, and
-explain how their work creates value. Labor and overhead have no authoritative
-prices in the existing data. Their starting zero estimates are explicitly not
-claims that time or equipment is free. Changing supplies is also clearly marked
-as a practice assumption, not a change to the game's published price.
+Students identify a need, choose useful work, consider materials, labor and
+shared overhead, allocate the remaining $20, check their plan and explain the
+value created for the customer. Remaining money means payment minus listed
+costs, not guaranteed profit.
 
-“Check the Job” gives feedback for remaining money, exact cost coverage, and a
-shortfall. Remaining money is payment minus the listed costs, not guaranteed
-profit. Examples of overhead describe shared transport, equipment or workspace
-supplies; there is a reminder not to count a supply twice.
+## Controls and validation
 
-## State and rules
+- Each category starts at its minimum. Minus buttons and native number-input
+  steps cannot take a valid value below that floor.
+- Plus buttons stop when the $100 budget is fully allocated.
+- Typed amounts below minimum, incomplete values, fractions and values above
+  $100 are invalid. Clear inline messages explain the problem.
+- A manually entered total over $100 shows the shortfall and disables both
+  Check buttons. The action handler independently rejects the plan even if a
+  disabled button is bypassed. Exact $100 totals are valid and leave $0.
+- Image and large controls update together, with live totals and keyboard/touch
+  support. Reduced motion is respected.
 
-Practice accepts whole-number estimates from 0 to 10,000 bread per category;
-blank, negative, fractional or out-of-range values cannot produce valid totals
-or be checked. All categories are added exactly once. Estimates and local notes
-are held in `CityUI`, outside financial/scoring saves. They survive rerender and
-normal in-app navigation but reset on reload. Notes prefill the existing final
-city reflection; that reflection is saved through its existing submit action.
+Practice estimates and notes are presentation state, outside financial/scoring
+saves. They survive rerender and ordinary in-app navigation but reset on reload.
+The note prefills the existing final city reflection, which is saved through its
+usual submit action. No new rewards or wallet transactions are generated.
 
-There are no new rewards, wallet deductions, guaranteed outcomes or permanent
-job prices. The original paid work, allocation, city project, service cost and
-reflection rules remain in `applyCity`; no simulation transactions were changed.
+The original paid work, allocation, city project, service cost, scripture,
+character designs and other lessons are preserved. Version 46.11 refreshes the
+entry assets, city renderer and practice rules together.
 
-## Artwork and validation
+## Validation
 
-The supplied Run the Job image is included unchanged at
-`assets/crew/lesson-one-run-the-job.jpg`. Working HTML controls replace its
-painted buttons and amounts on desktop. Phones show the same image with a clear
-link to the touch-sized controls beneath it. Both sets of controls share the
-same state and arithmetic. Existing canonical guide portraits remain in use.
-The illustrated sample prices are not new permanent game prices.
-Responsive cards, numeric controls, focus outlines, live totals, short feedback
-motion, and reduced-motion overrides support mouse, keyboard and touch.
-
-Checks: build/typecheck; 128 Node tests; 12 job-planning Chromium scenarios across
-320/390/768/1440px and all three jobs, including reduced motion, live arithmetic,
-invalid inputs, shortfalls, unchanged saved financial data, reflection and onward
-city progression; existing Career city and Lesson 1 comic browser regressions.
-
-## Direct access
-
-The home screen now has a Run the Job — Lesson 1 button. The city navigation
-also opens the same image-backed activity directly, including for learners who
-already completed Lesson 1. New visitors can practice without creating or
-overwriting a saved career. The original paid work and city responsibilities
-flow remains available. Release 46.9 refreshes the entry script, styles and city
-UI module so an older cached entry does not hide the new access point.
+Unit checks cover all three job choices, each minimum, invalid values, exact and
+over-budget totals, step-button bounds and unchanged saved city-job data.
+Chromium checks cover all jobs at 320/390/768/1440px, including image and touch
+controls, keyboard input, reduced motion, disabled-button bypass rejection,
+reflection and onward city progression with unchanged financial saves.

@@ -1,6 +1,6 @@
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {cpSync,existsSync,readFileSync,mkdirSync} from 'node:fs';
+import {cpSync,existsSync,readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {cityStops,cityLandmarks} from '../src/city.js';
 import {missions} from '../src/content.js';
 const source=JSON.parse(readFileSync(new URL('../career/lessons.json',import.meta.url),'utf8'));
@@ -31,6 +31,9 @@ for(const kind of ['run','jump','duck']){
 }
 for(const id of ['jordan','maya','kai','sofia','eli','ruby']){const rig=rigs[id];if(!rig?.source||createHash('sha256').update(readFileSync(rig.source)).digest('hex')!==rig.sourceSha256)throw Error(`Original ${id} running reference changed; review identity and animation metadata before building.`);}
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','-p','tsconfig.json'],{stdio:'inherit'});
+// Version the updated practice renderer together with its authoritative budget rules.
+const uiOutput='src/moneybread/ui.js';
+writeFileSync(uiOutput,readFileSync(uiOutput,'utf8').replace("from './job-practice.js'","from './job-practice.js?v=46.11'"));
 // GitHub Pages serves both / and /money-ops/. Keep both entry points identical.
 if(existsSync('money-ops'))for(const file of ['README.md','docs','Running (1).fbx','MOVEMENT_METRICS.md','RUNNER_ASSETS.md','assets/crew','assets/environments','assets/cast/kai.png','assets/runner','assets/review','career','scripts','tests','src/moneybread','index.html','src/app.js','src/play.js','src/lesson-one-comic.js','src/lesson-comic.js','src/waterfront-climb.js','src/engine.js','src/content.js','src/curriculum-language.js','src/characters.js','src/runner.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
  mkdirSync('money-ops/'+file.split('/').slice(0,-1).join('/'),{recursive:true});

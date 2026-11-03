@@ -138,3 +138,5 @@
 /* Practice minimums apply to both the illustration and the large controls. */
 .job-practice button:disabled {cursor:not-allowed;opacity:.45;}
 .job-practice #job-cost-error:not(:empty) {font-weight:700;}
+
+.job-practice:has(#job-cost-error:not(:empty)) .job-totals {outline:3px solid #f3b576;outline-offset:4px;border-radius:14px;}

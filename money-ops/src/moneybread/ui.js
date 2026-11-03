@@ -1,4 +1,4 @@
-import { renderJobPractice, newJobPractice } from './job-practice.js';
+import { renderJobPractice, newJobPractice } from './job-practice.js?v=46.11';
 import { buildingArt } from './art.js';
 import { everestPatchLayer, everestPatchOverlay } from './crew-art.js';
 import { destination } from './destinations.js';
