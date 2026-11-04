@@ -6,6 +6,8 @@ export declare const jobComicPanels: {
     focus: number[];
 }[];
 export interface JobComicContext {
+    brief?: string;
+    lessonText?: string;
     title: string;
     coreIdea: string;
     guide: {

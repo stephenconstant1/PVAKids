@@ -99,3 +99,6 @@ for the six established character identities/outfit colors, facial expressions,
 lettering and practice-example arithmetic. Source dimensions remain 1448×1086.
 A side-by-side browser preview at 320px confirmed the improved contour visibility.
 The panel URLs and module entry versions were refreshed to load the corrected art.
+
+### Scene quote bubbles (46.20)
+Lesson and Verse open character quote bubbles within the comic frame. The illustrated speech bubble also opens that scene’s accessible caption and related vocabulary. Scene, Lesson, Words, and Scripture categories use Back/Next pages instead of a scrolling transcript. The source lesson introduction, notes, vocabulary definitions, and scripture remain unchanged; Read This Screen reads the selected quote. Escape closes notes and returns focus to its opener. On narrow or short screens the notes cover the scene while leaving comic navigation available; desktop keeps artwork and notes side by side. Notes persist across panel changes and sound preference redraws without changing progress or finances. Existing reduced-motion and pause behavior remain intact.
