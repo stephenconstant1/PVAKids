@@ -80,7 +80,7 @@ function simpleProgress(s:CityState,ui:CityUI):string{const page=Math.max(0,Math
 
 export function renderCity(p:CareerProfile,ui:CityUI):string {
  const s=p.moneybread!;if(missingLessons.length)return `<main id="main" tabindex="-1" class="mb-shell"><h1>Source lesson needed</h1><p>Missing original content for levels: ${missingLessons.join(', ')}. Please add the original material before continuing.</p></main>`;
- if(ui.view==='job'){const plan=ui.jobPractice||newJobPractice(s.weeks[1]?.job||'service');return `<main id="main" tabindex="-1" class="mb-shell job-direct">${ui.jobComicDone?renderJobPractice(plan,portrait(p.avatar),e):renderJobComic(ui.jobComicStep||0,e,{paused:ui.jobComicPaused,muted:!!p.muted,context:ui.jobComicContext})}</main>`;}
+ if(ui.view==='job'){const plan=ui.jobPractice||newJobPractice(s.weeks[1]?.job||'service');return `<main id="main" tabindex="-1" class="mb-shell job-direct">${ui.jobComicDone?renderJobPractice(plan,portrait(p.avatar),e):renderJobComic(ui.jobComicStep||0,e,{introStep:ui.jobComicIntro??0,paused:ui.jobComicPaused,muted:!!p.muted,context:ui.jobComicContext})}</main>`;}
  if(ui.view==='city')return careerHub(p,s);
  const content=ui.view==='progress'?simpleProgress(s,ui):ui.view==='wallet'?wallet(s):compactTask(p,s,ui);
  return `<main id="main" tabindex="-1" class="career-simple career-activity"><nav class="career-simple-nav">${button('← My lessons','mb-view-city')}<span>LESSON ${Math.min(currentLevel(s),32)}</span>${button('More','career-tools-open')}</nav>${ui.error?`<p role="alert" id="mb-status">${e(ui.error)}</p>`:''}${content}${careerTools(currentLevel(s))}</main>`;

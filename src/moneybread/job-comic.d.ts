@@ -30,6 +30,7 @@ export interface JobComicOptions {
     context?: JobComicContext;
     coreIdea?: string;
     lessonText?: string;
+    introStep?: number;
 }
 export declare function jobComicPracticeMath(): {
     payment: number;

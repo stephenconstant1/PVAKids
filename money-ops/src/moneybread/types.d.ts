@@ -80,6 +80,7 @@ export interface CityUI {
     projectPage?: number;
     progressPage?: number;
     jobComicPaused?: boolean;
+    jobComicIntro?: number;
     jobComicContext?: import('./job-comic.js').JobComicContext;
     jobComicStep?: number;
     jobComicDone?: boolean;

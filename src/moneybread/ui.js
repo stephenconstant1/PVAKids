@@ -1,5 +1,5 @@
-import { renderJobComic } from './job-comic.js?v=46.20';
-import { renderJobPractice, newJobPractice } from './job-practice.js?v=46.20';
+import { renderJobComic } from './job-comic.js?v=46.21';
+import { renderJobPractice, newJobPractice } from './job-practice.js?v=46.21';
 import { buildingArt } from './art.js';
 import { everestPatchLayer, everestPatchOverlay } from './crew-art.js';
 import { destination } from './destinations.js';
@@ -98,7 +98,7 @@ export function renderCity(p, ui) {
         return `<main id="main" tabindex="-1" class="mb-shell"><h1>Source lesson needed</h1><p>Missing original content for levels: ${missingLessons.join(', ')}. Please add the original material before continuing.</p></main>`;
     if (ui.view === 'job') {
         const plan = ui.jobPractice || newJobPractice(s.weeks[1]?.job || 'service');
-        return `<main id="main" tabindex="-1" class="mb-shell job-direct">${ui.jobComicDone ? renderJobPractice(plan, portrait(p.avatar), e) : renderJobComic(ui.jobComicStep || 0, e, { paused: ui.jobComicPaused, muted: !!p.muted, context: ui.jobComicContext })}</main>`;
+        return `<main id="main" tabindex="-1" class="mb-shell job-direct">${ui.jobComicDone ? renderJobPractice(plan, portrait(p.avatar), e) : renderJobComic(ui.jobComicStep || 0, e, { introStep: ui.jobComicIntro ?? 0, paused: ui.jobComicPaused, muted: !!p.muted, context: ui.jobComicContext })}</main>`;
     }
     if (ui.view === 'city')
         return careerHub(p, s);
