@@ -1,3 +1,4 @@
+import {castImage} from './image-assets.js';
 import type {JobComicContext} from './job-comic.js';
 export type NotesTab='scene'|'lesson'|'words'|'scripture';
 export interface ComicNote {title:string;body:string;kind?:'math'|'word'|'scripture'|'guide';wordIndex?:number;related?:number[]}
@@ -16,8 +17,8 @@ export function renderComicNotes(input:NotesInput,e:(v:unknown)=>string):string 
  const pages=tabs.map(tab=>groups[tab].map((note,index)=>{
   const read=note.kind==='math'?`${note.title}. $${m.payment} payment minus $${m.materials} materials minus $${m.labor} labor minus $${m.overhead} overhead equals $${m.remaining} left. ${note.body}`:`${note.title}. ${note.body}`;
   let body=`<h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><p>${e(note.body)}</p>`;
-  if(note.kind==='guide'&&c)body=`<div class="motion-note-guide"><img class="motion-guide-image" src="assets/cast/${e(c.guide.id)}.png?v=45.6" alt="${e(c.guide.name)}, your lesson guide"/><div><small>${e(c.guide.name)} · YOUR GUIDE</small><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote></div></div>`;
-  if(note.kind==='scripture')body=`<aside class="scripture-card motion-scripture">${c?`<img class="motion-guide-image" src="assets/cast/${e(c.guide.id)}.png?v=45.6" alt="${e(c.guide.name)} shares the scripture"/>`:''}<div><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote><cite>${e(note.title)}</cite></div></aside>`;
+  if(note.kind==='guide'&&c)body=`<div class="motion-note-guide"><img class="motion-guide-image" src="${castImage(c.guide.id)}?v=45.6" alt="${e(c.guide.name)}, your lesson guide"/><div><small>${e(c.guide.name)} · YOUR GUIDE</small><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote></div></div>`;
+  if(note.kind==='scripture')body=`<aside class="scripture-card motion-scripture">${c?`<img class="motion-guide-image" src="${castImage(c.guide.id)}?v=45.6" alt="${e(c.guide.name)} shares the scripture"/>`:''}<div><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote><cite>${e(note.title)}</cite></div></aside>`;
   if(note.kind==='word')body=`<div class="motion-vocabulary">${body}</div>`;
   if(note.kind==='math')body=`<section class="motion-practice"><h2 class="motion-note-title" tabindex="-1">Practice Example</h2><dl>${[['Payment',m.payment],['Materials',m.materials],['Labor',m.labor],['Overhead',m.overhead]].map(([label,amount])=>`<div><dt>${label}</dt><dd>$${amount}</dd></div>`).join('')}</dl><p>$${m.payment} − $${m.materials} − $${m.labor} − $${m.overhead} = <b>$${m.remaining} left</b></p><small>${e(note.body)}</small></section>`;
   if(note.related?.length)body+=`<nav class="motion-note-related" aria-label="Words in this scene">${note.related.map(wordIndex=>`<button class="mb-button" data-action="motion-notes-word-${wordIndex}">${e(c!.vocabulary[wordIndex].term)} →</button>`).join('')}</nav>`;

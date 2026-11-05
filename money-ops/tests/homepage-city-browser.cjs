@@ -20,7 +20,7 @@ const assert=require('node:assert/strict');
  for(const width of [1440,768,390,320]){
   await page.setViewportSize({width,height:1000});
   const art=await image.evaluate(async img=>{await img.decode();const b=img.getBoundingClientRect();return {src:img.getAttribute('src'),width:b.width,height:b.height,natural:img.naturalWidth,bottom:b.bottom};});
-  assert(art.src.includes('money-ops-moneybread-city.jpg'));assert.equal(art.natural,1280);assert(Math.abs(art.width/art.height-1280/748)<.01);
+  assert(art.src.includes('CMI_moneybread-city-crew-home-reference.jpg'));assert.equal(art.natural,1280);assert(Math.abs(art.width/art.height-1280/748)<.01);
   const controls=await page.locator('.source-city-controls').boundingBox();assert(controls.y>=art.bottom,'controls stay below original lettering and all six crew');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  }

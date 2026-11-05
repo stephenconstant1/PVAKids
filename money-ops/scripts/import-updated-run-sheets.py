@@ -30,7 +30,7 @@ for ident,name,index in [('maya','Maya',1),('kai','Everest',2),('eli','Zion',3),
  for i,(im,anchor,rect) in enumerate(frames):
   x=left-anchor;y=baseline-im.height;atlas.paste(im,((i%8)*cw+x,(i//8)*ch+y))
   records.append({'index':i,'sourceRect':rect,'anchorX':left,'groundY':baseline,'contentRect':[x,y,im.width,im.height]})
- shutil.copyfile(original,out/f'{ident}-run-source.jpg');atlas.save(out/f'{ident}-run.png')
- result[ident]={'name':name,'source':f'assets/runner/cycles/{ident}-run-source.jpg','sourceSha256':hashlib.sha256(original.read_bytes()).hexdigest(),'sourceSize':[rgb.shape[1],rgb.shape[0]],'image':f'assets/runner/cycles/{ident}-run.png','cellWidth':cw,'cellHeight':ch,'columns':8,'frameCount':16,'fps':16*1000/motion['durationMs'],'anchorX':left,'groundY':baseline,'designHeight':512,'sourceLayout':[4,4],'motionReference':'run-motion.json','frames':records}
+ shutil.copyfile(original,out/f'CMI_{name.lower()}-run-animation-source.jpg');atlas.save(out/f'CMI_{name.lower()}-run-animation.png')
+ result[ident]={'name':name,'source':f'assets/runner/cycles/CMI_{name.lower()}-run-animation-source.jpg','sourceSha256':hashlib.sha256(original.read_bytes()).hexdigest(),'sourceSize':[rgb.shape[1],rgb.shape[0]],'image':f'assets/runner/cycles/CMI_{name.lower()}-run-animation.png','cellWidth':cw,'cellHeight':ch,'columns':8,'frameCount':16,'fps':16*1000/motion['durationMs'],'anchorX':left,'groundY':baseline,'designHeight':512,'sourceLayout':[4,4],'motionReference':'run-motion.json','frames':records}
  print(name,'16 measured poses; 124px display height; source RGB design preserved')
 (root/'career/run-cycles.json').write_text(json.dumps(result,indent=2)+'\n')

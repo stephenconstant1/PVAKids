@@ -4,7 +4,7 @@ Home → Lesson 1 → eight-panel comic → one illustrated job board.
 
 The comic now uses eight separate 1448×1086 redraws under
 `assets/crew/job-comic/`, guided by the user's supplied original sheet (retained at
-`assets/crew/lesson-one-job-comic.jpg`). Every panel has accessible text,
+`assets/crew/CMI_lesson-1-a-job-that-helps-the-city-comic-reference.jpg`). Every panel has accessible text,
 Next/Back, progress, skip and replay. Reduced motion removes the entrance motion.
 
 The board fills the page; Home, three job choices and replay are the only outer

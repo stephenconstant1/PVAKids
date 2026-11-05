@@ -1,3 +1,4 @@
+import { castImage } from './image-assets.js';
 const tabs = ['scene', 'lesson', 'words', 'scripture'];
 const relatedTerms = [['services', 'time'], ['ideas', 'services'], ['skills', 'ideas'], ['products'], ['time', 'skills'], ['business owner', 'self-employed'], ['business owner'], ['creator', 'services']];
 export function comicNoteGroups(input) {
@@ -17,9 +18,9 @@ export function renderComicNotes(input, e) {
         const read = note.kind === 'math' ? `${note.title}. $${m.payment} payment minus $${m.materials} materials minus $${m.labor} labor minus $${m.overhead} overhead equals $${m.remaining} left. ${note.body}` : `${note.title}. ${note.body}`;
         let body = `<h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><p>${e(note.body)}</p>`;
         if (note.kind === 'guide' && c)
-            body = `<div class="motion-note-guide"><img class="motion-guide-image" src="assets/cast/${e(c.guide.id)}.png?v=45.6" alt="${e(c.guide.name)}, your lesson guide"/><div><small>${e(c.guide.name)} · YOUR GUIDE</small><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote></div></div>`;
+            body = `<div class="motion-note-guide"><img class="motion-guide-image" src="${castImage(c.guide.id)}?v=45.6" alt="${e(c.guide.name)}, your lesson guide"/><div><small>${e(c.guide.name)} · YOUR GUIDE</small><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote></div></div>`;
         if (note.kind === 'scripture')
-            body = `<aside class="scripture-card motion-scripture">${c ? `<img class="motion-guide-image" src="assets/cast/${e(c.guide.id)}.png?v=45.6" alt="${e(c.guide.name)} shares the scripture"/>` : ''}<div><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote><cite>${e(note.title)}</cite></div></aside>`;
+            body = `<aside class="scripture-card motion-scripture">${c ? `<img class="motion-guide-image" src="${castImage(c.guide.id)}?v=45.6" alt="${e(c.guide.name)} shares the scripture"/>` : ''}<div><h2 class="motion-note-title" tabindex="-1">${e(note.title)}</h2><blockquote>“${e(note.body)}”</blockquote><cite>${e(note.title)}</cite></div></aside>`;
         if (note.kind === 'word')
             body = `<div class="motion-vocabulary">${body}</div>`;
         if (note.kind === 'math')

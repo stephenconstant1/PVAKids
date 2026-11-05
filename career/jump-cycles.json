@@ -1,13 +1,13 @@
 {
   "ruby": {
     "name": "Ruby",
-    "source": "assets/runner/cycles/ruby-jump-source.jpg",
+    "source": "assets/runner/cycles/CMI_ruby-jump-animation-source.jpg",
     "sourceSha256": "d7697798ba9ccc9339785e963d759308f5fd8399d6f553b30c5cab814e1af71c",
     "sourceSize": [
       1280,
       511
     ],
-    "image": "assets/runner/cycles/ruby-jump.png",
+    "image": "assets/runner/cycles/CMI_ruby-jump-animation.png",
     "cellWidth": 254,
     "cellHeight": 221,
     "columns": 8,
@@ -294,13 +294,13 @@
   },
   "sofia": {
     "name": "Sofia",
-    "source": "assets/runner/cycles/sofia-jump-source.jpg",
+    "source": "assets/runner/cycles/CMI_sofia-jump-animation-source.jpg",
     "sourceSha256": "df4541824fd8bde75880648b740dee40ffdcb962fd4c5d44e586d411b43c7391",
     "sourceSize": [
       1280,
       511
     ],
-    "image": "assets/runner/cycles/sofia-jump.png",
+    "image": "assets/runner/cycles/CMI_sofia-jump-animation.png",
     "cellWidth": 197,
     "cellHeight": 195,
     "columns": 8,
@@ -587,13 +587,13 @@
   },
   "maya": {
     "name": "Maya",
-    "source": "assets/runner/cycles/maya-jump-source.jpg",
+    "source": "assets/runner/cycles/CMI_maya-jump-animation-source.jpg",
     "sourceSha256": "7277b903781bb8cc6041eaf9da2f1df3d3e965bb9d7d4f9adf6f41a623b969f8",
     "sourceSize": [
       1280,
       640
     ],
-    "image": "assets/runner/cycles/maya-jump.png",
+    "image": "assets/runner/cycles/CMI_maya-jump-animation.png",
     "cellWidth": 206,
     "cellHeight": 255,
     "columns": 8,
@@ -880,13 +880,13 @@
   },
   "jordan": {
     "name": "Kanyon",
-    "source": "assets/runner/cycles/jordan-jump-source.jpg",
+    "source": "assets/runner/cycles/CMI_kanyon-jump-animation-source.jpg",
     "sourceSha256": "97bd592140a5842d4b5b16398ac33fc11bb65c6d4aad6622f24a649a3e2a1166",
     "sourceSize": [
       1280,
       441
     ],
-    "image": "assets/runner/cycles/jordan-jump.png",
+    "image": "assets/runner/cycles/CMI_kanyon-jump-animation.png",
     "cellWidth": 233,
     "cellHeight": 211,
     "columns": 8,
@@ -1173,13 +1173,13 @@
   },
   "eli": {
     "name": "Zion",
-    "source": "assets/runner/cycles/eli-jump-source.jpg",
+    "source": "assets/runner/cycles/CMI_zion-jump-animation-source.jpg",
     "sourceSha256": "17b25bc347d285b6708717def5b1777554ea606c316ccae5b752c01f0591e738",
     "sourceSize": [
       1280,
       640
     ],
-    "image": "assets/runner/cycles/eli-jump.png",
+    "image": "assets/runner/cycles/CMI_zion-jump-animation.png",
     "cellWidth": 228,
     "cellHeight": 269,
     "columns": 8,
@@ -1466,13 +1466,13 @@
   },
   "kai": {
     "name": "Everest",
-    "source": "assets/runner/cycles/kai-jump-source.jpg",
+    "source": "assets/runner/cycles/CMI_everest-jump-animation-source.jpg",
     "sourceSha256": "a3da37f5bade1e02e26fe933353350e2eb0cd15405b65a027ab4aaabb58cf866",
     "sourceSize": [
       1280,
       511
     ],
-    "image": "assets/runner/cycles/kai-jump.png",
+    "image": "assets/runner/cycles/CMI_everest-jump-animation.png",
     "cellWidth": 204,
     "cellHeight": 234,
     "columns": 8,

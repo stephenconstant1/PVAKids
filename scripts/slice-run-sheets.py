@@ -25,7 +25,7 @@ characters = ([('maya', 'Maya', 1), ('kai', 'Everest', 2), ('ruby', 'Ruby', 3),
 metadata = {}
 for ident, name, number in characters:
     original = source / f'{number}-Photo-{number}.jpg'
-    shutil.copyfile(original, output / f'{ident}-{kind}-source.jpg')
+    shutil.copyfile(original, output / f'CMI_{name.lower()}-{kind}-animation-source.jpg')
     rgb = np.array(Image.open(original).convert('RGB'))
     height, width, _ = rgb.shape
     frames = []
@@ -88,10 +88,10 @@ for ident, name, number in characters:
         records.append({'index': index, 'sourceRect': f['sourceRect'],
                         'anchorX': left, 'groundY': design_height,
                         'contentRect': [int(x), int(y), int(w), int(h)]})
-    atlas.save(output / f'{ident}-{kind}.png')
-    metadata[ident] = {'name': name, 'source': f'assets/runner/cycles/{ident}-{kind}-source.jpg',
+    atlas.save(output / f'CMI_{name.lower()}-{kind}-animation.png')
+    metadata[ident] = {'name': name, 'source': f'assets/runner/cycles/CMI_{name.lower()}-{kind}-animation-source.jpg',
                        'sourceSha256': hashlib.sha256(original.read_bytes()).hexdigest(),
-                       'sourceSize': [width, height], 'image': f'assets/runner/cycles/{ident}-{kind}.png',
+                       'sourceSize': [width, height], 'image': f'assets/runner/cycles/CMI_{name.lower()}-{kind}-animation.png',
                        'cellWidth': cell_width, 'cellHeight': cell_height,
                        'columns': 8, 'frameCount': 16, 'fps': 12,
                        'anchorX': left, 'groundY': design_height,

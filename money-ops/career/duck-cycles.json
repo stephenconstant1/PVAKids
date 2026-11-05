@@ -1,13 +1,13 @@
 {
   "jordan": {
     "name": "Kanyon",
-    "source": "assets/runner/cycles/jordan-duck-source.png",
+    "source": "assets/runner/cycles/CMI_kanyon-duck-animation-source.png",
     "sourceSha256": "91d863e2e6ea4dba1211908e55cf574e571c05316aef65996d48badaa4da5052",
     "sourceSize": [
       1536,
       1024
     ],
-    "image": "assets/runner/cycles/jordan-duck.png",
+    "image": "assets/runner/cycles/CMI_kanyon-duck-animation.png",
     "cellWidth": 709,
     "cellHeight": 342,
     "columns": 3,
@@ -137,13 +137,13 @@
   },
   "maya": {
     "name": "Maya",
-    "source": "assets/runner/cycles/maya-duck-source.png",
+    "source": "assets/runner/cycles/CMI_maya-duck-animation-source.png",
     "sourceSha256": "b62f49fb502bbf68b2d93ac5b173214e1505d30a75202ec14779eaae76283d97",
     "sourceSize": [
       1536,
       1024
     ],
-    "image": "assets/runner/cycles/maya-duck.png",
+    "image": "assets/runner/cycles/CMI_maya-duck-animation.png",
     "cellWidth": 693,
     "cellHeight": 333,
     "columns": 3,
@@ -273,13 +273,13 @@
   },
   "kai": {
     "name": "Everest",
-    "source": "assets/runner/cycles/kai-duck-source.png",
+    "source": "assets/runner/cycles/CMI_everest-duck-animation-source.png",
     "sourceSha256": "5f6e6439b758ce3b0c3a23ce499ab37ed5bcc77d7e5a2415edbbf485865cfbe2",
     "sourceSize": [
       1536,
       1024
     ],
-    "image": "assets/runner/cycles/kai-duck.png",
+    "image": "assets/runner/cycles/CMI_everest-duck-animation.png",
     "cellWidth": 638,
     "cellHeight": 366,
     "columns": 3,
@@ -409,13 +409,13 @@
   },
   "sofia": {
     "name": "Sofia",
-    "source": "assets/runner/cycles/sofia-duck-source.png",
+    "source": "assets/runner/cycles/CMI_sofia-duck-animation-source.png",
     "sourceSha256": "bd0371d91a8981daaff51baff463535b156934daa6b04360fc3181c92a24ee65",
     "sourceSize": [
       1536,
       1024
     ],
-    "image": "assets/runner/cycles/sofia-duck.png",
+    "image": "assets/runner/cycles/CMI_sofia-duck-animation.png",
     "cellWidth": 773,
     "cellHeight": 322,
     "columns": 3,
@@ -545,13 +545,13 @@
   },
   "eli": {
     "name": "Zion",
-    "source": "assets/runner/cycles/eli-duck-source.png",
+    "source": "assets/runner/cycles/CMI_zion-duck-animation-source.png",
     "sourceSha256": "83d21a6702f6413aa2d7582e2d9719c14a68eea00bf53580403a9ec288c88902",
     "sourceSize": [
       1536,
       1024
     ],
-    "image": "assets/runner/cycles/eli-duck.png",
+    "image": "assets/runner/cycles/CMI_zion-duck-animation.png",
     "cellWidth": 714,
     "cellHeight": 369,
     "columns": 3,
@@ -681,13 +681,13 @@
   },
   "ruby": {
     "name": "Ruby",
-    "source": "assets/runner/cycles/ruby-duck-source.png",
+    "source": "assets/runner/cycles/CMI_ruby-duck-animation-source.png",
     "sourceSha256": "ed998edd3b35d840f2061bbaea5cd880edac81c6ee78c5665bf71d12c015fa54",
     "sourceSize": [
       1536,
       1024
     ],
-    "image": "assets/runner/cycles/ruby-duck.png",
+    "image": "assets/runner/cycles/CMI_ruby-duck-animation.png",
     "cellWidth": 613,
     "cellHeight": 353,
     "columns": 3,

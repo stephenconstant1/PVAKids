@@ -2,7 +2,7 @@
  * composited from the retouched poster; the other five crew and all surrounding
  * poster pixels always come from the unchanged original reference. */
 export const everestHeadRegion={x:504,y:315,width:90,height:90};
-export const approvedCrewEdit='assets/crew/moneybread-city-everest-approved.png?v=45.6';
+export const approvedCrewEdit='assets/crew/CMI_moneybread-city-crew-approved-everest.png?v=45.6';
 let instance=0;
 export function everestPatchLayer(scope:string):string {
  const id=`everest-head-${scope}-${++instance}`,r=everestHeadRegion;

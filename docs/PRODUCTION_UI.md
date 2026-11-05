@@ -25,11 +25,11 @@
 
 | Asset | Actual native pixels |
 | --- | --- |
-| `assets/crew/production/home-city.png` | 1640 × 959 |
-| `assets/crew/production/job-board-blank.png` | 1672 × 941 |
-| `assets/crew/production/service-scenes.png` | 1672 × 941 |
-| `assets/crew/production/tutor-scenes.png` | 1672 × 941 |
-| `assets/crew/production/creator-scenes.png` | 1672 × 941 |
+| `assets/crew/production/CMI_moneybread-city-home-crew.png` | 1640 × 959 |
+| `assets/crew/production/CMI_run-the-job-interactive-board-background.png` | 1672 × 941 |
+| `assets/crew/production/CMI_neighborhood-helper-job-scenes.png` | 1672 × 941 |
+| `assets/crew/production/CMI_school-tutor-job-scenes.png` | 1672 × 941 |
+| `assets/crew/production/CMI_studio-creator-job-scenes.png` | 1672 × 941 |
 | Existing rebuilt comic panels | 1448 × 1086 each |
 
 The image generator was explicitly asked for native 3840px output but returned

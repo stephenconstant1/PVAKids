@@ -38,7 +38,7 @@ for ident,path in inputs.items():
   h,w,_=f['pixels'].shape;x=left-f['anchor'];y=ground-h
   atlas.paste(Image.fromarray(f['pixels']),((index%3)*cw+x,(index//3)*ch+y))
   records.append({'index':index,'variant':index,'sourceRect':f['sourceRect'],'contentRect':[int(x),int(y),int(w),int(h)],'anchorX':left,'groundY':ground})
- dest=target/f'{ident}-duck-source.png';shutil.copyfile(source,dest);atlas.save(target/f'{ident}-duck.png')
+ dest=target/f'CMI_{names[ident].lower()}-duck-animation-source.png';shutil.copyfile(source,dest);atlas.save(target/f'CMI_{names[ident].lower()}-duck-animation.png')
  run=json.loads((root/'career/run-cycles.json').read_text())[ident]
  run_source=np.array(Image.open(root/run['source']).convert('RGBA'))
  measure=face_measure.glasses_width if ident=='eli' else face_measure.face_width
@@ -51,7 +51,7 @@ for ident,path in inputs.items():
  head_reference={'metric':'glasses-width' if ident=='eli' else 'face-width','runPixels':head_target,'duckSourcePixels':duck_size,'duckPixels':duck_size*scale,'scale':scale}
  assert ground*scale<90,(ident,ground*scale,'Compact art still too tall at full head size')
  print(ident,'matched head',round(head_target,2),'duck height',round(ground*scale,2))
- metadata[ident]={'name':names[ident],'source':str(dest.relative_to(root)),'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceSize':[image.shape[1],image.shape[0]],'image':f'assets/runner/cycles/{ident}-duck.png','cellWidth':cw,'cellHeight':ch,'columns':3,'frameCount':6,'fps':0,'anchorX':left,'groundY':ground,'designHeight':design_height,'maxDrawHeight':ground*scale,'headReference':head_reference,'frames':records}
+ metadata[ident]={'name':names[ident],'source':str(dest.relative_to(root)),'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'sourceSize':[image.shape[1],image.shape[0]],'image':f'assets/runner/cycles/CMI_{names[ident].lower()}-duck-animation.png','cellWidth':cw,'cellHeight':ch,'columns':3,'frameCount':6,'fps':0,'anchorX':left,'groundY':ground,'designHeight':design_height,'maxDrawHeight':ground*scale,'headReference':head_reference,'frames':records}
 assert set(metadata)==set(names)
 (root/'career/duck-cycles.json').write_text(json.dumps(metadata,indent=2)+'\n')
 print('Imported 6 character sheets, 6 full-size duck poses each; calibrated heads match running sprites.')

@@ -14,7 +14,7 @@ Reuse the finished structure, not Lesson 1's teaching content, for other lessons
 - Original city stop: **Value Village**; source location: **THE NEIGHBORHOOD**.
 - Sources: `src/content.js`, `src/curriculum-language.js`,
   `src/curriculum-meta.js`, `src/play.js`, `src/city.js`.
-- Art reference: `assets/crew/money-ops-moneybread-city.jpg`.
+- Art reference: `assets/crew/CMI_moneybread-city-crew-home-reference.jpg`.
 
 Check a box only when its stated evidence exists. Automated functional checks
 and visual acceptance are separate. A passing test does not establish that a

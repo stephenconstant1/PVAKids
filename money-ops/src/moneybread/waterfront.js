@@ -14,10 +14,10 @@ export class WaterfrontScene {
         this.image = new Image();
         this.image.onload = () => { this.ready = true; };
         this.image.onerror = () => { this.failed = true; };
-        this.image.src = new URL('../../assets/environments/city-waterfront.png?v=45.8', import.meta.url).href;
+        this.image.src = new URL('../../assets/environments/CMI_city-waterfront-skyline-background.png?v=45.8', import.meta.url).href;
         this.nearImage = new Image();
         this.nearImage.onload = () => { this.nearReady = true; };
-        this.nearImage.src = new URL('../../assets/environments/waterfront-near.png?v=45.9', import.meta.url).href;
+        this.nearImage.src = new URL('../../assets/environments/CMI_waterfront-near-city-parallax-layer.png?v=45.9', import.meta.url).href;
     }
     prepare(height) {
         if (!this.ready || !this.image.naturalWidth)

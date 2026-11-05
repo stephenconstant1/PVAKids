@@ -9,8 +9,8 @@ and `lessonVocabulary(1)` rather than copied curriculum facts.
 
 ## Art inspection and motion plan
 
-`assets/crew/lesson-one-job-comic.jpg` is the supplied flattened eight-panel sheet.
-`assets/crew/job-comic/panel-1.png` … `panel-8.png` are the existing high-resolution
+`assets/crew/CMI_lesson-1-a-job-that-helps-the-city-comic-reference.jpg` is the supplied flattened eight-panel sheet.
+`assets/crew/job-comic/CMI_job-comic-01-customer-needs-help.png` … `CMI_job-comic-08-choose-a-job.png` are the existing high-resolution
 standalone redraws. They also have flattened characters, bubbles, lettering and
 scenery. Separate canonical portraits exist in `assets/cast/`; running atlases are
 not garden-character rigs. No separate face, eye, hair, hand or speech-bubble layers

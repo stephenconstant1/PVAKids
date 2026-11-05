@@ -1,7 +1,7 @@
 # Approved Everest reference
 
-The user approved `everest-refinement-preview.png` in chat. It is now the exact
-standing portrait used by the game at `assets/cast/kai.png`. The internal ID
+The user approved `CMI_everest-character-refinement-preview.png` in chat. It is now the exact
+standing portrait used by the game at `assets/cast/CMI_everest-character-blue-yellow.png`. The internal ID
 `kai` still means Everest; no characters or lesson speakers were renamed.
 
 The directional runner retains its body pose and original canvas dimensions,
@@ -9,7 +9,7 @@ with Everest’s approved face and tapered haircut adapted to the running view.
 Its reference hash in `career/runner-rigs.json` is updated.
 
 The uploaded crew poster remains unchanged on disk. A localized head-only layer
-from `assets/crew/moneybread-city-everest-approved.png` updates Everest on the
+from `assets/crew/CMI_moneybread-city-crew-approved-everest.png` updates Everest on the
 homepage, Career city, and his Career portrait frames. `career/crew-art.ts` clips
 that layer to the 90×90 source-pixel region around his head; the other five crew,
 all clothing, city artwork, wording and labels continue to use the original

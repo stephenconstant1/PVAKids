@@ -18,7 +18,7 @@ const {mkdirSync}=require('node:fs');
  assert.equal(await page.locator('.city-skyline .city-lot').count(),8);
  assert.equal(await page.locator('.city-skyline .city-landmark-art').count(),8);
  assert(!((await page.locator('.city-skyline').textContent()).includes('EMPTY LOT')));
- const asset=await page.evaluate(async()=>{const img=new Image();img.src='assets/crew/moneybread-landmarks.png';await img.decode();return {w:img.naturalWidth,h:img.naturalHeight};});assert.equal(asset.w/asset.h,2);
+ const asset=await page.evaluate(async()=>{const img=new Image();img.src='assets/crew/CMI_moneybread-city-building-landmarks-sheet.png';await img.decode();return {w:img.naturalWidth,h:img.naturalHeight};});assert.equal(asset.w/asset.h,2);
  const tiles=await page.locator('.city-skyline .city-landmark-art .landmark-built>svg').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('viewBox')));assert.equal(new Set(tiles).size,8);
  mkdirSync('/tmp/moneyops-landmark-review',{recursive:true});
  await page.locator('.city-skyline').screenshot({path:'/tmp/moneyops-landmark-review/planned.png'});
@@ -47,8 +47,8 @@ const {mkdirSync}=require('node:fs');
   assert.equal(await page.locator('.city-skyline .city-landmark-art').count(),8);
  }
  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.landmark-built').first().evaluate(n=>getComputedStyle(n).animationName),'none');
- await page.route('**/assets/crew/moneybread-landmarks.png*',route=>route.abort());await page.reload();await page.locator('[data-action="continue-career"]').first().click();await page.waitForFunction(()=>document.querySelectorAll('.city-landmark-art.art-missing').length===8);
- await page.unroute('**/assets/crew/moneybread-landmarks.png*');
+ await page.route('**/assets/crew/CMI_moneybread-city-building-landmarks-sheet.png*',route=>route.abort());await page.reload();await page.locator('[data-action="continue-career"]').first().click();await page.waitForFunction(()=>document.querySelectorAll('.city-landmark-art.art-missing').length===8);
+ await page.unroute('**/assets/crew/CMI_moneybread-city-building-landmarks-sheet.png*');
  await page.goto(process.env.MONEY_OPS_URL+'/money-ops/');await page.locator('[data-action="continue-career"]').first().click();assert.equal(await page.locator('.city-skyline .city-landmark-art').count(),8);
  assert.deepEqual(errors,[]);console.log('PASS all eight landmark cards and all 32 purchases: distinct artwork, stages 0–4, 100-coin costs, matching celebration, last-card keyboard build, save/reload, four responsive sizes, reduced motion, missing-art fallback, both static paths.');
  }finally{await browser.close();}

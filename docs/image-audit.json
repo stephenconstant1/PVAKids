@@ -1,0 +1,1522 @@
+{
+  "assetCount": 76,
+  "fileCount": 152,
+  "entries": [
+    {
+      "original": "assets/cast/eli.png",
+      "renamed": "assets/cast/CMI_zion-character-red-glasses.png",
+      "description": "zion character red glasses",
+      "sha256": "0adeb3d3d2de1f8f9dc5f79d20654381d75b25d919381a41f2cc2a0a89a0b6ee",
+      "bytes": 1623695,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/cast/jordan.png",
+      "renamed": "assets/cast/CMI_kanyon-character-green.png",
+      "description": "kanyon character green",
+      "sha256": "58a37f90b60fbf5955ef9517a7b940c870d7c41a2c0aa6ff7006decf8f48d6e4",
+      "bytes": 1564010,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/cast/kai.png",
+      "renamed": "assets/cast/CMI_everest-character-blue-yellow.png",
+      "description": "everest character blue yellow",
+      "sha256": "c2333081a74ad7903ec7eba18c7cdbea44d591b0efe1c666296675973ab2e9f6",
+      "bytes": 1725332,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/cast/maya.png",
+      "renamed": "assets/cast/CMI_maya-character-purple-yellow-headband.png",
+      "description": "maya character purple yellow headband",
+      "sha256": "09098b48ebf0bd871a30530bd81513d9d1194c045b8d70c4cb4f47b795180083",
+      "bytes": 608878,
+      "width": 390,
+      "height": 922,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/cast/ruby.png",
+      "renamed": "assets/cast/CMI_ruby-character-purple-auburn-hair.png",
+      "description": "ruby character purple auburn hair",
+      "sha256": "be2da261231324001d318bc426ab0e4c388a987039518d5f255e4e644952bc1b",
+      "bytes": 705156,
+      "width": 430,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/cast/sofia.png",
+      "renamed": "assets/cast/CMI_sofia-character-pink.png",
+      "description": "sofia character pink",
+      "sha256": "745bdf9318b672d025ac21ce2c6afa7ab9226c0dbc0a2e7a7921321a49ce1964",
+      "bytes": 577029,
+      "width": 366,
+      "height": 943,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-1.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-01-customer-needs-help.png",
+      "description": "job comic 01 customer needs help",
+      "sha256": "0e3b19be3baacda06cb2b8056da4cb909e51330a7992780ea4c23c7147ad5fba",
+      "bytes": 2765805,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-2.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-02-find-a-problem.png",
+      "description": "job comic 02 find a problem",
+      "sha256": "97274b178b8402a02230e3da6ec50885b50b54e9b147b870a4e46329b7eb812c",
+      "bytes": 2832550,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-3.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-03-yard-care-creates-value.png",
+      "description": "job comic 03 yard care creates value",
+      "sha256": "992843a8d1458434661b38b972078badbf449b76d347fa5acd5b88be133233fa",
+      "bytes": 2702965,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-4.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-04-materials-seeds-and-gloves.png",
+      "description": "job comic 04 materials seeds and gloves",
+      "sha256": "af29ab1077d53b21beb769444989ff4f27be22abef500933322965dc1e2d5b8d",
+      "bytes": 2653219,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-5.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-05-labor-time-and-effort.png",
+      "description": "job comic 05 labor time and effort",
+      "sha256": "7696b2da91cc5476cd1d6e80f65522420d0cfa476ed79a09e04e06412fb8a168",
+      "bytes": 2908973,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-6.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-06-overhead-tools-and-transport.png",
+      "description": "job comic 06 overhead tools and transport",
+      "sha256": "a3e9a8fbe1f0a10e51b767b895da24586b79d44a12b370b911ba678e7333af09",
+      "bytes": 2561115,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-7.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-07-practice-budget-100-dollars.png",
+      "description": "job comic 07 practice budget 100 dollars",
+      "sha256": "ff09c9fc511c02803444f4ef30036c7aa52616c96ae5b52b8459ec2669b40853",
+      "bytes": 2285490,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/job-comic/panel-8.png",
+      "renamed": "assets/crew/job-comic/CMI_job-comic-08-choose-a-job.png",
+      "description": "job comic 08 choose a job",
+      "sha256": "50614b46cafc577130344482d1d532134f9f8013cc0523f9001c333476971814",
+      "bytes": 2857397,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/lesson-one-job-comic.jpg",
+      "renamed": "assets/crew/CMI_lesson-1-a-job-that-helps-the-city-comic-reference.jpg",
+      "description": "lesson 1 a job that helps the city comic reference",
+      "sha256": "dd7e20e68221eceb9bc3fd75607b217bd66f3ce829b3c55e4f9d590ce6b89441",
+      "bytes": 593299,
+      "width": 853,
+      "height": 1280,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/crew/lesson-one-run-the-job.jpg",
+      "renamed": "assets/crew/CMI_lesson-1-yard-care-budget-board-reference.jpg",
+      "description": "lesson 1 yard care budget board reference",
+      "sha256": "61872f9972a21be174243092cf4c368fbace035fd5eefbd1f2ff866d432c4e6b",
+      "bytes": 434432,
+      "width": 1280,
+      "height": 720,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/crew/money-ops-moneybread-city.jpg",
+      "renamed": "assets/crew/CMI_moneybread-city-crew-home-reference.jpg",
+      "description": "moneybread city crew home reference",
+      "sha256": "a1ac7d3dd5c330279336a0b779110b3e594c4bcc6e8753e63c0242d7dae660f4",
+      "bytes": 394506,
+      "width": 1280,
+      "height": 748,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/crew/moneybread-city-everest-approved.png",
+      "renamed": "assets/crew/CMI_moneybread-city-crew-approved-everest.png",
+      "description": "moneybread city crew approved everest",
+      "sha256": "31c051b5c1ee1fb4d7eacd74fc87a638c4173f9aa688526e23ba023e8fbc6aec",
+      "bytes": 2519617,
+      "width": 1640,
+      "height": 959,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/moneybread-city-map.png",
+      "renamed": "assets/crew/CMI_moneybread-city-map.png",
+      "description": "moneybread city map",
+      "sha256": "3ba46e0a71eef8b01582dbef2ba81d62ed8f793163eca4dcfea77567828e0086",
+      "bytes": 3792550,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/moneybread-landmarks.png",
+      "renamed": "assets/crew/CMI_moneybread-city-building-landmarks-sheet.png",
+      "description": "moneybread city building landmarks sheet",
+      "sha256": "c98a401e14c3105b86d3ba351bca3248017e800741a55893994591fe8f9b3a9a",
+      "bytes": 2579288,
+      "width": 1774,
+      "height": 887,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/production/creator-scenes.png",
+      "renamed": "assets/crew/production/CMI_studio-creator-job-scenes.png",
+      "description": "studio creator job scenes",
+      "sha256": "d78caea64bbecfda7290824d316ae4fa4792b98a2d2d3978b1f400ef457954bd",
+      "bytes": 2609634,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/production/home-city.png",
+      "renamed": "assets/crew/production/CMI_moneybread-city-home-crew.png",
+      "description": "moneybread city home crew",
+      "sha256": "9f8070d48e84a881c523cdb382d55d52eebeb3fd2fac98a8dc259c27d3e17378",
+      "bytes": 2840682,
+      "width": 1640,
+      "height": 959,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/production/job-board-blank.png",
+      "renamed": "assets/crew/production/CMI_run-the-job-interactive-board-background.png",
+      "description": "run the job interactive board background",
+      "sha256": "adb162a198c30c1dc3453e406cfeac706144ab47c2e09c21ef4ea047175bfbdd",
+      "bytes": 2840066,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/production/service-scenes.png",
+      "renamed": "assets/crew/production/CMI_neighborhood-helper-job-scenes.png",
+      "description": "neighborhood helper job scenes",
+      "sha256": "88a8a8ef93636fcccf5a95d15c71d3e554c024985c4ab73c8ce52d913277b5f8",
+      "bytes": 3397676,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/production/tutor-scenes.png",
+      "renamed": "assets/crew/production/CMI_school-tutor-job-scenes.png",
+      "description": "school tutor job scenes",
+      "sha256": "b81582e3f9b30ef3344a973988364ad3d3fcfcbb159db3ca69551b57bfd78009",
+      "bytes": 2502934,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/run-job-creator.png",
+      "renamed": "assets/crew/CMI_studio-creator-run-the-job-reference.png",
+      "description": "studio creator run the job reference",
+      "sha256": "94c16dc7e3c7824560e27f14b9fccb98d02f9be42de339f8d95beb22f082bcba",
+      "bytes": 2715794,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/crew/run-job-tutor.png",
+      "renamed": "assets/crew/CMI_school-tutor-run-the-job-reference.png",
+      "description": "school tutor run the job reference",
+      "sha256": "2b5f17bba883a630ac8034225ab4485440900f9bbfea1cc67cde9da541251502",
+      "bytes": 2696355,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/curriculum-cast.png",
+      "renamed": "assets/CMI_money-ops-curriculum-character-team.png",
+      "description": "money ops curriculum character team",
+      "sha256": "c7d3f0075dc44f95701ab41cc626091e07801d5b38f5005f8527ff6fd7d0d05a",
+      "bytes": 2004285,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/environments/city-waterfront.jpg",
+      "renamed": "assets/environments/CMI_city-waterfront-skyline-reference.jpg",
+      "description": "city waterfront skyline reference",
+      "sha256": "23ce367fe11492ff7fc051664bde69b308dfe170049fcf648977d6a92600bd9b",
+      "bytes": 279496,
+      "width": 1280,
+      "height": 720,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/environments/city-waterfront.png",
+      "renamed": "assets/environments/CMI_city-waterfront-skyline-background.png",
+      "description": "city waterfront skyline background",
+      "sha256": "9be81218224d50c9affae5e09582469934633330405eb126db419dcb3185b7f9",
+      "bytes": 2256662,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/environments/waterfront-near.png",
+      "renamed": "assets/environments/CMI_waterfront-near-city-parallax-layer.png",
+      "description": "waterfront near city parallax layer",
+      "sha256": "2321e8c7eb29d6a105dc077a5b1e8b1a15eea8853c7bae5b573de6eea46ba8c4",
+      "bytes": 1412768,
+      "width": 2079,
+      "height": 756,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/review/everest-refinement-preview.png",
+      "renamed": "assets/review/CMI_everest-character-refinement-preview.png",
+      "description": "everest character refinement preview",
+      "sha256": "c2333081a74ad7903ec7eba18c7cdbea44d591b0efe1c666296675973ab2e9f6",
+      "bytes": 1725332,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/eli-duck-source.png",
+      "renamed": "assets/runner/cycles/CMI_zion-duck-animation-source.png",
+      "description": "zion duck animation source",
+      "sha256": "83d21a6702f6413aa2d7582e2d9719c14a68eea00bf53580403a9ec288c88902",
+      "bytes": 2018442,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/eli-duck.png",
+      "renamed": "assets/runner/cycles/CMI_zion-duck-animation.png",
+      "description": "zion duck animation",
+      "sha256": "903a37f7e182ade1d2618ec8d9588b0b7ec1232746b93a3b3dd00b1218eefdf6",
+      "bytes": 1542865,
+      "width": 2142,
+      "height": 738,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/eli-jump-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_zion-jump-animation-source.jpg",
+      "description": "zion jump animation source",
+      "sha256": "17b25bc347d285b6708717def5b1777554ea606c316ccae5b752c01f0591e738",
+      "bytes": 211032,
+      "width": 1280,
+      "height": 640,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/eli-jump.png",
+      "renamed": "assets/runner/cycles/CMI_zion-jump-animation.png",
+      "description": "zion jump animation",
+      "sha256": "b6886f45601af107324c2bd2212f1b9707d2e38ba485ef32a25fa31128cfb511",
+      "bytes": 932809,
+      "width": 1824,
+      "height": 538,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/eli-run-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_zion-run-animation-source.jpg",
+      "description": "zion run animation source",
+      "sha256": "bbe01ac38621363896950d3ff27847b4cb8a479e0892f4c8ead9346de9b8a29f",
+      "bytes": 355901,
+      "width": 1263,
+      "height": 1246,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/eli-run.png",
+      "renamed": "assets/runner/cycles/CMI_zion-run-animation.png",
+      "description": "zion run animation",
+      "sha256": "21dc2be3217228d7449f10eadb5b8554402f05a43cd2581150d0262374b97c2a",
+      "bytes": 3812260,
+      "width": 3984,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/jordan-duck-source.png",
+      "renamed": "assets/runner/cycles/CMI_kanyon-duck-animation-source.png",
+      "description": "kanyon duck animation source",
+      "sha256": "91d863e2e6ea4dba1211908e55cf574e571c05316aef65996d48badaa4da5052",
+      "bytes": 1910645,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/jordan-duck.png",
+      "renamed": "assets/runner/cycles/CMI_kanyon-duck-animation.png",
+      "description": "kanyon duck animation",
+      "sha256": "8a39294cd1e26862f8e57dda725607a476ad974618e456217fdac70929bf5210",
+      "bytes": 1346871,
+      "width": 2127,
+      "height": 684,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/jordan-jump-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_kanyon-jump-animation-source.jpg",
+      "description": "kanyon jump animation source",
+      "sha256": "97bd592140a5842d4b5b16398ac33fc11bb65c6d4aad6622f24a649a3e2a1166",
+      "bytes": 124914,
+      "width": 1280,
+      "height": 441,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/jordan-jump.png",
+      "renamed": "assets/runner/cycles/CMI_kanyon-jump-animation.png",
+      "description": "kanyon jump animation",
+      "sha256": "188ad15095ec11e409bbb68ab857cfd78bc62d44768b63ba1e78e936531516c3",
+      "bytes": 537756,
+      "width": 1864,
+      "height": 422,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/jordan-run-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_kanyon-run-animation-source.jpg",
+      "description": "kanyon run animation source",
+      "sha256": "59c315e95dcdf8918ae9adc5986a3915f1e3503ac0dc03360c599ff7693edca5",
+      "bytes": 256388,
+      "width": 1280,
+      "height": 1169,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/jordan-run.png",
+      "renamed": "assets/runner/cycles/CMI_kanyon-run-animation.png",
+      "description": "kanyon run animation",
+      "sha256": "afc8bc85fe89ff58e3f2accc782c2f92023d66eac0dd979a6b1f9d41e86d5b90",
+      "bytes": 3271841,
+      "width": 3952,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/kai-duck-source.png",
+      "renamed": "assets/runner/cycles/CMI_everest-duck-animation-source.png",
+      "description": "everest duck animation source",
+      "sha256": "5f6e6439b758ce3b0c3a23ce499ab37ed5bcc77d7e5a2415edbbf485865cfbe2",
+      "bytes": 1964912,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/kai-duck.png",
+      "renamed": "assets/runner/cycles/CMI_everest-duck-animation.png",
+      "description": "everest duck animation",
+      "sha256": "eafb3aa45797e6d224150d1dc582d242bbac6d8bf2116dfa3259d16d364a1364",
+      "bytes": 1462346,
+      "width": 1914,
+      "height": 732,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/kai-jump-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_everest-jump-animation-source.jpg",
+      "description": "everest jump animation source",
+      "sha256": "a3da37f5bade1e02e26fe933353350e2eb0cd15405b65a027ab4aaabb58cf866",
+      "bytes": 166616,
+      "width": 1280,
+      "height": 511,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/kai-jump.png",
+      "renamed": "assets/runner/cycles/CMI_everest-jump-animation.png",
+      "description": "everest jump animation",
+      "sha256": "ba76f0241573c17dc346dd55f3288c6331da52f8db11a4c013c0814db049e269",
+      "bytes": 744646,
+      "width": 1632,
+      "height": 468,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/kai-run-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_everest-run-animation-source.jpg",
+      "description": "everest run animation source",
+      "sha256": "01d3d5f96326f0b37e54d89f5d139fd157e77a04d71f293d5e2047e53f04d0d1",
+      "bytes": 375396,
+      "width": 1230,
+      "height": 1278,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/kai-run.png",
+      "renamed": "assets/runner/cycles/CMI_everest-run-animation.png",
+      "description": "everest run animation",
+      "sha256": "8d7895a2d8cfecbd6faf825202697443a7425b0d85fef0ac4ae257ea97187bef",
+      "bytes": 3685781,
+      "width": 3904,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/maya-duck-source.png",
+      "renamed": "assets/runner/cycles/CMI_maya-duck-animation-source.png",
+      "description": "maya duck animation source",
+      "sha256": "b62f49fb502bbf68b2d93ac5b173214e1505d30a75202ec14779eaae76283d97",
+      "bytes": 2171059,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/maya-duck.png",
+      "renamed": "assets/runner/cycles/CMI_maya-duck-animation.png",
+      "description": "maya duck animation",
+      "sha256": "2341f132dd709879add5834e4279358da60264b0eb806910c027eb9dea2dda8b",
+      "bytes": 1668626,
+      "width": 2079,
+      "height": 666,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/maya-jump-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_maya-jump-animation-source.jpg",
+      "description": "maya jump animation source",
+      "sha256": "7277b903781bb8cc6041eaf9da2f1df3d3e965bb9d7d4f9adf6f41a623b969f8",
+      "bytes": 219252,
+      "width": 1280,
+      "height": 640,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/maya-jump.png",
+      "renamed": "assets/runner/cycles/CMI_maya-jump-animation.png",
+      "description": "maya jump animation",
+      "sha256": "6f00724ffcbc529cde1389d8a1b446e2865a015bd3d8309620ff678f7d81b944",
+      "bytes": 950002,
+      "width": 1648,
+      "height": 510,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/maya-run-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_maya-run-animation-source.jpg",
+      "description": "maya run animation source",
+      "sha256": "7134a39f3d6e1e1cdd0a0302f9e320fe6e518f08ea642b7e782b9b2ab13422a5",
+      "bytes": 427803,
+      "width": 1237,
+      "height": 1272,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/maya-run.png",
+      "renamed": "assets/runner/cycles/CMI_maya-run-animation.png",
+      "description": "maya run animation",
+      "sha256": "4c76a785b7539fbb9a027cdfb2489625bfa0e78fdcc438b82b4426714ed531dd",
+      "bytes": 4437989,
+      "width": 4048,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/ruby-duck-source.png",
+      "renamed": "assets/runner/cycles/CMI_ruby-duck-animation-source.png",
+      "description": "ruby duck animation source",
+      "sha256": "ed998edd3b35d840f2061bbaea5cd880edac81c6ee78c5665bf71d12c015fa54",
+      "bytes": 2093621,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/ruby-duck.png",
+      "renamed": "assets/runner/cycles/CMI_ruby-duck-animation.png",
+      "description": "ruby duck animation",
+      "sha256": "0703126dbb30dd85211c627338c31632d4f57d1dc203b4fd654ef89768d5b77e",
+      "bytes": 1562169,
+      "width": 1839,
+      "height": 706,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/ruby-jump-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_ruby-jump-animation-source.jpg",
+      "description": "ruby jump animation source",
+      "sha256": "d7697798ba9ccc9339785e963d759308f5fd8399d6f553b30c5cab814e1af71c",
+      "bytes": 167905,
+      "width": 1280,
+      "height": 511,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/ruby-jump.png",
+      "renamed": "assets/runner/cycles/CMI_ruby-jump-animation.png",
+      "description": "ruby jump animation",
+      "sha256": "1342110ce7ac057d6a12511bf2ed10e3d470f3783c280a010cb57dbe38865418",
+      "bytes": 770408,
+      "width": 2032,
+      "height": 442,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/ruby-run-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_ruby-run-animation-source.jpg",
+      "description": "ruby run animation source",
+      "sha256": "a0f69374f01f9aed48f1129111110105d359c1eeabc9702d4a0028d91bb3d784",
+      "bytes": 238739,
+      "width": 1280,
+      "height": 853,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/ruby-run.png",
+      "renamed": "assets/runner/cycles/CMI_ruby-run-animation.png",
+      "description": "ruby run animation",
+      "sha256": "fded5a1ee558bfded12b670f9b70113de8438e02a26bb1b7e401f704777c4f02",
+      "bytes": 4470114,
+      "width": 4328,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/sofia-duck-source.png",
+      "renamed": "assets/runner/cycles/CMI_sofia-duck-animation-source.png",
+      "description": "sofia duck animation source",
+      "sha256": "bd0371d91a8981daaff51baff463535b156934daa6b04360fc3181c92a24ee65",
+      "bytes": 2038856,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/sofia-duck.png",
+      "renamed": "assets/runner/cycles/CMI_sofia-duck-animation.png",
+      "description": "sofia duck animation",
+      "sha256": "d156778f3b32a034d6b92fc884876c9f6d49c25a4a59d29467c5e17acb885cdf",
+      "bytes": 1495033,
+      "width": 2319,
+      "height": 644,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/sofia-jump-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_sofia-jump-animation-source.jpg",
+      "description": "sofia jump animation source",
+      "sha256": "df4541824fd8bde75880648b740dee40ffdcb962fd4c5d44e586d411b43c7391",
+      "bytes": 158588,
+      "width": 1280,
+      "height": 511,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/sofia-jump.png",
+      "renamed": "assets/runner/cycles/CMI_sofia-jump-animation.png",
+      "description": "sofia jump animation",
+      "sha256": "b9c7b4437665bb6934363a0533d8bf079df46b1fa694a47a9d3604051a59fb75",
+      "bytes": 692885,
+      "width": 1576,
+      "height": 390,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/cycles/sofia-run-source.jpg",
+      "renamed": "assets/runner/cycles/CMI_sofia-run-animation-source.jpg",
+      "description": "sofia run animation source",
+      "sha256": "92e3f56b7730a6ba162258d9d10d1fc8e73a06ef72a41d10d8ebcda166b7621b",
+      "bytes": 380607,
+      "width": 1267,
+      "height": 1241,
+      "format": "JPEG"
+    },
+    {
+      "original": "assets/runner/cycles/sofia-run.png",
+      "renamed": "assets/runner/cycles/CMI_sofia-run-animation.png",
+      "description": "sofia run animation",
+      "sha256": "ace6e0bce86df011a8ff41ccf2d5d2be8f28b98b58d690c452851ff04ab85c0d",
+      "bytes": 4293795,
+      "width": 3856,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/eli-right.png",
+      "renamed": "assets/runner/CMI_zion-running-right.png",
+      "description": "zion running right",
+      "sha256": "c6665617b978e1208d29b505ba50a4919f5cda4d7f58409852e9b3f9c151baf9",
+      "bytes": 928391,
+      "width": 1374,
+      "height": 1145,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/jordan-right.png",
+      "renamed": "assets/runner/CMI_kanyon-running-right.png",
+      "description": "kanyon running right",
+      "sha256": "b7b0e3e81abcfed63730551d16898752e8c8bae99913741698742bbb4ae8a4bb",
+      "bytes": 895942,
+      "width": 1374,
+      "height": 1145,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/kai-right.png",
+      "renamed": "assets/runner/CMI_everest-running-right.png",
+      "description": "everest running right",
+      "sha256": "7902f091de13af52182190d7d9b603ef0a0637418079f274dcb80aba8395f9e6",
+      "bytes": 977581,
+      "width": 1374,
+      "height": 1145,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/maya-right.png",
+      "renamed": "assets/runner/CMI_maya-running-right.png",
+      "description": "maya running right",
+      "sha256": "67c24acf81b33129dbc27d8e8593483eed41f90172194f89e64f0ab91162b7a4",
+      "bytes": 220524,
+      "width": 400,
+      "height": 600,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/ruby-right.png",
+      "renamed": "assets/runner/CMI_ruby-running-right.png",
+      "description": "ruby running right",
+      "sha256": "d4de4f0b6f1ee251b58ff886e81cd02c9f54d4dce60caf1420ca65303b37b547",
+      "bytes": 300385,
+      "width": 500,
+      "height": 600,
+      "format": "PNG"
+    },
+    {
+      "original": "assets/runner/sofia-right.png",
+      "renamed": "assets/runner/CMI_sofia-running-right.png",
+      "description": "sofia running right",
+      "sha256": "bdc77deeda0f200179e682b6d10194076f036fee670af32c3af0bb0103ad63a4",
+      "bytes": 277447,
+      "width": 478,
+      "height": 600,
+      "format": "PNG"
+    },
+    {
+      "original": "city.svg",
+      "renamed": "CMI_moneybread-city-illustrated-map.svg",
+      "description": "moneybread city illustrated map",
+      "sha256": "429a7e24a51bc37e9d42b6adeed9d27fdd7a9bf42b7a035b049d9141a5430018",
+      "bytes": 5102,
+      "format": "SVG",
+      "viewBox": "0 0 1400 850"
+    },
+    {
+      "original": "favicon.svg",
+      "renamed": "CMI_money-ops-favicon.svg",
+      "description": "money ops favicon",
+      "sha256": "e86c4fa940f07f8e2f0f8d8594ad20334eba638253de5fbbd42021a665d15446",
+      "bytes": 213,
+      "format": "SVG",
+      "viewBox": "0 0 64 64"
+    },
+    {
+      "original": "money-ops/assets/cast/eli.png",
+      "renamed": "money-ops/assets/cast/CMI_zion-character-red-glasses.png",
+      "description": "zion character red glasses",
+      "sha256": "0adeb3d3d2de1f8f9dc5f79d20654381d75b25d919381a41f2cc2a0a89a0b6ee",
+      "bytes": 1623695,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/cast/jordan.png",
+      "renamed": "money-ops/assets/cast/CMI_kanyon-character-green.png",
+      "description": "kanyon character green",
+      "sha256": "58a37f90b60fbf5955ef9517a7b940c870d7c41a2c0aa6ff7006decf8f48d6e4",
+      "bytes": 1564010,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/cast/kai.png",
+      "renamed": "money-ops/assets/cast/CMI_everest-character-blue-yellow.png",
+      "description": "everest character blue yellow",
+      "sha256": "c2333081a74ad7903ec7eba18c7cdbea44d591b0efe1c666296675973ab2e9f6",
+      "bytes": 1725332,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/cast/maya.png",
+      "renamed": "money-ops/assets/cast/CMI_maya-character-purple-yellow-headband.png",
+      "description": "maya character purple yellow headband",
+      "sha256": "09098b48ebf0bd871a30530bd81513d9d1194c045b8d70c4cb4f47b795180083",
+      "bytes": 608878,
+      "width": 390,
+      "height": 922,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/cast/ruby.png",
+      "renamed": "money-ops/assets/cast/CMI_ruby-character-purple-auburn-hair.png",
+      "description": "ruby character purple auburn hair",
+      "sha256": "be2da261231324001d318bc426ab0e4c388a987039518d5f255e4e644952bc1b",
+      "bytes": 705156,
+      "width": 430,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/cast/sofia.png",
+      "renamed": "money-ops/assets/cast/CMI_sofia-character-pink.png",
+      "description": "sofia character pink",
+      "sha256": "745bdf9318b672d025ac21ce2c6afa7ab9226c0dbc0a2e7a7921321a49ce1964",
+      "bytes": 577029,
+      "width": 366,
+      "height": 943,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-1.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-01-customer-needs-help.png",
+      "description": "job comic 01 customer needs help",
+      "sha256": "0e3b19be3baacda06cb2b8056da4cb909e51330a7992780ea4c23c7147ad5fba",
+      "bytes": 2765805,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-2.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-02-find-a-problem.png",
+      "description": "job comic 02 find a problem",
+      "sha256": "97274b178b8402a02230e3da6ec50885b50b54e9b147b870a4e46329b7eb812c",
+      "bytes": 2832550,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-3.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-03-yard-care-creates-value.png",
+      "description": "job comic 03 yard care creates value",
+      "sha256": "992843a8d1458434661b38b972078badbf449b76d347fa5acd5b88be133233fa",
+      "bytes": 2702965,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-4.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-04-materials-seeds-and-gloves.png",
+      "description": "job comic 04 materials seeds and gloves",
+      "sha256": "af29ab1077d53b21beb769444989ff4f27be22abef500933322965dc1e2d5b8d",
+      "bytes": 2653219,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-5.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-05-labor-time-and-effort.png",
+      "description": "job comic 05 labor time and effort",
+      "sha256": "7696b2da91cc5476cd1d6e80f65522420d0cfa476ed79a09e04e06412fb8a168",
+      "bytes": 2908973,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-6.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-06-overhead-tools-and-transport.png",
+      "description": "job comic 06 overhead tools and transport",
+      "sha256": "a3e9a8fbe1f0a10e51b767b895da24586b79d44a12b370b911ba678e7333af09",
+      "bytes": 2561115,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-7.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-07-practice-budget-100-dollars.png",
+      "description": "job comic 07 practice budget 100 dollars",
+      "sha256": "ff09c9fc511c02803444f4ef30036c7aa52616c96ae5b52b8459ec2669b40853",
+      "bytes": 2285490,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/job-comic/panel-8.png",
+      "renamed": "money-ops/assets/crew/job-comic/CMI_job-comic-08-choose-a-job.png",
+      "description": "job comic 08 choose a job",
+      "sha256": "50614b46cafc577130344482d1d532134f9f8013cc0523f9001c333476971814",
+      "bytes": 2857397,
+      "width": 1448,
+      "height": 1086,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/lesson-one-job-comic.jpg",
+      "renamed": "money-ops/assets/crew/CMI_lesson-1-a-job-that-helps-the-city-comic-reference.jpg",
+      "description": "lesson 1 a job that helps the city comic reference",
+      "sha256": "dd7e20e68221eceb9bc3fd75607b217bd66f3ce829b3c55e4f9d590ce6b89441",
+      "bytes": 593299,
+      "width": 853,
+      "height": 1280,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/crew/lesson-one-run-the-job.jpg",
+      "renamed": "money-ops/assets/crew/CMI_lesson-1-yard-care-budget-board-reference.jpg",
+      "description": "lesson 1 yard care budget board reference",
+      "sha256": "61872f9972a21be174243092cf4c368fbace035fd5eefbd1f2ff866d432c4e6b",
+      "bytes": 434432,
+      "width": 1280,
+      "height": 720,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/crew/money-ops-moneybread-city.jpg",
+      "renamed": "money-ops/assets/crew/CMI_moneybread-city-crew-home-reference.jpg",
+      "description": "moneybread city crew home reference",
+      "sha256": "a1ac7d3dd5c330279336a0b779110b3e594c4bcc6e8753e63c0242d7dae660f4",
+      "bytes": 394506,
+      "width": 1280,
+      "height": 748,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/crew/moneybread-city-everest-approved.png",
+      "renamed": "money-ops/assets/crew/CMI_moneybread-city-crew-approved-everest.png",
+      "description": "moneybread city crew approved everest",
+      "sha256": "31c051b5c1ee1fb4d7eacd74fc87a638c4173f9aa688526e23ba023e8fbc6aec",
+      "bytes": 2519617,
+      "width": 1640,
+      "height": 959,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/moneybread-city-map.png",
+      "renamed": "money-ops/assets/crew/CMI_moneybread-city-map.png",
+      "description": "moneybread city map",
+      "sha256": "3ba46e0a71eef8b01582dbef2ba81d62ed8f793163eca4dcfea77567828e0086",
+      "bytes": 3792550,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/moneybread-landmarks.png",
+      "renamed": "money-ops/assets/crew/CMI_moneybread-city-building-landmarks-sheet.png",
+      "description": "moneybread city building landmarks sheet",
+      "sha256": "c98a401e14c3105b86d3ba351bca3248017e800741a55893994591fe8f9b3a9a",
+      "bytes": 2579288,
+      "width": 1774,
+      "height": 887,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/production/creator-scenes.png",
+      "renamed": "money-ops/assets/crew/production/CMI_studio-creator-job-scenes.png",
+      "description": "studio creator job scenes",
+      "sha256": "d78caea64bbecfda7290824d316ae4fa4792b98a2d2d3978b1f400ef457954bd",
+      "bytes": 2609634,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/production/home-city.png",
+      "renamed": "money-ops/assets/crew/production/CMI_moneybread-city-home-crew.png",
+      "description": "moneybread city home crew",
+      "sha256": "9f8070d48e84a881c523cdb382d55d52eebeb3fd2fac98a8dc259c27d3e17378",
+      "bytes": 2840682,
+      "width": 1640,
+      "height": 959,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/production/job-board-blank.png",
+      "renamed": "money-ops/assets/crew/production/CMI_run-the-job-interactive-board-background.png",
+      "description": "run the job interactive board background",
+      "sha256": "adb162a198c30c1dc3453e406cfeac706144ab47c2e09c21ef4ea047175bfbdd",
+      "bytes": 2840066,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/production/service-scenes.png",
+      "renamed": "money-ops/assets/crew/production/CMI_neighborhood-helper-job-scenes.png",
+      "description": "neighborhood helper job scenes",
+      "sha256": "88a8a8ef93636fcccf5a95d15c71d3e554c024985c4ab73c8ce52d913277b5f8",
+      "bytes": 3397676,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/production/tutor-scenes.png",
+      "renamed": "money-ops/assets/crew/production/CMI_school-tutor-job-scenes.png",
+      "description": "school tutor job scenes",
+      "sha256": "b81582e3f9b30ef3344a973988364ad3d3fcfcbb159db3ca69551b57bfd78009",
+      "bytes": 2502934,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/run-job-creator.png",
+      "renamed": "money-ops/assets/crew/CMI_studio-creator-run-the-job-reference.png",
+      "description": "studio creator run the job reference",
+      "sha256": "94c16dc7e3c7824560e27f14b9fccb98d02f9be42de339f8d95beb22f082bcba",
+      "bytes": 2715794,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/crew/run-job-tutor.png",
+      "renamed": "money-ops/assets/crew/CMI_school-tutor-run-the-job-reference.png",
+      "description": "school tutor run the job reference",
+      "sha256": "2b5f17bba883a630ac8034225ab4485440900f9bbfea1cc67cde9da541251502",
+      "bytes": 2696355,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/curriculum-cast.png",
+      "renamed": "money-ops/assets/CMI_money-ops-curriculum-character-team.png",
+      "description": "money ops curriculum character team",
+      "sha256": "c7d3f0075dc44f95701ab41cc626091e07801d5b38f5005f8527ff6fd7d0d05a",
+      "bytes": 2004285,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/environments/city-waterfront.jpg",
+      "renamed": "money-ops/assets/environments/CMI_city-waterfront-skyline-reference.jpg",
+      "description": "city waterfront skyline reference",
+      "sha256": "23ce367fe11492ff7fc051664bde69b308dfe170049fcf648977d6a92600bd9b",
+      "bytes": 279496,
+      "width": 1280,
+      "height": 720,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/environments/city-waterfront.png",
+      "renamed": "money-ops/assets/environments/CMI_city-waterfront-skyline-background.png",
+      "description": "city waterfront skyline background",
+      "sha256": "9be81218224d50c9affae5e09582469934633330405eb126db419dcb3185b7f9",
+      "bytes": 2256662,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/environments/waterfront-near.png",
+      "renamed": "money-ops/assets/environments/CMI_waterfront-near-city-parallax-layer.png",
+      "description": "waterfront near city parallax layer",
+      "sha256": "2321e8c7eb29d6a105dc077a5b1e8b1a15eea8853c7bae5b573de6eea46ba8c4",
+      "bytes": 1412768,
+      "width": 2079,
+      "height": 756,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/review/everest-refinement-preview.png",
+      "renamed": "money-ops/assets/review/CMI_everest-character-refinement-preview.png",
+      "description": "everest character refinement preview",
+      "sha256": "c2333081a74ad7903ec7eba18c7cdbea44d591b0efe1c666296675973ab2e9f6",
+      "bytes": 1725332,
+      "width": 1024,
+      "height": 1536,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/eli-duck-source.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_zion-duck-animation-source.png",
+      "description": "zion duck animation source",
+      "sha256": "83d21a6702f6413aa2d7582e2d9719c14a68eea00bf53580403a9ec288c88902",
+      "bytes": 2018442,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/eli-duck.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_zion-duck-animation.png",
+      "description": "zion duck animation",
+      "sha256": "903a37f7e182ade1d2618ec8d9588b0b7ec1232746b93a3b3dd00b1218eefdf6",
+      "bytes": 1542865,
+      "width": 2142,
+      "height": 738,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/eli-jump-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_zion-jump-animation-source.jpg",
+      "description": "zion jump animation source",
+      "sha256": "17b25bc347d285b6708717def5b1777554ea606c316ccae5b752c01f0591e738",
+      "bytes": 211032,
+      "width": 1280,
+      "height": 640,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/eli-jump.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_zion-jump-animation.png",
+      "description": "zion jump animation",
+      "sha256": "b6886f45601af107324c2bd2212f1b9707d2e38ba485ef32a25fa31128cfb511",
+      "bytes": 932809,
+      "width": 1824,
+      "height": 538,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/eli-run-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_zion-run-animation-source.jpg",
+      "description": "zion run animation source",
+      "sha256": "bbe01ac38621363896950d3ff27847b4cb8a479e0892f4c8ead9346de9b8a29f",
+      "bytes": 355901,
+      "width": 1263,
+      "height": 1246,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/eli-run.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_zion-run-animation.png",
+      "description": "zion run animation",
+      "sha256": "21dc2be3217228d7449f10eadb5b8554402f05a43cd2581150d0262374b97c2a",
+      "bytes": 3812260,
+      "width": 3984,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/jordan-duck-source.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_kanyon-duck-animation-source.png",
+      "description": "kanyon duck animation source",
+      "sha256": "91d863e2e6ea4dba1211908e55cf574e571c05316aef65996d48badaa4da5052",
+      "bytes": 1910645,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/jordan-duck.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_kanyon-duck-animation.png",
+      "description": "kanyon duck animation",
+      "sha256": "8a39294cd1e26862f8e57dda725607a476ad974618e456217fdac70929bf5210",
+      "bytes": 1346871,
+      "width": 2127,
+      "height": 684,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/jordan-jump-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_kanyon-jump-animation-source.jpg",
+      "description": "kanyon jump animation source",
+      "sha256": "97bd592140a5842d4b5b16398ac33fc11bb65c6d4aad6622f24a649a3e2a1166",
+      "bytes": 124914,
+      "width": 1280,
+      "height": 441,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/jordan-jump.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_kanyon-jump-animation.png",
+      "description": "kanyon jump animation",
+      "sha256": "188ad15095ec11e409bbb68ab857cfd78bc62d44768b63ba1e78e936531516c3",
+      "bytes": 537756,
+      "width": 1864,
+      "height": 422,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/jordan-run-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_kanyon-run-animation-source.jpg",
+      "description": "kanyon run animation source",
+      "sha256": "59c315e95dcdf8918ae9adc5986a3915f1e3503ac0dc03360c599ff7693edca5",
+      "bytes": 256388,
+      "width": 1280,
+      "height": 1169,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/jordan-run.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_kanyon-run-animation.png",
+      "description": "kanyon run animation",
+      "sha256": "afc8bc85fe89ff58e3f2accc782c2f92023d66eac0dd979a6b1f9d41e86d5b90",
+      "bytes": 3271841,
+      "width": 3952,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/kai-duck-source.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_everest-duck-animation-source.png",
+      "description": "everest duck animation source",
+      "sha256": "5f6e6439b758ce3b0c3a23ce499ab37ed5bcc77d7e5a2415edbbf485865cfbe2",
+      "bytes": 1964912,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/kai-duck.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_everest-duck-animation.png",
+      "description": "everest duck animation",
+      "sha256": "eafb3aa45797e6d224150d1dc582d242bbac6d8bf2116dfa3259d16d364a1364",
+      "bytes": 1462346,
+      "width": 1914,
+      "height": 732,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/kai-jump-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_everest-jump-animation-source.jpg",
+      "description": "everest jump animation source",
+      "sha256": "a3da37f5bade1e02e26fe933353350e2eb0cd15405b65a027ab4aaabb58cf866",
+      "bytes": 166616,
+      "width": 1280,
+      "height": 511,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/kai-jump.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_everest-jump-animation.png",
+      "description": "everest jump animation",
+      "sha256": "ba76f0241573c17dc346dd55f3288c6331da52f8db11a4c013c0814db049e269",
+      "bytes": 744646,
+      "width": 1632,
+      "height": 468,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/kai-run-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_everest-run-animation-source.jpg",
+      "description": "everest run animation source",
+      "sha256": "01d3d5f96326f0b37e54d89f5d139fd157e77a04d71f293d5e2047e53f04d0d1",
+      "bytes": 375396,
+      "width": 1230,
+      "height": 1278,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/kai-run.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_everest-run-animation.png",
+      "description": "everest run animation",
+      "sha256": "8d7895a2d8cfecbd6faf825202697443a7425b0d85fef0ac4ae257ea97187bef",
+      "bytes": 3685781,
+      "width": 3904,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/maya-duck-source.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_maya-duck-animation-source.png",
+      "description": "maya duck animation source",
+      "sha256": "b62f49fb502bbf68b2d93ac5b173214e1505d30a75202ec14779eaae76283d97",
+      "bytes": 2171059,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/maya-duck.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_maya-duck-animation.png",
+      "description": "maya duck animation",
+      "sha256": "2341f132dd709879add5834e4279358da60264b0eb806910c027eb9dea2dda8b",
+      "bytes": 1668626,
+      "width": 2079,
+      "height": 666,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/maya-jump-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_maya-jump-animation-source.jpg",
+      "description": "maya jump animation source",
+      "sha256": "7277b903781bb8cc6041eaf9da2f1df3d3e965bb9d7d4f9adf6f41a623b969f8",
+      "bytes": 219252,
+      "width": 1280,
+      "height": 640,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/maya-jump.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_maya-jump-animation.png",
+      "description": "maya jump animation",
+      "sha256": "6f00724ffcbc529cde1389d8a1b446e2865a015bd3d8309620ff678f7d81b944",
+      "bytes": 950002,
+      "width": 1648,
+      "height": 510,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/maya-run-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_maya-run-animation-source.jpg",
+      "description": "maya run animation source",
+      "sha256": "7134a39f3d6e1e1cdd0a0302f9e320fe6e518f08ea642b7e782b9b2ab13422a5",
+      "bytes": 427803,
+      "width": 1237,
+      "height": 1272,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/maya-run.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_maya-run-animation.png",
+      "description": "maya run animation",
+      "sha256": "4c76a785b7539fbb9a027cdfb2489625bfa0e78fdcc438b82b4426714ed531dd",
+      "bytes": 4437989,
+      "width": 4048,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/ruby-duck-source.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_ruby-duck-animation-source.png",
+      "description": "ruby duck animation source",
+      "sha256": "ed998edd3b35d840f2061bbaea5cd880edac81c6ee78c5665bf71d12c015fa54",
+      "bytes": 2093621,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/ruby-duck.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_ruby-duck-animation.png",
+      "description": "ruby duck animation",
+      "sha256": "0703126dbb30dd85211c627338c31632d4f57d1dc203b4fd654ef89768d5b77e",
+      "bytes": 1562169,
+      "width": 1839,
+      "height": 706,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/ruby-jump-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_ruby-jump-animation-source.jpg",
+      "description": "ruby jump animation source",
+      "sha256": "d7697798ba9ccc9339785e963d759308f5fd8399d6f553b30c5cab814e1af71c",
+      "bytes": 167905,
+      "width": 1280,
+      "height": 511,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/ruby-jump.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_ruby-jump-animation.png",
+      "description": "ruby jump animation",
+      "sha256": "1342110ce7ac057d6a12511bf2ed10e3d470f3783c280a010cb57dbe38865418",
+      "bytes": 770408,
+      "width": 2032,
+      "height": 442,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/ruby-run-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_ruby-run-animation-source.jpg",
+      "description": "ruby run animation source",
+      "sha256": "a0f69374f01f9aed48f1129111110105d359c1eeabc9702d4a0028d91bb3d784",
+      "bytes": 238739,
+      "width": 1280,
+      "height": 853,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/ruby-run.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_ruby-run-animation.png",
+      "description": "ruby run animation",
+      "sha256": "fded5a1ee558bfded12b670f9b70113de8438e02a26bb1b7e401f704777c4f02",
+      "bytes": 4470114,
+      "width": 4328,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/sofia-duck-source.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_sofia-duck-animation-source.png",
+      "description": "sofia duck animation source",
+      "sha256": "bd0371d91a8981daaff51baff463535b156934daa6b04360fc3181c92a24ee65",
+      "bytes": 2038856,
+      "width": 1536,
+      "height": 1024,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/sofia-duck.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_sofia-duck-animation.png",
+      "description": "sofia duck animation",
+      "sha256": "d156778f3b32a034d6b92fc884876c9f6d49c25a4a59d29467c5e17acb885cdf",
+      "bytes": 1495033,
+      "width": 2319,
+      "height": 644,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/sofia-jump-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_sofia-jump-animation-source.jpg",
+      "description": "sofia jump animation source",
+      "sha256": "df4541824fd8bde75880648b740dee40ffdcb962fd4c5d44e586d411b43c7391",
+      "bytes": 158588,
+      "width": 1280,
+      "height": 511,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/sofia-jump.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_sofia-jump-animation.png",
+      "description": "sofia jump animation",
+      "sha256": "b9c7b4437665bb6934363a0533d8bf079df46b1fa694a47a9d3604051a59fb75",
+      "bytes": 692885,
+      "width": 1576,
+      "height": 390,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/sofia-run-source.jpg",
+      "renamed": "money-ops/assets/runner/cycles/CMI_sofia-run-animation-source.jpg",
+      "description": "sofia run animation source",
+      "sha256": "92e3f56b7730a6ba162258d9d10d1fc8e73a06ef72a41d10d8ebcda166b7621b",
+      "bytes": 380607,
+      "width": 1267,
+      "height": 1241,
+      "format": "JPEG"
+    },
+    {
+      "original": "money-ops/assets/runner/cycles/sofia-run.png",
+      "renamed": "money-ops/assets/runner/cycles/CMI_sofia-run-animation.png",
+      "description": "sofia run animation",
+      "sha256": "ace6e0bce86df011a8ff41ccf2d5d2be8f28b98b58d690c452851ff04ab85c0d",
+      "bytes": 4293795,
+      "width": 3856,
+      "height": 1040,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/eli-right.png",
+      "renamed": "money-ops/assets/runner/CMI_zion-running-right.png",
+      "description": "zion running right",
+      "sha256": "c6665617b978e1208d29b505ba50a4919f5cda4d7f58409852e9b3f9c151baf9",
+      "bytes": 928391,
+      "width": 1374,
+      "height": 1145,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/jordan-right.png",
+      "renamed": "money-ops/assets/runner/CMI_kanyon-running-right.png",
+      "description": "kanyon running right",
+      "sha256": "b7b0e3e81abcfed63730551d16898752e8c8bae99913741698742bbb4ae8a4bb",
+      "bytes": 895942,
+      "width": 1374,
+      "height": 1145,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/kai-right.png",
+      "renamed": "money-ops/assets/runner/CMI_everest-running-right.png",
+      "description": "everest running right",
+      "sha256": "7902f091de13af52182190d7d9b603ef0a0637418079f274dcb80aba8395f9e6",
+      "bytes": 977581,
+      "width": 1374,
+      "height": 1145,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/maya-right.png",
+      "renamed": "money-ops/assets/runner/CMI_maya-running-right.png",
+      "description": "maya running right",
+      "sha256": "67c24acf81b33129dbc27d8e8593483eed41f90172194f89e64f0ab91162b7a4",
+      "bytes": 220524,
+      "width": 400,
+      "height": 600,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/ruby-right.png",
+      "renamed": "money-ops/assets/runner/CMI_ruby-running-right.png",
+      "description": "ruby running right",
+      "sha256": "d4de4f0b6f1ee251b58ff886e81cd02c9f54d4dce60caf1420ca65303b37b547",
+      "bytes": 300385,
+      "width": 500,
+      "height": 600,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/assets/runner/sofia-right.png",
+      "renamed": "money-ops/assets/runner/CMI_sofia-running-right.png",
+      "description": "sofia running right",
+      "sha256": "bdc77deeda0f200179e682b6d10194076f036fee670af32c3af0bb0103ad63a4",
+      "bytes": 277447,
+      "width": 478,
+      "height": 600,
+      "format": "PNG"
+    },
+    {
+      "original": "money-ops/city.svg",
+      "renamed": "money-ops/CMI_moneybread-city-illustrated-map.svg",
+      "description": "moneybread city illustrated map",
+      "sha256": "429a7e24a51bc37e9d42b6adeed9d27fdd7a9bf42b7a035b049d9141a5430018",
+      "bytes": 5102,
+      "format": "SVG",
+      "viewBox": "0 0 1400 850"
+    },
+    {
+      "original": "money-ops/favicon.svg",
+      "renamed": "money-ops/CMI_money-ops-favicon.svg",
+      "description": "money ops favicon",
+      "sha256": "e86c4fa940f07f8e2f0f8d8594ad20334eba638253de5fbbd42021a665d15446",
+      "bytes": 213,
+      "format": "SVG",
+      "viewBox": "0 0 64 64"
+    }
+  ]
+}

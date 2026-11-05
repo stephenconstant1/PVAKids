@@ -1,3 +1,4 @@
+import {runnerImage,castImage} from '../src/moneybread/image-assets.js';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
@@ -38,14 +39,14 @@ test('jump sheet follows existing normal/boots physics and recovers once',()=>{
 });
 
 test('all six playable students have right-facing runner artwork',()=>{
- for(const id of ['jordan','maya','kai','sofia','eli','ruby'])assert.equal(existsSync(new URL(`../assets/runner/${id}-right.png`,import.meta.url)),true,`${id} needs a directional runner asset`);
+ for(const id of ['jordan','maya','kai','sofia','eli','ruby'])assert.equal(existsSync(new URL('../'+runnerImage(id),import.meta.url)),true,`${id} needs a directional runner asset`);
 });
 
 test('the three updated boys have distinct high-resolution transparent portrait and runner art',()=>{
  const dimensions=url=>{const png=readFileSync(url);return {width:png.readUInt32BE(16),height:png.readUInt32BE(20),colorType:png[25]};};
  for(const id of ['jordan','kai','eli']){
-  const portrait=dimensions(new URL(`../assets/cast/${id}.png`,import.meta.url));
-  const runner=dimensions(new URL(`../assets/runner/${id}-right.png`,import.meta.url));
+  const portrait=dimensions(new URL('../'+castImage(id),import.meta.url));
+  const runner=dimensions(new URL('../'+runnerImage(id),import.meta.url));
   assert.equal(portrait.width,1024,`${id} portrait canvas width`);
   assert.equal(portrait.height,1536,`${id} portrait canvas height`);
   assert.ok(runner.width>=1300&&runner.height>=1100,`${id} needs high-resolution runner art`);
@@ -73,7 +74,7 @@ test('other lessons still end when the player collects the 100th reward',()=>{
 
 test('the selected character art is loaded and the kid-friendly pace accelerates gently',()=>{
  const game=harness(1,'pre').runner;
- assert.match(game.image._src,/assets\/runner\/maya-right\.png\?v=[\d.]+$/);
+ assert.match(game.image._src,/assets\/runner\/CMI_maya-running-right\.png\?v=[\d.]+$/);
  assert.equal(game.player.w,82);
  assert.equal(game.player.h,124);
  assert.equal(game.speed,WALK_SPEED*RUNNER_ZOOM);
@@ -111,7 +112,7 @@ test('Money Boxes add bonus dollars and owned items change play',()=>{
  assert.equal(game.runner.companionShield,true);
  game.runner.invulnerable=0;game.runner.hitObstacle({x:200,y:240,w:50,h:50,done:false});
  assert.equal(game.runner.lives,3,'the original companion blocks one collision');
- assert.match(game.runner.image._src,/assets\/runner\/ruby-right\.png\?v=[\d.]+$/);
+ assert.match(game.runner.image._src,/assets\/runner\/CMI_ruby-running-right\.png\?v=[\d.]+$/);
 });
 
 test('runner events publish lesson vocabulary for the side stream',()=>{

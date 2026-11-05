@@ -7,6 +7,6 @@ export declare const everestHeadRegion: {
     width: number;
     height: number;
 };
-export declare const approvedCrewEdit = "assets/crew/moneybread-city-everest-approved.png?v=45.6";
+export declare const approvedCrewEdit = "assets/crew/CMI_moneybread-city-crew-approved-everest.png?v=45.6";
 export declare function everestPatchLayer(scope: string): string;
 export declare function everestPatchOverlay(scope: string): string;

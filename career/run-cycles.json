@@ -1,13 +1,13 @@
 {
   "maya": {
     "name": "Maya",
-    "source": "assets/runner/cycles/maya-run-source.jpg",
+    "source": "assets/runner/cycles/CMI_maya-run-animation-source.jpg",
     "sourceSha256": "7134a39f3d6e1e1cdd0a0302f9e320fe6e518f08ea642b7e782b9b2ab13422a5",
     "sourceSize": [
       1237,
       1272
     ],
-    "image": "assets/runner/cycles/maya-run.png",
+    "image": "assets/runner/cycles/CMI_maya-run-animation.png",
     "cellWidth": 506,
     "cellHeight": 520,
     "columns": 8,
@@ -323,13 +323,13 @@
   },
   "kai": {
     "name": "Everest",
-    "source": "assets/runner/cycles/kai-run-source.jpg",
+    "source": "assets/runner/cycles/CMI_everest-run-animation-source.jpg",
     "sourceSha256": "01d3d5f96326f0b37e54d89f5d139fd157e77a04d71f293d5e2047e53f04d0d1",
     "sourceSize": [
       1230,
       1278
     ],
-    "image": "assets/runner/cycles/kai-run.png",
+    "image": "assets/runner/cycles/CMI_everest-run-animation.png",
     "cellWidth": 488,
     "cellHeight": 520,
     "columns": 8,
@@ -645,13 +645,13 @@
   },
   "eli": {
     "name": "Zion",
-    "source": "assets/runner/cycles/eli-run-source.jpg",
+    "source": "assets/runner/cycles/CMI_zion-run-animation-source.jpg",
     "sourceSha256": "bbe01ac38621363896950d3ff27847b4cb8a479e0892f4c8ead9346de9b8a29f",
     "sourceSize": [
       1263,
       1246
     ],
-    "image": "assets/runner/cycles/eli-run.png",
+    "image": "assets/runner/cycles/CMI_zion-run-animation.png",
     "cellWidth": 498,
     "cellHeight": 520,
     "columns": 8,
@@ -967,13 +967,13 @@
   },
   "ruby": {
     "name": "Ruby",
-    "source": "assets/runner/cycles/ruby-run-source.jpg",
+    "source": "assets/runner/cycles/CMI_ruby-run-animation-source.jpg",
     "sourceSha256": "a0f69374f01f9aed48f1129111110105d359c1eeabc9702d4a0028d91bb3d784",
     "sourceSize": [
       1280,
       853
     ],
-    "image": "assets/runner/cycles/ruby-run.png",
+    "image": "assets/runner/cycles/CMI_ruby-run-animation.png",
     "cellWidth": 541,
     "cellHeight": 520,
     "columns": 8,
@@ -1289,13 +1289,13 @@
   },
   "sofia": {
     "name": "Sofia",
-    "source": "assets/runner/cycles/sofia-run-source.jpg",
+    "source": "assets/runner/cycles/CMI_sofia-run-animation-source.jpg",
     "sourceSha256": "92e3f56b7730a6ba162258d9d10d1fc8e73a06ef72a41d10d8ebcda166b7621b",
     "sourceSize": [
       1267,
       1241
     ],
-    "image": "assets/runner/cycles/sofia-run.png",
+    "image": "assets/runner/cycles/CMI_sofia-run-animation.png",
     "cellWidth": 482,
     "cellHeight": 520,
     "columns": 8,
@@ -1611,13 +1611,13 @@
   },
   "jordan": {
     "name": "Kanyon",
-    "source": "assets/runner/cycles/jordan-run-source.jpg",
+    "source": "assets/runner/cycles/CMI_kanyon-run-animation-source.jpg",
     "sourceSha256": "59c315e95dcdf8918ae9adc5986a3915f1e3503ac0dc03360c599ff7693edca5",
     "sourceSize": [
       1280,
       1169
     ],
-    "image": "assets/runner/cycles/jordan-run.png",
+    "image": "assets/runner/cycles/CMI_kanyon-run-animation.png",
     "cellWidth": 494,
     "cellHeight": 520,
     "columns": 8,

@@ -54,14 +54,14 @@ own confirmation. Profile → Export career save creates a complete local backup
 
 ## Art provenance
 
-- `assets/crew/money-ops-moneybread-city.jpg` is the **unchanged uploaded**
+- `assets/crew/CMI_moneybread-city-crew-home-reference.jpg` is the **unchanged uploaded**
   1280×748 reference image. The landing displays the whole image at its original
   aspect ratio, with mode buttons below it. Its SHA-256 is
   `a1ac7d3dd5c330279336a0b779110b3e594c4bcc6e8753e63c0242d7dae660f4`.
 - Career Mode now displays that **same original image**, with the six crew members
   together in their original city. The illustration is not cropped or stretched.
   Gameplay controls and labels sit below the image, clear of its baked lettering.
-- The previously generated `moneybread-city-map.png` is retained as an asset but
+- The previously generated `CMI_moneybread-city-map.png` is retained as an asset but
   is no longer shown as the Career city or hero background.
 - Lesson-dialogue portraits still frame the original artwork; the main city no
   longer pastes a single cropped guide into a different background.
@@ -104,8 +104,8 @@ visual acceptance separate from automated checks before expanding the template.
 
 The runner town-building list still uses the eight existing IDs and names from
 `src/city.js`. All eight cards, including those below the fold, use distinct
-panorama-inspired building art from `assets/crew/moneybread-landmarks.png`. The
-new atlas was generated using the project's `moneybread-city-map.png` panorama
+panorama-inspired building art from `assets/crew/CMI_moneybread-city-building-landmarks-sheet.png`. The
+new atlas was generated using the project's `CMI_moneybread-city-map.png` panorama
 as its architecture/style reference. The original panorama and crew images were
 not modified. `landmark-art.json` maps each existing landmark ID to one atlas
 tile; it contains no lesson assignments.
@@ -131,7 +131,7 @@ and purchase/stage rendering. No new dependencies were added.
 
 ## Approved Everest and Lesson 1 runner update (45.6)
 
-The approved `assets/review/everest-refinement-preview.png` is used byte-for-byte
+The approved `assets/review/CMI_everest-character-refinement-preview.png` is used byte-for-byte
 as Everest’s standing portrait. His directional runner has the same 1374×1145
 canvas and pose with the approved face/hair adapted to running. The updated
 reference hash is in `runner-rigs.json`. Hash tests protect the other five crew

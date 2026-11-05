@@ -1,5 +1,5 @@
 import {withLessonComic,lessonComicOpen,lessonComicRead,comicEscape} from './lesson-comic.js';
-import {lessonOneComic} from './lesson-one-comic.js?v=46.21';
+import {lessonOneComic} from './lesson-one-comic.js?v=46.22';
 import {missions} from './content.js';
 import {choose,netWorth,rank,resolve,missionScore,passingScore} from './engine.js';
 import {effectLabels} from './finance.js';

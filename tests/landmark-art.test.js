@@ -10,7 +10,7 @@ test('every existing landmark, including the last card, has its own source-art t
  assert.deepEqual(landmarkArt.map(a=>a.id),cityLandmarks.map(a=>a.id));
  assert.equal(new Set(landmarkArt.map(a=>a.tile)).size,8);
  assert(landmarkArt.every(a=>Number.isInteger(a.tile)&&a.tile>=0&&a.tile<8));
- const bytes=readFileSync('assets/crew/moneybread-landmarks.png');assert.equal(bytes.subarray(1,4).toString(),'PNG');
+ const bytes=readFileSync('assets/crew/CMI_moneybread-city-building-landmarks-sheet.png');assert.equal(bytes.subarray(1,4).toString(),'PNG');
  const profile=newGame('Art review','maya'),markup=cityBuilderMarkup(profile,button,escape);
  assert.equal((markup.match(/class="city-landmark-art"/g)||[]).length,8);
  assert.doesNotMatch(markup,/EMPTY LOT/);

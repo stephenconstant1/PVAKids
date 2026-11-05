@@ -2,7 +2,7 @@ import {missions} from './content.js';
 import {lessonVocabulary} from './runner-vocabulary.js';
 
 export const runnerEnvironments={
- waterfront:{name:'City Waterfront',background:'assets/environments/city-waterfront.png',sky:'#71c6f2',far:'#9bbfd2',near:'#47866d',ground:'#dabd90',accent:'#ffe071'},
+ waterfront:{name:'City Waterfront',background:'assets/environments/CMI_city-waterfront-skyline-background.png',sky:'#71c6f2',far:'#9bbfd2',near:'#47866d',ground:'#dabd90',accent:'#ffe071'},
  school:{name:'Financial Freedom School',sky:'#79c9e8',far:'#cfe9d6',near:'#4d8c69',ground:'#294f45',accent:'#ffe071'},
  business:{name:'Downtown Business District',sky:'#83b5d5',far:'#8da5ad',near:'#486878',ground:'#243d49',accent:'#f7ca62'},
  shopping:{name:'Smart Shopping Center',sky:'#efb7aa',far:'#f8dfb6',near:'#b87875',ground:'#5d4a4c',accent:'#ffe879'},
