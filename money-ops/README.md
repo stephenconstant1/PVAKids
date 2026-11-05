@@ -1,4 +1,4 @@
-# Money Ops — Moneybread City & Arcade
+# CMI Money Ops Project℠ — Moneybread City & Arcade
 
 **Earn bread to run the city.** Career Mode now takes place in **Moneybread City**, an interactive illustrated city built through the original 32 lessons. Arcade Mode remains the existing standalone Financial Runner, with all 32 levels, six characters, intensity choices, temporary city rewards, and its device-local initials leaderboard.
 
