@@ -24,6 +24,13 @@ export declare function coinGroup(speed: number, random?: () => number): {
     height: number;
     rise: number;
 };
+/** Wants sit higher than ordinary coin arcs; their spacing still follows one jump. */
+export declare function wantGroup(speed: number, random?: () => number): {
+    count: number;
+    step: number;
+    height: number;
+    rise: number;
+};
 export declare function obstacleGeometry(speed: number, desiredWidth: number, desiredHeight: number): {
     w: number;
     h: number;

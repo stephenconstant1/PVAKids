@@ -28,6 +28,10 @@ export function coinGroup(speed:number,random:()=>number=Math.random):{count:num
  return {count:3,step:Math.max(46,speed*envelope.flight*.25),
   height:envelope.height*.65+12+random()*4,rise:envelope.height*.3};
 }
+/** Wants sit higher than ordinary coin arcs; their spacing still follows one jump. */
+export function wantGroup(speed:number,random:()=>number=Math.random):{count:number;step:number;height:number;rise:number} {
+ const group=coinGroup(speed,random);return {...group,height:group.height+32};
+}
 export function obstacleGeometry(speed:number,desiredWidth:number,desiredHeight:number):{w:number;h:number} {
  const envelope=jumpEnvelope(speed),h=Math.min(desiredHeight,envelope.height*.36);
  const gravity=GRAVITY*RUNNER_ZOOM,v=Math.sqrt(2*gravity*envelope.height);

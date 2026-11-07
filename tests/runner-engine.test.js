@@ -6,7 +6,7 @@ import {FinancialRunner} from '../src/runner.js';
 import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
 import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
-import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto,encounterBag,coinGroup,obstacleGeometry} from '../src/moneybread/waterfront-route.js';
+import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto,encounterBag,coinGroup,wantGroup,obstacleGeometry} from '../src/moneybread/waterfront-route.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
@@ -317,20 +317,20 @@ test('encounter bags retain balance without a fixed repeating order',()=>{
 });
 
 
-test('one jump reaches all three arc coins at every pace in Arcade and Bonus',()=>{
- for(const phase of ['pre','post'])for(const multiplier of [.68,1,1.5])for(const pace of [WALK_SPEED,RUN_SPEED]){
+test('one jump reaches all three raised wants across timing windows, paces, Arcade and Bonus',()=>{
+ for(const phase of ['pre','post'])for(const multiplier of [.68,1,1.5])for(const pace of [WALK_SPEED,RUN_SPEED])for(const timing of [-.035,0,.035]){
   const r=harness(1,phase,{intensityLevel:multiplier===.68?0:multiplier}).runner;
   r.running=true;r.routeGapRemaining=1e9;
   // Hold a measured pace without distance/coin acceleration during this jump.
   r.accelerates=false;r.speedMultiplier=pace/WALK_SPEED*multiplier;
   const speed=pace*RUNNER_ZOOM*r.config.difficulty*multiplier;
   r.physics.vx=speed/RUNNER_ZOOM;r.speed=speed;
-  const group=coinGroup(speed,()=>0),flight=jumpEnvelope(speed).flight,b=r.playerBox();
-  const center=b.x+b.w/2+speed*flight/2;
+  const group=wantGroup(speed,()=>0),flight=jumpEnvelope(speed).flight,b=r.playerBox();
+  const center=b.x+b.w/2+speed*(flight/2+timing);
   r.entities=Array.from({length:3},(_,i)=>({...r.config.collectibleSet[0],type:'collectible',
    x:center+(i-1)*group.step-21,y:r.ground-group.height-(i===1?group.rise:0),w:42,h:42,done:false}));
   r.jump();for(let t=0;t<flight+.05;t+=1/120)r.update(1/120,t);
-  assert.equal(r.collected,3,`${phase}/${multiplier}/${pace}: one arc must fit one jump`);r.destroy();
+  assert.equal(r.collected,3,`${phase}/${multiplier}/${pace}/${timing}: one raised arc must fit one jump`);r.destroy();
  }
 });
 

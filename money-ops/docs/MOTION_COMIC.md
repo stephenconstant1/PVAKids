@@ -117,3 +117,6 @@ Level 1 Arcade and Bonus/pre-lesson runs use illustrated need cards (housing, gr
 Target counts, reward values, runner accounting, optional ladders, difficulty pacing and all other lessons stay in their existing systems. Magnets leave these jump pickups on their arc; ground contact cannot collect them. Definitions in the live vocabulary feed follow the actual need/want collected rather than an unrelated rotating lesson word. Normal jump/duck inputs remain available. The coin goal and no-time-limit run rules are unchanged.
 
 On portrait phones the active Waterfront run keeps the Canvas, live vocabulary picture/definition, and touch actions in one viewport. The breadcrumb moves into the compact run title bar. Optional climb controls appear near a pole; the full Money Ladder panel opens only while attached at its planning checkpoint.
+
+### Higher wants arc (46.26)
+Waterfront want pickups sit 32 game pixels higher than their previous positions. Their three-item spacing still follows the existing jump flight, and ordinary coin arcs in other lessons are unchanged. High want labels move below the item to stay readable. Physics tests cover early/on-time/late jumps at the start and fastest paces, for Arcade/Bonus and every difficulty.

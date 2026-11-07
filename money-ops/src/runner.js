@@ -1,9 +1,9 @@
-import {drawMoneyIllustration} from './needs-wants.js?v=46.25';
+import {drawMoneyIllustration} from './needs-wants.js?v=46.26';
 import {runnerImage} from './moneybread/image-assets.js?v=46.22';
 import {WaterfrontClimb} from './waterfront-climb.js';
 import {stepBody,setCrouched,launchJump,WALK_SPEED,RUN_SPEED,GRAVITY,TILE,BODY_HEIGHT} from './moneybread/platform-physics.js';
 import {runnerBody,runnerMap,runnerTiles,RUNNER_ZOOM} from './moneybread/runner-physics.js';
-import {encounterGap,coinGroup,obstacleGeometry,overheadClearance,fallingOnto,encounterBag} from './moneybread/waterfront-route.js';
+import {encounterGap,coinGroup,wantGroup,obstacleGeometry,overheadClearance,fallingOnto,encounterBag} from './moneybread/waterfront-route.js';
 import {WaterfrontScene} from './moneybread/waterfront.js';
 import {CharacterRunCycle,jumpFrame} from './moneybread/run-cycle.js';
 import {createDuck,duckFrame} from './moneybread/duck-animation.js';
@@ -116,7 +116,7 @@ export class FinancialRunner{
   if(!this.routeBag?.length)this.routeBag=encounterBag();const before=this.entities.length,slot=this.routeBag.shift();this.routeSlot++;
   if(this.arcade&&slot===2&&this.config.vocabulary?.length){this.spawnVocabulary();}
   else if(slot===0||slot===2){
-   const group=coinGroup(Math.max(speed,this.speed));
+   const group=(this.config.needsWants?wantGroup:coinGroup)(Math.max(speed,this.speed));
    const groupSource=this.config.needsWants?this.config.collectibleSet[Math.floor(Math.random()*this.config.collectibleSet.length)]:null;
    for(let i=0;i<group.count;i++){this.spawnCollectible(groupSource);const e=this.entities.at(-1);e.x=this.width+35+i*group.step;e.y=this.ground-group.height-(i===1?group.rise:0);if(this.config.needsWants)e.hideMoneyLabel=i!==1;}
   }else if(slot===3){
@@ -137,7 +137,7 @@ export class FinancialRunner{
  drawTileWalls(){const c=this.ctx,scale=RUNNER_ZOOM,start=Math.floor(this.cameraX/(TILE*scale)),end=Math.ceil((this.cameraX+this.width)/(TILE*scale));for(let y=0;y<runnerTiles.floorRow;y++)for(let x=start;x<=end;x++)if(this.tileMap.solid(x,y)){c.fillStyle=this.config.environmentData.near;c.fillRect(Math.round(x*TILE*scale-this.cameraX),Math.round(y*TILE*scale+this.physicsOriginY),TILE*scale,TILE*scale);c.strokeStyle='#ffe485';c.strokeRect(Math.round(x*TILE*scale-this.cameraX)+.5,Math.round(y*TILE*scale+this.physicsOriginY)+.5,TILE*scale-1,TILE*scale-1);}}
 
  spawnObstacle(){const introduction=['jump','duck'][this.routeHazardCount||0];this.routeHazardCount=(this.routeHazardCount||0)+1;const available=this.config.obstacleSet,matching=available.filter(e=>introduction==='duck'?e.behavior==='overhead':e.behavior!=='overhead'),set=introduction&&matching.length?matching:available,source=set[Math.floor(Math.random()*set.length)],behavior=source.behavior,variant=source.art?.variant||0;let w=(behavior==='wide'?132:110)+(variant%3)*4,h=(behavior==='overhead'?66:behavior==='wide'?78:88)+(variant%2)*4,y=this.ground-h;if(behavior==='overhead'){w=156;h=24;y=this.ground-overheadClearance()-h;}if(behavior!=='overhead'){const safeSpeed=WALK_SPEED*RUNNER_ZOOM*this.config.difficulty*this.speedMultiplier;const fit=obstacleGeometry(safeSpeed,w,h);w=fit.w;h=fit.h;y=this.ground-h;}this.entities.push({...source,jumpRequired:this.config.lessonId===1&&!source.moneyCategory&&behavior!=='overhead',type:'obstacle',x:this.width+35,y,baseY:y,w,h,seed:Math.random()*6,passed:false,done:false});}
- spawnCollectible(source=null){const set=this.config.collectibleSet;source=source||set[Math.floor(Math.random()*set.length)];const height=60+Math.random()*100;this.entities.push({...source,type:'collectible',x:this.width+30,y:this.ground-height,w:42,h:42,done:false});}
+ spawnCollectible(source=null){const set=this.config.collectibleSet;source=source||set[Math.floor(Math.random()*set.length)];const height=60+Math.random()*100+(source.moneyCategory==='want'?32:0);this.entities.push({...source,type:'collectible',x:this.width+30,y:this.ground-height,w:42,h:42,done:false});}
  spawnLife(){this.entities.push({type:'life',label:'Extra life',x:this.width+30,y:this.ground-100,w:42,h:42,done:false});}
  collectLife(entity){if(entity.done)return;entity.done=true;const cap=this.config.lifeCap||this.config.maxLives;if(this.lives<cap){this.lives++;this.extraLivesCollected++;this.popups.push({x:entity.x,y:entity.y,text:'+1 LIFE',life:1.2,color:'#ff9ea3'});}else this.popups.push({x:entity.x,y:entity.y,text:'LIVES FULL',life:1.2,color:'#ff9ea3'});this.burst(entity.x,entity.y,'#ff9ea3');}
  spawnMoneyBox(){this.entities.push({type:'moneybox',label:'Money Box',icon:'?',x:this.width+30,y:this.ground-178,baseY:this.ground-178,w:52,h:52,done:false});}
@@ -160,7 +160,7 @@ export class FinancialRunner{
    const need=entity.moneyCategory==='need',size=need?48:38,cx=entity.x+entity.w/2,top=need?entity.y+entity.h-58:entity.y;
    c.fillStyle=need?'#d9f2e4':'#eee0fa';this.roundRect(cx-Math.max(entity.w,58)/2,top,Math.max(entity.w,58),need?58:entity.h,8);
    drawMoneyIllustration(c,entity.illustration,cx-size/2,top+(need?6:2),size);
-   if(!entity.hideMoneyLabel){c.font='bold 12px Arial';c.textAlign='center';const label=(need?'NEED · ':'WANT · ')+entity.label,width=Math.max(entity.w,Math.min(160,c.measureText(label).width+12));c.fillStyle='#173e43';this.roundRect(cx-width/2,top-41,width,38,6);c.fillStyle='#fff6d6';c.fillText(label,cx,top-26);c.font='bold 11px Arial';c.fillText(need?'SLIDE S / TOUCH':'JUMP ↑',cx,top-11);}return;
+   if(!entity.hideMoneyLabel){c.font='bold 12px Arial';c.textAlign='center';const label=(need?'NEED · ':'WANT · ')+entity.label,width=Math.max(entity.w,Math.min(160,c.measureText(label).width+12));c.fillStyle='#173e43';const captionY=!need&&top<45?top+entity.h+4:top-41;this.roundRect(cx-width/2,captionY,width,38,6);c.fillStyle='#fff6d6';c.fillText(label,cx,captionY+15);c.font='bold 11px Arial';c.fillText(need?'SLIDE S / TOUCH':'JUMP ↑',cx,captionY+30);}return;
   }
   if(entity.type==='vocabulary'){c.fillStyle='#8ce8e8';this.roundRect(entity.x,entity.y,62,54,8);c.fillStyle='#153c4b';c.fillRect(entity.x+8,entity.y+10,20,28);c.fillRect(entity.x+33,entity.y+10,20,28);c.fillStyle='#fff7c5';c.fillRect(entity.x+12,entity.y+14,12,3);c.fillRect(entity.x+37,entity.y+14,12,3);c.font='bold 13px Arial';c.textAlign='center';c.fillText(entity.label,entity.x+31,entity.y-8);return;}
   if(entity.type==='obstacle'){
