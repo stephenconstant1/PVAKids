@@ -356,7 +356,7 @@ test('Money Ladder climbs, rests, descends and exits safely at every difficulty 
   r.update(.25,0);const y=r.player.y;r.keyUp({code:'ArrowUp'});r.update(.25,0);assert.equal(r.player.y,y,'release must hold position');
   r.keyDown({code:'ArrowDown',preventDefault(){}});r.update(.1,0);assert(r.player.y>y,'Down descends instead of ducking');assert(!r.player.duck);r.keyUp({code:'ArrowDown'});
   assert(!r.climb.allocate('needs'),'allocation starts at the top');
-  r.climb.hold('test',1);for(let i=0;i<10;i++)r.update(.25,0);r.climb.release('test');assert(r.climb.reachedTop);
+  r.climb.hold('test',1);for(let i=0;i<Math.ceil(r.climb.pole.h/95/.25)+2;i++)r.update(.25,0);r.climb.release('test');assert(r.climb.reachedTop);
   assert.equal(r.player.y+r.player.h,r.climb.pole.y);assert.equal(r.climb.goalsReached,1);assert.equal(r.vocabEvent.term,'financial goal');assert.equal(r.vocabEvent.definition,'A specific money result a person plans to reach.');
   for(const name of ['needs','wants','savings'])assert(r.climb.allocate(name));
   assert(!r.climb.allocate('needs'),'no duplicate allocation');assert(!r.climb.allocate('unknown'));assert(!r.climb.allocate('constructor'));
@@ -396,3 +396,5 @@ test('phone climb hold can start before contact and cancellation prevents unwant
 });
 
 test('wants need an airborne collection and use their actual vocabulary definition',()=>{const r=harness(1).runner;r.start();r.spawnCollectible();const e=r.entities.at(-1);r.collect(e);assert(!e.done);r.jump();r.collect(e);assert(e.done);assert.equal(r.collected,1);assert.equal(r.vocabEvent.term,'wants');assert.equal(r.vocabEvent.definition,'Things that are enjoyable but are not required.');r.destroy();});
+
+test('sky goal platforms are elevated, solid from above, and reserve a safe return to ground',()=>{for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){const r=harness(1,phase,{intensityLevel}).runner;r.start();r.routeGapRemaining=1e9;r.climb.spawn();const b=r.playerBox();r.climb.pole.x=b.x;assert(r.climb.pole.h>=288);assert(r.climb.pole.y<=4);r.climb.hold('up',1);for(let i=0;i<16;i++)r.update(.25,0);r.climb.release('up');assert(r.climb.reachedTop);assert(r.cameraY<0);r.climb.leave();for(let i=0;i<4;i++)r.update(.01,0);assert.equal(r.player.y+r.player.h,r.climb.pole.y);assert(r.player.grounded);assert(r.routeGapRemaining>1800);assert.equal(r.lives,3);r.destroy();}});

@@ -1,4 +1,4 @@
-import {allocationReady} from './moneybread/job-practice.js?v=46.27';
+import {allocationReady} from './moneybread/job-practice.js?v=46.28';
 import {finances} from './finance.js';
 import {markLessonCompleted,openRunner} from './runner-state.js';
 // The job board is a practice activity: completion never deposits its example dollars.

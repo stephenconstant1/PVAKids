@@ -123,3 +123,8 @@ Waterfront want pickups sit 32 game pixels higher than their previous positions.
 
 ### Climb for goals (46.27)
 The Waterfront loop now reads: slide through needs, jump for wants, climb for goals. Existing poles carry original goal flags at their safe upper decks. Each climb rotates through the existing financial goal, short-term goals, and long-term goals definitions. A goal is reached once per pole, only while attached at the top. The live picture/definition, climb panel and a separate HUD counter show progress, with a count on the run results. Descending and returning cannot count the same flag again. Goal practice adds no coins, XP, spending, or financial rewards. The optional $100 Money Ladder activity and ordinary climb/jump/duck controls remain available.
+
+### Sky goal platforms (46.28)
+Waterfront goals sit on floating terraces 288–312 game pixels above the ground, connected by original leafy vines with clear rung markings. The terrace’s drawn top matches its actual landing surface; the camera follows the character upward. Goal markers sit above the deck. Recurring routes in both Arcade and Bonus rotate platform heights and goal vocabulary. The ground route stays open. Leaving reserves at least 2,400 pixels, scaled further at higher speeds, before new encounters so students can land and react. Other lessons keep their existing climbing layouts; the screenshot is a route reference only, with no Mario assets used.
+
+At a sky goal, the optional budget opens only after selecting **Plan $100**. Closing it restores the visible platform and compact climb controls. Releasing or leaving the checkpoint resets that optional panel. This keeps the goal and original sky scene visible on phones while preserving the $100 guideline activity.
