@@ -1,0 +1,13 @@
+import {vocabularyDefinition} from './runner-vocabulary.js';
+const examples={need:[['Housing','home'],['Groceries','food'],['Water bill','water']],want:[['Toy','toy'],['Game','game'],['Treat','treat']]};
+export function moneyExamples(category){return examples[category].map(([label,illustration],i)=>({id:`${category}-${i}`,label,illustration,moneyCategory:category,definition:vocabularyDefinition(category==='need'?'needs':'wants'),icon:category==='need'?'NEED':'WANT',behavior:'ground',art:{hue:category==='need'?175:285,pattern:i,variant:i},...(category==='want'?{kind:['dollar','gold','lesson'][i],value:[1,5,10][i]}:{})}));}
+// Shared original vector art for the Canvas route and accessible HTML previews.
+function shapes(kind){const a=[];const rect=(x,y,w,h,color)=>a.push({type:'rect',x,y,w,h,color});const circle=(x,y,r,color)=>a.push({type:'circle',x,y,r,color});const polygon=(points,color)=>a.push({type:'polygon',points,color});
+ if(kind==='home'){polygon([[3,27],[32,4],[61,27]],'#d85d47');rect(11,27,42,32,'#f4d38a');rect(27,38,12,21,'#346d72');rect(16,33,8,9,'#70ccdc');rect(42,33,8,9,'#70ccdc');}
+ if(kind==='food'){rect(10,25,44,34,'#ba7c40');rect(16,14,10,22,'#71ad5c');polygon([[34,27],[39,7],[49,11],[46,28]],'#f19d3c');circle(32,29,9,'#e25f4d');rect(10,34,44,5,'#edca82');}
+ if(kind==='water'){polygon([[32,4],[12,36],[12,46],[20,58],[44,58],[52,46],[52,36]],'#329fca');circle(25,40,6,'#9cdef1');}
+ if(kind==='toy'){rect(12,25,40,32,'#bc73c8');rect(29,25,6,32,'#ffe07b');rect(9,20,46,10,'#9a56ac');circle(23,14,8,'#ffe07b');circle(40,14,8,'#ffe07b');}
+ if(kind==='game'){rect(4,18,56,33,'#566e9b');rect(12,29,18,6,'#f5edce');rect(18,23,6,18,'#f5edce');circle(45,29,4,'#ffe07b');circle(51,38,4,'#ee8b9b');}
+ if(kind==='treat'){polygon([[18,29],[46,29],[32,61]],'#d29654');circle(22,25,10,'#f09caa');circle(42,25,10,'#f09caa');circle(32,14,12,'#f4b5c0');circle(32,5,4,'#d94c4c');}return a;}
+export function moneyIllustrationSvg(kind){return `<svg viewBox="0 0 64 64" aria-hidden="true" class="money-example-art">${shapes(kind).map(s=>s.type==='rect'?`<rect x="${s.x}" y="${s.y}" width="${s.w}" height="${s.h}" fill="${s.color}"/>`:s.type==='circle'?`<circle cx="${s.x}" cy="${s.y}" r="${s.r}" fill="${s.color}"/>`:`<polygon points="${s.points.map(p=>p.join(',')).join(' ')}" fill="${s.color}"/>`).join('')}</svg>`;}
+export function drawMoneyIllustration(c,kind,x,y,size){c.save();c.translate(x,y);c.scale(size/64,size/64);for(const s of shapes(kind)){c.fillStyle=s.color;if(s.type==='rect')c.fillRect(s.x,s.y,s.w,s.h);else{c.beginPath();if(s.type==='circle')c.arc(s.x,s.y,s.r,0,Math.PI*2);else{s.points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();}c.fill();}}c.restore();}

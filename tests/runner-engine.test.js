@@ -182,7 +182,7 @@ test('collectible hearts add up to two reserve lives and can replenish lost live
 
 test('all six runners hold/release duck, pass overhead hazards and reject airborne duck',()=>{
  for(const phase of ['pre','post'])for(const characterId of ['jordan','maya','kai','sofia','eli','ruby']){
-  const r=harness(1,phase,{characterId}).runner;r.start();r.spawnIn=r.rewardIn=r.powerIn=r.boxIn=r.lifeIn=999;
+  const r=harness(5,phase,{characterId}).runner;r.start();r.spawnIn=r.rewardIn=r.powerIn=r.boxIn=r.lifeIn=999;
   r.keyDown({code:'ArrowDown',preventDefault(){}});assert(r.player.duck);assert.equal(r.state,'ducking');
   r.holdDuck('pointer:1');r.keyUp({code:'ArrowDown'});assert(r.player.duck,'other held input remains active');
   r.releaseDuck('pointer:1');assert(!r.player.duck);assert.equal(r.state,'running');
@@ -264,7 +264,7 @@ test('recovery gaps allow a full flight, landing and one safe second even at max
  }
 });
 test('jump and duck introductions are isolated before mixed hazards',()=>{
- const r=harness(1).runner;const kinds=[];for(let i=0;i<4;i++){r.spawnObstacle();kinds.push(r.entities.at(-1).behavior==='overhead'?'duck':'jump');}
+ const r=harness(5).runner;const kinds=[];for(let i=0;i<4;i++){r.spawnObstacle();kinds.push(r.entities.at(-1).behavior==='overhead'?'duck':'jump');}
  assert.deepEqual(kinds.slice(0,2),['jump','duck']);r.destroy();
 });
 test('stomp requires downward top crossing; side and rising contacts do damage',()=>{
@@ -378,11 +378,11 @@ test('climb controls are contextual, pause releases held directions, and the gro
  assert(!skip.climb.attached&&!skip.climb.visited);assert(skip.distance>0);assert(skip.routeSlot>0,'normal encounters resume after the skipped ladder');skip.destroy();
 });
 
-test('actual Level 1 ground boxes cannot be bypassed by sliding',()=>{
+test('Level 1 needs are handled by sliding with no life loss across difficulties',()=>{
  for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){
   const r=harness(1,phase,{intensityLevel}).runner;r.running=true;r.routeGapRemaining=1e9;r.spawnObstacle();
-  const box=r.entities.at(-1);assert(box.jumpRequired);const b=r.playerBox();box.x=b.x;box.w=80;
-  r.slide();r.update(.01,0);assert.equal(r.lives,2);assert.equal(r.avoided,0);r.destroy();
+  const box=r.entities.at(-1);assert(!box.jumpRequired);assert.equal(box.moneyCategory,'need');const b=r.playerBox();box.x=b.x;box.w=80;
+  r.slide();r.update(.01,0);assert.equal(r.lives,3);assert.equal(r.avoided,1);assert.equal(r.vocabEvent.term,'needs');r.destroy();
  }
 });
 
@@ -394,3 +394,5 @@ test('phone climb hold can start before contact and cancellation prevents unwant
  const held=harness(1).runner;held.running=true;held.routeGapRemaining=1e9;held.climb.spawn();held.climb.pole.x=held.playerBox().x+200;held.climb.queue('phone',1);
  for(let i=0;i<80;i++)held.update(.01,0);assert(held.climb.attached);held.climb.release('phone');const y=held.player.y;held.update(.2,0);assert.equal(held.player.y,y);held.destroy();
 });
+
+test('wants need an airborne collection and use their actual vocabulary definition',()=>{const r=harness(1).runner;r.start();r.spawnCollectible();const e=r.entities.at(-1);r.collect(e);assert(!e.done);r.jump();r.collect(e);assert(e.done);assert.equal(r.collected,1);assert.equal(r.vocabEvent.term,'wants');assert.equal(r.vocabEvent.definition,'Things that are enjoyable but are not required.');r.destroy();});

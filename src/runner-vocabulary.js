@@ -108,3 +108,5 @@ export function lessonVocabulary(lessonId){
  if(!lesson)return [];
  return lesson.terms.map(term=>({term,definition:definitionFor(term,lesson)}));
 }
+
+export function vocabularyDefinition(term){return definitions[String(term).toLowerCase()]||'';}

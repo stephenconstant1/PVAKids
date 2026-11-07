@@ -30,7 +30,7 @@ const {mkdirSync}=require('node:fs');
   const result=await page.evaluate(()=>{
    const r=window.runner;cancelAnimationFrame(r.raf);r.paused=false;
    let seed=4523;const random=Math.random;Math.random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-   const encounters=[],seen=new Set();let ducking=false,ticks=0,jumps=0,ducks=0;
+   const encounters=[],seen=new Set();let ducking=false,ticks=0,jumps=0,ducks=0,slides=0;
    const key=(type,code)=>window.dispatchEvent(new KeyboardEvent(type,{code,bubbles:true,cancelable:true}));
    try{
     while(r.running&&r.collected<200&&ticks<65000){
@@ -38,7 +38,8 @@ const {mkdirSync}=require('node:fs');
      const overhead=next?.behavior==='overhead'&&next.x<r.player.x+310;
      if(overhead&&!ducking){key('keydown','ArrowDown');ducking=true;ducks++;}
      if(!overhead&&ducking){key('keyup','ArrowDown');ducking=false;}
-     if(next&&!overhead&&next.x<r.playerBox().x+r.playerBox().w+(next.type==='collectible'?-20:r.speed*(next.type==='moneybox'?.035:.11))&&r.player.grounded){key('keydown','ArrowUp');key('keyup','ArrowUp');jumps++;}
+     if(next?.moneyCategory==='need'&&next.x<r.playerBox().x+r.playerBox().w+r.speed*.11&&r.player.grounded){key('keydown','KeyS');key('keyup','KeyS');slides++;}
+     if(next&&next.moneyCategory!=='need'&&!overhead&&next.x<r.playerBox().x+r.playerBox().w+(next.type==='collectible'?-20:r.speed*(next.type==='moneybox'?.035:.11))&&r.player.grounded){key('keydown','ArrowUp');key('keyup','ArrowUp');jumps++;}
      r.update(.02,ticks*.02);ticks++;
      for(const e of r.entities)if(e.encounter&&!seen.has(e.encounter)){
       seen.add(e.encounter);const items=r.entities.filter(v=>v.encounter===e.encounter),world=r.distance*18;
@@ -48,14 +49,14 @@ const {mkdirSync}=require('node:fs');
     }
    }finally{Math.random=random;if(ducking)key('keyup','ArrowDown');}
    r.draw();r.setPaused(true);
-   return {coins:r.collected,goal:r.goalReached,reason:r.completed?'ended early':'survival continues',lives:r.lives,x:r.player.x,jumps,ducks,seconds:ticks*.02,encounters,
+   return {coins:r.collected,goal:r.goalReached,reason:r.completed?'ended early':'survival continues',lives:r.lives,x:r.player.x,jumps,ducks,slides,seconds:ticks*.02,encounters,
     target:r.config.targetCoins,phase:r.config.phase};
   });
-  assert.equal(result.target,200);assert(result.coins>=200&&result.goal&&result.lives>0,JSON.stringify(result));assert.equal(result.x,112);assert(result.jumps>0&&result.ducks>0);
+  assert.equal(result.target,200);assert(result.coins>=200&&result.goal&&result.lives>0,JSON.stringify(result));assert.equal(result.x,112);assert(result.jumps>0&&result.slides>0);
   const gaps=result.encounters.slice(1).map((e,i)=>e.start-result.encounters[i].end);
   assert(gaps.every(g=>g>=300),'all different encounters need room after the last item');
   assert(gaps.every((g,i)=>g/result.encounters[i+1].speed>1.24),'a full safe second plus recovery must fit even at the later speed');
-  assert.deepEqual(result.encounters.filter(e=>e.type==='obstacle').slice(0,2).map(e=>e.behavior==='overhead'?'duck':'jump'),['jump','duck']);
+  assert(result.encounters.filter(e=>e.type==='obstacle').every(e=>e.behavior==='ground'));
   assert(new Set(gaps.map(g=>Math.round(g/10))).size>5,'route must vary its gaps');
   assert(result.encounters.some(e=>e.type==='moneybox'));assert(result.encounters.some(e=>e.type==='life'));if(scenario.mode==='bonus')assert(result.encounters.some(e=>e.type==='power'));
   assert(result.encounters.filter(e=>e.type==='collectible').every(e=>e.count===3));

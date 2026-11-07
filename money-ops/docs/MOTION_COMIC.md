@@ -110,3 +110,10 @@ A valid, fully assigned job budget now leads to a Lesson 1 completion screen, th
 
 ### Current-section breadcrumb (46.23)
 A compact, read-only breadcrumb shows the displayed section in the existing header area. It follows Home, Career tools, Arcade, comic opening/story, job costs/money plan, lesson completion, runner setup/play/results, and the active lesson. Image-led pages keep the breadcrumb inside the illustrated page. It uses a labeled navigation landmark, an ordered trail, and `aria-current="page"`; it does not change navigation actions, saves, scoring, or image assets.
+
+### Waterfront needs and wants run (46.25)
+Level 1 Arcade and Bonus/pre-lesson runs use illustrated need cards (housing, groceries, water bill) and optional want pickups (toy, game, treat). S or the existing touch Slide control handles need cards without losing a life; jump to collect want groups on the existing reachable arc. The existing Needs and Wants glossary definitions are reused verbatim. Original inline vector illustrations support both HTML previews and Canvas, with labeled categories and action prompts. Need feedback says “handled,” never that a required expense was destroyed or paid. These are learning examples; no bills are charged and no saved spending allocation changes.
+
+Target counts, reward values, runner accounting, optional ladders, difficulty pacing and all other lessons stay in their existing systems. Magnets leave these jump pickups on their arc; ground contact cannot collect them. Definitions in the live vocabulary feed follow the actual need/want collected rather than an unrelated rotating lesson word. Normal jump/duck inputs remain available. The coin goal and no-time-limit run rules are unchanged.
+
+On portrait phones the active Waterfront run keeps the Canvas, live vocabulary picture/definition, and touch actions in one viewport. The breadcrumb moves into the compact run title bar. Optional climb controls appear near a pole; the full Money Ladder panel opens only while attached at its planning checkpoint.

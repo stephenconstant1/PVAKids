@@ -1,3 +1,4 @@
+import {moneyExamples} from './needs-wants.js?v=46.25';
 import {missions} from './content.js';
 import {lessonVocabulary} from './runner-vocabulary.js';
 
@@ -73,5 +74,5 @@ export function runnerConfig(lessonId,phase='pre'){
  const lesson=runnerLessons.find(item=>item.lessonId===Number(lessonId));
  if(!lesson)throw Error('Unknown runner lesson');
  const stage=phase==='post'?lesson.post:lesson.pre;
- return {...lesson,phase,targetCoins:Number(lessonId)===1?200:stage.targetCoins,maxLives:stage.maxLives,lifeCap:Number(lessonId)===1?5:stage.maxLives,extraLifeInterval:Number(lessonId)===1?18:0,continueAfterGoal:Number(lessonId)===1,difficulty:stage.difficulty,environmentData:runnerEnvironments[lesson.environment]};
+ return {...lesson,needsWants:Number(lessonId)===1,obstacleSet:Number(lessonId)===1?moneyExamples('need'):lesson.obstacleSet,collectibleSet:Number(lessonId)===1?moneyExamples('want'):lesson.collectibleSet,phase,targetCoins:Number(lessonId)===1?200:stage.targetCoins,maxLives:stage.maxLives,lifeCap:Number(lessonId)===1?5:stage.maxLives,extraLifeInterval:Number(lessonId)===1?18:0,continueAfterGoal:Number(lessonId)===1,difficulty:stage.difficulty,environmentData:runnerEnvironments[lesson.environment]};
 }

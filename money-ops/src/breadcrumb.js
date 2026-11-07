@@ -20,6 +20,7 @@ export function installBreadcrumb(app,profile,ui,escape){
  if(comic){comic.querySelector('.motion-heading small')?.insertAdjacentHTML('afterend',markup);comic.querySelector('.motion-heading small')?.classList.add('sr');return;}
  if(job){job.insertAdjacentHTML('beforeend',markup);return;}
  const career=app.querySelector('.career-simple-nav>span');if(career){career.outerHTML=markup;return;}
+ if(app.querySelector('[data-runner-hud=needs]')&&matchMedia('(max-width:650px) and (orientation:portrait)').matches){const label=app.querySelector('.runner-titlebar>span');if(label){label.outerHTML=markup;return;}}
  const brandLabel=app.querySelector('#app>header .brand>span:last-child>small');if(brandLabel){brandLabel.outerHTML=markup;return;}
  const target=app.querySelector('.home-image-stage,.job-completion>section')||app.querySelector('#main');
  target?.insertAdjacentHTML('afterbegin',markup);
