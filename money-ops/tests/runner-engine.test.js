@@ -357,11 +357,11 @@ test('Money Ladder climbs, rests, descends and exits safely at every difficulty 
   r.keyDown({code:'ArrowDown',preventDefault(){}});r.update(.1,0);assert(r.player.y>y,'Down descends instead of ducking');assert(!r.player.duck);r.keyUp({code:'ArrowDown'});
   assert(!r.climb.allocate('needs'),'allocation starts at the top');
   r.climb.hold('test',1);for(let i=0;i<10;i++)r.update(.25,0);r.climb.release('test');assert(r.climb.reachedTop);
-  assert.equal(r.player.y+r.player.h,r.climb.pole.y);
+  assert.equal(r.player.y+r.player.h,r.climb.pole.y);assert.equal(r.climb.goalsReached,1);assert.equal(r.vocabEvent.term,'financial goal');assert.equal(r.vocabEvent.definition,'A specific money result a person plans to reach.');
   for(const name of ['needs','wants','savings'])assert(r.climb.allocate(name));
   assert(!r.climb.allocate('needs'),'no duplicate allocation');assert(!r.climb.allocate('unknown'));assert(!r.climb.allocate('constructor'));
   r.climb.hold('down',-1);r.update(.1,0);r.climb.release('down');assert(!r.climb.allocate('needs'));r.climb.hold('up',1);r.update(.1,0);r.climb.release('up');
-  assert.equal(r.climb.remaining,0);assert.deepEqual({score:r.score,coins:r.coins,bonus:r.bonusMoney,distance:r.distance,lives:r.lives},before);
+  assert.equal(r.climb.goalsReached,1);assert.equal(r.climb.remaining,0);assert.deepEqual({score:r.score,coins:r.coins,bonus:r.bonusMoney,distance:r.distance,lives:r.lives},before);
   r.keyDown({code:'Space',preventDefault(){}});assert(!r.climb.attached);assert(r.player.vy<0);
   for(let i=0;i<150;i++)r.update(.01,i*.01);assert(r.player.grounded);assert.equal(r.lives,3);r.destroy();
  }

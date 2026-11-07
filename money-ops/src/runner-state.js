@@ -1,7 +1,7 @@
 import {runnerConfig} from './runner-config.js';
 import {depositCityCoins} from './city.js';
 
-const zeroResult=()=>({completed:false,skipped:false,score:0,coins:0,collected:0,bonusMoney:0,xp:0,distance:0,avoided:0,survivalSeconds:0,powerUpsUsed:0,paychecks:0,paycheckCoins:0,cityCoins:0,extraLivesCollected:0,vocabularySeen:[]});
+const zeroResult=()=>({completed:false,skipped:false,climbGoals:0,score:0,coins:0,collected:0,bonusMoney:0,xp:0,distance:0,avoided:0,survivalSeconds:0,powerUpsUsed:0,paychecks:0,paycheckCoins:0,cityCoins:0,extraLivesCollected:0,vocabularySeen:[]});
 
 export function runnerProgress(profile,lessonId){
  const saved=profile?.runnerProgress?.[lessonId]||{};
@@ -31,6 +31,7 @@ export function recordRunnerResult(profile,lessonId,phase,result={}){
  clean.paychecks=Math.min(clean.collected,Math.max(0,Math.floor(Number(result.paychecks)||0)));
  clean.paycheckCoins=Math.min(clean.paychecks*2,Math.max(clean.paychecks,Math.floor(Number(result.paycheckCoins)||0)));
  clean.cityCoins=clean.collected-clean.paychecks+clean.paycheckCoins;
+ clean.climbGoals=Math.max(0,Math.floor(Number(result.climbGoals)||0));
  clean.extraLivesCollected=Math.max(0,Math.floor(Number(result.extraLivesCollected)||0));
  const next={...progress,[phase]:clean,bestScore:Math.max(progress.bestScore,clean.score),characterId:result.characterId||profile.avatar};
  const achievement=clean.score>=1000?`runner-${lessonId}-1000`:clean.avoided>=10?`runner-${lessonId}-dodger`:null;

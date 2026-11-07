@@ -120,3 +120,6 @@ On portrait phones the active Waterfront run keeps the Canvas, live vocabulary p
 
 ### Higher wants arc (46.26)
 Waterfront want pickups sit 32 game pixels higher than their previous positions. Their three-item spacing still follows the existing jump flight, and ordinary coin arcs in other lessons are unchanged. High want labels move below the item to stay readable. Physics tests cover early/on-time/late jumps at the start and fastest paces, for Arcade/Bonus and every difficulty.
+
+### Climb for goals (46.27)
+The Waterfront loop now reads: slide through needs, jump for wants, climb for goals. Existing poles carry original goal flags at their safe upper decks. Each climb rotates through the existing financial goal, short-term goals, and long-term goals definitions. A goal is reached once per pole, only while attached at the top. The live picture/definition, climb panel and a separate HUD counter show progress, with a count on the run results. Descending and returning cannot count the same flag again. Goal practice adds no coins, XP, spending, or financial rewards. The optional $100 Money Ladder activity and ordinary climb/jump/duck controls remain available.
