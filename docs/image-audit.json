@@ -214,13 +214,23 @@
     },
     {
       "original": "assets/crew/production/home-city.png",
-      "renamed": "assets/crew/production/CMI_moneybread-city-home-crew.png",
-      "description": "moneybread city home crew",
-      "sha256": "9f8070d48e84a881c523cdb382d55d52eebeb3fd2fac98a8dc259c27d3e17378",
-      "bytes": 2840682,
-      "width": 1640,
+      "renamed": "assets/crew/production/CMI_money-ops-project-home-background.png",
+      "description": "CMI Money Ops Project service mark integrated into the illustrated Moneybread City home background",
+      "sha256": "9beb18e3c22453d609ec95d09357aea48cc36f701009519fbef3ff4a4032d4ab",
+      "bytes": 2800311,
+      "width": 1639,
       "height": 959,
-      "format": "PNG"
+      "format": "PNG",
+      "previousVersions": [
+        {
+          "renamed": "assets/crew/production/CMI_moneybread-city-home-crew.png",
+          "sha256": "9f8070d48e84a881c523cdb382d55d52eebeb3fd2fac98a8dc259c27d3e17378",
+          "bytes": 2840682,
+          "width": 1640,
+          "height": 959
+        }
+      ],
+      "revision": "Integrated illustrated project title and service mark; replaces HTML name badge."
     },
     {
       "original": "assets/crew/production/job-board-blank.png",
@@ -972,13 +982,23 @@
     },
     {
       "original": "money-ops/assets/crew/production/home-city.png",
-      "renamed": "money-ops/assets/crew/production/CMI_moneybread-city-home-crew.png",
-      "description": "moneybread city home crew",
-      "sha256": "9f8070d48e84a881c523cdb382d55d52eebeb3fd2fac98a8dc259c27d3e17378",
-      "bytes": 2840682,
-      "width": 1640,
+      "renamed": "money-ops/assets/crew/production/CMI_money-ops-project-home-background.png",
+      "description": "CMI Money Ops Project service mark integrated into the illustrated Moneybread City home background",
+      "sha256": "9beb18e3c22453d609ec95d09357aea48cc36f701009519fbef3ff4a4032d4ab",
+      "bytes": 2800311,
+      "width": 1639,
       "height": 959,
-      "format": "PNG"
+      "format": "PNG",
+      "previousVersions": [
+        {
+          "renamed": "money-ops/assets/crew/production/CMI_moneybread-city-home-crew.png",
+          "sha256": "9f8070d48e84a881c523cdb382d55d52eebeb3fd2fac98a8dc259c27d3e17378",
+          "bytes": 2840682,
+          "width": 1640,
+          "height": 959
+        }
+      ],
+      "revision": "Integrated illustrated project title and service mark; replaces HTML name badge."
     },
     {
       "original": "money-ops/assets/crew/production/job-board-blank.png",

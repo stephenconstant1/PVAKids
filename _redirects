@@ -20,7 +20,7 @@
 /assets/crew/moneybread-city-map.png /assets/crew/CMI_moneybread-city-map.png 301
 /assets/crew/moneybread-landmarks.png /assets/crew/CMI_moneybread-city-building-landmarks-sheet.png 301
 /assets/crew/production/creator-scenes.png /assets/crew/production/CMI_studio-creator-job-scenes.png 301
-/assets/crew/production/home-city.png /assets/crew/production/CMI_moneybread-city-home-crew.png 301
+/assets/crew/production/home-city.png /assets/crew/production/CMI_money-ops-project-home-background.png 301
 /assets/crew/production/job-board-blank.png /assets/crew/production/CMI_run-the-job-interactive-board-background.png 301
 /assets/crew/production/service-scenes.png /assets/crew/production/CMI_neighborhood-helper-job-scenes.png 301
 /assets/crew/production/tutor-scenes.png /assets/crew/production/CMI_school-tutor-job-scenes.png 301
@@ -96,7 +96,7 @@
 /money-ops/assets/crew/moneybread-city-map.png /money-ops/assets/crew/CMI_moneybread-city-map.png 301
 /money-ops/assets/crew/moneybread-landmarks.png /money-ops/assets/crew/CMI_moneybread-city-building-landmarks-sheet.png 301
 /money-ops/assets/crew/production/creator-scenes.png /money-ops/assets/crew/production/CMI_studio-creator-job-scenes.png 301
-/money-ops/assets/crew/production/home-city.png /money-ops/assets/crew/production/CMI_moneybread-city-home-crew.png 301
+/money-ops/assets/crew/production/home-city.png /money-ops/assets/crew/production/CMI_money-ops-project-home-background.png 301
 /money-ops/assets/crew/production/job-board-blank.png /money-ops/assets/crew/production/CMI_run-the-job-interactive-board-background.png 301
 /money-ops/assets/crew/production/service-scenes.png /money-ops/assets/crew/production/CMI_neighborhood-helper-job-scenes.png 301
 /money-ops/assets/crew/production/tutor-scenes.png /money-ops/assets/crew/production/CMI_school-tutor-job-scenes.png 301
@@ -151,3 +151,7 @@
 /money-ops/assets/runner/sofia-right.png /money-ops/assets/runner/CMI_sofia-running-right.png 301
 /money-ops/city.svg /money-ops/CMI_moneybread-city-illustrated-map.svg 301
 /money-ops/favicon.svg /money-ops/CMI_money-ops-favicon.svg 301
+
+# Previous branded home background URLs.
+/assets/crew/production/CMI_moneybread-city-home-crew.png /assets/crew/production/CMI_money-ops-project-home-background.png 301
+/money-ops/assets/crew/production/CMI_moneybread-city-home-crew.png /money-ops/assets/crew/production/CMI_money-ops-project-home-background.png 301

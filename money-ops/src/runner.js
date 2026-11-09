@@ -1,4 +1,4 @@
-import {drawMoneyIllustration} from './needs-wants.js?v=46.28';
+import {drawMoneyIllustration} from './needs-wants.js?v=46.29';
 import {runnerImage} from './moneybread/image-assets.js?v=46.22';
 import {WaterfrontClimb} from './waterfront-climb.js';
 import {stepBody,setCrouched,launchJump,WALK_SPEED,RUN_SPEED,GRAVITY,TILE,BODY_HEIGHT} from './moneybread/platform-physics.js';
