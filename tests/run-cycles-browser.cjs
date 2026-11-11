@@ -16,7 +16,7 @@ const {mkdirSync}=require('node:fs');
   if(mode==='arcade'){
    await page.goto(base+prefix);await page.locator('[data-action="start-arcade"]').first().click();
    await page.locator(`[data-action="arcade-character-${id}"]`).click();
-   await page.locator('[data-action="arcade-level-2"]').click();
+   await page.locator('#arcade-level-select').selectOption('2');
   }else{
    await page.evaluate(async()=>{
     const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');

@@ -10,7 +10,7 @@ const {mkdirSync}=require('node:fs');
   if(mode==='arcade'){
    await page.locator('[data-action="start-arcade"]').first().click();
    await page.locator(`[data-action="arcade-intensity-${({0:'rookie',1:'intermediate',1.5:'expert'})[intensity]}"]`).click();
-   await page.locator('[data-action="arcade-level-1"]').click();
+   await page.locator('#arcade-level-select').selectOption('1');
   }else{
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Ladder planner','maya'),1),1,'post')));});
    await page.goto(process.env.MONEY_OPS_URL+prefix);await page.locator('[data-action="continue-career"]').first().click();

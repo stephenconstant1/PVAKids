@@ -8,7 +8,7 @@ const {mkdirSync}=require('node:fs');
   const page=await browser.newPage({viewport:{width,height:950},hasTouch:true}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));const base=process.env.MONEY_OPS_URL;
   await page.goto(base);
-  if(mode==='arcade'){await page.locator('[data-action="start-arcade"]').first().click();await page.locator('[data-action="arcade-level-1"]').click();}
+  if(mode==='arcade'){await page.locator('[data-action="start-arcade"]').first().click();await page.locator('#arcade-level-select').selectOption('1');}
   else{
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Tile test','maya'),1),1,'post')));});
    await page.reload();await page.locator('[data-action="continue-career"]').first().click();

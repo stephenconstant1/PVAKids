@@ -14,7 +14,7 @@ const {mkdirSync}=require('node:fs');
   if(scenario.mode==='arcade'){
    await page.locator('[data-action="start-arcade"]').first().click();
    await page.locator(`[data-action="arcade-intensity-${scenario.intensity}"]`).click();
-   await page.locator('[data-action="arcade-level-1"]').click();
+   await page.locator('#arcade-level-select').selectOption('1');
   }else{
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Waterfront route','maya'),1),1,'post')));});
    await page.goto(base+scenario.prefix);await page.locator('[data-action="continue-career"]').first().click();
@@ -64,7 +64,7 @@ const {mkdirSync}=require('node:fs');
   mkdirSync('/tmp/waterfront-route-review',{recursive:true});
   await page.evaluate(()=>{const r=window.runner;r.paused=false;r.draw();r.paused=true;});
   await page.screenshot({path:`/tmp/waterfront-route-review/${scenario.mode}-${scenario.intensity||'standard'}-${scenario.width}.png`,fullPage:true});
-  await page.locator('[data-action="runner-finish-now"]').click();assert.equal(await page.locator('.runner-results').count(),1);
+  if(await page.locator('[data-action="runner-finish-now"]').count())await page.locator('[data-action="runner-finish-now"]').click();assert.equal(await page.locator('.runner-results').count(),1);
   assert.deepEqual(errors,[]);console.log('PASS full 200-coin route',JSON.stringify({...scenario,coins:result.coins,lives:result.lives,seconds:result.seconds,minGap:Math.round(Math.min(...gaps)),jumps:result.jumps,ducks:result.ducks}));await page.close();
  }
  }finally{await browser.close();}

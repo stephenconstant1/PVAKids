@@ -1,6 +1,6 @@
 # CMI Money Ops Project℠ — Moneybread City & Arcade
 
-**Earn bread to run the city.** Career Mode now takes place in **Moneybread City**, an interactive illustrated city built through the original 32 lessons. Arcade Mode remains the existing standalone Financial Runner, with all 32 levels, six characters, intensity choices, temporary city rewards, and its device-local initials leaderboard.
+**Earn bread to run the city.** Career Mode now takes place in **Moneybread City**, an interactive illustrated city built through the original 32 lessons. Arcade Mode remains the existing standalone Financial Runner, with all 32 levels, six characters, intensity choices and its device-local initials leaderboard. Its one-screen setup leads directly into Play, and results offer the next level without town-building panels.
 
 The landing uses the supplied full crew image, uncropped, with mode controls below it. Career Mode now shows the same original city-and-crew image with all six characters together. Controls stay below the image. The poster itself is static; building stages and choice feedback appear in the separate interface. Opening the site always shows the homepage, with Continue Career for saved players. Character names are unchanged; Everest uses his user-approved refinement while the other five crew retain their existing artwork.
 

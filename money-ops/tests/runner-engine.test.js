@@ -6,7 +6,7 @@ import {FinancialRunner} from '../src/runner.js';
 import {WALK_SPEED,RUN_SPEED,GRAVITY} from '../src/moneybread/platform-physics.js';
 import {RUNNER_ZOOM} from '../src/moneybread/runner-physics.js';
 import {runnerConfig} from '../src/runner-config.js';
-import {ROUTE_METRICS,overheadClearance,encounterGap,jumpEnvelope,fallingOnto,encounterBag,coinGroup,wantGroup,obstacleGeometry} from '../src/moneybread/waterfront-route.js';
+import {ROUTE_METRICS,overheadClearance,encounterGap,learningEncounterGap,jumpEnvelope,fallingOnto,encounterBag,coinGroup,wantGroup,obstacleGeometry} from '../src/moneybread/waterfront-route.js';
 
 function harness(lessonId=21,phase='pre',options={}){
  const listeners=new Map(),noop=()=>{};
@@ -356,12 +356,12 @@ test('Money Ladder climbs, rests, descends and exits safely at every difficulty 
   r.update(.25,0);const y=r.player.y;r.keyUp({code:'ArrowUp'});r.update(.25,0);assert.equal(r.player.y,y,'release must hold position');
   r.keyDown({code:'ArrowDown',preventDefault(){}});r.update(.1,0);assert(r.player.y>y,'Down descends instead of ducking');assert(!r.player.duck);r.keyUp({code:'ArrowDown'});
   assert(!r.climb.allocate('needs'),'allocation starts at the top');
-  r.climb.hold('test',1);for(let i=0;i<Math.ceil(r.climb.pole.h/95/.25)+2;i++)r.update(.25,0);r.climb.release('test');assert(r.climb.reachedTop);
-  assert.equal(r.player.y+r.player.h,r.climb.pole.y);assert.equal(r.climb.goalsReached,1);assert.equal(r.vocabEvent.term,'financial goal');assert.equal(r.vocabEvent.definition,'A specific money result a person plans to reach.');
+  r.climb.hold('test',1);for(let i=0;i<600&&!r.climb.reachedTop;i++)r.update(1/120,i/120);r.climb.release('test');assert(r.climb.reachedTop);
+  assert(Math.abs(r.player.y+r.player.h-r.climb.pole.y)<1e-7);assert.equal(r.climb.goalsReached,1);assert.equal(r.vocabEvent.term,'financial goal');assert.equal(r.vocabEvent.definition,'A specific money result a person plans to reach.');assert(!r.climb.attached,'top automatically resumes running');assert.deepEqual({score:r.score,coins:r.coins,bonus:r.bonusMoney,distance:r.distance,lives:r.lives},before);
   for(const name of ['needs','wants','savings'])assert(r.climb.allocate(name));
   assert(!r.climb.allocate('needs'),'no duplicate allocation');assert(!r.climb.allocate('unknown'));assert(!r.climb.allocate('constructor'));
   r.climb.hold('down',-1);r.update(.1,0);r.climb.release('down');assert(!r.climb.allocate('needs'));r.climb.hold('up',1);r.update(.1,0);r.climb.release('up');
-  assert.equal(r.climb.goalsReached,1);assert.equal(r.climb.remaining,0);assert.deepEqual({score:r.score,coins:r.coins,bonus:r.bonusMoney,distance:r.distance,lives:r.lives},before);
+  assert.equal(r.climb.goalsReached,1);assert.equal(r.climb.remaining,0);assert.deepEqual({coins:r.coins,bonus:r.bonusMoney,lives:r.lives},{coins:before.coins,bonus:before.bonus,lives:before.lives});
   r.keyDown({code:'Space',preventDefault(){}});assert(!r.climb.attached);assert(r.player.vy<0);
   for(let i=0;i<150;i++)r.update(.01,i*.01);assert(r.player.grounded);assert.equal(r.lives,3);r.destroy();
  }
@@ -397,4 +397,16 @@ test('phone climb hold can start before contact and cancellation prevents unwant
 
 test('wants need an airborne collection and use their actual vocabulary definition',()=>{const r=harness(1).runner;r.start();r.spawnCollectible();const e=r.entities.at(-1);r.collect(e);assert(!e.done);r.jump();r.collect(e);assert(e.done);assert.equal(r.collected,1);assert.equal(r.vocabEvent.term,'wants');assert.equal(r.vocabEvent.definition,'Things that are enjoyable but are not required.');r.destroy();});
 
-test('sky goal platforms are elevated, solid from above, and reserve a safe return to ground',()=>{for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){const r=harness(1,phase,{intensityLevel}).runner;r.start();r.routeGapRemaining=1e9;r.climb.spawn();const b=r.playerBox();r.climb.pole.x=b.x;assert(r.climb.pole.h>=288);assert(r.climb.pole.y<=4);r.climb.hold('up',1);for(let i=0;i<16;i++)r.update(.25,0);r.climb.release('up');assert(r.climb.reachedTop);assert(r.cameraY<0);r.climb.leave();for(let i=0;i<4;i++)r.update(.01,0);assert.equal(r.player.y+r.player.h,r.climb.pole.y);assert(r.player.grounded);assert(r.routeGapRemaining>1800);assert.equal(r.lives,3);r.destroy();}});
+test('sky goal platforms are elevated, solid from above, and reserve a safe return to ground',()=>{for(const phase of ['pre','post'])for(const intensityLevel of [0,1,1.5]){const r=harness(1,phase,{intensityLevel}).runner;r.start();r.routeGapRemaining=1e9;r.climb.spawn();const b=r.playerBox();r.climb.pole.x=b.x;assert(r.climb.pole.h>=288);assert(r.climb.pole.y<=4);r.climb.hold('up',1);for(let i=0;i<600&&!r.climb.reachedTop;i++)r.update(1/120,i/120);r.climb.release('up');assert(r.climb.reachedTop);assert(r.cameraY<0);r.climb.leave();for(let i=0;i<4;i++)r.update(.01,0);assert(Math.abs(r.player.y+r.player.h-r.climb.pole.y)<1e-7);assert(r.player.grounded);assert(r.routeGapRemaining>1800);assert.equal(r.lives,3);r.destroy();}});
+
+test('climbing updates effects and moving objects, then automatically returns to the live run',()=>{const r=harness(1).runner;r.start();r.routeGapRemaining=1e9;r.climb.spawn();r.climb.pole.x=r.playerBox().x;r.entities.push({type:'obstacle',behavior:'moving',x:800,y:120,baseY:120,seed:0,w:20,h:20});r.particles=[{x:0,y:0,vx:10,vy:0,life:1}];r.popups=[{x:0,y:0,text:'Goal',life:1}];r.climb.hold('up',1);r.update(.125,.125);assert(r.particles[0].life<1);assert(r.popups[0].life<1);assert(r.entities.at(-1).y!==120);assert(r.climb.motionMs>0);r.climb.release('up');const y=r.player.y,motion=r.climb.motionMs;r.update(.1,.225);assert.equal(r.player.y,y);assert.equal(r.climb.motionMs,motion);r.climb.hold('up',1);for(let i=0;i<600&&!r.climb.reachedTop;i++)r.update(1/120,i/120);assert(!r.climb.attached);const distance=r.distance;r.update(.08,5);assert(r.distance>distance);assert.equal(r.climb.goalsReached,1);assert(r.running);r.destroy();});
+test('only deliberately opening budget practice pauses the run; closing can resume it',()=>{const r=harness(1).runner;r.start();r.climb.spawn();r.climb.goalsReached=1;r.budgetOpen=true;r.setPaused(true);assert(r.paused);r.setPaused(false);assert(r.paused,'pause key cannot unfreeze an open practice panel');assert(r.climb.allocate('needs'));assert(!r.climb.allocate('needs'));r.budgetOpen=false;r.setPaused(false);assert(!r.paused);r.destroy();});
+
+test('arrow combos are forgiving in both directions and preserve basic jump, duck and climb',()=>{
+ for(const code of ['ArrowRight','ArrowLeft'])for(const move of ['flip','kick']){const r=harness(1,'pre',{arcade:true}).runner;r.start();r.keyDown({code,preventDefault(){}});r.keyDown({code:move==='flip'?'ArrowUp':'ArrowDown',preventDefault(){}});assert.equal(r.flourish?.kind,move);assert.equal(r.flourish.direction,code==='ArrowRight'?1:-1);assert.equal(r.score,0);assert.equal(r.coins,0);assert.equal(r.player.duck,false);r.destroy();}
+ const normal=harness(1,'pre',{arcade:true}).runner;normal.start();normal.keyDown({code:'ArrowRight',preventDefault(){}});normal.comboArmedAt=performance.now()-701;normal.keyDown({code:'ArrowUp',preventDefault(){}});assert(!normal.flourish&&normal.player.vy<0);normal.keyDown({code:'ArrowDown',preventDefault(){}});assert(!normal.flourish);normal.destroy();
+ const climb=harness(1,'pre',{arcade:true}).runner;climb.start();climb.climb.spawn();climb.climb.pole.x=climb.playerBox().x;climb.keyDown({code:'ArrowRight',preventDefault(){}});climb.keyDown({code:'ArrowUp',preventDefault(){}});assert(climb.climb.attached&&!climb.flourish);climb.destroy();
+});
+test('learning cues preview the actual incoming word without awarding a pickup or obscuring feedback',()=>{const r=harness(1).runner;r.start();r.entities=[];r.spawnObstacle();r.entities[0].x=600;const cue=r.learningCue();assert.equal(cue.term,'needs');assert.equal(cue.instruction,'SLIDE S / TOUCH');assert.equal(cue.definition,'Things required for health, safety, or daily living.');assert.equal(r.collected,0);assert.equal(r.vocabularySeen.length,0);r.rememberVocabulary(r.entities[0],'NEED HANDLED');assert.equal(r.learningCue(),null);r.updateWorldEffects(1,1);assert.equal(r.learningCue().term,'needs');r.destroy();});
+
+test('learning encounters are closer but leave a full arc, landing and reaction window',()=>{for(const speed of [150,300,500,800,1000]){const gap=learningEncounterGap(speed,()=>0);assert(gap<encounterGap(speed,()=>0));assert(gap/speed-jumpEnvelope(speed).flight*Math.sqrt(1.35)-.24>=.9);}});

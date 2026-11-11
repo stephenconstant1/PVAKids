@@ -18,6 +18,9 @@ export declare function jumpEnvelope(speed: number): {
     flight: number;
 };
 export declare function encounterGap(speed: number, random?: () => number): number;
+/** A shorter learning-run recovery gap; each encounter still has a full jump,
+ * landing time and a fresh 0.9-second reaction window. */
+export declare function learningEncounterGap(speed: number, random?: () => number): number;
 export declare function coinGroup(speed: number, random?: () => number): {
     count: number;
     step: number;

@@ -22,6 +22,11 @@ export function encounterGap(speed, random = Math.random) {
     // Full jump, landing recovery, and a new reaction window AFTER the last item.
     return Math.max(300, speed * (jumpEnvelope(speed).flight * Math.sqrt(1.35) + ROUTE_METRICS.landingRecovery + ROUTE_METRICS.reactionTime) + BODY_WIDTH * RUNNER_ZOOM) + random() * speed * .25;
 }
+/** A shorter learning-run recovery gap; each encounter still has a full jump,
+ * landing time and a fresh 0.9-second reaction window. */
+export function learningEncounterGap(speed, random = Math.random) {
+    return Math.max(260, speed * (jumpEnvelope(speed).flight * Math.sqrt(1.35) + .24 + .9) + BODY_WIDTH * RUNNER_ZOOM) + random() * speed * .12;
+}
 export function coinGroup(speed, random = Math.random) {
     // Sample the same jump at quarter-flight intervals. Keep low-speed coins
     // visually separate; the player/coin widths provide collection tolerance.
