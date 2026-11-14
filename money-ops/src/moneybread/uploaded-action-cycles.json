@@ -1,0 +1,1232 @@
+{
+    "jordan": {
+        "flip": {
+            "image": "assets/runner/actions/CMI_kanyon-flip-sheet.png",
+            "sha256": "61b9f551bf5aec7c3156775719c513ea6fa109ccab878787af70a84a4fd06e41",
+            "width": 1774,
+            "height": 887,
+            "baseline": 423,
+            "scaleHeight": 404,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        127,
+                        96,
+                        351,
+                        423
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        99,
+                        50,
+                        324,
+                        423
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        69,
+                        40,
+                        368,
+                        374
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        109,
+                        78,
+                        338,
+                        329
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        114,
+                        59,
+                        324,
+                        300
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        97,
+                        60,
+                        363,
+                        366
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        98,
+                        107,
+                        352,
+                        413
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        135,
+                        19,
+                        316,
+                        413
+                    ]
+                }
+            ]
+        },
+        "kick": {
+            "image": "assets/runner/actions/CMI_kanyon-kick-sheet.png",
+            "sha256": "55133c49df45d5c6f276a45f88b4691c67aa4af7c0b35e1b5890689769cd7ef8",
+            "width": 1774,
+            "height": 887,
+            "baseline": 422,
+            "scaleHeight": 403,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        77,
+                        33,
+                        375,
+                        417
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        96,
+                        30,
+                        355,
+                        418
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        98,
+                        19,
+                        348,
+                        370
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        64,
+                        22,
+                        385,
+                        400
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        75,
+                        22,
+                        411,
+                        397
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        99,
+                        25,
+                        339,
+                        385
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        95,
+                        37,
+                        342,
+                        417
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        59,
+                        36,
+                        361,
+                        422
+                    ]
+                }
+            ]
+        }
+    },
+    "maya": {
+        "flip": {
+            "image": "assets/runner/actions/CMI_maya-flip-sheet.png",
+            "sha256": "a11a9d3900a6c034590c2e20f8e7ce59b2cdb220d692f5bc053f997b82ef43f3",
+            "width": 1774,
+            "height": 887,
+            "baseline": 415,
+            "scaleHeight": 389,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        136,
+                        94,
+                        361,
+                        415
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        89,
+                        51,
+                        326,
+                        407
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        44,
+                        19,
+                        371,
+                        334
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        83,
+                        65,
+                        359,
+                        300
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        111,
+                        63,
+                        356,
+                        387
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        108,
+                        25,
+                        352,
+                        385
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        98,
+                        81,
+                        365,
+                        408
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        69,
+                        26,
+                        350,
+                        408
+                    ]
+                }
+            ]
+        },
+        "kick": {
+            "image": "assets/runner/actions/CMI_maya-kick-sheet.png",
+            "sha256": "84dfd1c24e9c69d9a2035c73fa455271f47a76d2a12a4627f646d87fc78bc16a",
+            "width": 1774,
+            "height": 887,
+            "baseline": 416,
+            "scaleHeight": 404,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        70,
+                        26,
+                        398,
+                        407
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        75,
+                        24,
+                        369,
+                        412
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        58,
+                        12,
+                        354,
+                        346
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        41,
+                        17,
+                        409,
+                        376
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        36,
+                        22,
+                        416,
+                        368
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        45,
+                        25,
+                        336,
+                        411
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        57,
+                        31,
+                        327,
+                        416
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        64,
+                        31,
+                        375,
+                        411
+                    ]
+                }
+            ]
+        }
+    },
+    "kai": {
+        "flip": {
+            "image": "assets/runner/actions/CMI_everest-flip-sheet.png",
+            "sha256": "f2ec205d5d0b603d441ae611bd4e8ab6e723359e8878bb67241771e6b8a6c6b4",
+            "width": 1774,
+            "height": 887,
+            "baseline": 427,
+            "scaleHeight": 416,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        87,
+                        53,
+                        331,
+                        427
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        77,
+                        24,
+                        364,
+                        417
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        46,
+                        58,
+                        414,
+                        371
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        117,
+                        84,
+                        383,
+                        340
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        107,
+                        42,
+                        345,
+                        333
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        93,
+                        39,
+                        344,
+                        379
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        70,
+                        97,
+                        367,
+                        426
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        113,
+                        11,
+                        327,
+                        426
+                    ]
+                }
+            ]
+        },
+        "kick": {
+            "image": "assets/runner/actions/CMI_everest-kick-sheet.png",
+            "sha256": "6d34cc32de3d338489931df23caf09d648226a7bb87601544a6ee8e22f17ef24",
+            "width": 1774,
+            "height": 887,
+            "baseline": 429,
+            "scaleHeight": 415,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        83,
+                        24,
+                        378,
+                        429
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        104,
+                        22,
+                        348,
+                        428
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        56,
+                        14,
+                        350,
+                        395
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        26,
+                        24,
+                        381,
+                        392
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        43,
+                        17,
+                        401,
+                        389
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        81,
+                        19,
+                        312,
+                        387
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        52,
+                        30,
+                        322,
+                        408
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        51,
+                        26,
+                        345,
+                        417
+                    ]
+                }
+            ]
+        }
+    },
+    "eli": {
+        "flip": {
+            "image": "assets/runner/actions/CMI_zion-flip-sheet.png",
+            "sha256": "534963aed950263a1f980f9b0be173d14de4ec94947b0574f6f0ab88aa715597",
+            "width": 1774,
+            "height": 887,
+            "baseline": 426,
+            "scaleHeight": 420,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        90,
+                        85,
+                        348,
+                        426
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        89,
+                        12,
+                        400,
+                        415
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        62,
+                        52,
+                        388,
+                        359
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        118,
+                        94,
+                        365,
+                        339
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        116,
+                        71,
+                        357,
+                        343
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        82,
+                        33,
+                        353,
+                        390
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        87,
+                        77,
+                        366,
+                        423
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        113,
+                        6,
+                        300,
+                        422
+                    ]
+                }
+            ]
+        },
+        "kick": {
+            "image": "assets/runner/actions/CMI_zion-kick-sheet.png",
+            "sha256": "2feae6a4adda94af82e01e6b8277350a0583c0214b6de8999e210891077a53ef",
+            "width": 1774,
+            "height": 887,
+            "baseline": 433,
+            "scaleHeight": 415,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        58,
+                        33,
+                        390,
+                        424
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        93,
+                        29,
+                        342,
+                        433
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        76,
+                        18,
+                        340,
+                        406
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        61,
+                        25,
+                        413,
+                        397
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        43,
+                        22,
+                        402,
+                        387
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        75,
+                        22,
+                        326,
+                        413
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        76,
+                        37,
+                        334,
+                        426
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        50,
+                        32,
+                        370,
+                        426
+                    ]
+                }
+            ]
+        }
+    },
+    "ruby": {
+        "flip": {
+            "image": "assets/runner/actions/CMI_ruby-flip-sheet.png",
+            "sha256": "2dc64b8d364a61ed8f5026b9cbe28eec25f00f0db8e7facb665d346f42f1b0e1",
+            "width": 1774,
+            "height": 887,
+            "baseline": 410,
+            "scaleHeight": 400,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        124,
+                        99,
+                        360,
+                        410
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        93,
+                        34,
+                        327,
+                        397
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        46,
+                        37,
+                        382,
+                        344
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        110,
+                        50,
+                        347,
+                        331
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        135,
+                        56,
+                        366,
+                        333
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        114,
+                        20,
+                        365,
+                        372
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        83,
+                        93,
+                        357,
+                        406
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        69,
+                        10,
+                        348,
+                        408
+                    ]
+                }
+            ]
+        },
+        "kick": {
+            "image": "assets/runner/actions/CMI_ruby-kick-sheet.png",
+            "sha256": "86aafe0fb3b865aa9d26b53d97c41f81f2155c96a3824cd3bcb3860546243af4",
+            "width": 1774,
+            "height": 887,
+            "baseline": 427,
+            "scaleHeight": 405,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        80,
+                        34,
+                        410,
+                        422
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        80,
+                        32,
+                        366,
+                        427
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        58,
+                        22,
+                        356,
+                        372
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        29,
+                        26,
+                        405,
+                        385
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        34,
+                        23,
+                        417,
+                        369
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        60,
+                        28,
+                        347,
+                        390
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        59,
+                        35,
+                        340,
+                        412
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        60,
+                        34,
+                        386,
+                        414
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,6 +1,6 @@
 # CMI image filename audit
 
-All 88 image assets (176 files including the `/money-ops/` mirror) use descriptive `CMI_` filenames. The inventory includes active images, original motion-reference sheets, review artwork, illustrated SVG maps, and the favicon. The original filename audit preserved artwork pixels, dimensions, transparency, and character identities. Internal character IDs are preserved.
+All 114 image assets (228 files including the `/money-ops/` mirror) use descriptive `CMI_` filenames. The inventory includes active images, original motion-reference sheets, review artwork, illustrated SVG maps, and the favicon. The original filename audit preserved artwork pixels, dimensions, transparency, and character identities. Internal character IDs are preserved.
 
 `image-audit.json` records every old path, new path, description, byte count, dimensions where available, and SHA-256. Canonical names are Kanyon, Maya, Everest, Sofia, Zion, and Ruby. Animation source sheets and generated atlases have distinct names; numbered comic panels also describe their story beat.
 
@@ -17,3 +17,7 @@ The home background is now `CMI_money-ops-project-home-background.png`. Its CMI 
 ## Character action poses
 
 Six dedicated climbing and six non-contact kick poses were added from the canonical character references. They use descriptive `CMI_` filenames, transparent PNGs, reviewed source bounds, and recorded checksums in the active image audit. Original run/jump/duck sheets and character portraits remain unchanged. These are single action poses, not complete skeletal conversions or multi-frame action cycles.
+
+## Supplied artwork pack · 46.31
+
+The five downloadable CMI ZIPs supplied 26 original PNGs, preserved byte-for-byte: ten Needs/Wants/goal/effect illustrations, fifteen character action sheets and one level-two scene reference. Exact ZIP/member provenance is recorded in `career/uploaded-runner-art.json` and the image audit. The shared runner renderer now uses the ten illustrations for pickups, vocabulary previews and sky goals. Five characters use measured eight-cell flip/kick sheets; source bounds and hashes are in `career/uploaded-action-cycles.json`. Climbing sheets retain their baked-in vines and are stored as references; existing climbing poses remain active. Sofia retains her existing action artwork. The level-two scene is stored as a reference rather than replacing its playable layout. The supplied vine/platform and Sofia sheets remain unavailable because CMI_5.zip exceeds the transfer limit.

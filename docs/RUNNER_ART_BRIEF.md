@@ -35,7 +35,7 @@ Needs are responsibilities to plan for, not enemies or bad purchases. Wants are 
 - Provide a contact sheet on the waterfront background and at actual 32/48/64-pixel display sizes before replacing the current placeholders.
 - On integration, update `docs/image-audit.json`, alt/accessible descriptions, both site entry points, and any old-URL redirects. The filenames above are proposed assets, not files that already exist.
 
-This is a draft asset request. The generic object replacements above remain a draft; no replacement needs/wants object images have been installed.
+This is a draft asset request. All six supplied Needs/Wants images, three goal images and the sparkle are installed. The replacement vine and platform still await a transferable source upload.
 
 ## Character action-sheet prompts
 
@@ -49,4 +49,4 @@ For each character, use their exact supplied reference: Kanyon green; Maya purpl
 
 **Kick sheet prompt:** “Create an 8-pose non-contact running air-kick flourish for [character]: knee lift, extension, recoil and smooth return to running. Arms balance naturally. This is a playful movement trick, with no target, weapon or combat. Transparent equal-sized cells and consistent scale; no running/duck pose substituted for the kick.”
 
-Proposed names: `CMI_[character]-climb-cycle.png`, `CMI_[character]-flip-cycle.png`, `CMI_[character]-kick-cycle.png`. Check cell boundaries and pose order before slicing or registering the atlas. Existing flip/kick reference sheets were not found in the current repository or attached library folder; the current flip uses the approved jump art, and dedicated single kick poses are provided until full action cycles are supplied.
+Proposed names: `CMI_[character]-climb-cycle.png`, `CMI_[character]-flip-cycle.png`, `CMI_[character]-kick-cycle.png`. Check cell boundaries and pose order before slicing or registering the atlas. Supplied eight-pose flip/kick sheets are now active for Kanyon, Maya, Everest, Zion and Ruby. Sofia retains her previous artwork while her upload is pending. Supplied climbing sheets contain baked-in vines and remain reference assets until clean character layers can be used without duplicating the route vine.

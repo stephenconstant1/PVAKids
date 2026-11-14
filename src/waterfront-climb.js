@@ -1,4 +1,5 @@
-import {climbGoal,drawMoneyIllustration} from './needs-wants.js?v=46.30';
+import {runnerArtwork} from './runner-art.js';
+import {climbGoal,drawMoneyIllustration} from './needs-wants.js?v=46.31';
 // Original waterfront pole/deck route. Practice dollars never enter game wallets.
 export class WaterfrontClimb {
  constructor(runner){this.runner=runner;this.nextDistance=0;this.count=0;this.introduced=false;this.attached=false;this.inputs=new Map();this.waiting=new Map();this.allocated=new Set();this.remaining=100;this.reachedTop=false;this.visited=false;this.goalsReached=0;this.motionMs=0;this.moving=false;}
@@ -14,7 +15,7 @@ export class WaterfrontClimb {
   const next=Math.max(p.y,Math.min(r.ground,feet-Math.sign(direction)*(this.goal?128:95)*dt));
   this.moving=next!==feet;if(this.moving)this.motionMs+=dt*1000;r.player.y=next-r.player.h;r.player.vy=0;r.player.grounded=false;r.syncPhysicsFromPlayer();r.physics.vx=0;
   r.cameraY=Math.min(0,Math.round(r.player.y-(this.goal?36:16)));r.state='climbing';
-  if(next<=p.y+.01){this.reachedTop=true;if(this.wordCard&&!this.wordCard.done)r.collectVocabulary(this.wordCard);if(this.goal&&!this.goal.reached){this.goal.reached=true;this.goalsReached++;r.rememberVocabulary({label:this.goal.term,goalTerm:this.goal.term,definition:this.goal.definition,illustration:this.goal.illustration},'GOAL REACHED');}if(this.goal&&direction>0){this.leave();r.state='running';r.stateTime=.12;}}if(direction<0&&next>=r.ground){this.leave();r.player.grounded=true;r.physics.grounded=true;}
+  if(next<=p.y+.01){this.reachedTop=true;if(this.wordCard&&!this.wordCard.done)r.collectVocabulary(this.wordCard);if(this.goal&&!this.goal.reached){this.goal.reached=true;this.goalReachedAt=this.runner.sceneryTime;this.goalsReached++;r.rememberVocabulary({label:this.goal.term,goalTerm:this.goal.term,definition:this.goal.definition,illustration:this.goal.illustration},'GOAL REACHED');}if(this.goal&&direction>0){this.leave();r.state='running';r.stateTime=.12;}}if(direction<0&&next>=r.ground){this.leave();r.player.grounded=true;r.physics.grounded=true;}
   return true;
  }
  leave(){if(!this.attached)return false;this.attached=false;this.stop();const r=this.runner;r.player.grounded=true;r.physics.grounded=true;
@@ -35,15 +36,20 @@ export class WaterfrontClimb {
  draw(c){const p=this.pole;if(!p||(!this.attached&&!this.runner.entities.includes(p)))return;
   if(this.goal){
    // Original floating waterfront terrace: the top edge matches the landing surface.
+   if(!runnerArtwork.platform(c,p.x-70,p.y,250)){
    c.fillStyle='#f2fcff';for(const [x,y,rx,ry] of [[p.x-26,p.y+53,56,15],[p.x+45,p.y+61,70,19],[p.x+123,p.y+50,50,16]]){c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.fill();}
    c.fillStyle='#346b70';c.fillRect(p.x-70,p.y+10,250,23);c.strokeStyle='#dfc88b';c.lineWidth=3;for(let x=p.x-65;x<p.x+175;x+=40){c.beginPath();c.moveTo(x,p.y+12);c.lineTo(x+18,p.y+29);c.lineTo(x+36,p.y+12);c.stroke();}
    c.fillStyle='#8fcf91';c.fillRect(p.x-70,p.y,250,10);c.fillStyle='#f3e5a5';c.fillRect(p.x-70,p.y,250,3);
+   }
    // Paired vines remain marked by the same readable ladder rungs.
+   if(!runnerArtwork.vine(c,p.x+1,p.y,52,p.h)){
    c.strokeStyle='#44865d';c.lineWidth=7;for(const x of [p.x+17,p.x+36]){c.beginPath();c.moveTo(x,p.y+8);c.lineTo(x,this.runner.ground);c.stroke();}
    c.fillStyle='#76b878';for(let y=p.y+47;y<this.runner.ground-16;y+=34){c.beginPath();c.ellipse(p.x+7,y,12,5,-.6,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(p.x+47,y+14,12,5,.6,0,Math.PI*2);c.fill();}
+   }
   }else{c.fillStyle='#bce5ce';c.fillRect(p.x-70,p.y,250,10);c.fillStyle='#416c67';c.fillRect(p.x+20,p.y,12,p.h);}
   c.strokeStyle='#ffdf87';c.lineWidth=4;for(let y=p.y+12;y<this.runner.ground;y+=18){c.beginPath();c.moveTo(p.x+10,y);c.lineTo(p.x+42,y);c.stroke();}
   if(this.goal){c.fillStyle=this.goal.reached?'#d5efd1':'#fff3ca';c.fillRect(p.x+78,p.y-64,64,60);drawMoneyIllustration(c,this.goal.illustration,p.x+84,p.y-62,52);c.fillStyle='#fff3ca';c.font='bold 12px Arial';c.textAlign='center';c.fillText(this.goal.reached?'✓ GOAL REACHED':'GOAL ↑',p.x+110,p.y-71);}
+  if(this.goal?.reached){const age=this.runner.sceneryTime-this.goalReachedAt;if(age>=0&&age<1.2){c.save();c.globalAlpha=this.runner.reduced?1:1-age/1.2;runnerArtwork.draw(c,'sparkle',p.x+128,p.y-85,38);c.restore();}}
   c.fillStyle='#12383c';c.fillRect(p.x-82,this.runner.ground+8,230,27);c.fillStyle='#fff2ba';c.font='bold 14px Arial';c.textAlign='center';c.fillText(this.goal?'SKY GOALS · CLIMB ↑':'MONEY LADDER · HOLD ↑',p.x+32,this.runner.ground+27);
   const captionY=p.y+(this.goal?34:12);c.fillStyle='#12383c';c.fillRect(p.x-70,captionY,250,26);c.fillStyle='#fff2ba';c.fillText(this.goal?(this.goal.reached?'GOAL REACHED! · SAFE PLATFORM':'SKY PLATFORM · GOAL ABOVE'):this.runner.arcade?'WORD + $100 PRACTICE DECK':'OPTIONAL $100 PLANNING DECK',p.x+55,captionY+18);
  }
