@@ -1,4 +1,4 @@
-import {runnerArtwork,runnerArtPath} from './runner-art.js';
+import {runnerArtwork,runnerArtPath} from './runner-art.js?v=46.32';
 import {vocabularyDefinition} from './runner-vocabulary.js';
 const examples={need:[['Housing','home'],['Groceries','food'],['Water bill','water']],want:[['Toy','toy'],['Game','game'],['Treat','treat']]};
 export function moneyExamples(category){return examples[category].map(([label,illustration],i)=>({id:`${category}-${i}`,label,illustration,moneyCategory:category,definition:vocabularyDefinition(category==='need'?'needs':'wants'),icon:category==='need'?'NEED':'WANT',behavior:'ground',art:{hue:category==='need'?175:285,pattern:i,variant:i},...(category==='want'?{kind:['dollar','gold','lesson'][i],value:[1,5,10][i]}:{})}));}

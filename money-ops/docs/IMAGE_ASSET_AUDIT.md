@@ -1,6 +1,6 @@
 # CMI image filename audit
 
-All 114 image assets (228 files including the `/money-ops/` mirror) use descriptive `CMI_` filenames. The inventory includes active images, original motion-reference sheets, review artwork, illustrated SVG maps, and the favicon. The original filename audit preserved artwork pixels, dimensions, transparency, and character identities. Internal character IDs are preserved.
+All 119 image assets (238 files including the `/money-ops/` mirror) use descriptive `CMI_` filenames. The inventory includes active images, original motion-reference sheets, review artwork, illustrated SVG maps, and the favicon. The original filename audit preserved artwork pixels, dimensions, transparency, and character identities. Internal character IDs are preserved.
 
 `image-audit.json` records every old path, new path, description, byte count, dimensions where available, and SHA-256. Canonical names are Kanyon, Maya, Everest, Sofia, Zion, and Ruby. Animation source sheets and generated atlases have distinct names; numbered comic panels also describe their story beat.
 
@@ -21,3 +21,7 @@ Six dedicated climbing and six non-contact kick poses were added from the canoni
 ## Supplied artwork pack · 46.31
 
 The five downloadable CMI ZIPs supplied 26 original PNGs, preserved byte-for-byte: ten Needs/Wants/goal/effect illustrations, fifteen character action sheets and one level-two scene reference. Exact ZIP/member provenance is recorded in `career/uploaded-runner-art.json` and the image audit. The shared runner renderer now uses the ten illustrations for pickups, vocabulary previews and sky goals. Five characters use measured eight-cell flip/kick sheets; source bounds and hashes are in `career/uploaded-action-cycles.json`. Climbing sheets retain their baked-in vines and are stored as references; existing climbing poses remain active. Sofia retains her existing action artwork. The level-two scene is stored as a reference rather than replacing its playable layout. The supplied vine/platform and Sofia sheets remain unavailable because CMI_5.zip exceeds the transfer limit.
+
+## Remaining supplied pack · 46.32
+
+CMI_5 (2).zip and CMI_7.zip supplied the two remaining route images and three Sofia action sheets. Duplicate Sofia files have identical checksums and are stored once per entry point; duplicate archive provenance is retained. All twelve illustration/route/effect assets are installed, and all six characters now use supplied flip/kick sheets. The platform walkable span and landing line are mapped to existing collision coordinates; the vine uses a single proportional draw with transparent side padding excluded at render time. Original source PNGs remain unchanged. Six climbing sheets remain reference assets because their vines are baked into every cell.

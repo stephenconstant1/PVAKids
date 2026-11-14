@@ -9,5 +9,28 @@ export const installedRunnerArt={
   "goal": "assets/runner/learning/CMI_goal-financial-target-flag.png",
   "short-goal": "assets/runner/learning/CMI_goal-short-term-calendar.png",
   "long-goal": "assets/runner/learning/CMI_goal-long-term-path.png",
+  "vine": "assets/runner/learning/CMI_sky-route-climbable-vine.png",
+  "platform": "assets/runner/learning/CMI_sky-goal-floating-platform.png",
   "sparkle": "assets/runner/learning/CMI_goal-reached-sparkle.png"
+};
+export const runnerRouteArt={
+  "platform": {
+    "image": "assets/runner/learning/CMI_sky-goal-floating-platform.png",
+    "width": 2172,
+    "height": 724,
+    "landingY": 340,
+    "walkableLeft": 210,
+    "walkableRight": 1970
+  },
+  "vine": {
+    "image": "assets/runner/learning/CMI_sky-route-climbable-vine.png",
+    "width": 887,
+    "height": 1774,
+    "sourceRect": [
+      239,
+      10,
+      406,
+      1764
+    ]
+  }
 };

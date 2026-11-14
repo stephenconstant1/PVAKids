@@ -1,4 +1,4 @@
-import {moneyExamples} from './needs-wants.js?v=46.31';
+import {moneyExamples} from './needs-wants.js?v=46.32';
 import {missions} from './content.js';
 import {lessonVocabulary} from './runner-vocabulary.js';
 

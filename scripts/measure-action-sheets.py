@@ -2,7 +2,7 @@
 from pathlib import Path
 from PIL import Image
 import json,hashlib
-names={'kanyon':'jordan','maya':'maya','everest':'kai','zion':'eli','ruby':'ruby'}
+names={'kanyon':'jordan','maya':'maya','everest':'kai','sofia':'sofia','zion':'eli','ruby':'ruby'}
 meta={}
 for name,char in names.items():
  for action in ('climb','flip','kick'):

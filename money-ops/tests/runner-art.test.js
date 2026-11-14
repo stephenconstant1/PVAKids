@@ -16,7 +16,7 @@ test('uploaded objects preserve aspect ratio and use cached decoded images',()=>
 test('platform artwork aligns with the existing landing surface without changing physics',()=>{
  class FakeImage{constructor(){this.complete=true;this.naturalWidth=1000;this.naturalHeight=300;}set src(value){}}
  const art=new RunnerArtwork({platform:'assets/runner/learning/CMI_sky-goal-floating-platform.png'},FakeImage),calls=[];
- assert(art.platform({drawImage:(...args)=>calls.push(args)},40,100,250));const [,x,y,w,h]=calls[0];assert.equal(x,40);assert.equal(w,250);assert.equal(y+h*.39,100);
+ assert(art.platform({drawImage:(...args)=>calls.push(args)},40,100,250));const [,x,y,w,h]=calls[0];const scale=250/(1970-210);assert.equal(x+210*scale,40);assert.equal(w,2172*scale);assert.equal(y+340*scale,100);assert.equal(h,724*scale);
 });
 
 import {UploadedActionArt} from '../src/uploaded-action-art.js';
@@ -24,7 +24,7 @@ import {uploadedActionCycles} from '../src/uploaded-action-cycles.js';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 test('supplied action sheets have eight non-overlapping measured cells and unchanged source bytes',()=>{
- assert.equal(Object.keys(uploadedActionCycles).length,5);
+ assert.equal(Object.keys(uploadedActionCycles).length,6);
  for(const kinds of Object.values(uploadedActionCycles))for(const meta of Object.values(kinds)){
   const png=readFileSync(meta.image);assert.equal(createHash('sha256').update(png).digest('hex'),meta.sha256);assert.equal(png.readUInt32BE(16),meta.width);assert.equal(png.readUInt32BE(20),meta.height);assert.equal(meta.frames.length,8);
   for(let i=0;i<8;i++){const [x,y,w,h]=meta.frames[i].rect;assert(x>=0&&y>=0&&x+w<=meta.width&&y+h<=meta.height);assert(w>0&&h>0);if(i%4)assert.equal(meta.frames[i-1].rect[0]+meta.frames[i-1].rect[2],x);}
@@ -38,5 +38,11 @@ test('action playback uses ordered source frames, mirrors without extra rotation
  }finally{globalThis.Image=previous;}
 });
 test('a character without a supplied sheet keeps its existing action fallback',()=>{
- const art=new UploadedActionArt('sofia','flip');assert.equal(art.ready,false);assert.equal(art.draw({},124,.5),false);
+ const art=new UploadedActionArt('unknown-character','flip');assert.equal(art.ready,false);assert.equal(art.draw({},124,.5),false);
+});
+test('the supplied vine fits the whole climb at its native aspect ratio without repeated seams',()=>{
+ class FakeImage{constructor(){this.complete=true;this.naturalWidth=887;this.naturalHeight=1774;}set src(value){}}
+ const art=new RunnerArtwork({vine:'assets/runner/learning/CMI_sky-route-climbable-vine.png'},FakeImage),calls=[];
+ assert(art.vine({drawImage:(...a)=>calls.push(a)},100,40,52,300));assert.equal(calls.length,1);
+ const [,sx,sy,sw,sh,x,y,w,h]=calls[0];assert.deepEqual([sx,sy,sw,sh],[239,10,406,1764]);assert(Math.abs(w/h-sw/sh)<1e-12);assert.equal(y,40);assert.equal(h,300);assert.equal(x+w/2,126);
 });

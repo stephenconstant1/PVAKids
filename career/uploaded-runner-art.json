@@ -154,5 +154,53 @@
     "sourceMember": "CMI_4/CMI_ruby-kick-sheet.png",
     "path": "assets/runner/actions/CMI_ruby-kick-sheet.png",
     "sha256": "86aafe0fb3b865aa9d26b53d97c41f81f2155c96a3824cd3bcb3860546243af4"
+  },
+  {
+    "archive": "CMI_5 (2).zip",
+    "sourceMember": "CMI_5/CMI_sky-goal-floating-platform.png",
+    "path": "assets/runner/learning/CMI_sky-goal-floating-platform.png",
+    "sha256": "10e198a46fdbfdf6be89b84a681566eee93086f2981b73da5c54a53decdf5e84"
+  },
+  {
+    "archive": "CMI_5 (2).zip",
+    "sourceMember": "CMI_5/CMI_sky-route-climbable-vine.png",
+    "path": "assets/runner/learning/CMI_sky-route-climbable-vine.png",
+    "sha256": "b91aa6e829bf6f87db4a9e063530b1b81a6dc0beb025eac49f60a85464bffdbe"
+  },
+  {
+    "archive": "CMI_5 (2).zip",
+    "sourceMember": "CMI_5/CMI_sofia-climb-sheet.png",
+    "path": "assets/runner/actions/CMI_sofia-climb-sheet.png",
+    "sha256": "e3d0eb5c13eec4d66fc9c57d5f0cbfcc9eb164f5581493ea18e2e1639769e97d",
+    "duplicateSources": [
+      {
+        "archive": "CMI_7.zip",
+        "sourceMember": "CMI_7/CMI_sofia-climb-sheet.png"
+      }
+    ]
+  },
+  {
+    "archive": "CMI_5 (2).zip",
+    "sourceMember": "CMI_5/CMI_sofia-flip-sheet.png",
+    "path": "assets/runner/actions/CMI_sofia-flip-sheet.png",
+    "sha256": "56d2200597985dab5bb3269db6a05b8240200c506e3937ae25bf9ad9e425899f",
+    "duplicateSources": [
+      {
+        "archive": "CMI_7.zip",
+        "sourceMember": "CMI_7/CMI_sofia-flip-sheet.png"
+      }
+    ]
+  },
+  {
+    "archive": "CMI_5 (2).zip",
+    "sourceMember": "CMI_5/CMI_sofia-kick-sheet.png",
+    "path": "assets/runner/actions/CMI_sofia-kick-sheet.png",
+    "sha256": "cd24da2a7be4c568cee85b71ac87506731c3d2482ffe99d8f7a0fab601798738",
+    "duplicateSources": [
+      {
+        "archive": "CMI_7.zip",
+        "sourceMember": "CMI_7/CMI_sofia-kick-sheet.png"
+      }
+    ]
   }
 ]

@@ -1,4 +1,4 @@
-import {installedRunnerArt} from './runner-art-manifest.js';
+import {installedRunnerArt,runnerRouteArt} from './runner-art-manifest.js?v=46.32';
 
 // Only build-verified local files are requested. Existing vector art remains the fallback.
 export class RunnerArtwork {
@@ -12,9 +12,9 @@ export class RunnerArtwork {
   c.drawImage(image,x+(width-w)/2,y+(height-h)/2,w,h);return true;
  }
  // The artwork's landing line is metadata; it never changes the collision surface.
- platform(c,x,landingY,width){const image=this.image('platform');if(!image)return false;const h=width*image.naturalHeight/image.naturalWidth;c.drawImage(image,x,landingY-h*.39,width,h);return true;}
- vine(c,x,top,width,height){const image=this.image('vine');if(!image)return false;const tileHeight=width*image.naturalHeight/image.naturalWidth;
-  c.save();c.beginPath();c.rect(x,top,width,height);c.clip();for(let y=top;y<top+height;y+=tileHeight)c.drawImage(image,x,y,width,tileHeight);c.restore();return true;
+ platform(c,x,landingY,width){const image=this.image('platform');if(!image)return false;const m=runnerRouteArt.platform,scale=width/(m.walkableRight-m.walkableLeft);c.drawImage(image,x-m.walkableLeft*scale,landingY-m.landingY*scale,m.width*scale,m.height*scale);return true;}
+ vine(c,x,top,width,height){const image=this.image('vine');if(!image)return false;const [sx,sy,sw,sh]=runnerRouteArt.vine.sourceRect,drawWidth=height*sw/sh;
+  c.drawImage(image,sx,sy,sw,sh,x+(width-drawWidth)/2,top,drawWidth,height);return true;
  }
 }
 export const runnerArtwork=new RunnerArtwork();

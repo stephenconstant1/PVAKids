@@ -737,6 +737,252 @@
             ]
         }
     },
+    "sofia": {
+        "flip": {
+            "image": "assets/runner/actions/CMI_sofia-flip-sheet.png",
+            "sha256": "56d2200597985dab5bb3269db6a05b8240200c506e3937ae25bf9ad9e425899f",
+            "width": 1774,
+            "height": 887,
+            "baseline": 430,
+            "scaleHeight": 428,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        99,
+                        77,
+                        351,
+                        430
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        71,
+                        24,
+                        359,
+                        429
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        40,
+                        14,
+                        371,
+                        357
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        92,
+                        17,
+                        366,
+                        335
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        88,
+                        41,
+                        351,
+                        367
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        104,
+                        10,
+                        359,
+                        395
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        73,
+                        81,
+                        352,
+                        423
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        76,
+                        2,
+                        312,
+                        423
+                    ]
+                }
+            ]
+        },
+        "kick": {
+            "image": "assets/runner/actions/CMI_sofia-kick-sheet.png",
+            "sha256": "cd24da2a7be4c568cee85b71ac87506731c3d2482ffe99d8f7a0fab601798738",
+            "width": 1774,
+            "height": 887,
+            "baseline": 419,
+            "scaleHeight": 406,
+            "frames": [
+                {
+                    "rect": [
+                        0,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        45,
+                        27,
+                        389,
+                        417
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        73,
+                        23,
+                        352,
+                        419
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        0,
+                        443,
+                        444
+                    ],
+                    "visibleBounds": [
+                        75,
+                        13,
+                        350,
+                        390
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        0,
+                        444,
+                        444
+                    ],
+                    "visibleBounds": [
+                        47,
+                        19,
+                        416,
+                        389
+                    ]
+                },
+                {
+                    "rect": [
+                        0,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        33,
+                        21,
+                        413,
+                        380
+                    ]
+                },
+                {
+                    "rect": [
+                        444,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        53,
+                        21,
+                        337,
+                        397
+                    ]
+                },
+                {
+                    "rect": [
+                        887,
+                        444,
+                        443,
+                        443
+                    ],
+                    "visibleBounds": [
+                        70,
+                        31,
+                        339,
+                        418
+                    ]
+                },
+                {
+                    "rect": [
+                        1330,
+                        444,
+                        444,
+                        443
+                    ],
+                    "visibleBounds": [
+                        64,
+                        31,
+                        377,
+                        416
+                    ]
+                }
+            ]
+        }
+    },
     "eli": {
         "flip": {
             "image": "assets/runner/actions/CMI_zion-flip-sheet.png",

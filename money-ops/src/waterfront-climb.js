@@ -1,5 +1,5 @@
-import {runnerArtwork} from './runner-art.js';
-import {climbGoal,drawMoneyIllustration} from './needs-wants.js?v=46.31';
+import {runnerArtwork} from './runner-art.js?v=46.32';
+import {climbGoal,drawMoneyIllustration} from './needs-wants.js?v=46.32';
 // Original waterfront pole/deck route. Practice dollars never enter game wallets.
 export class WaterfrontClimb {
  constructor(runner){this.runner=runner;this.nextDistance=0;this.count=0;this.introduced=false;this.attached=false;this.inputs=new Map();this.waiting=new Map();this.allocated=new Set();this.remaining=100;this.reachedTop=false;this.visited=false;this.goalsReached=0;this.motionMs=0;this.moving=false;}
