@@ -1,6 +1,6 @@
 {
-  "assetCount": 119,
-  "fileCount": 238,
+  "assetCount": 120,
+  "fileCount": 240,
   "entries": [
     {
       "original": "assets/cast/eli.png",
@@ -2655,6 +2655,28 @@
       "format": "PNG",
       "sourceArchive": "CMI_5 (2).zip",
       "sourceMember": "CMI_5/CMI_sofia-kick-sheet.png"
+    },
+    {
+      "original": null,
+      "renamed": "assets/environments/CMI_level-02-downtown-runner-background.png",
+      "description": "level 02 downtown runner background without baked characters or pickups",
+      "kind": "generated-downtown-background",
+      "sha256": "891b48bcecf0b4c9639e50b4c30e33b43604f6a6261d3e0b89c138a0e69b2827",
+      "bytes": 2727172,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
+    },
+    {
+      "original": null,
+      "renamed": "money-ops/assets/environments/CMI_level-02-downtown-runner-background.png",
+      "description": "level 02 downtown runner background without baked characters or pickups",
+      "kind": "generated-downtown-background",
+      "sha256": "891b48bcecf0b4c9639e50b4c30e33b43604f6a6261d3e0b89c138a0e69b2827",
+      "bytes": 2727172,
+      "width": 1672,
+      "height": 941,
+      "format": "PNG"
     }
   ],
   "legacyFileCount": 152

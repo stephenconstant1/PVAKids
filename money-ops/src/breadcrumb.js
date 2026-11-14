@@ -17,6 +17,7 @@ export function installBreadcrumb(app,profile,ui,escape){
  const comic=app.querySelector('[data-motion-comic]'),job=app.querySelector('[data-job-board]');
  const trail=sectionTrail(profile,{...ui,comic:!!comic,comicLessonId:comic?.dataset.comicRoute==='job'?1:undefined,opening:comic?.dataset.comicOpening==='true',job:!!job,checked:!!job?.querySelector('.job-leftover')});
  const markup=breadcrumbMarkup(trail,escape);
+ const downtown=app.querySelector('.downtown-heading>div');if(downtown){downtown.insertAdjacentHTML('afterbegin',markup);return;}
  if(comic){comic.querySelector('.motion-heading small')?.insertAdjacentHTML('afterend',markup);comic.querySelector('.motion-heading small')?.classList.add('sr');return;}
  if(job){job.insertAdjacentHTML('beforeend',markup);return;}
  const career=app.querySelector('.career-simple-nav>span');if(career){career.outerHTML=markup;return;}

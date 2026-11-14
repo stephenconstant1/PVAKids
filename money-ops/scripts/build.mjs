@@ -4,6 +4,7 @@ import {cpSync,existsSync,readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {cityStops,cityLandmarks} from '../src/city.js';
 import {missions} from '../src/content.js';
 execFileSync(process.execPath,['scripts/prepare-runner-art.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/prepare-rear-runs.mjs'],{stdio:'inherit'});
 const source=JSON.parse(readFileSync(new URL('../career/lessons.json',import.meta.url),'utf8'));
 if(source.length!==32||missions.length!==32)throw Error('Career Mode requires exactly 32 original lessons.');
 for(let i=0;i<32;i++){
@@ -38,7 +39,7 @@ writeFileSync(uiOutput,readFileSync(uiOutput,'utf8').replace("from './job-practi
 const comicOutput='src/moneybread/job-comic.js';
 writeFileSync(comicOutput,readFileSync(comicOutput,'utf8').replace("from './comic-notes.js'","from './comic-notes.js?v=46.32'"));
 // GitHub Pages serves both / and /money-ops/. Keep both entry points identical.
-if(existsSync('money-ops'))for(const file of ['README.md','docs','Running (1).fbx','MOVEMENT_METRICS.md','RUNNER_ASSETS.md','assets/crew','assets/environments','assets/cast','assets/runner','assets/review','career','scripts','tests','src/moneybread','index.html','CMI_moneybread-city-illustrated-map.svg','CMI_money-ops-favicon.svg','src/app.js','src/breadcrumb.js','src/character-action-art.js','src/job-journey.js','src/play.js','src/lesson-one-comic.js','src/lesson-comic.js','src/waterfront-climb.js','src/engine.js','src/content.js','src/curriculum-language.js','src/characters.js','src/runner.js','src/needs-wants.js','src/uploaded-action-art.js','src/uploaded-action-cycles.js','src/runner-art.js','src/runner-art-manifest.js','src/runner-vocabulary.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
+if(existsSync('money-ops'))for(const file of ['README.md','docs','Running (1).fbx','MOVEMENT_METRICS.md','RUNNER_ASSETS.md','assets/crew','assets/environments','assets/cast','assets/runner','assets/review','career','scripts','tests','src/moneybread','index.html','CMI_moneybread-city-illustrated-map.svg','CMI_money-ops-favicon.svg','src/app.js','src/breadcrumb.js','src/character-action-art.js','src/job-journey.js','src/play.js','src/lesson-one-comic.js','src/lesson-comic.js','src/waterfront-climb.js','src/engine.js','src/content.js','src/curriculum-language.js','src/characters.js','src/runner.js','src/needs-wants.js','src/uploaded-action-art.js','src/uploaded-action-cycles.js','src/downtown-data.js','src/downtown-runner.js','src/downtown-ui.js','src/rear-run.js','src/rear-run-manifest.js','src/runner-art.js','src/runner-art-manifest.js','src/runner-vocabulary.js','src/runner-config.js','src/runner-state.js','src/city.js','style.css','package.json','package-lock.json','tsconfig.json']){
  mkdirSync('money-ops/'+file.split('/').slice(0,-1).join('/'),{recursive:true});
  cpSync(file,'money-ops/'+file,{recursive:true});
 }
