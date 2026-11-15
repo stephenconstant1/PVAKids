@@ -1,6 +1,6 @@
 {
-  "assetCount": 126,
-  "fileCount": 252,
+  "assetCount": 129,
+  "fileCount": 258,
   "entries": [
     {
       "original": "assets/cast/eli.png",
@@ -2833,6 +2833,72 @@
       "format": "PNG",
       "sourceArchive": "CMI_Moneybread_City_Rear_View_Run_Sheets.zip",
       "sourceMember": "CMI_ruby_rear-view-run-8-frames.png"
+    },
+    {
+      "original": null,
+      "renamed": "assets/runner/patrons/CMI_level-02-patron-orange-sweater-walk-sheet.png",
+      "description": "downtown patron orange-sweater four walking poses",
+      "kind": "generated-downtown-patron",
+      "sha256": "7141c096c9b40bee1ba12d9d4c5ef50a9d68842aa879654558e47d308a7e80b8",
+      "bytes": 947048,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": null,
+      "renamed": "money-ops/assets/runner/patrons/CMI_level-02-patron-orange-sweater-walk-sheet.png",
+      "description": "downtown patron orange-sweater four walking poses",
+      "kind": "generated-downtown-patron",
+      "sha256": "7141c096c9b40bee1ba12d9d4c5ef50a9d68842aa879654558e47d308a7e80b8",
+      "bytes": 947048,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": null,
+      "renamed": "assets/runner/patrons/CMI_level-02-patron-teal-shirt-walk-sheet.png",
+      "description": "downtown patron teal-shirt four walking poses",
+      "kind": "generated-downtown-patron",
+      "sha256": "597c244186095cea245663d67d4257d8bcb82089c269e38463cb78b8b763ba3b",
+      "bytes": 937549,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": null,
+      "renamed": "money-ops/assets/runner/patrons/CMI_level-02-patron-teal-shirt-walk-sheet.png",
+      "description": "downtown patron teal-shirt four walking poses",
+      "kind": "generated-downtown-patron",
+      "sha256": "597c244186095cea245663d67d4257d8bcb82089c269e38463cb78b8b763ba3b",
+      "bytes": 937549,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": null,
+      "renamed": "assets/runner/patrons/CMI_level-02-patron-silver-hair-walk-sheet.png",
+      "description": "downtown patron silver-hair four walking poses",
+      "kind": "generated-downtown-patron",
+      "sha256": "5fface3f9292aa55a014ce990031034cf9743551833c1c9c288437386249dbdf",
+      "bytes": 1153734,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
+    },
+    {
+      "original": null,
+      "renamed": "money-ops/assets/runner/patrons/CMI_level-02-patron-silver-hair-walk-sheet.png",
+      "description": "downtown patron silver-hair four walking poses",
+      "kind": "generated-downtown-patron",
+      "sha256": "5fface3f9292aa55a014ce990031034cf9743551833c1c9c288437386249dbdf",
+      "bytes": 1153734,
+      "width": 2172,
+      "height": 724,
+      "format": "PNG"
     }
   ],
   "legacyFileCount": 152

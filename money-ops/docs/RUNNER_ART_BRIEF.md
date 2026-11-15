@@ -50,3 +50,7 @@ For each character, use their exact supplied reference: Kanyon green; Maya purpl
 **Kick sheet prompt:** “Create an 8-pose non-contact running air-kick flourish for [character]: knee lift, extension, recoil and smooth return to running. Arms balance naturally. This is a playful movement trick, with no target, weapon or combat. Transparent equal-sized cells and consistent scale; no running/duck pose substituted for the kick.”
 
 Proposed names: `CMI_[character]-climb-cycle.png`, `CMI_[character]-flip-cycle.png`, `CMI_[character]-kick-cycle.png`. Check cell boundaries and pose order before slicing or registering the atlas. Supplied eight-pose flip/kick sheets are now active for all six characters. Supplied climbing sheets contain baked-in vines and remain reference assets until clean character layers can be used without duplicating the route vine.
+
+## Level 2 investment and action image list
+
+See [LEVEL_02_IMAGE_PROMPTS.md](LEVEL_02_IMAGE_PROMPTS.md) for exact CMI_ filenames and copy-ready prompts, including reused Level 1 Needs/Wants images, investment-income icons, debt/loan obstacles, slide booster, question box, Bonus Wallet, and the three generated walking-patron sheets.

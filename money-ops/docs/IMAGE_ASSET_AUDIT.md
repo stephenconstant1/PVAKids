@@ -1,6 +1,6 @@
 # CMI image filename audit
 
-All 126 image assets (252 files including the `/money-ops/` mirror) use descriptive `CMI_` filenames. The inventory includes active images, original motion-reference sheets, review artwork, illustrated SVG maps, and the favicon. The original filename audit preserved artwork pixels, dimensions, transparency, and character identities. Internal character IDs are preserved.
+All 129 image assets (258 files including the `/money-ops/` mirror) use descriptive `CMI_` filenames. The inventory includes active images, original motion-reference sheets, review artwork, illustrated SVG maps, and the favicon. The original filename audit preserved artwork pixels, dimensions, transparency, and character identities. Internal character IDs are preserved.
 
 `image-audit.json` records every old path, new path, description, byte count, dimensions where available, and SHA-256. Canonical names are Kanyon, Maya, Everest, Sofia, Zion, and Ruby. Animation source sheets and generated atlases have distinct names; numbered comic panels also describe their story beat.
 
@@ -29,3 +29,7 @@ CMI_5 (2).zip and CMI_7.zip supplied the two remaining route images and three So
 ## Downtown forward view and rear sheets · 46.33
 
 The completed Arcade Level 2 scene adds one empty illustrated downtown background and six original supplied rear-view run sheets, mirrored across both entry points. All 48 poses have reviewed cell bounds, source hashes and stable body-height/baseline metadata. Only the selected character's matching rear sheet is rendered during forward running; canonical portraits and other levels' side-view cycles remain intact. Source alpha channels are preserved, including Maya/Ruby. The audit now records 126 distinct assets / 252 root-and-mirror files.
+
+## Walking patrons · 46.34
+
+Three original four-pose transparent walking sheets were generated for downtown patrons: orange sweater, teal shirt/cream vest and silver-haired neighbor. They remain distinct from the six playable children. Each sheet is 2172×724 with four equal 543-pixel cells; metadata in career/patron-cycles.json records original hashes, visible bounds and a fixed body scale/baseline. Sheets are mirrored and audited without source pixel changes. All 129 assets / 258 files are recorded. Investment/effect/Bonus Wallet replacement images are requests, not claimed as generated: see LEVEL_02_IMAGE_PROMPTS.md.

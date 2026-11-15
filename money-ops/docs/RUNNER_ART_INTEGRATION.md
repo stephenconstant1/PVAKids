@@ -20,4 +20,6 @@ The supplied `CMI_level-02-downtown-business-district.png` remains a reference: 
 
 ## Inventory and provenance
 
-`career/uploaded-runner-art.json` records exact archive/member names and original hashes, including identical Sofia duplicates from CMI_5 (2) and CMI_7. The image audit now contains 126 assets / 252 root-and-mirror files, including the Level 2 forward background and six supplied rear-view sheets. No source files from the requested illustration/route pack remain missing. No new prices, rewards, attacks or financial outcomes were introduced.
+`career/uploaded-runner-art.json` records exact archive/member names and original hashes, including identical Sofia duplicates from CMI_5 (2) and CMI_7. The image audit now contains 129 assets / 258 root-and-mirror files, including the Level 2 forward background and six supplied rear-view sheets. No source files from the requested illustration/route pack remain missing. No new prices, rewards, attacks or financial outcomes were introduced.
+
+Three new four-pose patron sheets are generated and installed for predictable downtown crossings. Investment/effect/Bonus Wallet image requests are listed separately in LEVEL_02_IMAGE_PROMPTS.md; current playable vectors remain until those PNGs are provided.

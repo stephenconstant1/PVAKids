@@ -98,3 +98,5 @@ Lesson 1 now targets **200 coins**, then lets students keep running while lives
 remain or finish to bank rewards. Collectible hearts replenish lives up to 5.
 Results show Paychecks and their City Bank contribution without counting the
 same token twice. Other lessons retain their existing goals.
+
+Arcade Level 2 uses a behind-the-selected-character downtown view with investment-income examples, jump pickups, raised platforms and friendly crossing patrons. Optional slide boosts and flip question-box bonuses work across runner modes. The replacement-art prompt list, including the Bonus Wallet and reusable Level 1 images, is in [docs/LEVEL_02_IMAGE_PROMPTS.md](docs/LEVEL_02_IMAGE_PROMPTS.md).
