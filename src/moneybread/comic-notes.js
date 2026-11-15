@@ -12,6 +12,7 @@ export function comicNoteGroups(input) {
     }
     return { scene, lesson: lesson.length ? lesson : [{ title: 'Lesson idea', body: input.description }], words: c?.vocabulary.length ? c.vocabulary.map((word, wordIndex) => ({ title: word.term, body: word.definition, kind: 'word', wordIndex })) : [{ title: 'Lesson words', body: 'Explore the lesson vocabulary with your guide.' }], scripture: c?.scripture ? [{ title: c.scripture.reference, body: c.scripture.text, kind: 'scripture' }] : [{ title: 'Lesson reference', body: c?.coreIdea || input.description }] };
 }
+export function renderPracticePayment(m) { const total = m.materials + m.labor + m.overhead; return `<section class="motion-practice payment-example" aria-label="Practice payment and costs"><h2 class="motion-note-title" tabindex="-1">Practice Example</h2><div class="practice-payment"><span>Payment received</span><strong>$${m.payment}</strong></div><dl class="practice-deductions">${[['Minus materials', m.materials], ['Minus labor', m.labor], ['Minus overhead', m.overhead]].map(([label, amount]) => `<div><dt>${label}</dt><dd>− $${amount}</dd></div>`).join('')}<div class="practice-total"><dt>Total costs</dt><dd>$${total}</dd></div></dl><div class="practice-left"><span>Money left after costs</span><strong>$${m.remaining}</strong></div><small>After the listed costs—not guaranteed profit.</small><p class="sr">$${m.payment} − $${m.materials} − $${m.labor} − $${m.overhead} = <b>$${m.remaining} left</b></p></section>`; }
 export function renderComicNotes(input, e) {
     const groups = comicNoteGroups(input), m = input.math, c = input.context;
     const pages = tabs.map(tab => groups[tab].map((note, index) => {
@@ -24,7 +25,7 @@ export function renderComicNotes(input, e) {
         if (note.kind === 'word')
             body = `<div class="motion-vocabulary">${body}</div>`;
         if (note.kind === 'math')
-            body = `<section class="motion-practice"><h2 class="motion-note-title" tabindex="-1">Practice Example</h2><dl>${[['Payment', m.payment], ['Materials', m.materials], ['Labor', m.labor], ['Overhead', m.overhead]].map(([label, amount]) => `<div><dt>${label}</dt><dd>$${amount}</dd></div>`).join('')}</dl><p>$${m.payment} − $${m.materials} − $${m.labor} − $${m.overhead} = <b>$${m.remaining} left</b></p><small>${e(note.body)}</small></section>`;
+            body = renderPracticePayment(m);
         if (note.related?.length)
             body += `<nav class="motion-note-related" aria-label="Words in this scene">${note.related.map(wordIndex => `<button class="mb-button" data-action="motion-notes-word-${wordIndex}">${e(c.vocabulary[wordIndex].term)} →</button>`).join('')}</nav>`;
         return `<article class="motion-note-page" data-note-tab="${tab}" data-note-index="${index}" data-note-read="${e(read)}" hidden>${body}</article>`;

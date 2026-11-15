@@ -22,6 +22,7 @@ export interface NotesInput {
     };
 }
 export declare function comicNoteGroups(input: NotesInput): Record<NotesTab, ComicNote[]>;
+export declare function renderPracticePayment(m: NotesInput['math']): string;
 export declare function renderComicNotes(input: NotesInput, e: (v: unknown) => string): string;
 export declare function selectComicNotes(root: HTMLElement, tab: NotesTab, index?: number, focus?: boolean): void;
 export declare function openComicNotes(root: HTMLElement | null, tab?: NotesTab, focus?: boolean): void;

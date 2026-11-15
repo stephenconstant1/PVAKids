@@ -1,4 +1,4 @@
-# A Job That Helps the City · motion comic (46.17)
+# A Job That Helps the City · motion comic (46.35)
 
 The same eight-panel component (`career/job-comic.ts`) runs inside the existing
 Career Lesson 1 page and the direct Run the Job lesson route. No video, new landing
@@ -35,8 +35,8 @@ reaction. All decorative cues are hidden from assistive technology.
 
 The comic surface uses the page's cream/teal palette, feathered image-to-caption
 edges and no heavy gold image frame or drop shadow. Nested lesson frames are
-softened only on the page hosting this comic. Faces and text are never faded by
-scene animations. Readable HTML narration is available for every panel.
+softened only on the page hosting this comic. Scene animations never fade faces or text. On the practice panel, the still
+background is dimmed to keep the separate payment ledger readable. Readable HTML narration is available for every panel.
 
 ## Interaction, sound and financial rules
 
@@ -152,3 +152,19 @@ Building Income Streams now uses a behind-the-selected-character street view in 
 
 ### Investment-income route and playful movement (46.34)
 Arcade downtown now compares interest, bonds, dividends and fund-income examples without promised payments. Reused Level 1 Needs/Wants images appear in jump arcs alongside income words, raised platforms, debt/loan hurdles, slide gates and animated crossing patrons. Patron contact yields briefly, with no attacks or money/life loss. All runner modes allow optional flip/kick inputs; unique question boxes award $10 bonus game dollars for a flip versus the original $5 normal hit. Slide boosts last three gameplay seconds and preserve reaction spacing. Other lesson financial rules are unchanged. See LEVEL_02_IMAGE_PROMPTS.md for requested CMI_ replacement art, including the Bonus Wallet.
+
+## Lesson 1 reading and bonus setup (46.35)
+
+The sequence is Create Value → panel 1 → the existing Colossians 3:23 verse
+on an illustrated open book → panels 2–8. Back reverses that sequence. Saved
+progress uses the existing intro/scene fields; the former standalone word opening
+now resumes at panel 2. Panels 2–7 have a collapsible right-side word guide.
+Panel 7 shows a separate accessible payment ledger: $100 received, minus $25
+materials, $40 labor and $15 overhead; total costs $80; $20 left. Artwork remains
+flattened; the ledger and book are independent interface elements.
+
+The completion screen has one Enter the Run Game button. Its glow pulse stops
+with reduced motion. The Lesson 1 post-run setup keeps the selected player,
+shows the 200-pickup-point goal, need/want pictures and short move/bonus tips,
+and offers Start Bonus Run and Skip Bonus Run without a second player picker.
+Other lesson activities, scoring, and the initial player selection stay intact.

@@ -41,4 +41,9 @@ export declare function jobComicPracticeMath(): {
     remaining: number;
 };
 export declare function jobComicRead(step: number, coreIdea?: string): string;
+export declare function jobComicNavigate(step: number, intro: number, direction: 'next' | 'back'): {
+    step: number;
+    intro: number;
+    done: boolean;
+};
 export declare function renderJobComic(step: number, e: (v: unknown) => string, options?: JobComicOptions): string;
