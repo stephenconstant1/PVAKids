@@ -17,8 +17,8 @@ test('all 32 lessons have distinct runner hazards, rewards, and complete stage c
   assert.ok(lesson.obstacleSet.every(hazard=>hazard.art&&Number.isFinite(hazard.art.hue)),`week ${lesson.lessonId} needs distinct hazard art`);
   assert.ok(lesson.collectibleSet.length>=3,`week ${lesson.lessonId} needs rewards`);
   assert.ok(lesson.powerUp.name&&lesson.powerUp.effect,`week ${lesson.lessonId} needs a power-up`);
-  assert.equal(runnerConfig(lesson.lessonId,'pre').targetCoins,lesson.lessonId===1?200:100);
-  assert.equal(runnerConfig(lesson.lessonId,'post').targetCoins,lesson.lessonId===1?200:100);
+  assert.equal(runnerConfig(lesson.lessonId,'pre').targetCoins,lesson.lessonId===1?75:100);
+  assert.equal(runnerConfig(lesson.lessonId,'post').targetCoins,lesson.lessonId===1?75:100);
   assert.ok(lesson.vocabulary.length>=4,`week ${lesson.lessonId} needs runner vocabulary`);
   assert.ok(lesson.vocabulary.every(item=>item.term&&item.definition),`week ${lesson.lessonId} vocabulary needs definitions`);
   assert.equal(lesson.pre.maxLives,3);

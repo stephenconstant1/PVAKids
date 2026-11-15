@@ -1,5 +1,5 @@
 import { castImage, comicImage } from './image-assets.js';
-import { renderComicNotes, renderPracticePayment } from './comic-notes.js?v=46.35';
+import { renderComicNotes, renderPracticePayment } from './comic-notes.js?v=46.36';
 import { JOB_PRACTICE_PAYMENT, MINIMUM_JOB_COSTS } from './job-practice.js';
 /** Flattened reference art stays still. Motion belongs to separate cues and UI. */
 export const jobComicPanels = [

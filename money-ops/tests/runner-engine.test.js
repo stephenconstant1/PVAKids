@@ -160,9 +160,9 @@ test('a jump clears a debt hazard and collectibles use the exact arcade values',
  assert.equal(game.coins,6,'dollar is +1 and gold coin is +5');
 });
 
-test('Lesson 1 doubles its goal to 200 and continues until the player banks or loses all lives',()=>{
+test('Lesson 1 uses a shorter 75-point goal and continues until the player banks or loses all lives',()=>{
  const game=harness(1,'pre');game.runner.running=true;game.runner.startedAt=Date.now();
- assert.equal(game.runner.config.targetCoins,200);
+ assert.equal(game.runner.config.targetCoins,75);
  for(let i=0;i<205;i++)game.runner.collect({label:'Paycheck',value:1,kind:'dollar',x:200,y:100,done:false});
  assert.equal(game.result,null);assert.equal(game.runner.goalReached,true);assert.equal(game.runner.collected,205);
  assert.equal(game.runner.paychecks,205);assert.equal(game.runner.paycheckCoins,205);

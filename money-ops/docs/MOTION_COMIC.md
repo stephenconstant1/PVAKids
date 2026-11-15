@@ -165,6 +165,21 @@ flattened; the ledger and book are independent interface elements.
 
 The completion screen has one Enter the Run Game button. Its glow pulse stops
 with reduced motion. The Lesson 1 post-run setup keeps the selected player,
-shows the 200-pickup-point goal, need/want pictures and short move/bonus tips,
+shows the 75-point bonus goal, need/want pictures and short move/bonus tips,
 and offers Start Bonus Run and Skip Bonus Run without a second player picker.
 Other lesson activities, scoring, and the initial player selection stay intact.
+
+## Arcade preview and Level 1 tricks (46.36)
+
+Arcade now centers portraits independently of the dialogue-card alignment rule.
+The chosen level has an environment preview (Waterfront and Downtown use the
+installed scene artwork). Jump, slide and climb examples use the selected
+character's existing source sheets/pose, cropped with SVG view boxes and clip
+paths. Large arrows accompany the keyboard labels. No new artwork was generated.
+
+Level 1 has a shorter 75-point bonus goal. Pickups add one goal point; trick
+rewards also count toward that goal. Each completed flip adds 25 score points.
+Completing a queued kick after the flip adds 75 more (100 total). A pickup during
+a flip doubles that pickup's score points. Popups and the live status announce
+the reward. Trick points do not mint game dollars, cash, or extra pickups.
+Other levels retain their scoring. Question-box dollar rewards stay unchanged.

@@ -1,9 +1,9 @@
-import {PatronArt,patronCycles} from './patron-art.js?v=46.35';
-import {runnerArtwork} from './runner-art.js?v=46.35';
-import {moneyIllustrationSvg} from './needs-wants.js?v=46.35';
+import {PatronArt,patronCycles} from './patron-art.js?v=46.36';
+import {runnerArtwork} from './runner-art.js?v=46.36';
+import {moneyIllustrationSvg} from './needs-wants.js?v=46.36';
 import {FinancialRunner} from './runner.js';
-import {RearRunCycle} from './rear-run.js?v=46.35';
-import {downtownVocabulary,downtownOpportunities,projectStreet,opportunity} from './downtown-data.js?v=46.35';
+import {RearRunCycle} from './rear-run.js?v=46.36';
+import {downtownVocabulary,downtownOpportunities,projectStreet,opportunity} from './downtown-data.js?v=46.36';
 import {stepBody} from './moneybread/platform-physics.js';
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export class DowntownRunner extends FinancialRunner {

@@ -1,4 +1,4 @@
-const poses={
+export const poses={
   "jordan": {
     "climb": {
       "image": "assets/runner/climb/CMI_kanyon-climb-pose.png",
