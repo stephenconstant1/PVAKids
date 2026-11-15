@@ -20,4 +20,4 @@ The supplied `CMI_level-02-downtown-business-district.png` remains a reference: 
 
 ## Inventory and provenance
 
-`career/uploaded-runner-art.json` records exact archive/member names and original hashes, including identical Sofia duplicates from CMI_5 (2) and CMI_7. The image audit contains 119 assets / 238 root-and-mirror files. No source files from the requested illustration/route pack remain missing. No new prices, rewards, attacks or financial outcomes were introduced.
+`career/uploaded-runner-art.json` records exact archive/member names and original hashes, including identical Sofia duplicates from CMI_5 (2) and CMI_7. The image audit now contains 126 assets / 252 root-and-mirror files, including the Level 2 forward background and six supplied rear-view sheets. No source files from the requested illustration/route pack remain missing. No new prices, rewards, attacks or financial outcomes were introduced.

@@ -1,0 +1,746 @@
+{
+    "jordan": {
+        "image": "assets/runner/rear/CMI_kanyon-rear-run-sheet.png",
+        "sourceSha256": "68fb58741b2c0f3312b34fef7bce095e7c27f2847d750c553b9e00d846b84acf",
+        "width": 1774,
+        "height": 887,
+        "frameMs": 80,
+        "baseline": 434,
+        "bodyHeight": 425,
+        "reviewed": true,
+        "frames": [
+            {
+                "rect": [
+                    0,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    122,
+                    10,
+                    324,
+                    434
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    111,
+                    11,
+                    335,
+                    431
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    103,
+                    11,
+                    327,
+                    431
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    104,
+                    9,
+                    330,
+                    409
+                ]
+            },
+            {
+                "rect": [
+                    0,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    112,
+                    11,
+                    329,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    113,
+                    12,
+                    325,
+                    430
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    128,
+                    12,
+                    345,
+                    430
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    134,
+                    12,
+                    346,
+                    429
+                ]
+            }
+        ]
+    },
+    "maya": {
+        "image": "assets/runner/rear/CMI_maya-rear-run-sheet.png",
+        "sourceSha256": "c0797fb51c336a162dada77fdd9211d17b771fdff4d2009dda2e7414e57349b6",
+        "width": 1536,
+        "height": 1024,
+        "frameMs": 80,
+        "baseline": 498,
+        "bodyHeight": 488,
+        "reviewed": true,
+        "frames": [
+            {
+                "rect": [
+                    0,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    58,
+                    10,
+                    296,
+                    492
+                ]
+            },
+            {
+                "rect": [
+                    384,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    53,
+                    10,
+                    305,
+                    487
+                ]
+            },
+            {
+                "rect": [
+                    768,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    58,
+                    10,
+                    311,
+                    490
+                ]
+            },
+            {
+                "rect": [
+                    1152,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    57,
+                    10,
+                    304,
+                    491
+                ]
+            },
+            {
+                "rect": [
+                    0,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    55,
+                    13,
+                    293,
+                    497
+                ]
+            },
+            {
+                "rect": [
+                    384,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    55,
+                    14,
+                    304,
+                    497
+                ]
+            },
+            {
+                "rect": [
+                    768,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    60,
+                    16,
+                    302,
+                    498
+                ]
+            },
+            {
+                "rect": [
+                    1152,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    63,
+                    13,
+                    304,
+                    498
+                ]
+            }
+        ]
+    },
+    "kai": {
+        "image": "assets/runner/rear/CMI_everest-rear-run-sheet.png",
+        "sourceSha256": "c21ec8e2f3a538b4f8ca82495ead4fa9600e2e2cea3cc0f35d19d1a0a65db9bf",
+        "width": 1774,
+        "height": 887,
+        "frameMs": 80,
+        "baseline": 430,
+        "bodyHeight": 420,
+        "reviewed": true,
+        "frames": [
+            {
+                "rect": [
+                    0,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    125,
+                    11,
+                    306,
+                    430
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    111,
+                    10,
+                    314,
+                    429
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    112,
+                    10,
+                    322,
+                    406
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    124,
+                    13,
+                    320,
+                    427
+                ]
+            },
+            {
+                "rect": [
+                    0,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    124,
+                    14,
+                    316,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    122,
+                    14,
+                    315,
+                    424
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    115,
+                    12,
+                    320,
+                    383
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    130,
+                    14,
+                    308,
+                    427
+                ]
+            }
+        ]
+    },
+    "sofia": {
+        "image": "assets/runner/rear/CMI_sofia-rear-run-sheet.png",
+        "sourceSha256": "70ca80da5456d5d7aaf4d3c8b3bf80c3b0520b98e838b9ffd05608fefc2f5cf1",
+        "width": 1774,
+        "height": 887,
+        "frameMs": 80,
+        "baseline": 429,
+        "bodyHeight": 420,
+        "reviewed": true,
+        "frames": [
+            {
+                "rect": [
+                    0,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    142,
+                    9,
+                    298,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    136,
+                    9,
+                    305,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    126,
+                    9,
+                    310,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    126,
+                    9,
+                    312,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    0,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    128,
+                    11,
+                    309,
+                    429
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    131,
+                    11,
+                    308,
+                    428
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    141,
+                    11,
+                    319,
+                    428
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    147,
+                    11,
+                    306,
+                    428
+                ]
+            }
+        ]
+    },
+    "eli": {
+        "image": "assets/runner/rear/CMI_zion-rear-run-sheet.png",
+        "sourceSha256": "550e4382de6ec177b06e46e1213cc265848be3ec81fb41c4f2b93b6c79917a8a",
+        "width": 1774,
+        "height": 887,
+        "frameMs": 80,
+        "baseline": 432,
+        "bodyHeight": 425,
+        "reviewed": true,
+        "frames": [
+            {
+                "rect": [
+                    0,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    115,
+                    8,
+                    326,
+                    432
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    112,
+                    7,
+                    326,
+                    432
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    0,
+                    443,
+                    444
+                ],
+                "visibleBounds": [
+                    112,
+                    8,
+                    319,
+                    432
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    0,
+                    444,
+                    444
+                ],
+                "visibleBounds": [
+                    116,
+                    7,
+                    315,
+                    432
+                ]
+            },
+            {
+                "rect": [
+                    0,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    115,
+                    10,
+                    324,
+                    425
+                ]
+            },
+            {
+                "rect": [
+                    444,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    115,
+                    10,
+                    330,
+                    431
+                ]
+            },
+            {
+                "rect": [
+                    887,
+                    444,
+                    443,
+                    443
+                ],
+                "visibleBounds": [
+                    116,
+                    10,
+                    330,
+                    432
+                ]
+            },
+            {
+                "rect": [
+                    1330,
+                    444,
+                    444,
+                    443
+                ],
+                "visibleBounds": [
+                    120,
+                    9,
+                    330,
+                    431
+                ]
+            }
+        ]
+    },
+    "ruby": {
+        "image": "assets/runner/rear/CMI_ruby-rear-run-sheet.png",
+        "sourceSha256": "7e071e9acec0e41b35c108a911aedb6ececc0401b4f95c21eed6ca1c6f75e5ab",
+        "width": 1536,
+        "height": 1024,
+        "frameMs": 80,
+        "baseline": 491,
+        "bodyHeight": 476,
+        "reviewed": true,
+        "frames": [
+            {
+                "rect": [
+                    0,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    75,
+                    16,
+                    299,
+                    490
+                ]
+            },
+            {
+                "rect": [
+                    384,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    69,
+                    17,
+                    311,
+                    482
+                ]
+            },
+            {
+                "rect": [
+                    768,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    74,
+                    15,
+                    299,
+                    457
+                ]
+            },
+            {
+                "rect": [
+                    1152,
+                    0,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    69,
+                    17,
+                    312,
+                    491
+                ]
+            },
+            {
+                "rect": [
+                    0,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    67,
+                    17,
+                    330,
+                    483
+                ]
+            },
+            {
+                "rect": [
+                    384,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    70,
+                    19,
+                    316,
+                    464
+                ]
+            },
+            {
+                "rect": [
+                    768,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    76,
+                    18,
+                    322,
+                    423
+                ]
+            },
+            {
+                "rect": [
+                    1152,
+                    512,
+                    384,
+                    512
+                ],
+                "visibleBounds": [
+                    78,
+                    17,
+                    315,
+                    487
+                ]
+            }
+        ]
+    }
+}

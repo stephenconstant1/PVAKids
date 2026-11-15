@@ -1,18 +1,18 @@
 import {FinancialRunner} from './runner.js';
-import {RearRunCycle} from './rear-run.js';
-import {downtownVocabulary,downtownOpportunities,projectStreet,opportunity} from './downtown-data.js';
+import {RearRunCycle} from './rear-run.js?v=46.33';
+import {downtownVocabulary,downtownOpportunities,projectStreet,opportunity} from './downtown-data.js?v=46.33';
 import {stepBody} from './moneybread/platform-physics.js';
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export class DowntownRunner extends FinancialRunner {
  constructor(canvas,config,options={}){
   let instance;super(canvas,config,{...options,onComplete:result=>options.onComplete?.({...result,incomeStreams:[...(instance?.incomeStreams||[])]})});instance=this;
-  this.climb=null;this.incomeStreams=[];this.sceneState='intro';this.choiceNumber=0;this.nextChoice=25;this.lane=0;this.targetLane=0;this.routeEntities=[];this.routeSerial=0;this.spawnCooldown=1.5;this.routeSpeed=1;this.rearCycle=new RearRunCycle(this.characterId);this.background=new Image();this.background.src=new URL('../assets/environments/CMI_level-02-downtown-runner-background.png',import.meta.url).href;this.sceneReady=true;this.resizeScene();if(globalThis.ResizeObserver){this.viewportObserver=new ResizeObserver(()=>{this.resizeScene();this.draw();});this.viewportObserver.observe(canvas);}
+  this.climb=null;this.incomeStreams=[];this.sceneState='intro';this.choiceNumber=0;this.nextChoice=25;this.lane=0;this.targetLane=0;this.routeEntities=[];this.routeSerial=0;this.spawnCooldown=1.5;this.routeSpeed=1;this.rearCycle=new RearRunCycle(this.characterId,()=>{if(!this.destroyed&&this.pendingRearStart!=null)this.start(this.pendingRearStart);});this.background=new Image();this.background.src=new URL('../assets/environments/CMI_level-02-downtown-runner-background.png',import.meta.url).href;this.sceneReady=true;this.resizeScene();if(globalThis.ResizeObserver){this.viewportObserver=new ResizeObserver(()=>{this.resizeScene();this.draw();});this.viewportObserver.observe(canvas);}
   this.swipeEnd=event=>{if(!this.pointerStart)return;const dx=event.clientX-this.pointerStart.x,dy=event.clientY-this.pointerStart.y;if(Math.abs(dx)>38&&Math.abs(dx)>Math.abs(dy)){event.stopImmediatePropagation();this.changeLane(Math.sign(dx));this.pointerStart=null;}};canvas.addEventListener('pointerup',this.swipeEnd,true);
  }
  resizeScene(){const bounds=this.canvas.getBoundingClientRect(),ratio=Math.min(2,window.devicePixelRatio||1);this.width=960;this.height=clamp(Math.round(960*(bounds.height||600)/(bounds.width||960)),500,1400);this.canvas.width=this.width*ratio;this.canvas.height=this.height*ratio;this.ctx.setTransform(ratio,0,0,ratio,0,0);this.canvas.style.aspectRatio='auto';}
- start(startedAt=Date.now()){super.start(startedAt);if(this.running&&this.sceneState!=='running'){this.paused=true;this.onUpdate(this.snapshot());}}
- destroy(){this.viewportObserver?.disconnect();this.canvas.removeEventListener('pointerup',this.swipeEnd,true);super.destroy();}
- keyDown(event){if(event.target?.closest?.('button,input,select,textarea,dialog'))return;if(this.sceneState==='intro'&&event.code==='Enter'){event.preventDefault();this.advanceIntro();return;}if(this.sceneState==='choice'&&/^Digit[1-4]$/.test(event.code)){event.preventDefault();this.chooseOpportunity(downtownOpportunities[Number(event.code.slice(-1))-1].id);return;}
+ start(startedAt=Date.now()){if(this.destroyed)return;if(this.rearCycle&&!this.rearCycle.ready&&!this.rearCycle.failed){this.pendingRearStart=startedAt;this.draw();return;}this.pendingRearStart=null;super.start(startedAt);if(this.running&&this.sceneState!=='running'){this.paused=true;this.onUpdate(this.snapshot());}}
+ destroy(){this.destroyed=true;this.pendingRearStart=null;this.viewportObserver?.disconnect();this.canvas.removeEventListener('pointerup',this.swipeEnd,true);super.destroy();}
+ keyDown(event){if(event.target?.closest?.('input,select,textarea,[contenteditable=true]'))return;if(event.target?.closest?.('button')&&['Space','Enter'].includes(event.code))return;if(this.sceneState==='intro'&&event.code==='Enter'){event.preventDefault();this.advanceIntro();return;}if(this.sceneState==='choice'&&/^Digit[1-4]$/.test(event.code)){event.preventDefault();this.chooseOpportunity(downtownOpportunities[Number(event.code.slice(-1))-1].id);return;}
   if(['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(event.code)){event.preventDefault();if(!event.repeat)this.changeLane(['ArrowLeft','KeyA'].includes(event.code)?-1:1);return;}
   if(['KeyF','KeyK'].includes(event.code))return;super.keyDown(event);
  }
