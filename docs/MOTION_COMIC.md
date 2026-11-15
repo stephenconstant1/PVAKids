@@ -158,7 +158,10 @@ Arcade downtown now compares interest, bonds, dividends and fund-income examples
 The sequence is Create Value → panel 1 → the existing Colossians 3:23 verse
 on an illustrated open book → panels 2–8. Back reverses that sequence. Saved
 progress uses the existing intro/scene fields; the former standalone word opening
-now resumes at panel 2. Panels 2–7 have a collapsible right-side word guide.
+now resumes at panel 2. Only panel 2 has the word guide. It sits outside the artwork in a translucent
+right sidebar (below the picture on narrow phones). The guide is removed on
+Next, so panels 3–8 stay clear. Definitions use balanced wrapping with the final
+two words kept together.
 Panel 7 shows a separate accessible payment ledger: $100 received, minus $25
 materials, $40 labor and $15 overhead; total costs $80; $20 left. Artwork remains
 flattened; the ledger and book are independent interface elements.
