@@ -1,9 +1,10 @@
-import {PatronArt,patronCycles} from './patron-art.js?v=46.36';
-import {runnerArtwork} from './runner-art.js?v=46.36';
-import {moneyIllustrationSvg} from './needs-wants.js?v=46.36';
-import {FinancialRunner} from './runner.js';
-import {RearRunCycle} from './rear-run.js?v=46.36';
-import {downtownVocabulary,downtownOpportunities,projectStreet,opportunity} from './downtown-data.js?v=46.36';
+import {drawSceneCaption} from './scene-caption.js?v=46.38';
+import {PatronArt,patronCycles} from './patron-art.js?v=46.38';
+import {runnerArtwork} from './runner-art.js?v=46.38';
+import {moneyIllustrationSvg} from './needs-wants.js?v=46.38';
+import {FinancialRunner} from './runner.js?v=46.38';
+import {RearRunCycle} from './rear-run.js?v=46.38';
+import {downtownVocabulary,downtownOpportunities,projectStreet,opportunity} from './downtown-data.js?v=46.38';
 import {stepBody} from './moneybread/platform-physics.js';
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export class DowntownRunner extends FinancialRunner {
@@ -81,11 +82,11 @@ export class DowntownRunner extends FinancialRunner {
   if(e.type==='patron'){if(!this.patronArt.draw(c,e.patron,0,0,clamp(this.height*.28,155,250),this.sceneryTime,Math.sign(e.endLane-e.startLane),this.reduced)){this.drawWordIcon(c,'person',0,-60);}c.restore();return;}
   if(e.type==='platform'){runnerArtwork.platform(c,-100,-e.height*.7,200);c.fillStyle='#fff2b8';c.font='bold 16px Arial';c.textAlign='center';c.fillText('UPPER ROUTE',0,-e.height*.7-25);c.restore();return;}
   if(e.type==='obstacle'&&e.shape==='debt'){c.save();c.translate(0,-36);if(!this.reduced)c.rotate(this.sceneryTime*1.7);c.fillStyle='#37566d';c.beginPath();c.arc(0,0,36,0,Math.PI*2);c.fill();c.strokeStyle='#edca76';c.lineWidth=5;c.stroke();c.restore();c.fillStyle='#fff1b5';c.textAlign='center';c.font='bold 18px Arial';c.fillText('DEBT · JUMP',0,-72);c.restore();return;}
-  if(e.requiredHop)c.translate(0,-e.requiredHop*.7);c.fillStyle=e.type==='slidebooster'?'#70d3d5':e.type==='obstacle'?'#e79b60':'#ffdf7b';c.strokeStyle='#254f5d';c.lineWidth=4;c.beginPath();c.roundRect(-48,-72,96,72,14);c.fill();c.stroke();c.fillStyle='#173d49';c.textAlign='center';c.font='bold 18px Arial';
+  if(e.requiredHop)c.translate(0,-e.requiredHop*.7);if(['slidebooster','obstacle','moneybox'].includes(e.type)){c.fillStyle=e.type==='slidebooster'?'#70d3d5':e.type==='obstacle'?'#e79b60':'#ffdf7b';c.strokeStyle='#254f5d';c.lineWidth=4;c.beginPath();c.roundRect(-48,-72,96,72,14);c.fill();c.stroke();}c.fillStyle='#173d49';c.textAlign='center';c.font='bold 18px Arial';
   if(e.type==='moneybox'){c.font='bold 44px Arial';c.fillText('?',0,-23);c.font='bold 14px Arial';c.fillText('FLIP BONUS',0,-85);}
   else if(e.type==='slidebooster')c.fillText('SLIDE BOOST',0,-29);
   else if(e.type==='obstacle')c.fillText(e.shape==='loan'?'LOAN · JUMP':e.label,0,-29);
-  else{if(e.illustration)runnerArtwork.draw(c,e.illustration,-30,-66,60);else this.drawWordIcon(c,e.icon,0,-44);if(p.scale>.5){c.fillStyle='#fff7de';c.fillRect(-88,-104,176,25);c.fillStyle='#173d49';c.font='bold 15px Arial';c.fillText((e.category?e.category.toUpperCase()+': ':'')+e.label,0,-86);}}c.restore();}
+  else{if(e.illustration)runnerArtwork.draw(c,e.illustration,-30,-66,60);else this.drawWordIcon(c,e.icon,0,-44);if(p.scale>.5){drawSceneCaption(c,(e.category?e.category.toUpperCase()+': ':'')+e.label,0,-86,{size:15});}}c.restore();}
  drawWordIcon(c,kind,x,y){c.save();c.translate(x,y);c.strokeStyle='#186f72';c.lineWidth=4;c.fillStyle='#fff4c5';if(['interest','bond','dividend','fund'].includes(kind)){c.strokeRect(-19,-15,38,32);if(kind==='bond'){c.beginPath();c.moveTo(-12,-6);c.lineTo(12,-6);c.moveTo(-12,3);c.lineTo(8,3);c.stroke();}else if(kind==='fund'){c.strokeRect(-10,-24,20,15);}else{c.beginPath();c.arc(0,0,8,0,Math.PI*2);c.stroke();}}else if(kind==='person'){c.beginPath();c.arc(0,-5,10,0,Math.PI*2);c.fill();c.stroke();c.strokeRect(-15,9,30,18);}else if(kind==='book'){c.strokeRect(-20,-13,40,30);c.beginPath();c.moveTo(0,-13);c.lineTo(0,17);c.stroke();}else if(kind==='tools'){c.beginPath();c.moveTo(-15,-12);c.lineTo(15,16);c.moveTo(13,-14);c.lineTo(-12,15);c.stroke();}else if(kind==='shop'){c.strokeRect(-20,-7,40,28);c.beginPath();c.moveTo(-24,-7);c.lineTo(-16,-20);c.lineTo(16,-20);c.lineTo(24,-7);c.closePath();c.stroke();}else{c.beginPath();c.moveTo(-22,-10);c.lineTo(0,12);c.lineTo(22,-10);c.moveTo(0,12);c.lineTo(0,25);c.stroke();}c.restore();}
  drawRearPlayer(){const c=this.ctx,w=this.width,h=this.height,feet=h*.91,px=w/2+this.lane*w*.32*(.92**2),height=clamp(h*.25,125,220),hop=(this.ground-(this.player.y+this.player.h))*.7;c.fillStyle='#17253555';c.beginPath();c.ellipse(px,feet+3,height*.22,height*.055,0,0,Math.PI*2);c.fill();
   if(this.invulnerable>0)c.globalAlpha=this.reduced?.65:.55+Math.sin(this.sceneryTime*14)*.25;const size=this.player.duck?height*.8:height;

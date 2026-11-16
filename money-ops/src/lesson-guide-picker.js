@@ -1,0 +1,4 @@
+import {castIds,characters,portrait} from './characters.js';
+export function lessonGuidePicker(selected='jordan'){
+ return `<dialog id="job-guide-dialog" aria-labelledby="job-guide-title" aria-describedby="job-guide-description"><h2 id="job-guide-title">Choose your lesson guide</h2><p id="job-guide-description">Who will explore Lesson 1 with you?</p><div class="job-guide-grid">${castIds.map(id=>`<button class="job-guide-choice" data-action="job-guide-select" data-guide="${id}" aria-pressed="${id===selected}">${portrait(id)}<b>${characters[id].name}</b></button>`).join('')}</div><p class="job-guide-selected" aria-live="polite">${characters[selected].name} will share the lesson, words and verse.</p><nav><button class="secondary" data-action="job-guide-close">Back</button><button class="primary" data-action="job-guide-start">Start Lesson 1 →</button></nav></dialog>`;
+}

@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
  await page.goto(process.env.MONEY_OPS_URL+(width===390?'/money-ops/':'/'));
  await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');localStorage.setItem('money-ops-v02',JSON.stringify(newGame('Preserved learner','maya')));});const saved=await page.evaluate(()=>localStorage.getItem('money-ops-v02'));
  await page.locator('[data-action="start-arcade"]').first().click();await page.locator(`[data-action="arcade-level-${lesson}"]`).click();
- await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
+ await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
  await page.locator('[data-action="runner-start"]').click();await page.waitForFunction(()=>window.runner?.running);
  await page.evaluate(()=>{const r=window.runner;cancelAnimationFrame(r.raf);r.onUpdate(r.snapshot());});
  // Actual scheduler produces three separated ladders with open approaches.

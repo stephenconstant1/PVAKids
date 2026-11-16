@@ -27,7 +27,7 @@ const url=process.env.MONEY_OPS_URL;
  // Animate the real renderer for all six image sources and inspect the shared
  // kinematics the renderer uses, not just an unrelated sine-wave calculation.
  const rendering=await page.evaluate(async()=>{
-  const {FinancialRunner}=await import('./src/runner.js'),{runnerConfig}=await import('./src/runner-config.js');
+  const {FinancialRunner}=await import('./src/runner.js?v=46.38'),{runnerConfig}=await import('./src/runner-config.js');
   const {strideJoints}=await import('./src/moneybread/runner-stride.js');
   const result=[];
   for(const id of ['jordan','maya','kai','sofia','eli','ruby']){
@@ -50,7 +50,7 @@ const url=process.env.MONEY_OPS_URL;
  await page.emulateMedia({reducedMotion:'reduce'});await page.reload();await page.locator('[data-action="continue-career"]').first().click();
  assert.equal(await page.locator('.mb-destination-marker').evaluate(n=>getComputedStyle(n).animationName),'none');
  const reduced=await page.evaluate(async()=>{
-  const {FinancialRunner}=await import('./src/runner.js'),{runnerConfig}=await import('./src/runner-config.js');
+  const {FinancialRunner}=await import('./src/runner.js?v=46.38'),{runnerConfig}=await import('./src/runner-config.js');
   const runner=new FinancialRunner(document.createElement('canvas'),runnerConfig(1,'pre'),{animateStride:true});await runner.image.decode();runner.imageReady=true;
   runner.running=true;runner.last=0;runner.frame(16);cancelAnimationFrame(runner.raf);const answer=runner.reduced&&runner.strideTimeMs===0;runner.destroy();return answer;
  });assert(reduced);

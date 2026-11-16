@@ -35,8 +35,7 @@ reaction. All decorative cues are hidden from assistive technology.
 
 The comic surface uses the page's cream/teal palette, feathered image-to-caption
 edges and no heavy gold image frame or drop shadow. Nested lesson frames are
-softened only on the page hosting this comic. Scene animations never fade faces or text. On the practice panel, the still
-background is dimmed to keep the separate payment ledger readable. Readable HTML narration is available for every panel.
+softened only on the page hosting this comic. Scene animations never fade faces or text. The payment ledger sits beside the practice panel; the artwork stays fully visible. Readable HTML narration is available for every panel.
 
 ## Interaction, sound and financial rules
 
@@ -186,3 +185,19 @@ Completing a queued kick after the flip adds 75 more (100 total). A pickup durin
 a flip doubles that pickup's score points. Popups and the live status announce
 the reward. Trick points do not mint game dollars, cash, or extra pickups.
 Other levels retain their scoring. Question-box dollar rewards stay unchanged.
+
+## Guide choice and shared explanation rail (46.38)
+
+Run the Job first opens a six-character guide picker. The chosen character
+presents Create Value, the existing verse, vocabulary and lesson notes, then
+carries into the bonus run. The comic sequence and approved text are unchanged.
+Create Value, the verse book, the one-scene vocabulary guide and payment ledger
+all sit outside the artwork in the same right rail. Manually opened notes use
+that rail as well. Narrow phones place the current explanation below the comic,
+with all navigation in the viewport; the note pager handles longer explanations.
+
+The installed wants, needs and goal illustrations already contain transparency.
+Canvas previously painted solid cards behind those cutouts. Those cards have
+been removed from the side runner and Downtown illustrated pickups. Outlined
+labels retain contrast against the city. Original CMI PNGs, source dimensions,
+collision geometry, scoring and monetary accounting are unchanged.

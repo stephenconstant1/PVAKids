@@ -17,7 +17,7 @@ const {mkdirSync}=require('node:fs');
    await page.goto(base+prefix);await page.locator('[data-action="continue-career"]').first().click();
   }
   assert.match(await page.locator('.runner-titlebar').textContent(),/City Waterfront · Earning and Creating Value/);
-  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
+  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.runner?.waterfront?.tile&&window.runner.running);
   const scene=await page.evaluate(()=>{const r=window.runner;r.setPaused(true);r.spawnIn=r.rewardIn=r.boxIn=r.powerIn=r.lifeIn=999;r.routeGapRemaining=1e9;r.entities=[];

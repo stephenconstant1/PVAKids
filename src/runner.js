@@ -1,6 +1,7 @@
-import {UploadedActionArt} from './uploaded-action-art.js?v=46.36';
-import {CharacterActionArt} from './character-action-art.js?v=46.36';
-import {drawMoneyIllustration} from './needs-wants.js?v=46.36';
+import {drawSceneCaption} from './scene-caption.js?v=46.38';
+import {UploadedActionArt} from './uploaded-action-art.js?v=46.38';
+import {CharacterActionArt} from './character-action-art.js?v=46.38';
+import {drawMoneyIllustration} from './needs-wants.js?v=46.38';
 import {runnerImage} from './moneybread/image-assets.js?v=46.22';
 import {WaterfrontClimb} from './waterfront-climb.js';
 import {stepBody,setCrouched,launchJump,WALK_SPEED,RUN_SPEED,GRAVITY,TILE,BODY_HEIGHT} from './moneybread/platform-physics.js';
@@ -99,7 +100,7 @@ export class FinancialRunner{
   const b=this.playerBox(),next=this.entities.filter(e=>!e.done&&(e.moneyCategory||e.type==='climb'&&this.climb?.goal&&!this.climb.goal.reached)&&e.x>b.x+b.w+Math.max(18,this.speed*.12)&&e.x<this.width+80).sort((a,b)=>a.x-b.x)[0];if(!next)return null;
   const goal=next.type==='climb'?this.climb.goal:null,term=goal?.term||(next.moneyCategory==='need'?'needs':'wants');return {serial:`preview:${next.encounter||'climb-'+this.climb.count}:${term}`,preview:true,action:'COMING UP',object:goal?.term||next.label,term,definition:goal?.definition||next.definition,illustration:goal?.illustration||next.illustration,category:goal?'goal':next.moneyCategory,instruction:goal?'CLIMB ↑':next.moneyCategory==='need'?'SLIDE S / TOUCH':'JUMP ↑'};
  }
- drawLearningCue(time){const cue=this.learningCue();if(!cue)return;const c=this.ctx,x=250,y=this.height-64,w=460,h=58;c.save();c.fillStyle='#fff6dd';this.roundRect(x,y,w,h,12);c.strokeStyle=`rgba(250,199,73,${this.reduced?1:.7+Math.sin(time*3)*.2})`;c.lineWidth=4;c.stroke();drawMoneyIllustration(c,cue.illustration,x+6,y+3,50);c.textAlign='left';c.fillStyle='#173e43';c.font='900 34px Arial';c.fillText(cue.category==='goal'?'GOALS':cue.term.toUpperCase(),x+66,y+40);c.font='bold 16px Arial';c.fillText(cue.object,x+235,y+22);c.font='bold 18px Arial';c.fillText(cue.instruction,x+235,y+44);c.restore();
+ drawLearningCue(time){const cue=this.learningCue();if(!cue)return;const c=this.ctx,x=250,y=this.height-64;c.save();drawMoneyIllustration(c,cue.illustration,x+6,y+3,50);drawSceneCaption(c,cue.category==='goal'?'GOALS':cue.term.toUpperCase(),x+145,y+40,{size:30});drawSceneCaption(c,cue.object,x+350,y+22,{size:16});drawSceneCaption(c,cue.instruction,x+350,y+44,{size:18});c.restore();
  }
  snapshot(){return {goalPoints:this.config.lessonId===1?(this.bonusGoalPoints||0):undefined,stuntPoints:this.stuntPoints||0,stuntCue:this.stuntCueRemaining>0?this.stuntCue:'',vocabularyCollected:[...this.vocabularyCollected],vocabularyTotal:(this.config.vocabulary||[]).length,flourish:this.flourish?.kind||'',climb:this.climb?.snapshot(),actionCue:this.nextActionCue(),needsHandled:this.needsHandled,lives:this.lives,lifeCap:this.config.lifeCap||this.config.maxLives,paychecks:this.paychecks,paycheckCoins:this.paycheckCoins,goalReached:this.goalReached,coins:this.coins,collected:this.collected,targetCoins:this.config.targetCoins,bonusMoney:this.bonusMoney,xp:this.xp,distance:Math.round(this.distance),score:Math.round(this.score),combo:this.combo,paused:this.paused,powerUp:this.activePower?.name||'',speedStage:this.intensityLevel===0?0:Math.min(5,1+Math.floor(this.collected/20)),intensityLevel:this.intensityLevel,speedMultiplier:this.speedMultiplier,vocabEvent:this.vocabEvent,vocabPreview:this.learningCue()};}
  frame(time){if(!this.running)return;const dt=Math.min(.25,Math.max(0,(time-this.last)/1000));this.last=time;if(!this.paused){if(this.animateStride&&!this.reduced&&this.player.grounded&&!this.player.duck)this.strideTimeMs+=dt*1000;this.update(dt,time/1000);}this.draw(time/1000);if(time-this.lastHud>100){this.lastHud=time;this.onUpdate(this.snapshot());}this.raf=requestAnimationFrame(this.boundFrame);}
@@ -188,10 +189,9 @@ export class FinancialRunner{
  drawEntity(entity){entity={...entity,x:Math.round(entity.x),y:Math.round(entity.y)};
   const c=this.ctx;
   if(entity.moneyCategory){
-   const need=entity.moneyCategory==='need',size=need?48:38,cx=entity.x+entity.w/2,top=need?entity.y+entity.h-58:entity.y;
-   c.fillStyle=need?'#d9f2e4':'#eee0fa';this.roundRect(cx-Math.max(entity.w,58)/2,top,Math.max(entity.w,58),need?58:entity.h,8);
-   drawMoneyIllustration(c,entity.illustration,cx-size/2,top+(need?6:2),size);
-   if(!entity.hideMoneyLabel){c.font='bold 12px Arial';c.textAlign='center';const label=(need?'NEED · ':'WANT · ')+entity.label,width=Math.max(entity.w,Math.min(160,c.measureText(label).width+12));c.fillStyle='#173e43';const captionY=!need&&top<45?top+entity.h+4:top-41;this.roundRect(cx-width/2,captionY,width,38,6);c.fillStyle='#fff6d6';c.fillText(label,cx,captionY+15);c.font='bold 11px Arial';c.fillText(need?'SLIDE S / TOUCH':'JUMP ↑',cx,captionY+30);}return;
+   const need=entity.moneyCategory==='need',size=need?64:44,cx=entity.x+entity.w/2,top=need?entity.y+entity.h-64:entity.y;
+   drawMoneyIllustration(c,entity.illustration,cx-size/2,top,size);
+   if(!entity.hideMoneyLabel){const captionY=!need&&top<45?top+size+16:top-23;drawSceneCaption(c,(need?'NEED · ':'WANT · ')+entity.label,cx,captionY);drawSceneCaption(c,need?'SLIDE S / TOUCH':'JUMP ↑',cx,captionY+15,{size:11});}return;
   }
   if(entity.type==='vocabulary'){c.fillStyle='#8ce8e8';this.roundRect(entity.x,entity.y,62,54,8);c.fillStyle='#153c4b';c.fillRect(entity.x+8,entity.y+10,20,28);c.fillRect(entity.x+33,entity.y+10,20,28);c.fillStyle='#fff7c5';c.fillRect(entity.x+12,entity.y+14,12,3);c.fillRect(entity.x+37,entity.y+14,12,3);c.font='bold 13px Arial';c.textAlign='center';c.fillText(entity.label,entity.x+31,entity.y-8);return;}
   if(entity.type==='obstacle'){

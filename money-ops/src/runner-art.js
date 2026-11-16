@@ -1,4 +1,4 @@
-import {installedRunnerArt,runnerRouteArt} from './runner-art-manifest.js?v=46.36';
+import {installedRunnerArt,runnerRouteArt} from './runner-art-manifest.js?v=46.38';
 
 // Only build-verified local files are requested. Existing vector art remains the fallback.
 export class RunnerArtwork {

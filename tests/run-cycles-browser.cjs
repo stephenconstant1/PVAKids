@@ -10,7 +10,7 @@ const {mkdirSync}=require('node:fs');
  const ids=['jordan','maya','kai','sofia','eli','ruby'];
  for(const prefix of ['/','/money-ops/']){
  await page.goto(base+prefix);
- await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return original.apply(this,args);};});
+ await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return original.apply(this,args);};});
  // Actual Arcade selection and actual saved Career Bonus flow, every character.
  for(const mode of ['arcade','bonus'])for(const id of ids){
   if(mode==='arcade'){
@@ -26,7 +26,7 @@ const {mkdirSync}=require('node:fs');
    await page.locator(`input[name="runner-character"][value="${id}"]`).check();
    assert.match(await page.locator('.runner-titlebar').textContent(),new RegExp(({jordan:'Kanyon',maya:'Maya',kai:'Everest',sofia:'Sofia',eli:'Zion',ruby:'Ruby'})[id]));
   }
-  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');if(!FinancialRunner.prototype._review){const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return original.apply(this,args);};FinancialRunner.prototype._review=true;}});
+  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');if(!FinancialRunner.prototype._review){const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return original.apply(this,args);};FinancialRunner.prototype._review=true;}});
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.runner?.runCycle.ready&&window.runner?.strideTimeMs>0);
   const frames=await page.evaluate(async()=>{
@@ -115,7 +115,7 @@ const {mkdirSync}=require('node:fs');
  }
  const reduced=await browser.newPage({reducedMotion:'reduce'});await reduced.goto(base);
  const alternative=await reduced.evaluate(async()=>{
-  const {FinancialRunner}=await import('./src/runner.js');const {runnerConfig}=await import('./src/runner-config.js');
+  const {FinancialRunner}=await import('./src/runner.js?v=46.38');const {runnerConfig}=await import('./src/runner-config.js');
   const r=new FinancialRunner(document.createElement('canvas'),runnerConfig(1,'post'),{characterId:'ruby'});
   await Promise.all([r.image.decode(),r.runCycle.image.decode(),r.jumpCycle.image.decode()]);r.runCycle.ready=true;r.jumpCycle.ready=true;r.imageReady=true;r.start();r.drawPlayer(0);r.jump();r.drawPlayer(0);const out={reduced:r.reduced,frame:r.runCycle.frame,jump:!r.player.grounded,jumpFrame:r.jumpCycle.frame};r.destroy();return out;
  });assert.deepEqual(alternative,{reduced:true,frame:0,jump:true,jumpFrame:5});

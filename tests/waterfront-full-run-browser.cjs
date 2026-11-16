@@ -19,7 +19,7 @@ const {mkdirSync}=require('node:fs');
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Waterfront route','maya'),1),1,'post')));});
    await page.goto(base+scenario.prefix);await page.locator('[data-action="continue-career"]').first().click();
   }
-  await page.evaluate(async level=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;if(level!==null){this.intensityLevel=level;this.speedMultiplier=level===0?.68:level;this.accelerates=level!==0;}return start.apply(this,args);};},scenario.mode==='bonus'?({rookie:0,intermediate:1,expert:1.5})[scenario.intensity]:null);
+  await page.evaluate(async level=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;if(level!==null){this.intensityLevel=level;this.speedMultiplier=level===0?.68:level;this.accelerates=level!==0;}return start.apply(this,args);};},scenario.mode==='bonus'?({rookie:0,intermediate:1,expert:1.5})[scenario.intensity]:null);
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.runner?.running&&window.runner.waterfront?.nearReady&&window.runner.waterfront?.tile);
   const layers=await page.evaluate(()=>{

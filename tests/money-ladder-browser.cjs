@@ -15,7 +15,7 @@ const {mkdirSync}=require('node:fs');
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Ladder planner','maya'),1),1,'post')));});
    await page.goto(process.env.MONEY_OPS_URL+prefix);await page.locator('[data-action="continue-career"]').first().click();
   }
-  await page.evaluate(async level=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;this.intensityLevel=level;this.speedMultiplier=level===0?.68:level;this.accelerates=level!==0;return start.apply(this,args);};},intensity);
+  await page.evaluate(async level=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;this.intensityLevel=level;this.speedMultiplier=level===0?.68:level;this.accelerates=level!==0;return start.apply(this,args);};},intensity);
   await page.locator('[data-action="runner-start"]').click();await page.waitForFunction(()=>window.runner?.running);
   await page.evaluate(()=>{const r=window.runner;cancelAnimationFrame(r.raf);let n=0;while(!r.climb.touching()&&n++<3000)r.update(.01,n*.01);if(!r.climb.touching())throw Error('Natural route never reaches the pole');r.onUpdate(r.snapshot());r.draw();});
   await page.keyboard.down('ArrowUp');

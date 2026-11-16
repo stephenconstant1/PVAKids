@@ -12,7 +12,7 @@ const assert=require('node:assert/strict');
    localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(p,1,phase)));
   },phase);
   await page.reload();await page.locator('[data-action="continue-career"]').first().click();
-  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.reviewRunner=this;return original.apply(this,args);};});
+  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const original=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.reviewRunner=this;return original.apply(this,args);};});
   await page.locator('[data-action="runner-start"]').click();
   await page.waitForFunction(()=>window.reviewRunner?.imageReady&&window.reviewRunner?.strideTimeMs>0);
   const result=await page.evaluate(()=>{const r=window.reviewRunner;r.setPaused(true);return {enabled:r.animateStride,id:r.characterId,clock:r.strideTimeMs};});

@@ -13,7 +13,7 @@ const {mkdirSync}=require('node:fs');
    await page.evaluate(async()=>{const {newGame}=await import('./src/engine.js');const {openRunner,markLessonCompleted}=await import('./src/runner-state.js');localStorage.setItem('money-ops-v02',JSON.stringify(openRunner(markLessonCompleted(newGame('Tile test','maya'),1),1,'post')));});
    await page.reload();await page.locator('[data-action="continue-career"]').first().click();
   }
-  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
+  await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.runner=this;return start.apply(this,args);};});
   await page.locator('[data-action="runner-start"]').click();await page.waitForFunction(()=>window.runner?.running&&window.runner.runCycle.ready);
   const checks=await page.evaluate(async()=>{
    const {runnerBody,runnerMap,runnerTiles,RUNNER_ZOOM}=await import('./src/moneybread/runner-physics.js');

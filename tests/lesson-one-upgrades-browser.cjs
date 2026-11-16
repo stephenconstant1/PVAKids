@@ -16,7 +16,7 @@ const {mkdirSync,writeFileSync}=require('node:fs');
  await page.locator('[data-action="arcade-open"]').first().click();
  await page.locator('[data-action="arcade-character-kai"]').click();await page.locator('#arcade-level-select').selectOption('1');
  assert.match(await page.locator('.runner-intro').textContent(),/200 COINS/);
- await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.reviewRunner=this;return start.apply(this,args);};});
+ await page.evaluate(async()=>{const {FinancialRunner}=await import('./src/runner.js?v=46.38');const start=FinancialRunner.prototype.start;FinancialRunner.prototype.start=function(...args){window.reviewRunner=this;return start.apply(this,args);};});
  await page.locator('[data-action="runner-start"]').click();await page.waitForFunction(()=>window.reviewRunner?.running&&window.reviewRunner?.imageReady);
  // Record a short actual gameplay clip, rather than only inspecting a source PNG.
  const clip=await page.evaluate(async()=>{
